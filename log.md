@@ -4,6 +4,17 @@
 
 ---
 
+## [2026-06-22] session | 会话终结 — 核心架构决策落地
+- 语言分层原则写入 AGENTS.md §5：中文入口层 / 英文深度笔记 / 英文 Frontmatter
+- 289 个 wiki 链接统一为 `[[slug|Title]]` 管道语法，0 断裂
+- 4 个缺失概念填补 seed 笔记（attention-mechanism, atomic-notes, folgezettel, knowledge-graph-theory）
+- skills/ 迁移至 Note/skills/，opencode.json 最小化配置
+- AGENTS.md §11 skills/agents 只读边界固化
+- Agent 定义回归 `.opencode/agents/nova-architect.md` 文件形式
+- AGENTS.md 顶部植入强制自举序列（⛔ BOOT SEQUENCE），确保跨会话记忆
+- 4 个 Git 提交：init → bootstrap → log → harden
+- 当前状态：57 个追踪文件，0 个断裂链接，知识库可分发可自举
+
 ## [2026-06-22] session | 架构定型 — 自举周期 1 完成
 - skills/ 迁移至 Note/skills/，通过 opencode.json 的 skills.paths 绑定
 - opencode.json 最小化至 6 行（skills.paths + instructions）
