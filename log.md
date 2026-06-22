@@ -4,6 +4,18 @@
 
 ---
 
+## [2026-06-22] session | 架构定型 — 自举周期 1 完成
+- skills/ 迁移至 Note/skills/，通过 opencode.json 的 skills.paths 绑定
+- opencode.json 最小化至 6 行（skills.paths + instructions）
+- AGENTS.md §11：skills/agents 只读边界规则固化
+- 4 个身份/元信息文件同步更新，反映新架构
+- Git 提交：57 个文件，0 个断裂链接，知识库完全自举
+
+## [2026-06-22] session | MCP 协议讲解对话
+- 用户询问 "我是谁 / 能做什么 / 知道什么" → 返回 Nova 身份说明与知识库概览
+- 用户请求讲解 MCP 协议 → 引用 `/concepts/mcp-protocol.md` 进行中文摘要（架构、三原语、Sampling、安全模型、与 A2A 对比）
+- 已有知识直接命中，无需创建新笔记
+
 ## [2026-06-22] refactor | Wiki 链接标准化 — 全部转换为管道语法
 - 将所有 `[[Human Readable Title]]` 链接转换为 `[[slug|Human Readable Title]]` 格式
 - 转换 289 个链接，涉及 40 个文件
