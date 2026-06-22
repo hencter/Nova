@@ -1,0 +1,29 @@
+{
+  "newFileLocation": "root",
+  "newFileFolderPath": "_inbox",
+  "attachmentFolderPath": "_attachments",
+  "showUnsupportedFiles": false,
+  "showFrontmatter": true,
+  "foldHeading": false,
+  "foldIndent": true,
+  "defaultViewMode": "source",
+  "livePreview": true,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "showLineNumber": false,
+  "spellcheck": true,
+  "autoPairBrackets": true,
+  "autoPairMarkdown": true,
+  "tabSize": 2,
+  "useTab": false,
+  "promptDelete": true,
+  "trashOption": "local",
+  "alwaysUpdateLinks": true,
+  "userIgnoreFilters": [
+    ".opencode/",
+    "OPENCODE_RESEARCH.md",
+    "agent-coding-tools-research.md",
+    "research_karpathy_okf.md",
+    "research-obsidian-zk-mermaid-latex.md"
+  ]
+}

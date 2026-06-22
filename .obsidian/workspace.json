@@ -1,0 +1,222 @@
+{
+  "main": {
+    "id": "0e872f710d0d086e",
+    "type": "split",
+    "children": [
+      {
+        "id": "85289a7a45afcb1b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b425359796e3ac82",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "patterns/index.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "index"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "69a49899557fecdc",
+    "type": "split",
+    "children": [
+      {
+        "id": "3bdbb5816819ac65",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cd1543ea2caed75a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "fb7337b8735d14e7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "f9fa380b6eef3f7a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "8dc5dba16f259c13",
+    "type": "split",
+    "children": [
+      {
+        "id": "f156f7fedcb4bb5b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a182371bfbe8330f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "concepts/cross-session-memory.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "cross-session-memory 的反向链接列表"
+            }
+          },
+          {
+            "id": "ee7691120e94713c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "concepts/cross-session-memory.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "cross-session-memory 的出链列表"
+            }
+          },
+          {
+            "id": "a5bf98d710e023ec",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "f559f85e58a06f17",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "3c5022688d540870",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "concepts/cross-session-memory.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "cross-session-memory 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "b425359796e3ac82",
+  "lastOpenFiles": [
+    "concepts/git-operations.md",
+    "concepts/git-data-model.md",
+    "tools/index.md",
+    "concepts/git-branching.md",
+    "concepts/mcp-protocol.md",
+    "concepts/index.md",
+    "concepts/a2a-protocol.md",
+    "index.md",
+    "AGENTS.md",
+    "_identity/nova-identity.md",
+    "tools/obsidian-maple-theme.md",
+    "concepts/obsidian-syntax-reference.md",
+    "log.md",
+    "concepts/cross-session-memory.md",
+    "tools/claude-code.md",
+    "tools/copilot.md",
+    "tools/codex-cli.md",
+    "tools/cursor.md",
+    "tools/opencode.md",
+    "_meta/conventions.md",
+    "research_karpathy_okf.md",
+    "templates/pattern-template.md",
+    "tools/aider.md",
+    "templates/tool-template.md",
+    "templates/concept-template.md",
+    "patterns/agent-extensibility.md",
+    "_attachments",
+    "templates",
+    "patterns",
+    "tools",
+    "concepts",
+    "_meta",
+    "_identity"
+  ]
+}
