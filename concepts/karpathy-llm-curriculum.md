@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "Karpathy LLM Curriculum"
 description: Andrej Karpathy's progressive from-scratch teaching philosophy, the Zero to Hero course, the LLM Wiki pattern, and the compound effect that turns a knowledge base into a thinking partner.
@@ -12,11 +12,11 @@ prerequisites:
   - /concepts/okf-format.md
   - /concepts/markdown-frontmatter.md
 related:
-  - "[[OKF Format]]"
-  - "[[Markdown Frontmatter]]"
-  - "[[Zettelkasten Methodology]]"
-  - "[[Mermaid Diagrams]]"
-  - "[[Attention Mechanism]]"
+  - "[[okf-format|OKF Format]]"
+  - "[[markdown-frontmatter|Markdown Frontmatter]]"
+  - "[[zettelkasten-methodology|Zettelkasten Methodology]]"
+  - "[[mermaid-diagrams|Mermaid Diagrams]]"
+  - "[[attention-mechanism|Attention Mechanism]]"
 sources:
   - title: "Karpathy LLM Wiki Gist"
     url: "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
@@ -210,7 +210,7 @@ The LLM Wiki gist spawned a rich ecosystem:
 
 ## Convergence with OKF
 
-See [[OKF Format]] for how Google's specification formalizes this pattern into an interoperable standard.
+See [[okf-format|OKF Format]] for how Google's specification formalizes this pattern into an interoperable standard.
 
 # Citations
 

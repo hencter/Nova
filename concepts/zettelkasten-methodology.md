@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "Zettelkasten Methodology"
 aliases:
@@ -17,10 +17,10 @@ prerequisites:
   - /concepts/mermaid-diagrams.md
   - /concepts/latex-in-markdown.md
 related:
-  - "[[OKF Format]]"
-  - "[[Cross-Session Memory]]"
-  - "[[Mermaid Diagrams]]"
-  - "[[Markdown Frontmatter]]"
+  - "[[okf-format|OKF Format]]"
+  - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[mermaid-diagrams|Mermaid Diagrams]]"
+  - "[[markdown-frontmatter|Markdown Frontmatter]]"
 sources:
   - title: "Communicating with Slip Boxes"
     author: "Niklas Luhmann"
@@ -224,8 +224,8 @@ Whereas in folders: $F_k \in \text{Folder}_A$ (mutually exclusive).
 **Explicit in frontmatter**:
 ```yaml
 ---
-prev: "[[ZK Core Principles]]"
-next: "[[Cognitive Load and Note Design]]"
+prev: "[[zettelkasten-methodology|ZK Core Principles]]"
+next: "[[zettelkasten-methodology|Cognitive Load and Note Design]]"
 sequence: zk-applications
 ---
 ```
@@ -233,9 +233,9 @@ sequence: zk-applications
 **Trail links**: Create explicit narrative paths through the ZK:
 ```markdown
 # Trail: ZK for Software Engineers
-1. [[ZK Core Principles]]
-2. → [[ZK for Code Documentation]]
-3. → [[Example: ZK in a Codebase]]
+1. [[zettelkasten-methodology|ZK Core Principles]]
+2. → [[zettelkasten-methodology|ZK for Code Documentation]]
+3. → [[zettelkasten-methodology|Example: ZK in a Codebase]]
 ```
 
 ## ID Systems Comparison

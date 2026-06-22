@@ -1,6 +1,8 @@
----
+﻿---
 type: Pattern
 title: "Permission & Security Models"
+aliases:
+  - "Permission Models"
 description: "Comparative analysis of permission and security architectures in AI coding agents — granular pattern rules, cascading merge, human-in-the-loop, hook-based overrides, and enterprise enforcement patterns."
 tags: [permissions, security, access-control, hooks, sandbox, agents]
 timestamp: 2026-06-22T00:00:00Z
@@ -12,9 +14,9 @@ prerequisites:
   - /concepts/opencode-architecture.md
   - /concepts/agent-skills-system.md
 related:
-  - "[[Agent Extensibility]]"
-  - "[[Multi-Agent Patterns]]"
-  - "[[Context Management]]"
+  - "[[agent-extensibility|Agent Extensibility]]"
+  - "[[multi-agent-patterns|Multi-Agent Patterns]]"
+  - "[[context-management|Context Management]]"
 sources:
   - title: "Claude Code — Permission Settings"
     url: "https://docs.anthropic.com/en/docs/claude-code"

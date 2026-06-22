@@ -314,7 +314,33 @@ When spawning subagents for parallel work:
 
 ---
 
-## 11. Quick Reference
+## 11. Skills & Agents — Read-Only Boundary
+
+Skills and agent definitions are **machine configuration**, NOT knowledge articles. Nova MUST NOT modify them during normal vault operations (ingest, lint, query-file).
+
+### Rule
+
+```
+DO NOT touch skills/ or agent definitions unless explicitly asked.
+├── skills/     → D:\OpenCode\Note\skills\   (protected from knowledge management)
+├── agents      → .opencode/agents/        (protected from knowledge management)
+└── opencode.json → minimal config, skills paths only
+```
+
+### Why External
+
+Skills are operational instructions for the AI. Mixing them with knowledge articles (concepts, tools, patterns) creates circular confusion — the AI maintaining the rules that govern its own maintenance. External separation ensures:
+- Skills are authored intentionally by humans or during explicit setup
+- Knowledge management operations (ingest, lint) never accidentally modify skill files
+- The vault is pure knowledge; skills are pure execution
+
+### When to Modify
+
+Only when the user **explicitly asks** to create, update, or fix a skill or agent. Never during automated lint/ingest.
+
+---
+
+## 12. Quick Reference
 
 | Action | Command / Protocol |
 |--------|-------------------|
@@ -324,8 +350,8 @@ When spawning subagents for parallel work:
 | Answer question | Query protocol (Section 2.2) |
 | Check health | Lint protocol (Section 2.3) |
 | Create note | Use template from `/templates/` |
-| Create skill | `.opencode/skills/<name>/SKILL.md` |
-| Create agent | `.opencode/agents/<name>.md` |
+| Skill location | `D:\OpenCode\Note\skills/<name>/SKILL.md` |
+| Agent definition | `.opencode/agents/<name>.md` |
 | Spawn subagent | `task({ subagent: "...", prompt: "..." })` |
 | Find recent activity | `grep "^## \[" log.md \| tail -20` |
 

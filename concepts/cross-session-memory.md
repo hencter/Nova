@@ -1,6 +1,8 @@
----
+﻿---
 type: Concept
 title: "Cross-Session Memory"
+aliases:
+  - "Cross Session Memory"
 description: "Context management via message parts and session model, automatic compaction with a hidden agent, session persistence on disk, and cross-session knowledge through AGENTS.md and instruction files."
 tags: [opencode, memory, sessions, compaction, context-management]
 timestamp: 2026-06-22T00:00:00Z
@@ -12,10 +14,10 @@ prerequisites:
   - /concepts/opencode-architecture.md
   - /concepts/agent-skills-system.md
 related:
-  - "[[OpenCode Architecture]]"
-  - "[[Agent Skills System]]"
-  - "[[Subagent Concurrency]]"
-  - "[[OKF Format]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[okf-format|OKF Format]]"
 sources:
   - title: "OpenCode Documentation — Sessions & Memory"
     url: "https://opencode.ai"

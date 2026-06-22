@@ -1,4 +1,4 @@
----
+﻿---
 type: Index
 title: "Tools — Agent Coding Platforms"
 description: Deep-dive analyses of major AI coding/agent tools, their architectures, and design patterns.
@@ -12,11 +12,11 @@ This directory contains **tool-specific deep dives** — each file analyzes a si
 
 ## Notes
 
-- [[OpenCode]] — Full feature analysis: TUI, config, skills, agents, plugins, permissions
-- [[Claude Code]] — Anthropic's terminal agent: CLAUDE.md, auto memory, agent teams, hooks
-- [[Codex CLI]] — OpenAI's agent: desktop app, sandboxing, workflows, memories
-- [[OpenAI Agents SDK]] — Library SDK: Agent/Runner, Sandbox Agents, manager+handoff, hosted tools, tracing
-- [[Aider]] — Map-reduce with RepoMap, architect/editor mode, edit formats
-- [[Cursor]] — IDE-native agent: .cursorrules, codebase indexing, inline editing
-- [[GitHub Copilot]] — Microsoft's agent ecosystem: ACP protocol, agents window, session sync
-- [[Obsidian Maple Theme]] — Modern Obsidian theme: Style Settings, 28 alternate checkboxes, Maple Mono font
+- [[opencode|OpenCode]] — Full feature analysis: TUI, config, skills, agents, plugins, permissions
+- [[claude-code|Claude Code]] — Anthropic's terminal agent: CLAUDE.md, auto memory, agent teams, hooks
+- [[codex-cli|Codex CLI]] — OpenAI's agent: desktop app, sandboxing, workflows, memories
+- [[openai-agents-sdk|OpenAI Agents SDK]] — Library SDK: Agent/Runner, Sandbox Agents, manager+handoff, hosted tools, tracing
+- [[aider|Aider]] — Map-reduce with RepoMap, architect/editor mode, edit formats
+- [[cursor|Cursor]] — IDE-native agent: .cursorrules, codebase indexing, inline editing
+- [[copilot|GitHub Copilot]] — Microsoft's agent ecosystem: ACP protocol, agents window, session sync
+- [[obsidian-maple-theme|Obsidian Maple Theme]] — Modern Obsidian theme: Style Settings, 28 alternate checkboxes, Maple Mono font

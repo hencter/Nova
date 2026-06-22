@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "Markdown Frontmatter"
 description: YAML frontmatter syntax, data types, Obsidian recognized fields, properties system, and best practices for AI agent consumption — the metadata layer of every note.
@@ -11,10 +11,10 @@ domain: knowledge-management
 prerequisites:
   - /concepts/okf-format.md
 related:
-  - "[[OKF Format]]"
-  - "[[Zettelkasten Methodology]]"
-  - "[[Karpathy LLM Curriculum]]"
-  - "[[LaTeX in Markdown]]"
+  - "[[okf-format|OKF Format]]"
+  - "[[zettelkasten-methodology|Zettelkasten Methodology]]"
+  - "[[karpathy-llm-curriculum|Karpathy LLM Curriculum]]"
+  - "[[latex-in-markdown|LaTeX in Markdown]]"
 sources:
   - title: "Obsidian Help — YAML Frontmatter"
     url: "https://help.obsidian.md/Editing+and+formatting/Properties"
@@ -180,9 +180,9 @@ sources:
 prerequisites:
   - /concepts/zettelkasten-methodology.md
 related:
-  - "[[Folgezettel]]"
-  - "[[Atomic Notes]]"
-  - "[[Knowledge Graph Theory]]"
+  - "[[folgezettel|Folgezettel]]"
+  - "[[atomic-notes|Atomic Notes]]"
+  - "[[knowledge-graph-theory|Knowledge Graph Theory]]"
 
 # Lifecycle
 status: evergreen
@@ -229,9 +229,9 @@ aliases:
 Now all of these resolve to the same note:
 
 ```markdown
-[[ZK]] → resolves here
-[[slip box]] → resolves here
-[[Zettelkasten Method]] → resolves here
+[[zettelkasten-methodology|ZK]] → resolves here
+[[zettelkasten-methodology|slip box]] → resolves here
+[[zettelkasten-methodology|Zettelkasten Method]] → resolves here
 ```
 
 This is critical for Zettelkasten workflows where concepts evolve multiple names over time.
@@ -301,8 +301,8 @@ Use structured relationship fields to create machine-readable link semantics:
 prerequisites:              # What you must understand first
   - /concepts/embeddings.md
 related:                    # Conceptually connected notes
-  - "[[Multi-Head Attention]]"
-  - "[[Self-Attention]]"
+  - "[[attention-mechanism|Multi-Head Attention]]"
+  - "[[attention-mechanism|Self-Attention]]"
 sources:                    # Provenance tracking
   - title: "Attention Is All You Need"
     url: "https://arxiv.org/abs/1706.03762"
@@ -343,7 +343,7 @@ domain: knowledge-management
 tags: [attention, transformer, fundamentals]
 ```
 
-Tags answer "what category?" — Links answer "how does this connect to that specific idea?" See [[Zettelkasten Methodology#Tags vs. Links|Tags vs. Links]].
+Tags answer "what category?" — Links answer "how does this connect to that specific idea?" See [[zettelkasten-methodology#Tags vs. Links|Tags vs. Links]].
 
 ### 8. Consistent Conventions
 
@@ -367,7 +367,7 @@ graph:
 ---
 ```
 
-This enables explicit typed edges beyond bare markdown links — supporting contradiction edges, support edges, and other semantic relationships. See [[Karpathy LLM Curriculum#Self-Bootstrapping Knowledge Base|self-bootstrapping]] for how agents use these during lint operations.
+This enables explicit typed edges beyond bare markdown links — supporting contradiction edges, support edges, and other semantic relationships. See [[karpathy-llm-curriculum#Self-Bootstrapping Knowledge Base|self-bootstrapping]] for how agents use these during lint operations.
 
 ## Dataview Query Examples
 

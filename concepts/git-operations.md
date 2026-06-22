@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "Git Operations"
 description: Complete Git command reference organized by workflow stages — setup, daily work (add/commit/status/diff/log), undo operations (reset/checkout/revert/restore), remote collaboration (clone/fetch/pull/push), stashing, tagging, and advanced operations (bisect, reflog, cherry-pick).
@@ -12,8 +12,8 @@ prerequisites:
   - /concepts/git-data-model.md
   - /concepts/git-branching.md
 related:
-  - "[[Git Data Model]]"
-  - "[[Git Branching]]"
+  - "[[git-data-model|Git Data Model]]"
+  - "[[git-branching|Git Branching]]"
 sources:
   - title: "Pro Git Book — §7.7 Reset Demystified"
     url: "https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified"

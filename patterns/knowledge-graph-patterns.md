@@ -1,4 +1,4 @@
----
+﻿---
 type: Pattern
 title: "Knowledge Graph Patterns"
 description: "Design patterns for building and maintaining AI-consumable knowledge graphs — atomic notes, progressive disclosure, compound growth, self-linting, status lifecycle, layering, and graph navigation without infrastructure."
@@ -13,11 +13,11 @@ prerequisites:
   - /concepts/okf-format.md
   - /concepts/markdown-frontmatter.md
 related:
-  - "[[Zettelkasten Methodology]]"
-  - "[[OKF Format]]"
-  - "[[Vault Architecture]]"
-  - "[[Conventions]]"
-  - "[[Self-Bootstrapping]]"
+  - "[[zettelkasten-methodology|Zettelkasten Methodology]]"
+  - "[[okf-format|OKF Format]]"
+  - "[[vault-architecture|Vault Architecture]]"
+  - "[[conventions|Conventions]]"
+  - "[[self-bootstrapping|Self-Bootstrapping]]"
 sources:
   - title: "Karpathy LLM Wiki Pattern"
     url: "https://github.com/karpathy"
@@ -102,8 +102,8 @@ status: evergreen                # Node state
 prerequisites:                   # Directed edges (inbound dependencies)
   - /concepts/attention.md
 related:                         # Undirected edges (semantic connections)
-  - "[[Transformer Architecture]]"
-  - "[[Multi-Head Attention]]"
+  - "[[karpathy-llm-curriculum|Transformer Architecture]]"
+  - "[[mermaid-diagrams|Multi-Head Attention]]"
 sources:                         # External edges (provenance)
   - title: "Attention Is All You Need"
     url: "https://arxiv.org/abs/1706.03762"
@@ -131,8 +131,8 @@ The `index.md` serves as the stable API for both humans and AI agents:
 ```markdown
 # Concepts
 ## AI Agent Architecture
-- [[OpenCode Architecture]] — Client-server design, core loop
-- [[Agent Skills System]] — How skills extend capabilities
+- [[opencode-architecture|OpenCode Architecture]] — Client-server design, core loop
+- [[agent-skills-system|Agent Skills System]] — How skills extend capabilities
 ```
 
 **Properties**:
@@ -257,7 +257,7 @@ stateDiagram-v2
 | Field | Link Type | Direction | Example |
 |-------|-----------|-----------|---------|
 | `prerequisites` | Dependency (must-read-before) | Inbound to this note | `- /concepts/attention.md` |
-| `related` | Semantic association | Bidirectional | `- "[[Transformer Architecture]]"` |
+| `related` | Semantic association | Bidirectional | `- "[[karpathy-llm-curriculum|Transformer Architecture]]"` |
 | `sources` | Provenance (external) | Outbound to source | `- title: "Paper" / url: "..."` |
 | `tags` | Categorical | Many-to-many | `tags: [transformers, attention]` |
 

@@ -1,4 +1,4 @@
----
+﻿---
 type: Tool
 title: "Codex CLI"
 description: "Comprehensive deep-dive analysis of Codex CLI by OpenAI — terminal/IDE/desktop/web surfaces, Rust codebase, AGENTS.md, Chronicle memory system, sandboxing architecture, skills, hooks, MCP integration, plugin system, GitHub Actions/Slack/Linear integrations, workflow orchestration, and permission model."
@@ -13,13 +13,13 @@ prerequisites:
   - /concepts/cross-session-memory.md
   - /concepts/subagent-concurrency.md
 related:
-  - "[[OpenCode Architecture]]"
-  - "[[Agent Skills System]]"
-  - "[[Cross-Session Memory]]"
-  - "[[Permission Models]]"
-  - "[[Agent Extensibility]]"
-  - "[[OpenCode]]"
-  - "[[Claude Code]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[permission-models|Permission Models]]"
+  - "[[agent-extensibility|Agent Extensibility]]"
+  - "[[opencode|OpenCode]]"
+  - "[[claude-code|Claude Code]]"
 sources:
   - title: "Codex CLI GitHub Repository"
     url: "https://github.com/openai/codex"
@@ -93,7 +93,7 @@ Codex CLI adopts the **AGENTS.md** convention for project-level agent instructio
 
 ## 3. Chronicle Memory System
 
-The **Chronicle** is Codex CLI's persistent memory system, implementing [[Cross-Session Memory]].
+The **Chronicle** is Codex CLI's persistent memory system, implementing [[cross-session-memory|Cross-Session Memory]].
 
 ### What Chronicle Stores
 - Project context and conventions
@@ -195,13 +195,13 @@ Codex CLI's defining feature is its **OS-level sandboxing** for safe code execut
 | **Claude Code** | Permission modes + rules | Medium |
 | **Aider** | Git auto-commits for rollback | Low-Medium |
 
-Codex CLI's sandboxing represents [[Permission Models]] taken to the OS level — isolation as security, not just policy.
+Codex CLI's sandboxing represents [[permission-models|Permission Models]] taken to the OS level — isolation as security, not just policy.
 
 ---
 
 ## 5. Skills System
 
-Codex CLI supports a skills system aligned with [[Agent Skills System]].
+Codex CLI supports a skills system aligned with [[agent-skills-system|Agent Skills System]].
 
 ### Skill Definition
 ```yaml
@@ -276,7 +276,7 @@ on_failure: deny
 
 ## 7. MCP Integration
 
-Codex CLI supports [[Model Context Protocol (MCP)]] for connecting to external tool servers.
+Codex CLI supports [[mcp-protocol|Model Context Protocol (MCP)]] for connecting to external tool servers.
 
 ### MCP Configuration
 ```json

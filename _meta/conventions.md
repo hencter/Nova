@@ -7,21 +7,21 @@ status: evergreen
 domain: knowledge-management
 tags: [meta, conventions, standards]
 related:
-  - "[[Vault Architecture]]"
-  - "[[OKF Format]]"
-  - "[[Markdown Frontmatter]]"
+  - "[[vault-architecture|Vault Architecture]]"
+  - "[[okf-format|OKF Format]]"
+  - "[[markdown-frontmatter|Markdown Frontmatter]]"
 confidence: 1.0
 summary: >
   The Nova vault follows strict but minimal conventions: slug-based file naming, Obsidian wiki links, OKF v0.1 frontmatter with `type` required, and an append-only log for memory.
 ---
 
-# Conventions
+# 约定规范
 
-## File Naming
+## 文件命名
 
-### Pattern by Directory
+### 各目录命名模式
 
-| Directory | Pattern | Example |
+| 目录 | 命名模式 | 示例 |
 |-----------|---------|---------|
 | `/concepts/` | `descriptive-slug.md` | `opencode-architecture.md` |
 | `/tools/` | `tool-name.md` | `claude-code.md` |
@@ -29,82 +29,82 @@ summary: >
 | `/_meta/` | `meta-topic.md` | `vault-architecture.md` |
 | `/_identity/` | `identity-name.md` | `nova-identity.md` |
 | `/templates/` | `type-template.md` | `concept-template.md` |
-| All directories | `index.md` | `index.md` |
+| 所有目录 | `index.md` | `index.md` |
 
-### Rules
-- Lowercase alphanumeric with single hyphens (`^[a-z0-9]+(-[a-z0-9]+)*$`)
-- 1–64 characters
-- No special characters (except `-`)
-- Simple, descriptive slugs preferred over cryptic IDs
+### 命名规则
+- 全小写字母数字，单连字符分隔（`^[a-z0-9]+(-[a-z0-9]+)*$`）
+- 1–64 个字符
+- 不允许特殊字符（`-` 除外）
+- 优先使用简洁、描述性的 slug，而非晦涩的 ID
 
-## Linking
+## 链接规范
 
-### Internal Links (Obsidian Wiki Links)
+### 内部链接（Obsidian Wiki 链接）
 ```markdown
-[[Zettelkasten Methodology]]          # Basic concept link
-[[Zettelkasten Methodology|ZK]]       # Aliased link
-[[Nova Identity#Session Protocol]]    # Heading deep link
-[[Conventions#^block-id]]             # Block reference
+[[zettelkasten-methodology|Zettelkasten Methodology]]          # 基本概念链接
+[[zettelkasten-methodology|Zettelkasten Methodology]]       # 别名链接
+[[nova-identity|Nova Identity#Session Protocol]]    # 标题深层链接
+[[Conventions#^block-id]]             # 块引用
 ```
 
-### Which Link Format When
+### 链接格式使用场景
 
-| Context | Format | Example |
+| 使用场景 | 格式 | 示例 |
 |---------|--------|---------|
-| Note body inline | `[[Note]]` | See [[OpenCode Architecture]] for details. |
-| Frontmatter `related` | `"[[Note]]"` | `related: ["[[Note A]]"]` |
-| Frontmatter `prerequisites` | `/path/to/note.md` | `prerequisites: [/concepts/note.md]` |
-| External references | `[text](url)` | [OKF Spec](https://github.com/...) |
-| Citations | `[1] URL` | See `# Citations` section |
+| 笔记正文内联 | `[[Note]]` | 详见 [[opencode-architecture|OpenCode Architecture]]。 |
+| 前置元数据 `related` | `"[[Note]]"` | `related: ["[[Note A]]"]` |
+| 前置元数据 `prerequisites` | `/path/to/note.md` | `prerequisites: [/concepts/note.md]` |
+| 外部引用 | `[text](url)` | [OKF Spec](https://github.com/...) |
+| 引用文献 | `[1] URL` | 参见 `# Citations` 章节 |
 
-### Link Semantics
+### 链接语义
 
-Links encode relationships. The prose around a link explains **why**:
+链接编码关系。链接周围的文字应解释**为什么**建立此连接：
 ```markdown
-✅ Good: "The attention mechanism, described in [[Attention Is All You Need]], enables..."
+✅ 好: "注意力机制，详见 [[Attention Is All You Need]]，使得模型能够..."
 
-❌ Bad: "See also [[something]]." (no explanation of why)
+❌ 差: "另请参见 [[something]]。"（未解释为什么）
 ```
 
-## Frontmatter
+## 前置元数据
 
-### Required
+### 必填字段
 ```yaml
 ---
-type: Concept    # REQUIRED by OKF v0.1
+type: Concept    # OKF v0.1 要求必填
 ---
 ```
 
-### Standard (add to every note)
+### 标准字段（每篇笔记均应添加）
 ```yaml
-title: "Display Title"
-description: One-line summary for index.md generation
-tags: [tag1, tag2]
+title: "显示标题"
+description: 用于 index.md 生成的一行摘要
+tags: [标签1, 标签2]
 timestamp: 2026-06-22T05:30:00Z
 ```
 
-### Nova Extended (add when applicable)
+### Nova 扩展字段（按需添加）
 ```yaml
-id: "20260622T053000"       # Timestamp-based unique ID
+id: "20260622T053000"       # 基于时间戳的唯一 ID
 status: evergreen            # seedling | budding | evergreen | superseded
 difficulty: intermediate     # beginner | intermediate | advanced
 domain: knowledge-management
-prerequisites:               # Ordered list of dependency paths
+prerequisites:               # 依赖路径有序列表
   - /path/to/note.md
-related:                     # Conceptually related notes
+related:                     # 概念相关笔记
   - "[[Note A]]"
   - "[[Note B]]"
-sources:                     # Provenance tracking
-  - title: "Source"
+sources:                     # 来源追踪
+  - title: "来源"
     url: "https://..."
 confidence: 0.85
-summary: >                   # One-sentence TL;DR
-  The core idea in one sentence.
+summary: >                   # 一句话 TL;DR
+  核心思想用一句话概括。
 ```
 
-## Mermaid Diagrams
+## Mermaid 图表
 
-All notes may include Mermaid diagrams using fenced code blocks:
+所有笔记均可使用围栏代码块嵌入 Mermaid 图表：
 ```markdown
  ```mermaid
  graph TD
@@ -112,51 +112,51 @@ All notes may include Mermaid diagrams using fenced code blocks:
  ```
 ```
 
-Supported types: `graph`, `flowchart`, `sequenceDiagram`, `classDiagram`, `stateDiagram-v2`, `erDiagram`, `gantt`, `pie`, `mindmap`, `timeline`, `gitGraph`.
+支持的类型：`graph`、`flowchart`、`sequenceDiagram`、`classDiagram`、`stateDiagram-v2`、`erDiagram`、`gantt`、`pie`、`mindmap`、`timeline`、`gitGraph`。
 
-## LaTeX Math
+## LaTeX 数学公式
 
-Inline: `$E = mc^2$`
-Block:
+行内公式：`$E = mc^2$`
+块级公式：
 ```latex
 $$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 $$
 ```
 
-## Tags Convention
+## 标签约定
 
 ```yaml
-tags: [domain, subdomain, status]
+tags: [领域, 子领域, 状态]
 ```
 
-Common tags:
-- **Domains**: `ai-agents`, `knowledge-management`, `system-architecture`, `identity`
-- **Types**: `concept`, `tool`, `pattern`, `meta`, `index`
-- **Statuses**: `evergreen`, `seedling`, `superseded` (prefer `status:` field)
-- **Topics**: `architecture`, `security`, `design`, `operations`
+常用标签：
+- **领域**：`ai-agents`、`knowledge-management`、`system-architecture`、`identity`
+- **类型**：`concept`、`tool`、`pattern`、`meta`、`index`
+- **状态**：`evergreen`、`seedling`、`superseded`（优先使用 `status:` 字段）
+- **主题**：`architecture`、`security`、`design`、`operations`
 
-Tags categorize **what** a note is about. Links connect **how** it relates to specific ideas.
+标签分类笔记**是什么**。链接描述它**如何**与其他具体概念关联。
 
-## Status Lifecycle
+## 状态生命周期
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Seedling: new note created
-    Seedling --> Budding: links added, refined
-    Budding --> Evergreen: validated, stable
-    Seedling --> Superseded: found to be incorrect
-    Budding --> Superseded: newer understanding
-    Evergreen --> Superseded: surpassed by better note
+    [*] --> Seedling: 新建笔记
+    Seedling --> Budding: 添加链接、完善内容
+    Budding --> Evergreen: 验证通过、稳定可靠
+    Seedling --> Superseded: 发现内容有误
+    Budding --> Superseded: 已有更深入理解
+    Evergreen --> Superseded: 被更优秀的笔记取代
     Superseded --> [*]
 ```
 
-## Citations
+## 引用格式
 
-All external references go in a `# Citations` section at the bottom:
+所有外部引用放在文末的 `# Citations` 章节：
 ```markdown
 # Citations
 
-[1] Author. "Title". Source. URL
-[2] Another source...
+[1] 作者. "标题". 来源. URL
+[2] 另一个来源...
 ```

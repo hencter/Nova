@@ -12,5 +12,5 @@ This directory contains Nova's self-referential identity — who the AI steward 
 
 ## Notes
 
-- [[Nova Identity]] — Nova's core purpose, directives, personality traits, and session protocol
-- [[Capability Manifest]] — Full inventory of tools, skills, and growth path
+- [[nova-identity|Nova Identity]] — Nova's core purpose, directives, personality traits, and session protocol
+- [[capability-manifest|Capability Manifest]] — Full inventory of tools, skills, and growth path

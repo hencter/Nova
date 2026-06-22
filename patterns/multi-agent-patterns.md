@@ -1,7 +1,9 @@
----
+﻿---
 type: Pattern
 title: "Multi-Agent Coordination Patterns"
 description: "Taxonomy of multi-agent coordination architectures across Claude Code, Opencode, Codex CLI, Cline, Aider, and GitHub Copilot — orchestrator-worker, peer-to-peer, hierarchical, parallel independent, task decomposition strategies, and inter-agent communication."
+aliases:
+  - "Multi-Agent Patterns"
 tags: [multi-agent, coordination, patterns, orchestrator, subagents, concurrency]
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T160000"
@@ -12,14 +14,14 @@ prerequisites:
   - /concepts/subagent-concurrency.md
   - /concepts/agent-skills-system.md
 related:
-  - "[[Subagent Concurrency]]"
-  - "[[Agent Skills System]]"
-  - "[[Context Management]]"
-  - "[[Permission Models]]"
-  - "[[Agent Extensibility]]"
-  - "[[Agent Orchestration]]"
-  - "[[A2A Protocol]]"
-  - "[[MCP Protocol]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[context-management|Context Management]]"
+  - "[[permission-models|Permission Models]]"
+  - "[[agent-extensibility|Agent Extensibility]]"
+  - "[[agent-orchestration|Agent Orchestration]]"
+  - "[[a2a-protocol|A2A Protocol]]"
+  - "[[mcp-protocol|MCP Protocol]]"
 sources:
   - title: "Claude Code Documentation — Subagents"
     url: "https://docs.anthropic.com/en/docs/claude-code"

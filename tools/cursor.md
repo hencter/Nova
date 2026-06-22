@@ -1,4 +1,4 @@
----
+﻿---
 type: Tool
 title: "Cursor"
 description: "Comprehensive deep-dive analysis of Cursor by Anysphere — VS Code fork architecture, agent mode, Composer, .cursorrules & .cursor/rules/ system, codebase indexing via embeddings, @-mentions for context, inline editing, terminal execution, and the IDE-native approach versus terminal-first tools."
@@ -11,13 +11,13 @@ domain: ai-tools
 prerequisites:
   - /concepts/opencode-architecture.md
 related:
-  - "[[OpenCode Architecture]]"
-  - "[[Agent Skills System]]"
-  - "[[Permission Models]]"
-  - "[[Context Management]]"
-  - "[[OpenCode]]"
-  - "[[GitHub Copilot]]"
-  - "[[Claude Code]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[permission-models|Permission Models]]"
+  - "[[context-management|Context Management]]"
+  - "[[opencode|OpenCode]]"
+  - "[[copilot|GitHub Copilot]]"
+  - "[[claude-code|Claude Code]]"
 sources:
   - title: "Cursor Documentation"
     url: "https://docs.cursor.com"
@@ -401,4 +401,4 @@ Cursor represents the **IDE-native philosophy** of AI coding, contrasted with th
 6. **Context management** — Embedding search can miss structural relationships that graph-based approaches catch
 7. **No hooks/plugins** (for AI specifically) — Must build VS Code extensions instead
 
-See also: [[OpenCode]], [[Claude Code]], [[GitHub Copilot]], [[Aider]], [[Codex CLI]].
+See also: [[opencode|OpenCode]], [[claude-code|Claude Code]], [[copilot|GitHub Copilot]], [[aider|Aider]], [[codex-cli|Codex CLI]].

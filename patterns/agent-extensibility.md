@@ -1,6 +1,8 @@
----
+﻿---
 type: Pattern
 title: "Agent Extensibility Patterns"
+aliases:
+  - "Agent Extensibility"
 description: "Design patterns for extending AI coding agents — plugin systems, skill/command loading, custom tool creation, agent customization, MCP integration, and the extensibility triad of Skills + Hooks + Plugins."
 tags: [extensibility, plugins, hooks, skills, mcp, agents]
 timestamp: 2026-06-22T00:00:00Z
@@ -12,10 +14,10 @@ prerequisites:
   - /concepts/agent-skills-system.md
   - /concepts/opencode-architecture.md
 related:
-  - "[[Agent Skills System]]"
-  - "[[Multi-Agent Patterns]]"
-  - "[[Permission Models]]"
-  - "[[Context Management]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[multi-agent-patterns|Multi-Agent Patterns]]"
+  - "[[permission-models|Permission Models]]"
+  - "[[context-management|Context Management]]"
 sources:
   - title: "Claude Code — Hooks & Plugins"
     url: "https://docs.anthropic.com/en/docs/claude-code"

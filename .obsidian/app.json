@@ -21,9 +21,7 @@
   "alwaysUpdateLinks": true,
   "userIgnoreFilters": [
     ".opencode/",
-    "OPENCODE_RESEARCH.md",
-    "agent-coding-tools-research.md",
-    "research_karpathy_okf.md",
-    "research-obsidian-zk-mermaid-latex.md"
+    "skills/",
+    "opencode.json"
   ]
 }

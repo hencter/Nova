@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "A2A (Agent-to-Agent Protocol)"
 aliases:
@@ -14,10 +14,10 @@ prerequisites:
   - /concepts/mcp-protocol.md
   - /concepts/subagent-concurrency.md
 related:
-  - "[[MCP Protocol]]"
-  - "[[Subagent Concurrency]]"
-  - "[[Multi-Agent Patterns]]"
-  - "[[Agent Skills System]]"
+  - "[[mcp-protocol|MCP Protocol]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[multi-agent-patterns|Multi-Agent Patterns]]"
+  - "[[agent-skills-system|Agent Skills System]]"
 sources:
   - title: "A2A Protocol — GitHub Repository (a2aproject/A2A)"
     url: "https://github.com/a2aproject/A2A"
@@ -65,7 +65,7 @@ sequenceDiagram
 
 ## Protocol: JSON-RPC 2.0 over HTTP(S)
 
-A2A uses the same JSON-RPC 2.0 foundation as [[MCP Protocol|MCP]], but over HTTP(S) rather than stdio:
+A2A uses the same JSON-RPC 2.0 foundation as [[mcp-protocol|MCP]], but over HTTP(S) rather than stdio:
 
 - **Requests**: Standard JSON-RPC with unique IDs
 - **Responses**: Synchronous result or error
@@ -136,7 +136,7 @@ Framework integrations: Google ADK, LangGraph, BeeAI can expose agents as A2A se
 
 ## Relationship to Existing Patterns
 
-A2A directly enables several [[Multi-Agent Patterns|coordination patterns]]:
+A2A directly enables several [[multi-agent-patterns|coordination patterns]]:
 
 | Pattern | A2A Role |
 |---------|----------|
@@ -144,10 +144,10 @@ A2A directly enables several [[Multi-Agent Patterns|coordination patterns]]:
 | Peer-to-Peer | Peers discover each other via Agent Cards |
 | Hierarchical | Parent agents delegate to child A2A servers |
 
-It also complements the [[Agent Skills System]] — skills extend a single agent's capabilities, while A2A enables multiple independent agents to collaborate.
+It also complements the [[agent-skills-system|Agent Skills System]] — skills extend a single agent's capabilities, while A2A enables multiple independent agents to collaborate.
 
 ## Limitations
 
 - Protocol is focused on opaque agents — less suited for tightly coupled agent architectures where shared memory is beneficial
-- HTTP transport adds latency vs in-process subagent calls (as in [[Subagent Concurrency]]'s `task` tool)
+- HTTP transport adds latency vs in-process subagent calls (as in [[subagent-concurrency|Subagent Concurrency]]'s `task` tool)
 - Still evolving — dynamic UX negotiation and client-initiated methods are on the roadmap

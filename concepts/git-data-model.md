@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "Git Data Model"
 description: Core architecture of Git — content-addressable filesystem, four object types (blob/tree/commit/tag), snapshot-based storage, SHA-1 hashing, three states (working/staging/repository), and the .git directory structure.
@@ -10,9 +10,9 @@ difficulty: intermediate
 domain: version-control
 prerequisites: []
 related:
-  - "[[Git Branching]]"
-  - "[[Git Operations]]"
-  - "[[Mermaid Diagrams]]"
+  - "[[git-branching|Git Branching]]"
+  - "[[git-operations|Git Operations]]"
+  - "[[mermaid-diagrams|Mermaid Diagrams]]"
 sources:
   - title: "Pro Git Book — §1.3 What is Git?"
     url: "https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F"

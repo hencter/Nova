@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "Subagent Concurrency"
 description: "Task tool invocation of subagents with fresh contexts, tree-structured sessions, background parallel execution, and session navigation via child/parent keybindings."
@@ -12,11 +12,11 @@ prerequisites:
   - /concepts/agent-skills-system.md
   - /concepts/opencode-architecture.md
 related:
-  - "[[Agent Skills System]]"
-  - "[[OpenCode Architecture]]"
-  - "[[Cross-Session Memory]]"
-  - "[[Agent Orchestration]]"
-  - "[[A2A Protocol]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[agent-orchestration|Agent Orchestration]]"
+  - "[[a2a-protocol|A2A Protocol]]"
 sources:
   - title: "OpenCode Documentation — Agents & Subagents"
     url: "https://opencode.ai"

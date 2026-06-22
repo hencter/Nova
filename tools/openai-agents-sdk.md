@@ -1,4 +1,4 @@
----
+﻿---
 type: Tool
 title: "OpenAI Agents SDK"
 description: "Comprehensive deep-dive analysis of OpenAI's Python SDK for multi-agent workflows — Agent/Runner orchestration, Sandbox Agents with containerized workspaces, dual coordination patterns (manager as-tool vs handoffs), hosted+local tools ecosystem, guardrails, human-in-the-loop, sessions, tracing, realtime agents."
@@ -13,13 +13,13 @@ prerequisites:
   - /concepts/subagent-concurrency.md
   - /concepts/agent-skills-system.md
 related:
-  - "[[MCP Protocol]]"
-  - "[[A2A Protocol]]"
-  - "[[Multi-Agent Patterns]]"
-  - "[[Agent Skills System]]"
-  - "[[Subagent Concurrency]]"
-  - "[[OpenCode Architecture]]"
-  - "[[Claude Code]]"
+  - "[[mcp-protocol|MCP Protocol]]"
+  - "[[a2a-protocol|A2A Protocol]]"
+  - "[[multi-agent-patterns|Multi-Agent Patterns]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[claude-code|Claude Code]]"
 sources:
   - title: "OpenAI Agents SDK — GitHub Repository"
     url: "https://github.com/openai/openai-agents-python"
@@ -36,7 +36,7 @@ summary: >
 
 ## 1. Overview & Philosophy
 
-OpenAI Agents SDK is a **lightweight yet powerful Python framework** for building multi-agent workflows. Unlike terminal-first coding agents ([[Claude Code]], [[OpenCode]], [[Aider]]), it is a **library** — developers embed it into their own applications.
+OpenAI Agents SDK is a **lightweight yet powerful Python framework** for building multi-agent workflows. Unlike terminal-first coding agents ([[claude-code|Claude Code]], [[opencode|OpenCode]], [[aider|Aider]]), it is a **library** — developers embed it into their own applications.
 
 ### Key Philosophy
 
@@ -125,7 +125,7 @@ Sandbox Agents bridge the gap between **library-based agents** (Agents SDK) and 
 
 ## 4. Dual Coordination Patterns
 
-The SDK explicitly documents two [[Multi-Agent Patterns|coordination patterns]]:
+The SDK explicitly documents two [[multi-agent-patterns|coordination patterns]]:
 
 ### 4.1 Manager (Agents as Tools)
 ```python

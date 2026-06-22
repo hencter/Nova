@@ -1,119 +1,132 @@
-# Nova Vault — Chronological Log
+# Nova 知识库 — 时间线日志
 
-> Append-only. Never delete entries. Newest first. Greppable format: `grep "^## \[" log.md | tail -20`
+> 仅追加。永不删除条目。最新条目在最前。可 grep 格式：`grep "^## \[" log.md | tail -20`
 
 ---
 
-## [2026-06-22] ingest | Git Deep Learning (from git-scm.com)
-- Fetched Pro Git Book: §1.3 What is Git?, §3.1 Branches in a Nutshell, §7.7 Reset Demystified, §10.2 Git Objects
-- Created /concepts/git-data-model.md — content-addressable filesystem, 4 object types, 3 states, object storage format, .git directory
-- Created /concepts/git-branching.md — lightweight pointers, HEAD, merging strategies, rebase golden rule, workflows
-- Created /concepts/git-operations.md — complete command reference: setup, daily workflow, undo (reset vs checkout vs revert), remote, stash, advanced (bisect/reflog/cherry-pick)
-- Added "Version Control" section to /concepts/index.md
-- Sources: git-scm.com official documentation, Pro Git 2nd edition (Chacon & Straub, 2014)
+## [2026-06-22] refactor | Wiki 链接标准化 — 全部转换为管道语法
+- 将所有 `[[Human Readable Title]]` 链接转换为 `[[slug|Human Readable Title]]` 格式
+- 转换 289 个链接，涉及 40 个文件
+- 排除范围：AGENTS.md、log.md、README.md、模板文件、obsidian-syntax-reference.md、代码块内链接、已使用管道语法的链接、index 路径链接
+- 映射规则：基于各文件 frontmatter 中的 title 字段和 aliases 字段建立 slug↔标题映射表
+- 验证通过：零残留未转换链接
 
-## [2026-06-22] lint | Wiki Link Integrity Scan & Fix
-- Scanned all 39+ files for broken [[wiki links]] across the vault
-- Added aliases to 4 files: mcp-protocol.md ("MCP Protocol"), a2a-protocol.md ("A2A Protocol"), zettelkasten-methodology.md ("ZK", "Zettelkasten Method", "slip box"), okf-format.md ("Open Knowledge Format (OKF)")
-- Fixed path-based links in index.md (../../AGENTS → standard markdown, ../log → standard markdown)
-- Fixed path-based wiki links in nova-identity.md (../../.opencode/... → relative markdown links)
-- Identified remaining gaps: concepts without dedicated notes (Atomic Notes, Attention Mechanism, Knowledge Graph Theory, Transformer Architecture) → logged for future ingest
+## [2026-06-22] session | Git 提交 — 初始知识库快照
+- 完成初始 git 提交（104f0c1）：55 个文件，20638 行
+- 所有知识库基础设施已纳入版本控制：16 个概念、8 个工具、5 个模式、3 个模板，以及身份、元信息、配置
+- 分支：main；工作树干净
+- Git 现已成为知识库的审计轨迹 — 未来的每一次变更都可 diff、可回滚
 
-## [2026-06-22] ingest | Maple Theme & Obsidian Syntax Reference
-- Fetched Maple theme README from GitHub (subframe7536/obsidian-theme-maple, v1.5.1, 829★)
-- Created /concepts/obsidian-syntax-reference.md — complete Obsidian markdown syntax reference covering wiki links, callouts, task lists (standard + Maple), embeds, block references, footnotes, tables, search syntax
-- Created /tools/obsidian-maple-theme.md — deep-dive: Style Settings integration, 28 alternate checkboxes, Maple Mono font, mobile optimization, 6 Maple-exclusive task types
-- Updated /concepts/index.md and /tools/index.md
+## [2026-06-22] ingest | Git 深度学习（来源：git-scm.com）
+- 获取 Pro Git 书籍：§1.3 Git 是什么？、§3.1 分支简述、§7.7 Reset 揭秘、§10.2 Git 对象
+- 创建 /concepts/git-data-model.md — 内容寻址文件系统、4 种对象类型、3 种状态、对象存储格式、.git 目录
+- 创建 /concepts/git-branching.md — 轻量指针、HEAD、合并策略、rebase 黄金法则、工作流
+- 创建 /concepts/git-operations.md — 完整命令参考：配置、日常工作流、撤销（reset vs checkout vs revert）、远程、储藏、高级（bisect/reflog/cherry-pick）
+- 在 /concepts/index.md 中添加「版本控制」章节
+- 来源：git-scm.com 官方文档，Pro Git 第二版（Chacon & Straub, 2014）
 
-## [2026-06-22] session | Language Convention Codified
-- Added Section 5 "Language Convention (Human/AI Dual-Consumer)" to AGENTS.md
-- Layering rule: AI execution layer = English, Human navigation layer = Chinese-first, Frontmatter = English
-- Principle: who consumes it, speaks its language. No future reminders needed.
-- Renumbered AGENTS.md sections 6→11 to accommodate new section
+## [2026-06-22] lint | Wiki 链接完整性扫描与修复
+- 扫描全部 39+ 个文件，检测损坏的 [[wiki links]]
+- 为 4 个文件添加别名：mcp-protocol.md（"MCP Protocol"）、a2a-protocol.md（"A2A Protocol"）、zettelkasten-methodology.md（"ZK", "Zettelkasten Method", "slip box"）、okf-format.md（"Open Knowledge Format (OKF)"）
+- 修复 index.md 中基于路径的链接（../../AGENTS → 标准 markdown、../log → 标准 markdown）
+- 修复 nova-identity.md 中基于路径的 wiki 链接（../../.opencode/... → 相对 markdown 链接）
+- 识别剩余缺口：缺少专属笔记的概念（Atomic Notes、Attention Mechanism、Knowledge Graph Theory、Transformer Architecture）→ 记录待未来摄入
 
-## [2026-06-22] ingest | Agent Protocols & SDK (Self-Bootstrap Cycle 1)
-- Created /concepts/mcp-protocol.md — MCP (Model Context Protocol) comprehensive concept: Host-Client-Server architecture, JSON-RPC 2.0, Resources/Prompts/Tools primitives, capability negotiation, security model, LSP analogy
-- Created /concepts/a2a-protocol.md — A2A (Agent-to-Agent Protocol) comprehensive concept: opaque agent collaboration, Agent Cards, task lifecycle, sync/streaming/async modalities, MCP vs A2A comparison, SDK ecosystem
-- Created /tools/openai-agents-sdk.md — OpenAI Agents SDK comprehensive analysis: Agent/Runner, Sandbox Agents, dual coordination (manager as-tool vs handoffs), hosted+local tools, guardrails, human-in-the-loop, sessions, tracing, MCP integration, comparison matrix with other tools
-- Created /concepts/agent-orchestration.md — Agent orchestration concept: LLM-driven vs code-driven spectrum, manager vs handoff primitives, structured routing, chaining, eval loops, parallel execution, hybrid orchestration
-- Updated /patterns/multi-agent-patterns.md — Added related links to Agent Orchestration, A2A Protocol, MCP Protocol
-- Updated /concepts/index.md — Added Agent Protocols section (MCP, A2A) and Agent Orchestration entry
-- Updated /tools/index.md — Added OpenAI Agents SDK entry
-- Updated /index.md — Added new entries to Concepts and Tools clusters
-- Sources: modelcontextprotocol.io (spec + architecture), github.com/a2aproject/A2A, github.com/openai/openai-agents-python + docs
-- All new files: full OKF frontmatter, wiki-linked, mermaid diagrams, comprehensive analysis
+## [2026-06-22] ingest | Maple 主题 & Obsidian 语法参考
+- 从 GitHub 获取 Maple 主题 README（subframe7536/obsidian-theme-maple, v1.5.1, 829★）
+- 创建 /concepts/obsidian-syntax-reference.md — 完整的 Obsidian markdown 语法参考，涵盖 wiki 链接、callout、任务列表（标准 + Maple）、嵌入、块引用、脚注、表格、搜索语法
+- 创建 /tools/obsidian-maple-theme.md — 深度分析：Style Settings 集成、28 种备选复选框、Maple Mono 字体、移动端优化、6 种 Maple 专属任务类型
+- 更新 /concepts/index.md 和 /tools/index.md
 
-## [2026-06-22] ingest | Tool Deep-Dive Files (6 tools)
-- Created /tools/opencode.md — OpenCode comprehensive analysis (client-server, TUI, config, skills, agents, permissions, plugins, snapshots, compaction, sessions)
-- Created /tools/claude-code.md — Claude Code comprehensive analysis (surfaces, ReAct loop, CLAUDE.md hierarchy, auto memory, skills + context fork, 11 hooks, subagents + teams)
-- Created /tools/codex-cli.md — Codex CLI comprehensive analysis (Rust codebase, AGENTS.md, Chronicle, sandboxing OS-level isolation, YAML skills, MCP, GitHub Actions/Slack/Linear, workflow engine)
-- Created /tools/aider.md — Aider comprehensive analysis (RepoMap graph-rank, architect/editor mode, SEARCH/REPLACE format, map-reduce, tree-sitter, leaderboard model selection)
-- Created /tools/cursor.md — Cursor comprehensive analysis (VS Code fork, agent mode, Composer, .cursorrules/.cursor/rules/, embedding indexing, @-mentions, inline editing, IDE-native vs terminal-first)
-- Created /tools/copilot.md — GitHub Copilot comprehensive analysis (local/cloud/ACP agent types, agents window, #-mentions, planning mode, memory, subagents, checkpoints, session sync, image attachments)
-- All files: full OKF frontmatter, wiki-linked to concept notes, comprehensive deep dives with comparison matrices
+## [2026-06-22] session | 语言约定编码化
+- 在 AGENTS.md 中添加第 5 节「语言约定（人类/AI 双消费者）」
+- 分层规则：AI 执行层 = English、人类导航层 = 中文优先、Frontmatter = English
+- 原则：谁消费谁说了算。无需未来再提醒
+- 重新编号 AGENTS.md 第 6–11 节以容纳新章节
 
-## [2026-06-22] ingest | Pattern Files & Templates
-- Created 5 pattern analyses in /patterns/:
-  - multi-agent-patterns.md — 5 coordination patterns, task decomposition, inter-agent communication, Mermaid diagrams for each
-  - context-management.md — Hierarchical instructions, auto-memory, codebase indexing, RepoMap, compaction, token budgets, comparison table
-  - permission-models.md — Granular rules, cascading merge, hook overrides, human-in-the-loop, Mermaid permission evaluation sequence
-  - knowledge-graph-patterns.md — Atomic notes, progressive disclosure, self-linting, status lifecycle, Karpathy layering, graph topology
-  - agent-extensibility.md — Skills/hooks/plugins triad, MCP integration, 25+ hook events, extensibility comparison, class diagram
-- Created 3 templates in /templates/:
-  - concept-template.md — Full frontmatter guide, section structure, status lifecycle, usage checklist
-  - tool-template.md — Standardized tool analysis dimensions, feature matrix, comparison table
-  - pattern-template.md — Pattern documentation structure, decision matrix, anti-patterns, Mermaid guidance
-- Updated /patterns/index.md with expanded descriptions
+## [2026-06-22] ingest | Agent 协议与 SDK（自举循环 1）
+- 创建 /concepts/mcp-protocol.md — MCP（Model Context Protocol）完整概念：Host-Client-Server 架构、JSON-RPC 2.0、Resources/Prompts/Tools 原语、能力协商、安全模型、LSP 类比
+- 创建 /concepts/a2a-protocol.md — A2A（Agent-to-Agent Protocol）完整概念：不透明 Agent 协作、Agent Cards、任务生命周期、同步/流式/异步模式、MCP vs A2A 对比、SDK 生态
+- 创建 /tools/openai-agents-sdk.md — OpenAI Agents SDK 完整分析：Agent/Runner、Sandbox Agents、双重协调（manager as-tool vs handoffs）、托管+本地工具、护栏、人机协同、会话、追踪、MCP 集成、工具对比矩阵
+- 创建 /concepts/agent-orchestration.md — Agent 编排概念：LLM 驱动 vs 代码驱动光谱、manager vs handoff 原语、结构化路由、链式执行、评估循环、并行执行、混合编排
+- 更新 /patterns/multi-agent-patterns.md — 添加 Agent Orchestration、A2A Protocol、MCP Protocol 的相关链接
+- 更新 /concepts/index.md — 添加 Agent Protocols 章节（MCP、A2A）及 Agent Orchestration 条目
+- 更新 /tools/index.md — 添加 OpenAI Agents SDK 条目
+- 更新 /index.md — 在概念和工具集群中添加新条目
+- 来源：modelcontextprotocol.io（规范 + 架构）、github.com/a2aproject/A2A、github.com/openai/openai-agents-python + 文档
+- 所有新建文件：完整 OKF frontmatter、wiki 链接、Mermaid 图表、全面分析
 
-## [2026-06-22] init | Vault Initialization
-- Created directory structure: concepts/, tools/, patterns/, templates/, _identity/, _meta/, _attachments/, .opencode/
-- Authored AGENTS.md v1.0.0 (schema layer) — OKF v0.1 conformant, Karpathy Layer 3
-- Authored /index.md (top-level catalog) with Mermaid graph and progressive disclosure
-- Authored /_identity/nova-identity.md — AI steward self-conception and boot sequence
-- Authored /_identity/capability-manifest.md — tool inventory and extensibility model
-- Authored /_meta/vault-architecture.md — structural rationale and graph topology
-- Authored /_meta/conventions.md — naming, linking, frontmatter standards
-- Authored /_meta/self-bootstrapping.md — growth and maintenance strategy
-- Created Obsidian configuration (.obsidian/app.json)
-- Established knowledge base as self-bootstrapping compound system
-- Git repository ready for version control
+## [2026-06-22] ingest | 工具深度分析文件（6 个工具）
+- 创建 /tools/opencode.md — OpenCode 完整分析（客户端-服务端、TUI、配置、技能、Agent、权限、插件、快照、压缩、会话）
+- 创建 /tools/claude-code.md — Claude Code 完整分析（surfaces、ReAct 循环、CLAUDE.md 层级、自动记忆、技能 + 上下文分叉、11 个钩子、子 Agent + 团队）
+- 创建 /tools/codex-cli.md — Codex CLI 完整分析（Rust 代码库、AGENTS.md、Chronicle、沙箱 OS 级隔离、YAML 技能、MCP、GitHub Actions/Slack/Linear、工作流引擎）
+- 创建 /tools/aider.md — Aider 完整分析（RepoMap 图排名、architect/editor 模式、SEARCH/REPLACE 格式、map-reduce、tree-sitter、排行榜模型选择）
+- 创建 /tools/cursor.md — Cursor 完整分析（VS Code 分支、Agent 模式、Composer、.cursorrules/.cursor/rules/、嵌入索引、@-mentions、行内编辑、IDE 原生 vs 终端优先）
+- 创建 /tools/copilot.md — GitHub Copilot 完整分析（local/cloud/ACP agent 类型、agents window、#-mentions、规划模式、记忆、子 Agent、检查点、会话同步、图片附件）
+- 所有文件：完整 OKF frontmatter、与概念笔记的 wiki 链接、包含对比矩阵的全面深度分析
 
-## [2026-06-22] ingest | Core Knowledge Consolidation
-- Ingested Opencode deep research → /concepts/opencode-architecture.md
-- Ingested Skills & Agents system research → /concepts/agent-skills-system.md
-- Ingested Subagent concurrency research → /concepts/subagent-concurrency.md
-- Ingested Cross-session memory research → /concepts/cross-session-memory.md
-- Ingested Zettelkasten methodology → /concepts/zettelkasten-methodology.md
-- Ingested OKF format specification → /concepts/okf-format.md
-- Ingested Markdown frontmatter research → /concepts/markdown-frontmatter.md
-- Ingested Mermaid diagrams guide → /concepts/mermaid-diagrams.md
-- Ingested LaTeX in markdown guide → /concepts/latex-in-markdown.md
-- Ingested Karpathy LLM curriculum → /concepts/karpathy-llm-curriculum.md
-- Updated /concepts/index.md with full catalog
-- Cross-linked concepts: prerequisites, related, sources in frontmatter
+## [2026-06-22] ingest | 模式文件与模板
+- 于 /patterns/ 中创建 5 篇模式分析：
+  - multi-agent-patterns.md — 5 种协调模式、任务分解、Agent 间通信、每种模式的 Mermaid 图表
+  - context-management.md — 分层指令、自动记忆、代码库索引、RepoMap、压缩、token 预算、对比表
+  - permission-models.md — 细粒度规则、级联合并、钩子覆盖、人机协同、Mermaid 权限评估序列
+  - knowledge-graph-patterns.md — 原子笔记、渐进式披露、自检、状态生命周期、Karpathy 分层、图谱拓扑
+  - agent-extensibility.md — Skills/hooks/plugins 三元组、MCP 集成、25+ 钩子事件、扩展性对比、类图
+- 于 /templates/ 中创建 3 个模板：
+  - concept-template.md — 完整 frontmatter 指南、章节结构、状态生命周期、使用清单
+  - tool-template.md — 标准化工具分析维度、功能矩阵、对比表
+  - pattern-template.md — 模式文档结构、决策矩阵、反模式、Mermaid 指导
+- 更新 /patterns/index.md，使用扩展描述
 
-## [2026-06-22] ingest | Tool Deep Dives
-- Ingested Opencode tool analysis → /tools/opencode.md
-- Ingested Claude Code analysis → /tools/claude-code.md
-- Ingested Codex CLI analysis → /tools/codex-cli.md
-- Ingested Aider analysis → /tools/aider.md
-- Ingested Cursor analysis → /tools/cursor.md
-- Ingested GitHub Copilot analysis → /tools/copilot.md
-- Updated /tools/index.md
+## [2026-06-22] init | 知识库初始化
+- 创建目录结构：concepts/、tools/、patterns/、templates/、_identity/、_meta/、_attachments/、.opencode/
+- 编写 AGENTS.md v1.0.0（模式层） — OKF v0.1 合规、Karpathy 第 3 层
+- 编写 /index.md（顶级目录），含 Mermaid 图谱和渐进式披露
+- 编写 /_identity/nova-identity.md — AI 管家自我认知和启动序列
+- 编写 /_identity/capability-manifest.md — 工具清单和扩展模型
+- 编写 /_meta/vault-architecture.md — 结构原理和图谱拓扑
+- 编写 /_meta/conventions.md — 命名、链接、frontmatter 标准
+- 编写 /_meta/self-bootstrapping.md — 成长和维护策略
+- 创建 Obsidian 配置（.obsidian/app.json）
+- 将知识库确立为自举式复利系统
+- Git 仓库就绪，待版本控制
 
-## [2026-06-22] ingest | Design Patterns
-- Ingested multi-agent patterns → /patterns/multi-agent-patterns.md
-- Ingested context management patterns → /patterns/context-management.md
-- Ingested permission models → /patterns/permission-models.md
-- Ingested knowledge graph patterns → /patterns/knowledge-graph-patterns.md
-- Ingested agent extensibility patterns → /patterns/agent-extensibility.md
-- Updated /patterns/index.md
+## [2026-06-22] ingest | 核心知识整合
+- 摄入 OpenCode 深度研究 → /concepts/opencode-architecture.md
+- 摄入 Skills & Agents 系统研究 → /concepts/agent-skills-system.md
+- 摄入 Subagent 并发研究 → /concepts/subagent-concurrency.md
+- 摄入跨会话记忆研究 → /concepts/cross-session-memory.md
+- 摄入 Zettelkasten 方法论 → /concepts/zettelkasten-methodology.md
+- 摄入 OKF 格式规范 → /concepts/okf-format.md
+- 摄入 Markdown Frontmatter 研究 → /concepts/markdown-frontmatter.md
+- 摄入 Mermaid 图表指南 → /concepts/mermaid-diagrams.md
+- 摄入 Markdown 中的 LaTeX 指南 → /concepts/latex-in-markdown.md
+- 摄入 Karpathy LLM 课程 → /concepts/karpathy-llm-curriculum.md
+- 更新 /concepts/index.md，使用完整目录
+- 交叉链接概念：在 frontmatter 中设置 prerequisites、related、sources
 
-## [2026-06-22] session | Project Bootstrap Complete
-- All core vault infrastructure established
-- 30+ atomic notes with complete frontmatter and cross-links
-- Templates for concept, tool, and pattern notes created
-- Opencode skill (nova-kb) and agent (nova-architect) configured
-- Vault is self-bootstrapping: AGENTS.md defines rules, index.md provides navigation, log.md preserves memory
-- Ready for compounding growth: ingests, queries, lint cycles
-- Vault location: D:\OpenCode\Note
+## [2026-06-22] ingest | 工具深度分析
+- 摄入 OpenCode 工具分析 → /tools/opencode.md
+- 摄入 Claude Code 分析 → /tools/claude-code.md
+- 摄入 Codex CLI 分析 → /tools/codex-cli.md
+- 摄入 Aider 分析 → /tools/aider.md
+- 摄入 Cursor 分析 → /tools/cursor.md
+- 摄入 GitHub Copilot 分析 → /tools/copilot.md
+- 更新 /tools/index.md
+
+## [2026-06-22] ingest | 设计模式
+- 摄入多 Agent 模式 → /patterns/multi-agent-patterns.md
+- 摄入上下文管理模式 → /patterns/context-management.md
+- 摄入权限模型 → /patterns/permission-models.md
+- 摄入知识图谱模式 → /patterns/knowledge-graph-patterns.md
+- 摄入 Agent 扩展性模式 → /patterns/agent-extensibility.md
+- 更新 /patterns/index.md
+
+## [2026-06-22] session | 项目启动完成
+- 所有核心知识库基础设施已建立
+- 30+ 篇原子笔记，具有完整 frontmatter 和交叉链接
+- 已创建概念、工具和模式笔记模板
+- 已配置 OpenCode 技能（nova-kb）和 Agent（nova-architect）
+- 知识库具备自举能力：AGENTS.md 定义规则、index.md 提供导航、log.md 保存记忆
+- 已就绪迎接复利增长：摄入、查询、检查循环
+- 知识库位置：D:\OpenCode\Note

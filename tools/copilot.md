@@ -1,6 +1,8 @@
----
+﻿---
 type: Tool
 title: "GitHub Copilot"
+aliases:
+  - "Copilot"
 description: "Comprehensive deep-dive analysis of GitHub Copilot by Microsoft — VS Code integration, multiple agent types (local/cloud/third-party via ACP), agents window, chat view, #-mentions, planning mode, memory system, subagents, checkpoints, session sync, image attachments, and parallel sessions."
 tags: [github-copilot, tool-analysis, microsoft, agent-platform, vscode-extension, acp]
 timestamp: 2026-06-22T16:25:00Z
@@ -13,14 +15,14 @@ prerequisites:
   - /concepts/subagent-concurrency.md
   - /concepts/cross-session-memory.md
 related:
-  - "[[OpenCode Architecture]]"
-  - "[[Agent Skills System]]"
-  - "[[Subagent Concurrency]]"
-  - "[[Cross-Session Memory]]"
-  - "[[Permission Models]]"
-  - "[[Agent Extensibility]]"
-  - "[[Cursor]]"
-  - "[[OpenCode]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[permission-models|Permission Models]]"
+  - "[[agent-extensibility|Agent Extensibility]]"
+  - "[[cursor|Cursor]]"
+  - "[[opencode|OpenCode]]"
 sources:
   - title: "GitHub Copilot Documentation"
     url: "https://docs.github.com/en/copilot"
@@ -46,7 +48,7 @@ GitHub Copilot has undergone a fundamental architectural evolution:
 | **2024** | Copilot Agent | Autonomous multi-step coding tasks |
 | **2025+** | Copilot Agent Platform | Multi-agent system with ACP, custom agents |
 
-This evolution mirrors the industry shift from [[Agent Skills System]] as add-ons to agents as the primary interaction model.
+This evolution mirrors the industry shift from [[agent-skills-system|Agent Skills System]] as add-ons to agents as the primary interaction model.
 
 ---
 
@@ -183,7 +185,7 @@ The **Agents Window** is Copilot's dedicated UI for multi-agent interaction — 
 6. **Delegation**: Primary agent can delegate to other agents
 
 ### Relation to Subagents
-The agents window is the **UI manifestation** of Copilot's [[Subagent Concurrency]] architecture:
+The agents window is the **UI manifestation** of Copilot's [[subagent-concurrency|Subagent Concurrency]] architecture:
 - Each agent in the window can be spawned as a subagent
 - Subagents run concurrently when tasks are independent
 - The window shows status, progress, and results for all subagents
@@ -290,7 +292,7 @@ Add JWT-based authentication middleware to the Express API.
 
 ## 7. Memory System
 
-Copilot's memory system implements [[Cross-Session Memory]] across development sessions.
+Copilot's memory system implements [[cross-session-memory|Cross-Session Memory]] across development sessions.
 
 ### Memory Types
 | Memory Type | Scope | Persistence | Content |
@@ -343,7 +345,7 @@ Copilot's memory system implements [[Cross-Session Memory]] across development s
 
 ## 8. Subagents System
 
-Copilot implements [[Subagent Concurrency]] with a flexible subagent model.
+Copilot implements [[subagent-concurrency|Subagent Concurrency]] with a flexible subagent model.
 
 ### Subagent Architecture
 ```
@@ -529,4 +531,4 @@ Unlike Cursor (VS Code only), Copilot supports multiple editors:
 6. **Proprietary** — Closed source, tied to GitHub subscription
 7. **Checkpoint limitations** — Session-scoped only, no persistent undo without git
 
-See also: [[Cursor]], [[OpenCode]], [[Claude Code]], [[Codex CLI]], [[Aider]].
+See also: [[cursor|Cursor]], [[opencode|OpenCode]], [[claude-code|Claude Code]], [[codex-cli|Codex CLI]], [[aider|Aider]].

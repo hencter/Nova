@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "Agent Orchestration"
 description: "High-level patterns for coordinating multiple AI agents — LLM-driven (autonomous planning, tool use, handoffs) vs code-driven (structured routing, chaining, eval loops, parallelism), with tradeoffs in flexibility, determinism, and cost."
@@ -12,12 +12,12 @@ prerequisites:
   - /concepts/subagent-concurrency.md
   - /concepts/agent-skills-system.md
 related:
-  - "[[Multi-Agent Patterns]]"
-  - "[[Subagent Concurrency]]"
-  - "[[A2A Protocol]]"
-  - "[[MCP Protocol]]"
-  - "[[Agent Skills System]]"
-  - "[[Context Management]]"
+  - "[[multi-agent-patterns|Multi-Agent Patterns]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[a2a-protocol|A2A Protocol]]"
+  - "[[mcp-protocol|MCP Protocol]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[context-management|Context Management]]"
 sources:
   - title: "OpenAI Agents SDK — Orchestration Guide"
     url: "https://openai.github.io/openai-agents-python/multi_agent/"
@@ -191,6 +191,6 @@ This gives you flexibility where needed and determinism where required.
 
 ## Relationship to Protocols
 
-- **[[MCP Protocol|MCP]]** enables tool-level orchestration — agents invoke tools on external servers
-- **[[A2A Protocol|A2A]]** enables agent-level orchestration — agents delegate to other agents across organizational boundaries
+- **[[mcp-protocol|MCP]]** enables tool-level orchestration — agents invoke tools on external servers
+- **[[a2a-protocol|A2A]]** enables agent-level orchestration — agents delegate to other agents across organizational boundaries
 - **Both complement each other**: MCP for agent↔tool, A2A for agent↔agent

@@ -12,6 +12,6 @@ This directory contains knowledge about the vault itself — its architecture, c
 
 ## Notes
 
-- [[Vault Architecture]] — How the vault is structured, directory rationale, graph topology
-- [[Conventions]] — Naming rules, linking conventions, frontmatter standards, file organization
-- [[Self-Bootstrapping]] — How the vault maintains and grows itself without external infrastructure
+- [[vault-architecture|Vault Architecture]] — How the vault is structured, directory rationale, graph topology
+- [[conventions|Conventions]] — Naming rules, linking conventions, frontmatter standards, file organization
+- [[self-bootstrapping|Self-Bootstrapping]] — How the vault maintains and grows itself without external infrastructure

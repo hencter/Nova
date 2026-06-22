@@ -1,4 +1,4 @@
----
+﻿---
 type: Index
 title: "Patterns — Architecture & Design"
 description: Cross-cutting design patterns for agent systems and knowledge management.
@@ -12,8 +12,8 @@ This directory contains **design pattern analyses** — reusable architectural s
 
 ## Notes
 
-- [[Multi-Agent Patterns]] — Orchestrator-worker, peer-to-peer, hierarchical, parallel independent, task decomposition, inter-agent communication
-- [[Context Management]] — Hierarchical instructions, auto-memory, codebase indexing, RepoMap, compaction, token budgets, instruction file convergence
-- [[Permission Models]] — Granular pattern rules, cascading merge allow/ask/deny, hook overrides, human-in-the-loop, enterprise enforcement
-- [[Knowledge Graph Patterns]] — Atomic notes, progressive disclosure, compound growth, self-linting, status lifecycle, Karpathy knowledge layering
-- [[Agent Extensibility]] — Plugin systems (25+ events), SKILL.md standard, MCP integration, agent customization, extensibility triad
+- [[multi-agent-patterns|Multi-Agent Patterns]] — Orchestrator-worker, peer-to-peer, hierarchical, parallel independent, task decomposition, inter-agent communication
+- [[context-management|Context Management]] — Hierarchical instructions, auto-memory, codebase indexing, RepoMap, compaction, token budgets, instruction file convergence
+- [[permission-models|Permission Models]] — Granular pattern rules, cascading merge allow/ask/deny, hook overrides, human-in-the-loop, enterprise enforcement
+- [[knowledge-graph-patterns|Knowledge Graph Patterns]] — Atomic notes, progressive disclosure, compound growth, self-linting, status lifecycle, Karpathy knowledge layering
+- [[agent-extensibility|Agent Extensibility]] — Plugin systems (25+ events), SKILL.md standard, MCP integration, agent customization, extensibility triad

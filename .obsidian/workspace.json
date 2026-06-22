@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "85289a7a45afcb1b",
+        "id": "575020d9d3a6a0be",
         "type": "tabs",
         "children": [
           {
-            "id": "b425359796e3ac82",
+            "id": "b51b414c61e071ee",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "patterns/index.md",
+                "file": "index.md",
                 "mode": "preview",
                 "source": false
               },
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#-Mentions",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "concepts/cross-session-memory.md",
+                "file": "index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "cross-session-memory 的反向链接列表"
+              "title": "index 的反向链接列表"
             }
           },
           {
@@ -156,21 +156,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "concepts/cross-session-memory.md",
+                "file": "index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "cross-session-memory 的大纲"
+              "title": "index 的大纲"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -183,34 +183,37 @@
       "bases:新建数据库": false
     }
   },
-  "active": "b425359796e3ac82",
+  "active": "b51b414c61e071ee",
   "lastOpenFiles": [
-    "concepts/git-operations.md",
-    "concepts/git-data-model.md",
-    "tools/index.md",
-    "concepts/git-branching.md",
-    "concepts/mcp-protocol.md",
-    "concepts/index.md",
+    "README.md",
+    "log.md",
+    "_meta/vault-architecture.md",
+    "_meta/self-bootstrapping.md",
+    "_meta/index.md",
+    "_meta/conventions.md",
+    "concepts/mermaid-diagrams.md",
+    "concepts/obsidian-syntax-reference.md",
+    "concepts/agent-orchestration.md",
     "concepts/a2a-protocol.md",
-    "index.md",
+    "patterns/multi-agent-patterns.md",
+    "patterns/permission-models.md",
+    "patterns/knowledge-graph-patterns.md",
+    "patterns/index.md",
+    "patterns/context-management.md",
+    "patterns/agent-extensibility.md",
+    "skills/nova-kb/SKILL.md",
+    "templates/tool-template.md",
+    "templates/pattern-template.md",
+    "templates/concept-template.md",
     "AGENTS.md",
     "_identity/nova-identity.md",
-    "tools/obsidian-maple-theme.md",
-    "concepts/obsidian-syntax-reference.md",
-    "log.md",
-    "concepts/cross-session-memory.md",
-    "tools/claude-code.md",
-    "tools/copilot.md",
-    "tools/codex-cli.md",
-    "tools/cursor.md",
-    "tools/opencode.md",
-    "_meta/conventions.md",
-    "research_karpathy_okf.md",
-    "templates/pattern-template.md",
+    "_identity/capability-manifest.md",
+    "_identity/index.md",
     "tools/aider.md",
-    "templates/tool-template.md",
-    "templates/concept-template.md",
-    "patterns/agent-extensibility.md",
+    "concepts/latex-in-markdown.md",
+    "skills/nova-kb",
+    "skills",
+    "opencode.json",
     "_attachments",
     "templates",
     "patterns",

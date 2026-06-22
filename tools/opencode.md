@@ -1,4 +1,4 @@
----
+﻿---
 type: Tool
 title: "OpenCode"
 description: "Comprehensive deep-dive analysis of OpenCode — client-server architecture, TUI interface, configuration system, skills and agents, permission model, plugin system, snapshots, compaction, and session management."
@@ -14,14 +14,14 @@ prerequisites:
   - /concepts/subagent-concurrency.md
   - /concepts/cross-session-memory.md
 related:
-  - "[[OpenCode Architecture]]"
-  - "[[Agent Skills System]]"
-  - "[[Subagent Concurrency]]"
-  - "[[Cross-Session Memory]]"
-  - "[[Permission Models]]"
-  - "[[Agent Extensibility]]"
-  - "[[Claude Code]]"
-  - "[[Codex CLI]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[permission-models|Permission Models]]"
+  - "[[agent-extensibility|Agent Extensibility]]"
+  - "[[claude-code|Claude Code]]"
+  - "[[codex-cli|Codex CLI]]"
 sources:
   - title: "OpenCode Documentation"
     url: "https://opencode.ai/docs"
@@ -36,7 +36,7 @@ summary: >
 
 ## 1. Architecture Overview
 
-OpenCode's architecture is detailed in [[OpenCode Architecture]]. The core design separates the **headless HTTP server** (exposing an OpenAPI 3.1 REST API) from **client frontends** (TUI, CLI, web, desktop, IDE plugins). This decoupling means:
+OpenCode's architecture is detailed in [[opencode-architecture|OpenCode Architecture]]. The core design separates the **headless HTTP server** (exposing an OpenAPI 3.1 REST API) from **client frontends** (TUI, CLI, web, desktop, IDE plugins). This decoupling means:
 
 - The TUI can crash or restart without losing server state
 - Multiple client types can attach to the same server session
@@ -199,7 +199,7 @@ Config files are **merged**, not replaced — only conflicting keys are overridd
 
 ## 4. Skills System
 
-Detailed in [[Agent Skills System]]. Skills are specialized instruction sets loaded dynamically into the agent's context.
+Detailed in [[agent-skills-system|Agent Skills System]]. Skills are specialized instruction sets loaded dynamically into the agent's context.
 
 ### SKILL.md Format
 ```markdown
@@ -288,7 +288,7 @@ Agents can also be defined inline in `opencode.json`:
 - The **primary agent** is the user-facing agent (Build or Plan mode)
 - **Subagents** are spawned via the `task` tool for parallel work
 - The primary agent consolidates subagent results and presents them to the user
-- See [[Subagent Concurrency]] for the parallel execution model
+- See [[subagent-concurrency|Subagent Concurrency]] for the parallel execution model
 
 ### Subagent Spawning
 ```
@@ -302,7 +302,7 @@ Subagents run in **isolated contexts** — they don't share state with each othe
 
 ## 6. Permission System
 
-OpenCode's permission system controls what operations the agent can perform without user approval. Detailed in [[Permission Models]].
+OpenCode's permission system controls what operations the agent can perform without user approval. Detailed in [[permission-models|Permission Models]].
 
 ### Permission Modes
 
@@ -370,7 +370,7 @@ When a tool call triggers an `ask` rule, the TUI displays:
 
 ## 7. Plugin System
 
-OpenCode supports plugins that hook into the agent lifecycle. Detailed in [[Agent Extensibility]].
+OpenCode supports plugins that hook into the agent lifecycle. Detailed in [[agent-extensibility|Agent Extensibility]].
 
 ### Plugin Locations
 | Scope | Path |
@@ -404,7 +404,7 @@ Plugins can register hooks for lifecycle events:
 | `onError` | Error occurs | Custom error handling, recovery |
 
 ### Compaction Hooks
-Compaction hooks are particularly important for [[Cross-Session Memory]]:
+Compaction hooks are particularly important for [[cross-session-memory|Cross-Session Memory]]:
 - `preCompact` — Identify what must survive compaction
 - `postCompact` — Verify critical context was preserved
 - Hooks can write to external storage before context is truncated
@@ -468,7 +468,7 @@ The snapshot system provides **undo/redo** for file changes using an internal gi
 
 ## 9. Compaction System
 
-Compaction manages the LLM context window when it approaches token limits. Critical for [[Cross-Session Memory]].
+Compaction manages the LLM context window when it approaches token limits. Critical for [[cross-session-memory|Cross-Session Memory]].
 
 ### How Compaction Works
 1. When context usage exceeds `compactThreshold` (default 0.85 = 85%), compaction triggers
@@ -496,7 +496,7 @@ Compaction manages the LLM context window when it approaches token limits. Criti
 - **Hook integration**: Plugins can influence what survives compaction via `onCompaction` hooks
 
 ### Relationship to Session Memory
-Compaction is the **context-level** memory mechanism, while `/log.md` and AGENTS.md provide **cross-session** memory. Together they implement [[Cross-Session Memory]].
+Compaction is the **context-level** memory mechanism, while `/log.md` and AGENTS.md provide **cross-session** memory. Together they implement [[cross-session-memory|Cross-Session Memory]].
 
 ---
 
@@ -528,7 +528,7 @@ Compaction is the **context-level** memory mechanism, while `/log.md` and AGENTS
 
 ## 11. MCP Integration
 
-OpenCode supports [[Model Context Protocol (MCP)]] for connecting to external tools and data sources.
+OpenCode supports [[mcp-protocol|Model Context Protocol (MCP)]] for connecting to external tools and data sources.
 
 ### Configuration
 ```json
@@ -574,7 +574,7 @@ OpenCode supports [[Model Context Protocol (MCP)]] for connecting to external to
 | Plugin System | Hooks + custom tools | Hooks (11 events) | Plugins + MCP | — | VS Code extensions |
 | Open Source | MIT | Proprietary | Apache 2.0 | Apache 2.0 | Proprietary |
 
-See also: [[Claude Code]], [[Codex CLI]], [[Aider]], [[Cursor]], [[GitHub Copilot]].
+See also: [[claude-code|Claude Code]], [[codex-cli|Codex CLI]], [[aider|Aider]], [[cursor|Cursor]], [[copilot|GitHub Copilot]].
 
 ---
 
@@ -586,5 +586,5 @@ See also: [[Claude Code]], [[Codex CLI]], [[Aider]], [[Cursor]], [[GitHub Copilo
 4. **Set granular permissions** — Use specific patterns rather than broad allow/deny
 5. **Enable snapshots** — Essential for undo/redo safety
 6. **Configure compaction threshold** — Lower for smaller models, higher for larger contexts
-7. **Use subagents for parallelism** — Independent tasks should be spawned as subagents via [[Subagent Concurrency]]
-8. **Log sessions** — Append meaningful entries to `/log.md` for [[Cross-Session Memory]]
+7. **Use subagents for parallelism** — Independent tasks should be spawned as subagents via [[subagent-concurrency|Subagent Concurrency]]
+8. **Log sessions** — Append meaningful entries to `/log.md` for [[cross-session-memory|Cross-Session Memory]]

@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "OpenCode Architecture"
 description: "Client-server architecture of OpenCode — TUI as client, headless HTTP server, core agent loop, filesystem tools, LLM provider interaction, and snapshot system."
@@ -11,9 +11,9 @@ domain: ai-tools
 prerequisites:
   - /concepts/agent-skills-system.md
 related:
-  - "[[Agent Skills System]]"
-  - "[[Subagent Concurrency]]"
-  - "[[Cross-Session Memory]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[cross-session-memory|Cross-Session Memory]]"
 sources:
   - title: "OpenCode Documentation & Source"
     url: "https://opencode.ai"

@@ -11,11 +11,11 @@ domain: ai-tools
 prerequisites:
   - /concepts/opencode-architecture.md
 related:
-  - "[[OpenCode Architecture]]"
-  - "[[Permission Models]]"
-  - "[[Claude Code]]"
-  - "[[OpenCode]]"
-  - "[[GitHub Copilot]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[permission-models|Permission Models]]"
+  - "[[claude-code|Claude Code]]"
+  - "[[opencode|OpenCode]]"
+  - "[[copilot|GitHub Copilot]]"
 sources:
   - title: "Aider GitHub Repository"
     url: "https://github.com/Aider-AI/aider"
@@ -416,20 +416,20 @@ aider --web
 
 ## 13. Comparison Matrix
 
-| Feature | Aider | OpenCode | Claude Code | Cursor | Copilot |
-|---------|-------|----------|-------------|--------|---------|
-| **Interface** | Terminal | TUI/CLI/Web/IDE | Terminal/IDE/Desktop/Web | IDE | IDE |
-| **Context engine** | RepoMap (graph-rank) | File tree + @-mentions | File tree + grep | Embedding search + @-mentions | Embedding + #-mentions |
-| **Edit format** | SEARCH/REPLACE | Edit (string replace) + Write | Edit (string replace) + Write | Inline + apply | Inline + apply |
-| **Dual mode** | Architect/Editor | Build/Plan | Primary/Plan | Agent/Normal | Planning mode |
-| **Subagents** | No | Yes (typed) | Yes (typed + teams) | No | Yes |
-| **Skills** | No | Yes (SKILL.md) | Yes (SKILL.md + fork) | No | No |
-| **Permissions** | Git-based undo | Granular cascading | 4 modes + rules | IDE permissions | IDE permissions |
-| **Multi-file** | Map-reduce | Subagent parallel | Subagent parallel | Agent sequential | Agent sequential |
-| **Model support** | 40+ via LiteLLM | 75+ via AI SDK | Anthropic only | Multiple | Multiple |
-| **Open source** | Apache 2.0 | MIT | Proprietary | Proprietary | Proprietary |
-| **Voice** | Yes (Whisper) | No | No | Yes (IDE) | Yes (IDE) |
-| **Web search** | Yes | Yes | Yes | Yes | Yes |
+| Feature            | Aider                | OpenCode                      | Claude Code                   | Cursor                        | Copilot                 |
+| ------------------ | -------------------- | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------- |
+| **Interface**      | Terminal             | TUI/CLI/Web/IDE               | Terminal/IDE/Desktop/Web      | IDE                           | IDE                     |
+| **Context engine** | RepoMap (graph-rank) | File tree + @-mentions        | File tree + grep              | Embedding search + @-mentions | Embedding + \#-mentions |
+| **Edit format**    | SEARCH/REPLACE       | Edit (string replace) + Write | Edit (string replace) + Write | Inline + apply                | Inline + apply          |
+| **Dual mode**      | Architect/Editor     | Build/Plan                    | Primary/Plan                  | Agent/Normal                  | Planning mode           |
+| **Subagents**      | No                   | Yes (typed)                   | Yes (typed + teams)           | No                            | Yes                     |
+| **Skills**         | No                   | Yes (SKILL.md)                | Yes (SKILL.md + fork)         | No                            | No                      |
+| **Permissions**    | Git-based undo       | Granular cascading            | 4 modes + rules               | IDE permissions               | IDE permissions         |
+| **Multi-file**     | Map-reduce           | Subagent parallel             | Subagent parallel             | Agent sequential              | Agent sequential        |
+| **Model support**  | 40+ via LiteLLM      | 75+ via AI SDK                | Anthropic only                | Multiple                      | Multiple                |
+| **Open source**    | Apache 2.0           | MIT                           | Proprietary                   | Proprietary                   | Proprietary             |
+| **Voice**          | Yes (Whisper)        | No                            | No                            | Yes (IDE)                     | Yes (IDE)               |
+| **Web search**     | Yes                  | Yes                           | Yes                           | Yes                           | Yes                     |
 
 ---
 
@@ -443,4 +443,4 @@ Aider occupies a unique position: the **researcher's tool**. It introduced:
 
 While newer tools have more features (skills, plugins, subagents, IDEs), Aider remains the **purest expression** of the AI pair programming concept: the LLM proposes, the tool applies, the human reviews.
 
-See also: [[OpenCode]], [[Claude Code]], [[Cursor]], [[GitHub Copilot]].
+See also: [[opencode|OpenCode]], [[claude-code|Claude Code]], [[cursor|Cursor]], [[copilot|GitHub Copilot]].

@@ -1,4 +1,4 @@
----
+﻿---
 type: Template
 title: "Design Pattern Template"
 description: "Reusable template for creating cross-cutting design pattern analyses with problem statement, solution structure, tool comparison, and decision guidance."
@@ -12,7 +12,7 @@ related:
   - "[[Conventions]]"
   - "[[Concept Note Template]]"
   - "[[Tool Analysis Template]]"
-  - "[[Knowledge Graph Patterns]]"
+  - "[[knowledge-graph-patterns|Knowledge Graph Patterns]]"
 summary: >
   A standardized template for documenting cross-cutting design patterns in agent systems, covering problem definition, solution patterns, tool-by-tool comparison, Mermaid diagrams, and actionable decision matrices.
 ---

@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "MCP (Model Context Protocol)"
 aliases:
@@ -15,11 +15,11 @@ prerequisites:
   - /concepts/agent-skills-system.md
   - /concepts/opencode-architecture.md
 related:
-  - "[[Agent Skills System]]"
-  - "[[OpenCode Architecture]]"
-  - "[[A2A Protocol]]"
-  - "[[Permission Models]]"
-  - "[[Context Management]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[a2a-protocol|A2A Protocol]]"
+  - "[[permission-models|Permission Models]]"
+  - "[[context-management|Context Management]]"
 sources:
   - title: "MCP Specification v2025-03-26"
     url: "https://modelcontextprotocol.io/specification/2025-03-26/"
@@ -36,7 +36,7 @@ summary: >
 
 MCP is an open protocol that standardizes how LLM applications connect to external data sources and tools. Think of it as **"USB-C for AI applications"** — just as USB-C standardizes device connectivity, MCP standardizes AI-to-external-system integration.
 
-It is inspired by the [[Language Server Protocol|LSP]], which standardized IDE-to-language integration.
+It is inspired by the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/), which standardized IDE-to-language integration.
 
 ## Architecture
 
@@ -202,4 +202,4 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
 
 ## Relationship to the Nova Vault
 
-MCP is the protocol layer beneath tools like [[Claude Code]], [[OpenCode]], [[Cursor]], and [[GitHub Copilot]] that connect agents to external capabilities. It complements [[A2A Protocol|A2A]] — MCP connects agents to tools/data, A2A connects agents to agents.
+MCP is the protocol layer beneath tools like [[claude-code|Claude Code]], [[opencode|OpenCode]], [[cursor|Cursor]], and [[copilot|GitHub Copilot]] that connect agents to external capabilities. It complements [[a2a-protocol|A2A]] — MCP connects agents to tools/data, A2A connects agents to agents.

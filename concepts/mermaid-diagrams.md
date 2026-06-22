@@ -11,10 +11,10 @@ domain: technical-writing
 prerequisites:
   - /concepts/markdown-frontmatter.md
 related:
-  - "[[LaTeX in Markdown]]"
-  - "[[OKF Format]]"
-  - "[[Zettelkasten Methodology]]"
-  - "[[Karpathy LLM Curriculum]]"
+  - "[[latex-in-markdown|LaTeX in Markdown]]"
+  - "[[okf-format|OKF Format]]"
+  - "[[zettelkasten-methodology|Zettelkasten Methodology]]"
+  - "[[karpathy-llm-curriculum|Karpathy LLM Curriculum]]"
 sources:
   - title: "Mermaid.js Documentation"
     url: "https://mermaid.js.org"
@@ -64,7 +64,7 @@ graph LR
     A[Rectangle]
     B(Rounded edges)
     C([Stadium / pill])
-    D[[Subroutine]]
+    D`Subroutine`
     E[(Database / cylinder)]
     F((Circle))
     G>Asymmetric / flag]
@@ -372,7 +372,6 @@ Commit types: `NORMAL` (default), `REVERSE` (crossed circle), `HIGHLIGHT` (fille
 
 ### Global Theme Directive
 
-````markdown
 ```mermaid
 ---
 config:
@@ -382,7 +381,6 @@ config:
 flowchart LR
     A --> B
 ```
-````
 
 Available themes: `default`, `base`, `forest`, `dark`, `neutral`.
 

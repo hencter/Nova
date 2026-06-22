@@ -1,128 +1,139 @@
 ---
 type: Meta
 title: "Vault Architecture"
+aliases:
+  - "Vault Architecture"
 description: How the Nova vault is structured, directory rationale, and knowledge graph topology.
-id: "20260622T051000"
+id: 20260622T051000
 status: evergreen
 domain: knowledge-management
-tags: [meta, architecture, vault]
+tags:
+  - meta
+  - architecture
+  - vault
 related:
-  - "[[Conventions]]"
-  - "[[Self-Bootstrapping]]"
-  - "[[Nova Identity]]"
-  - "[[OKF Format]]"
-confidence: 1.0
-summary: >
-  The Nova vault follows a directory-based topology where each directory represents a knowledge domain, each file an atomic note, and links form the semantic graph — no hierarchy, only connection.
+  - "[[conventions|Conventions]]"
+  - "[[self-bootstrapping|Self-Bootstrapping]]"
+  - "[[nova-identity|Nova Identity]]"
+  - "[[okf-format|OKF Format]]"
+confidence: 1
+summary: The Nova vault follows a directory-based topology where each directory represents a knowledge domain, each file an atomic note, and links form the semantic graph — no hierarchy, only connection.
+aliases:
+  - Vault Architecture
 ---
 
-# Vault Architecture
+# 知识库架构
 
-## Directory Topology
+## 目录拓扑
 
 ```
-D:\OpenCode\Note\              # Vault root
-├── AGENTS.md                  # Schema layer (Karpathy Layer 3): rules for AI agents
-├── index.md                   # Top-level progressive-disclosure catalog
-├── log.md                     # Append-only chronological memory
+D:\OpenCode\Note\              # 知识库根目录
+├── AGENTS.md                  # 模式层（Karpathy 第 3 层）：AI Agent 的规则
+├── index.md                   # 顶级渐进式披露目录
+├── log.md                     # 仅追加的时间线记忆
 │
-├── _identity/                 # AI self-identity (who Nova is)
+├── _identity/                 # AI 自我身份（Nova 是谁）
 │   ├── index.md
-│   ├── nova-identity.md       # Core purpose, directives, personality
-│   └── capability-manifest.md # Tool inventory and growth path
+│   ├── nova-identity.md       # 核心目标、指令、个性
+│   └── capability-manifest.md # 工具清单与成长路径
 │
-├── _meta/                     # Vault-about-the-vault (self-referential)
+├── _meta/                     # 关于知识库的知识库（自我参照）
 │   ├── index.md
-│   ├── vault-architecture.md  # This file
-│   ├── conventions.md         # Naming, linking, frontmatter rules
-│   └── self-bootstrapping.md  # How the vault maintains itself
+│   ├── vault-architecture.md  # 本文件
+│   ├── conventions.md         # 命名、链接、frontmatter 规则
+│   └── self-bootstrapping.md  # 知识库如何自我维护
 │
-├── concepts/                  # Core Zettelkasten permanent notes
-│   ├── index.md               # Concept catalog
-│   └── <concept>.md           # Atomic notes (one concept per file)
+├── concepts/                  # 核心 Zettelkasten 永久笔记
+│   ├── index.md               # 概念目录
+│   └── <concept>.md           # 原子笔记（每个文件一个概念）
 │
-├── tools/                     # Tool-specific deep dives
+├── tools/                     # 工具专项深度分析
 │   ├── index.md
 │   └── <tool-name>.md
 │
-├── patterns/                  # Design patterns & architectures
+├── patterns/                  # 设计模式与架构
 │   ├── index.md
 │   └── <pattern-name>.md
 │
-├── templates/                 # Note templates for consistent creation
+├── templates/                 # 笔记模板，用于一致化创建
 │   ├── concept-template.md
 │   ├── tool-template.md
 │   └── pattern-template.md
 │
-├── .opencode/                 # Opencode project configuration
-│   ├── skills/nova-kb/        # Nova knowledge base maintenance skill
-│   └── agents/                # Custom subagents
+├── skills/                     # 技能定义（受 AGENTS.md §11 保护）
+│   └── nova-kb/SKILL.md        # Nova 知识库维护技能
 │
-├── .obsidian/                 # Obsidian editor configuration
+├── .opencode/                  # OpenCode 项目配置
+│   └── agents/                 # 自定义子 Agent（受 AGENTS.md §11 保护）
+│       └── nova-architect.md
+│
+├── opencode.json               # 最小化配置（skills.paths + instructions）
+│
+├── .obsidian/                  # Obsidian 编辑器配置
 │   └── app.json
 │
-└── _attachments/              # Images, PDFs, and other attachments
+└── _attachments/              # 图片、PDF 及其他附件
 ```
 
-## Design Rationale
+## 设计原理
 
-### Why Directories, Not Flat?
+### 为什么用目录，而非扁平结构？
 
-While Zettelkasten purists prefer a flat structure, directories serve two practical purposes:
-1. **Progressive disclosure** — `index.md` files at each directory level provide a curated entry point without loading all files
-2. **Rough domain partitioning** — Directories are tags, not hierarchies. A note's "location" is a convenience, not a constraint
+虽然 Zettelkasten 纯粹主义者偏好扁平结构，但目录服务于两个实际目的：
+1. **渐进式披露** — 每个目录层级的 `index.md` 文件提供了一个有序的入口，无需加载所有文件
+2. **粗略的领域分区** — 目录是标签，不是层级。一篇笔记的"位置"是便利而非约束
 
-### The Real Structure is the Graph
+### 真正的结构是图谱
 
 ```mermaid
 graph TD
-    subgraph "ZK Principle: Structure from Links"
-        A[Concept A] -->|elaborates| B[Concept B]
-        B -->|applies to| C[Tool Analysis]
-        C -->|contradicted by| D[Alternative Pattern]
-        A -->|prerequisite for| E[Advanced Concept]
+    subgraph "ZK 原则：结构来自链接"
+        A[概念 A] -->|阐述| B[概念 B]
+        B -->|适用于| C[工具分析]
+        C -->|被反驳于| D[替代模式]
+        A -->|是...的前置| E[高级概念]
     end
 ```
 
-Directories provide **namespace**. Links provide **structure**. A note in `/concepts/` can link to a note in `/tools/` and `/patterns/` — cross-domain connections are the most valuable.
+目录提供**命名空间**。链接提供**结构**。`/concepts/` 中的笔记可以链接到 `/tools/` 和 `/patterns/` 中的笔记 — 跨领域连接是最有价值的。
 
-### Self-Referential Design
+### 自我参照设计
 
-The vault contains knowledge **about itself**:
-- `_meta/` describes how the vault works
-- `_identity/` describes the AI that maintains it
-- `AGENTS.md` provides the rules both domains follow
+知识库包含**关于自身**的知识：
+- `_meta/` 描述知识库如何运作
+- `_identity/` 描述维护它的 AI
+- `AGENTS.md` 提供两个领域共同遵循的规则
 
-This self-reference enables true self-bootstrapping: the AI can read the vault to understand how to maintain the vault.
+这种自我参照实现了真正的自举：AI 可以通过阅读知识库来理解如何维护知识库。
 
-## Graph Topology
+## 图谱拓扑
 
-The vault's knowledge graph has these properties:
+知识库的知识图谱具有以下属性：
 
-| Property | Description |
+| 属性 | 描述 |
 |----------|-------------|
-| **Node type** | File (atomic note) |
-| **Edge type** | Wiki link `[[target]]` |
-| **Edge semantics** | Encoded in surrounding prose and frontmatter fields (`prerequisites`, `related`, `sources`) |
-| **Direction** | Directed (linker → linked) |
-| **Backlinks** | Computed at query time by scanning all files for incoming links |
-| **Density** | Target: 3+ incoming links per note (anti-orphan) |
-| **Hubs** | `index.md` files serve as high-degree hub nodes for navigation |
+| **节点类型** | 文件（原子笔记） |
+| **边类型** | Wiki 链接 ``target`` |
+| **边语义** | 编码于链接周围的文字和 frontmatter 字段（`prerequisites`、`related`、`sources`） |
+| **方向** | 有向（链接者 → 被链接者） |
+| **反向链接** | 在查询时通过扫描所有文件的入链来计算 |
+| **密度** | 目标：每篇笔记 3+ 条入链（反孤立） |
+| **枢纽节点** | `index.md` 文件作为高阶枢纽节点提供导航 |
 
-### Expected Graph Structure
+### 预期的图谱结构
 
 ```mermaid
 graph LR
-    subgraph "Identity Cluster"
+    subgraph "身份集群"
         NI[Nova Identity] --> CM[Capability Manifest]
     end
 
-    subgraph "Meta Cluster"
+    subgraph "元信息集群"
         VA[Vault Architecture] --> CV[Conventions]
         CV --> SB[Self-Bootstrapping]
     end
 
-    subgraph "Core Concepts"
+    subgraph "核心概念"
         OC[OpenCode Architecture] --> AS[Agent Skills System]
         AS --> SC[Subagent Concurrency]
         AS --> CSM[Cross-Session Memory]
@@ -130,18 +141,18 @@ graph LR
         OKF --> MF[Markdown Frontmatter]
     end
 
-    subgraph "Patterns"
+    subgraph "模式"
         MAP[Multi-Agent Patterns] --> SC
         CMgt[Context Management] --> CSM
         PM[Permission Models] --> AS
     end
 ```
 
-## Key Architectural Decisions
+## 关键架构决策
 
-1. **OKF v0.1 conformance**: Every file has `type` in frontmatter. All links use markdown syntax. `index.md` for progressive disclosure. `log.md` for changelog.
-2. **Obsidian wiki links**: `[[note-name]]` for internal references. Obsidian renders these as clickable links and automatically tracks backlinks.
-3. **Timestamp IDs**: `YYYYMMDDThhmmss` format for stable, sortable identifiers.
-4. **No raw/ layer (yet)**: Currently a seed vault without immutable source documents. The raw layer can be added as the vault grows.
-5. **Append-only log**: `/log.md` is never rewritten — only appended. This preserves full audit history.
-6. **Git-native**: The vault is designed to be a git repository. Every change is a commit with a meaningful message.
+1. **OKF v0.1 合规**：每个文件在 frontmatter 中有 `type`。所有链接使用 markdown 语法。`index.md` 用于渐进式披露。`log.md` 用于变更日志。
+2. **Obsidian wiki 链接**：内部引用使用 ``note-name``。Obsidian 将其渲染为可点击链接并自动追踪反向链接。
+3. **时间戳 ID**：`YYYYMMDDThhmmss` 格式，提供稳定、可排序的标识符。
+4. **暂无 raw/ 层**：当前为种子知识库，无不不可变的源文档。raw 层可随知识库增长而添加。
+5. **仅追加日志**：`/log.md` 从不重写 — 仅追加。这保留了完整的审计历史。
+6. **Git 原生**：知识库设计为 git 仓库。每次变更是带有有意义信息的提交。

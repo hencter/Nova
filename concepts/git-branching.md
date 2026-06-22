@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "Git Branching"
 description: Git's killer feature — lightweight movable pointers to commits, HEAD reference, fast branch switching, merging (fast-forward vs three-way), rebasing vs merging, and common branching workflows.
@@ -11,8 +11,8 @@ domain: version-control
 prerequisites:
   - /concepts/git-data-model.md
 related:
-  - "[[Git Data Model]]"
-  - "[[Git Operations]]"
+  - "[[git-data-model|Git Data Model]]"
+  - "[[git-operations|Git Operations]]"
 sources:
   - title: "Pro Git Book — §3.1 Branches in a Nutshell"
     url: "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell"

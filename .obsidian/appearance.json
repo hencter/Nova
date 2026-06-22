@@ -1,4 +1,6 @@
 {
   "cssTheme": "Maple",
-  "accentColor": "#c2a8ff"
+  "accentColor": "#c2a8ff",
+  "baseFontSizeAction": true,
+  "baseFontSize": 18
 }

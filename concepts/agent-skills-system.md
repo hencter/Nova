@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "Agent Skills System"
 description: "Skills are lazy-loaded instruction modules defined via SKILL.md YAML frontmatter, discovered from six scan paths, and loaded on-demand via the skill tool into model context."
@@ -11,10 +11,10 @@ domain: ai-tools
 prerequisites:
   - /concepts/opencode-architecture.md
 related:
-  - "[[OpenCode Architecture]]"
-  - "[[Subagent Concurrency]]"
-  - "[[Cross-Session Memory]]"
-  - "[[MCP Protocol]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[mcp-protocol|MCP Protocol]]"
 sources:
   - title: "OpenCode Documentation — Skills"
     url: "https://opencode.ai"

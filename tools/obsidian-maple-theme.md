@@ -1,4 +1,4 @@
----
+﻿---
 type: Tool
 title: "Obsidian Maple Theme"
 description: Deep-dive analysis of the Maple theme for Obsidian — sleek modern design, Style Settings customization, alternate checkboxes, Maple Mono font, mobile optimization, and developer workflow.
@@ -11,8 +11,8 @@ domain: knowledge-management
 prerequisites:
   - /concepts/obsidian-syntax-reference.md
 related:
-  - "[[Obsidian Syntax Reference]]"
-  - "[[Zettelkasten Methodology]]"
+  - "[[obsidian-syntax-reference|Obsidian Syntax Reference]]"
+  - "[[zettelkasten-methodology|Zettelkasten Methodology]]"
 sources:
   - title: "Maple Theme Repository"
     url: "https://github.com/subframe7536/obsidian-theme-maple"

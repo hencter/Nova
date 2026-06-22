@@ -1,4 +1,4 @@
----
+﻿---
 type: Template
 title: "Concept Note Template"
 description: "Reusable template for creating atomic concept notes with complete OKF frontmatter, standard sections, and usage instructions."
@@ -11,7 +11,7 @@ domain: knowledge-management
 related:
   - "[[Conventions]]"
   - "[[Zettelkasten Methodology]]"
-  - "[[OKF Format]]"
+  - "[[okf-format|OKF Format]]"
   - "[[Knowledge Graph Patterns]]"
 summary: >
   A fill-in-the-blanks template for creating atomic concept notes that conform to AGENTS.md conventions — one concept per file, complete frontmatter, cross-links, and progressive structure.

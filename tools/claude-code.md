@@ -1,4 +1,4 @@
----
+﻿---
 type: Tool
 title: "Claude Code"
 description: "Comprehensive deep-dive analysis of Claude Code by Anthropic — terminal/IDE/desktop/web surfaces, ReAct agent loop, core tools, CLAUDE.md hierarchy, auto memory, skills system, hooks (11 events, 5 types), subagents (Explore/Plan/General), agent teams, permission modes, and compaction."
@@ -13,13 +13,13 @@ prerequisites:
   - /concepts/subagent-concurrency.md
   - /concepts/cross-session-memory.md
 related:
-  - "[[Agent Skills System]]"
-  - "[[Subagent Concurrency]]"
-  - "[[Cross-Session Memory]]"
-  - "[[Permission Models]]"
-  - "[[Agent Extensibility]]"
-  - "[[OpenCode]]"
-  - "[[Codex CLI]]"
+  - "[[agent-skills-system|Agent Skills System]]"
+  - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[permission-models|Permission Models]]"
+  - "[[agent-extensibility|Agent Extensibility]]"
+  - "[[opencode|OpenCode]]"
+  - "[[codex-cli|Codex CLI]]"
 sources:
   - title: "Claude Code Documentation"
     url: "https://docs.anthropic.com/en/docs/claude-code"
@@ -103,7 +103,7 @@ Claude Code uses Anthropic's native **tool-use API** — tool calls are structur
 
 ## 4. CLAUDE.md Memory Hierarchy
 
-The CLAUDE.md system implements [[Cross-Session Memory]] through a **hierarchical configuration-merging** approach. Files cascade from broad to specific:
+The CLAUDE.md system implements [[cross-session-memory|Cross-Session Memory]] through a **hierarchical configuration-merging** approach. Files cascade from broad to specific:
 
 ### Hierarchy (Managed → User → Project → Local)
 ```
@@ -175,7 +175,7 @@ Claude Code's **auto memory** provides automatic context persistence beyond CLAU
 
 ## 6. Skills System
 
-Claude Code's skills system aligns with [[Agent Skills System]] patterns but adds unique features.
+Claude Code's skills system aligns with [[agent-skills-system|Agent Skills System]] patterns but adds unique features.
 
 ### SKILL.md Format
 ```markdown
@@ -289,7 +289,7 @@ Claude Code has an extensive hooks system — **11 hook events** across **5 hook
 
 ## 8. Subagents System
 
-Claude Code implements [[Subagent Concurrency]] with three built-in agent types plus custom agents.
+Claude Code implements [[subagent-concurrency|Subagent Concurrency]] with three built-in agent types plus custom agents.
 
 ### Built-in Agent Types
 | Agent Type | Description | Tool Access | Use Case |
@@ -356,13 +356,13 @@ Claude Code supports **agent teams** — multiple agents running concurrently on
 - Explore subagents run in **parallel** (independent search tasks)
 - General-purpose subagents run **sequentially** by default (to avoid edit conflicts)
 - Teams can be configured for parallel execution
-- See [[Subagent Concurrency]] for the theoretical model
+- See [[subagent-concurrency|Subagent Concurrency]] for the theoretical model
 
 ---
 
 ## 9. Permission System
 
-Claude Code uses a **mode-based** permission system aligned with [[Permission Models]].
+Claude Code uses a **mode-based** permission system aligned with [[permission-models|Permission Models]].
 
 ### Permission Modes
 | Mode | Description | CLI Flag |
@@ -463,4 +463,4 @@ Claude Code provides **token usage and cost tracking**:
 | Open Source | Proprietary | MIT | Apache 2.0 |
 | Multi-surface | Terminal/IDE/Desktop/Web | TUI/CLI/Server/Web/IDE | Terminal/Desktop/Web |
 
-See also: [[OpenCode]], [[Codex CLI]], [[Aider]].
+See also: [[opencode|OpenCode]], [[codex-cli|Codex CLI]], [[aider|Aider]].

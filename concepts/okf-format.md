@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "OKF Format"
 aliases:
@@ -14,10 +14,10 @@ prerequisites:
   - /concepts/markdown-frontmatter.md
   - /concepts/karpathy-llm-curriculum.md
 related:
-  - "[[Markdown Frontmatter]]"
-  - "[[Karpathy LLM Curriculum]]"
-  - "[[Zettelkasten Methodology]]"
-  - "[[AGENTS.md Schema Layer]]"
+  - "[[markdown-frontmatter|Markdown Frontmatter]]"
+  - "[[karpathy-llm-curriculum|Karpathy LLM Curriculum]]"
+  - "[[zettelkasten-methodology|Zettelkasten Methodology]]"
+  - "[AGENTS.md Schema Layer](AGENTS.md)"
 sources:
   - title: "OKF v0.1 — Open Knowledge Format"
     url: "https://github.com/GoogleCloudPlatform/knowledge-catalog"
@@ -213,7 +213,7 @@ A bundle is conformant with OKF v0.1 if:
 
 ## Relationship to Karpathy's LLM Wiki
 
-OKF explicitly cites [[Karpathy LLM Curriculum|Karpathy's LLM Wiki gist]] as its inspiration. The three-layer mapping:
+OKF explicitly cites [[karpathy-llm-curriculum|Karpathy's LLM Wiki gist]] as its inspiration. The three-layer mapping:
 
 | Karpathy Layer | OKF Equivalent | Notes |
 |---------------|----------------|-------|

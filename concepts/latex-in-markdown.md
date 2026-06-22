@@ -1,4 +1,4 @@
----
+﻿---
 type: Concept
 title: "LaTeX in Markdown"
 description: Complete reference for embedding LaTeX math in markdown — syntax, symbols, environments, matrices, alignment, and formal knowledge representation including logic, information theory, linear algebra, and the attention mechanism formula.
@@ -11,10 +11,10 @@ domain: technical-writing
 prerequisites:
   - /concepts/markdown-frontmatter.md
 related:
-  - "[[Mermaid Diagrams]]"
-  - "[[Markdown Frontmatter]]"
-  - "[[Attention Mechanism]]"
-  - "[[OKF Format]]"
+  - "[[mermaid-diagrams|Mermaid Diagrams]]"
+  - "[[markdown-frontmatter|Markdown Frontmatter]]"
+  - "[[attention-mechanism|Attention Mechanism]]"
+  - "[[okf-format|OKF Format]]"
 sources:
   - title: "MathJax Documentation"
     url: "https://docs.mathjax.org/en/latest/"
@@ -390,7 +390,7 @@ $$
 
 All parameter matrices: $W_i^Q \in \mathbb{R}^{d_\text{model} \times d_k}$, $W_i^K \in \mathbb{R}^{d_\text{model} \times d_k}$, $W_i^V \in \mathbb{R}^{d_\text{model} \times d_v}$, $W^O \in \mathbb{R}^{hd_v \times d_\text{model}}$
 
-This notation enables precise, unambiguous communication of mathematical concepts within knowledge bases. Combined with [[Mermaid Diagrams|Mermaid diagrams]], it provides complete formal and visual knowledge representation.
+This notation enables precise, unambiguous communication of mathematical concepts within knowledge bases. Combined with [[mermaid-diagrams|Mermaid diagrams]], it provides complete formal and visual knowledge representation.
 
 # Citations
 
