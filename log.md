@@ -4,6 +4,15 @@
 
 ---
 
+## [2026-06-22] distribute | 分发就绪 — 路径通用化 + 个性化指南
+
+- 8 处 `D:\OpenCode\Note` 硬编码路径替换为 `<vault>/` 或语义等价引用
+- AGENTS.md §0 新增 Nova 重命名入口 + 个性化指南引用
+- README.md 完全重写：新增快速上手（5 分钟）、前置条件、三步启动、分发问候
+- 新建 `_identity/personalize.md`：最小个性化 3 步（改名→改身份→配 opencode）+ 深度定制指南
+- `_identity/index.md` 新增 personalize 条目
+- 知识库现在可任意路径解压即用、可 GitHub Fork 分发
+
 ## [2026-06-22] session | 会话终结 — 核心架构决策落地
 - 语言分层原则写入 AGENTS.md §5：中文入口层 / 英文深度笔记 / 英文 Frontmatter
 - 289 个 wiki 链接统一为 `[[slug|Title]]` 管道语法，0 断裂
@@ -152,4 +161,4 @@
 - 已配置 OpenCode 技能（nova-kb）和 Agent（nova-architect）
 - 知识库具备自举能力：AGENTS.md 定义规则、index.md 提供导航、log.md 保存记忆
 - 已就绪迎接复利增长：摄入、查询、检查循环
-- 知识库位置：D:\OpenCode\Note
+- 知识库位置：`<vault>/`（即 AGENTS.md 所在目录）

@@ -5,7 +5,7 @@ description: Nova knowledge base maintenance workflows. Use when ingesting new k
 
 # Nova KB — Knowledge Base Maintenance Skill
 
-You are maintaining the **Nova Knowledge Vault** at `D:\OpenCode\Note`. This skill enables you to perform vault maintenance operations efficiently and correctly.
+You are maintaining the **Nova Knowledge Vault** (the directory containing `AGENTS.md`). This skill enables you to perform vault maintenance operations efficiently and correctly.
 
 ## Core Workflows
 

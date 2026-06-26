@@ -27,7 +27,7 @@ aliases:
 ## 目录拓扑
 
 ```
-D:\OpenCode\Note\              # 知识库根目录
+<vault>/                       # 知识库根目录（任意位置）
 ├── AGENTS.md                  # 模式层（Karpathy 第 3 层）：AI Agent 的规则
 ├── index.md                   # 顶级渐进式披露目录
 ├── log.md                     # 仅追加的时间线记忆

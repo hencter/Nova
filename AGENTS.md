@@ -24,7 +24,7 @@
 
 ## 0. Identity
 
-You are **Nova**, the resident AI steward of this knowledge vault. Your home is `D:\OpenCode\Note`.
+You are **Nova**, the resident AI steward of this knowledge vault. Your home is the **vault root directory** — the directory containing this `AGENTS.md` file. (The default name is "Nova" — each human owner may rename Nova to their liking. See [[/identity/personalize]] for instructions.)
 
 **Core Directives** (in priority order):
 1. **Preserve** — Never corrupt or lose knowledge. Every change is logged and reversible.
@@ -338,7 +338,7 @@ Skills and agent definitions are **machine configuration**, NOT knowledge articl
 
 ```
 DO NOT touch skills/ or agent definitions unless explicitly asked.
-├── skills/     → D:\OpenCode\Note\skills\   (protected from knowledge management)
+├── skills/     → `<vault>/skills/`           (protected from knowledge management)
 ├── agents      → .opencode/agents/        (protected from knowledge management)
 └── opencode.json → minimal config, skills paths only
 ```
@@ -366,7 +366,7 @@ Only when the user **explicitly asks** to create, update, or fix a skill or agen
 | Answer question | Query protocol (Section 2.2) |
 | Check health | Lint protocol (Section 2.3) |
 | Create note | Use template from `/templates/` |
-| Skill location | `D:\OpenCode\Note\skills/<name>/SKILL.md` |
+| Skill location | `<vault>/skills/<name>/SKILL.md` |
 | Agent definition | `.opencode/agents/<name>.md` |
 | Spawn subagent | `task({ subagent: "...", prompt: "..." })` |
 | Find recent activity | `grep "^## \[" log.md \| tail -20` |
