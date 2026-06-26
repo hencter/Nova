@@ -1,8 +1,13 @@
-﻿---
+---
 type: Tool
 title: "Obsidian Maple Theme"
 description: Deep-dive analysis of the Maple theme for Obsidian — sleek modern design, Style Settings customization, alternate checkboxes, Maple Mono font, mobile optimization, and developer workflow.
-tags: [obsidian, theme, maple, customization, ui]
+tags:
+  - obsidian
+  - theme
+  - maple
+  - customization
+  - ui
 timestamp: 2026-06-22T07:00:00Z
 id: "20260622T070100"
 status: evergreen

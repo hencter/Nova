@@ -1,8 +1,10 @@
-﻿---
+---
 type: Index
 title: Nova Knowledge Vault
 description: Progressive-disclosure catalog of the entire Nova knowledge vault — an AI-maintained, Zettelkasten-inspired, OKF-conformant knowledge base.
-tags: [index, catalog]
+tags:
+  - index
+  - catalog
 timestamp: 2026-06-22T05:30:00Z
 okf_version: "0.1"
 ---

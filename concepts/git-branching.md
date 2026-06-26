@@ -1,8 +1,14 @@
-﻿---
+---
 type: Concept
 title: "Git Branching"
 description: Git's killer feature — lightweight movable pointers to commits, HEAD reference, fast branch switching, merging (fast-forward vs three-way), rebasing vs merging, and common branching workflows.
-tags: [git, branching, merge, rebase, head, workflows]
+tags:
+  - git
+  - branching
+  - merge
+  - rebase
+  - head
+  - workflows
 timestamp: 2026-06-22T08:00:00Z
 id: "20260622T080100"
 status: evergreen

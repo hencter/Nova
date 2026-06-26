@@ -1,8 +1,11 @@
-﻿---
+---
 type: Template
 title: "Design Pattern Template"
 description: "Reusable template for creating cross-cutting design pattern analyses with problem statement, solution structure, tool comparison, and decision guidance."
-tags: [template, pattern, design]
+tags:
+  - template
+  - pattern
+  - design
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T170200"
 status: evergreen
@@ -10,8 +13,8 @@ difficulty: beginner
 domain: knowledge-management
 related:
   - "[[Conventions]]"
-  - "[[Concept Note Template]]"
-  - "[[Tool Analysis Template]]"
+  - "[[concept-template|Concept Note Template]]"
+  - "[[tool-template|Tool Analysis Template]]"
   - "[[knowledge-graph-patterns|Knowledge Graph Patterns]]"
 summary: >
   A standardized template for documenting cross-cutting design patterns in agent systems, covering problem definition, solution patterns, tool-by-tool comparison, Mermaid diagrams, and actionable decision matrices.
@@ -30,7 +33,10 @@ Copy this template when creating a new pattern analysis note. Replace all `{{PLA
 type: Pattern
 title: "{{Pattern Name}}"
 description: "{{One-line summary of the pattern family and its scope}}"
-tags: [{{tag1}}, {{tag2}}, patterns]
+tags:
+  - {{tag1}}
+  - {{tag2}}
+  - patterns
 timestamp: {{YYYY-MM-DD}}T00:00:00Z
 id: "{{YYYYMMDDThhmmss}}"
 status: {{seedling | budding | evergreen}}

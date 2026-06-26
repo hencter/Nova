@@ -1,8 +1,14 @@
-﻿---
+---
 type: Concept
 title: "Karpathy LLM Curriculum"
 description: Andrej Karpathy's progressive from-scratch teaching philosophy, the Zero to Hero course, the LLM Wiki pattern, and the compound effect that turns a knowledge base into a thinking partner.
-tags: [karpathy, llm, curriculum, deep-learning, wiki, self-bootstrapping]
+tags:
+  - karpathy
+  - llm
+  - curriculum
+  - deep-learning
+  - wiki
+  - self-bootstrapping
 timestamp: 2026-06-22T14:10:00Z
 id: "20260622T141000"
 status: evergreen

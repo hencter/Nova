@@ -2,7 +2,13 @@
 type: Tool
 title: "Aider"
 description: "Comprehensive deep-dive analysis of Aider by Paul Gauthier — RepoMap graph-ranked codebase representation, architect/editor dual-mode, SEARCH/REPLACE edit format, map-reduce approach, tree-sitter parsing, edit format comparison (diff vs whole vs diff-fenced), leaderboard-based model selection, and the unique divide between LLM-generated and tool-applied edits."
-tags: [aider, tool-analysis, paul-gauthier, agent-platform, repomap, edit-formats]
+tags:
+  - aider
+  - tool-analysis
+  - paul-gauthier
+  - agent-platform
+  - repomap
+  - edit-formats
 timestamp: 2026-06-22T16:15:00Z
 id: "20260622T161500"
 status: evergreen

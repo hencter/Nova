@@ -1,11 +1,18 @@
-﻿---
+---
 type: Concept
 title: "MCP (Model Context Protocol)"
 aliases:
   - "MCP Protocol"
   - "Model Context Protocol (MCP)"
 description: "Anthropic's open protocol (JSON-RPC 2.0) standardizing how LLM applications connect to external data sources and tools — Host→Client→Server architecture with Resources, Prompts, Tools primitives and capability negotiation."
-tags: [mcp, protocol, anthropic, json-rpc, tools, context, llm-integration]
+tags:
+  - mcp
+  - protocol
+  - anthropic
+  - json-rpc
+  - tools
+  - context
+  - llm-integration
 timestamp: 2026-06-22T08:00:00Z
 id: "20260622T080000"
 status: evergreen

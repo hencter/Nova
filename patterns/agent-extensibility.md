@@ -1,10 +1,16 @@
-﻿---
+---
 type: Pattern
 title: "Agent Extensibility Patterns"
 aliases:
   - "Agent Extensibility"
 description: "Design patterns for extending AI coding agents — plugin systems, skill/command loading, custom tool creation, agent customization, MCP integration, and the extensibility triad of Skills + Hooks + Plugins."
-tags: [extensibility, plugins, hooks, skills, mcp, agents]
+tags:
+  - extensibility
+  - plugins
+  - hooks
+  - skills
+  - mcp
+  - agents
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T160400"
 status: evergreen

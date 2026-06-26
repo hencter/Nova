@@ -2,7 +2,12 @@
 type: Concept
 title: "Obsidian Syntax Reference"
 description: Complete Obsidian markdown syntax reference — wiki links, callouts, task lists (standard + Maple alternate checkboxes), embeds, block references, footnotes, tables, search syntax, and all formatting conventions.
-tags: [obsidian, syntax, markdown, reference, maple-theme]
+tags:
+  - obsidian
+  - syntax
+  - markdown
+  - reference
+  - maple-theme
 timestamp: 2026-06-22T07:00:00Z
 id: "20260622T070000"
 status: evergreen
@@ -11,11 +16,11 @@ domain: knowledge-management
 prerequisites:
   - /concepts/markdown-frontmatter.md
 related:
-  - "[[Markdown Frontmatter]]"
-  - "[[Zettelkasten Methodology]]"
-  - "[[Mermaid Diagrams]]"
-  - "[[LaTeX in Markdown]]"
-  - "[[Obsidian Maple Theme]]"
+  - "[[markdown-frontmatter|Markdown Frontmatter]]"
+  - "[[zettelkasten-methodology|Zettelkasten Methodology]]"
+  - "[[mermaid-diagrams|Mermaid Diagrams]]"
+  - "[[latex-in-markdown|LaTeX in Markdown]]"
+  - "[[obsidian-maple-theme|Obsidian Maple Theme]]"
 sources:
   - title: "Obsidian Help"
     url: "https://help.obsidian.md"
@@ -233,7 +238,7 @@ task-done:""       # 所有已完成任务
 |-------------|-----------------|
 | 扁平分类型系统 | 网络关系型系统 |
 | 一对多：一个标签分组多个笔记 | 一对一：每条链接是特定连接 |
-| `#methodology` 标记笔记类型 | `[[Zettelkasten]]` 连接到特定想法 |
+| `#methodology` 标记笔记类型 | `[[zettelkasten-methodology\|Zettelkasten]]` 连接到特定想法 |
 | 适合大类分类 | 适合精确的关系映射 |
 | 可搜索/过滤 | 构建图结构 |
 
@@ -408,7 +413,9 @@ ___
 ---
 type: Concept
 title: "Example Note"
-tags: [example, syntax]
+tags:
+  - example
+  - syntax
 timestamp: 2026-06-22T07:00:00Z
 ---
 
@@ -457,6 +464,6 @@ graph TD
 # 相关工具
 
 - [[Obsidian Maple Theme]] — Maple 主题详细分析
-- [[Mermaid Diagrams]] — 图表语法
-- [[LaTeX in Markdown]] — 数学语法
-- [[Markdown Frontmatter]] — 前置元数据
+- [[mermaid-diagrams|Mermaid Diagrams]] — 图表语法
+- [[latex-in-markdown|LaTeX in Markdown]] — 数学语法
+- [[markdown-frontmatter|Markdown Frontmatter]] — 前置元数据

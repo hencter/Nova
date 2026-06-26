@@ -1,10 +1,16 @@
-﻿---
+---
 type: Pattern
 title: "Permission & Security Models"
 aliases:
   - "Permission Models"
 description: "Comparative analysis of permission and security architectures in AI coding agents — granular pattern rules, cascading merge, human-in-the-loop, hook-based overrides, and enterprise enforcement patterns."
-tags: [permissions, security, access-control, hooks, sandbox, agents]
+tags:
+  - permissions
+  - security
+  - access-control
+  - hooks
+  - sandbox
+  - agents
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T160200"
 status: evergreen

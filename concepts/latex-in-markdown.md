@@ -1,8 +1,13 @@
-﻿---
+---
 type: Concept
 title: "LaTeX in Markdown"
 description: Complete reference for embedding LaTeX math in markdown — syntax, symbols, environments, matrices, alignment, and formal knowledge representation including logic, information theory, linear algebra, and the attention mechanism formula.
-tags: [latex, math, notation, markdown, formal-methods]
+tags:
+  - latex
+  - math
+  - notation
+  - markdown
+  - formal-methods
 timestamp: 2026-06-22T14:20:00Z
 id: "20260622T142000"
 status: evergreen

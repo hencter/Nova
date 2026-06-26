@@ -1,10 +1,16 @@
-﻿---
+---
 type: Tool
 title: "GitHub Copilot"
 aliases:
   - "Copilot"
 description: "Comprehensive deep-dive analysis of GitHub Copilot by Microsoft — VS Code integration, multiple agent types (local/cloud/third-party via ACP), agents window, chat view, #-mentions, planning mode, memory system, subagents, checkpoints, session sync, image attachments, and parallel sessions."
-tags: [github-copilot, tool-analysis, microsoft, agent-platform, vscode-extension, acp]
+tags:
+  - github-copilot
+  - tool-analysis
+  - microsoft
+  - agent-platform
+  - vscode-extension
+  - acp
 timestamp: 2026-06-22T16:25:00Z
 id: "20260622T162500"
 status: evergreen

@@ -1,8 +1,13 @@
-﻿---
+---
 type: Tool
 title: "OpenCode"
 description: "Comprehensive deep-dive analysis of OpenCode — client-server architecture, TUI interface, configuration system, skills and agents, permission model, plugin system, snapshots, compaction, and session management."
-tags: [opencode, tool-analysis, agent-platform, tui, client-server]
+tags:
+  - opencode
+  - tool-analysis
+  - agent-platform
+  - tui
+  - client-server
 timestamp: 2026-06-22T16:00:00Z
 id: "20260622T160000"
 status: evergreen

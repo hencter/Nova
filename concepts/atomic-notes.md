@@ -2,7 +2,10 @@
 type: Concept
 title: "Atomic Notes"
 description: Zettelkasten principle — each note captures exactly one idea in a self-contained unit. The fundamental unit of knowledge organization in ZK methodology.
-tags: [zettelkasten, methodology, atomicity]
+tags:
+  - zettelkasten
+  - methodology
+  - atomicity
 timestamp: 2026-06-22T09:05:00Z
 id: "20260622T090500"
 status: seedling

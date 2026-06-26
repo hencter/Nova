@@ -1,8 +1,13 @@
-﻿---
+---
 type: Concept
 title: "Agent Skills System"
 description: "Skills are lazy-loaded instruction modules defined via SKILL.md YAML frontmatter, discovered from six scan paths, and loaded on-demand via the skill tool into model context."
-tags: [opencode, skills, agents, SKILL.md, context-management]
+tags:
+  - opencode
+  - skills
+  - agents
+  - SKILL.md
+  - context-management
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T150100"
 status: evergreen

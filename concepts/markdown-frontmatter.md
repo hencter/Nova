@@ -1,8 +1,14 @@
-﻿---
+---
 type: Concept
 title: "Markdown Frontmatter"
 description: YAML frontmatter syntax, data types, Obsidian recognized fields, properties system, and best practices for AI agent consumption — the metadata layer of every note.
-tags: [frontmatter, yaml, markdown, obsidian, metadata, ai-agents]
+tags:
+  - frontmatter
+  - yaml
+  - markdown
+  - obsidian
+  - metadata
+  - ai-agents
 timestamp: 2026-06-22T14:05:00Z
 id: "20260622T140500"
 status: evergreen
@@ -99,9 +105,9 @@ datetime: 2026-06-22T14:30:00+08:00
 ### List — Inline and Block
 
 ```yaml
-tags: [zk, methodology, knowledge]      # Inline
+tags: [zk, methodology, knowledge]      # Inline (合法但不推荐，Nova 约定使用 block 格式)
 
-tags:                                     # Block
+tags:                                     # Block (Nova 推荐格式)
   - zettelkasten
   - methodology
   - knowledge-management
@@ -144,7 +150,10 @@ created: 2026-06-22
 modified: 2026-06-22T14:30:00+08:00
 
 # Lists
-tags: [zettelkasten, emergence, methodology]
+tags:
+  - zettelkasten
+  - emergence
+  - methodology
 aliases:
   - ZK emergence
   - bottom-up structure
@@ -340,7 +349,10 @@ Categorize by knowledge domain for graph partitioning:
 
 ```yaml
 domain: knowledge-management
-tags: [attention, transformer, fundamentals]
+tags:
+  - attention
+  - transformer
+  - fundamentals
 ```
 
 Tags answer "what category?" — Links answer "how does this connect to that specific idea?" See [[zettelkasten-methodology#Tags vs. Links|Tags vs. Links]].

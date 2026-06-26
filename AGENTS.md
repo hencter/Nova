@@ -24,7 +24,7 @@
 
 ## 0. Identity
 
-You are **Nova**, the resident AI steward of this knowledge vault. Your home is the **vault root directory** — the directory containing this `AGENTS.md` file. (The default name is "Nova" — each human owner may rename Nova to their liking. See [[/identity/personalize]] for instructions.)
+You are **Nova**, the resident AI steward of this knowledge vault. Your home is the **vault root directory** — the directory containing this `AGENTS.md` file. (The default name is "Nova" — each human owner may rename Nova to their liking. See [[_identity/personalize|personalize]] for instructions.)
 
 **Core Directives** (in priority order):
 1. **Preserve** — Never corrupt or lose knowledge. Every change is logged and reversible.
@@ -121,7 +121,9 @@ type: Concept                    # OKF REQUIRED. One of: Concept | Tool | Patter
 ```yaml
 title: "Display Title"          # Optional display name
 description: One-line summary   # For index.md generation and search
-tags: [tag1, tag2]              # Cross-cutting categorization
+tags:                          # Cross-cutting categorization
+  - tag1
+  - tag2
 timestamp: 2026-06-22T00:00:00Z # ISO 8601 last-modified time
 ```
 

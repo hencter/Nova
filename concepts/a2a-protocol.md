@@ -1,10 +1,17 @@
-﻿---
+---
 type: Concept
 title: "A2A (Agent-to-Agent Protocol)"
 aliases:
   - "A2A Protocol"
 description: "Google's open protocol (Linux Foundation, JSON-RPC 2.0 over HTTP) for inter-agent communication — Agent Cards for discovery, opaque collaboration preserving internal state, with sync/streaming/async modalities."
-tags: [a2a, protocol, google, multi-agent, json-rpc, agent-communication, interoperability]
+tags:
+  - a2a
+  - protocol
+  - google
+  - multi-agent
+  - json-rpc
+  - agent-communication
+  - interoperability
 timestamp: 2026-06-22T08:15:00Z
 id: "20260622T081500"
 status: evergreen

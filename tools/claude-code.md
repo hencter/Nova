@@ -1,8 +1,13 @@
-﻿---
+---
 type: Tool
 title: "Claude Code"
 description: "Comprehensive deep-dive analysis of Claude Code by Anthropic — terminal/IDE/desktop/web surfaces, ReAct agent loop, core tools, CLAUDE.md hierarchy, auto memory, skills system, hooks (11 events, 5 types), subagents (Explore/Plan/General), agent teams, permission modes, and compaction."
-tags: [claude-code, tool-analysis, anthropic, agent-platform, terminal]
+tags:
+  - claude-code
+  - tool-analysis
+  - anthropic
+  - agent-platform
+  - terminal
 timestamp: 2026-06-22T16:05:00Z
 id: "20260622T160500"
 status: evergreen

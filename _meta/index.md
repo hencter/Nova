@@ -2,7 +2,9 @@
 type: Index
 title: "Meta — Vault About the Vault"
 description: Self-referential knowledge about the Nova vault's structure, conventions, and maintenance.
-tags: [index, meta]
+tags:
+  - index
+  - meta
 timestamp: 2026-06-22T05:30:00Z
 ---
 

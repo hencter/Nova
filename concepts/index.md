@@ -1,8 +1,10 @@
-﻿---
+---
 type: Index
 title: "Concepts — Core Ideas"
 description: Atomic permanent notes on fundamental concepts across AI agents, knowledge management, and system design.
-tags: [index, concepts]
+tags:
+  - index
+  - concepts
 timestamp: 2026-06-22T05:30:00Z
 ---
 

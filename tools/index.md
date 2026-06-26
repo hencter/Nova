@@ -1,8 +1,10 @@
-﻿---
+---
 type: Index
 title: "Tools — Agent Coding Platforms"
 description: Deep-dive analyses of major AI coding/agent tools, their architectures, and design patterns.
-tags: [index, tools]
+tags:
+  - index
+  - tools
 timestamp: 2026-06-22T05:30:00Z
 ---
 

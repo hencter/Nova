@@ -1,8 +1,10 @@
-﻿---
+---
 type: Index
 title: "Patterns — Architecture & Design"
 description: Cross-cutting design patterns for agent systems and knowledge management.
-tags: [index, patterns]
+tags:
+  - index
+  - patterns
 timestamp: 2026-06-22T05:30:00Z
 ---
 

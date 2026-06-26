@@ -1,8 +1,14 @@
-﻿---
+---
 type: Tool
 title: "Codex CLI"
 description: "Comprehensive deep-dive analysis of Codex CLI by OpenAI — terminal/IDE/desktop/web surfaces, Rust codebase, AGENTS.md, Chronicle memory system, sandboxing architecture, skills, hooks, MCP integration, plugin system, GitHub Actions/Slack/Linear integrations, workflow orchestration, and permission model."
-tags: [codex-cli, tool-analysis, openai, agent-platform, rust, sandboxing]
+tags:
+  - codex-cli
+  - tool-analysis
+  - openai
+  - agent-platform
+  - rust
+  - sandboxing
 timestamp: 2026-06-22T16:10:00Z
 id: "20260622T161000"
 status: evergreen

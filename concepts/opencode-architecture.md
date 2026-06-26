@@ -1,8 +1,12 @@
-﻿---
+---
 type: Concept
 title: "OpenCode Architecture"
 description: "Client-server architecture of OpenCode — TUI as client, headless HTTP server, core agent loop, filesystem tools, LLM provider interaction, and snapshot system."
-tags: [opencode, architecture, client-server, agent-loop]
+tags:
+  - opencode
+  - architecture
+  - client-server
+  - agent-loop
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T150000"
 status: evergreen
@@ -14,6 +18,7 @@ related:
   - "[[agent-skills-system|Agent Skills System]]"
   - "[[subagent-concurrency|Subagent Concurrency]]"
   - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[agent-orchestration|Agent Orchestration]]"
 sources:
   - title: "OpenCode Documentation & Source"
     url: "https://opencode.ai"

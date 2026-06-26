@@ -8,7 +8,11 @@ description: 如何将 Nova 打造成你自己的 AI 管家——改名、改身
 id: "20260622T070000"
 status: evergreen
 domain: identity
-tags: [identity, setup, personalization, onboarding]
+tags:
+  - identity
+  - setup
+  - personalization
+  - onboarding
 related:
   - "[[nova-identity|Nova Identity]]"
   - "[[capability-manifest|Capability Manifest]]"

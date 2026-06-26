@@ -1,10 +1,15 @@
-﻿---
+---
 type: Concept
 title: "OKF Format"
 aliases:
   - "Open Knowledge Format (OKF)"
 description: Google's Open Knowledge Format v0.1 — a vendor-neutral, file-based specification for portable, interoperable knowledge bundles with markdown and YAML frontmatter.
-tags: [okf, knowledge-management, format, specification, interoperability]
+tags:
+  - okf
+  - knowledge-management
+  - format
+  - specification
+  - interoperability
 timestamp: 2026-06-22T14:00:00Z
 id: "20260622T140000"
 status: evergreen

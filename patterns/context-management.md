@@ -1,10 +1,15 @@
-﻿---
+---
 type: Pattern
 title: "Context Management Strategies"
 aliases:
   - "Context Management"
 description: "Comparative analysis of context window management across AI coding tools — hierarchical instruction files, auto-memory, codebase indexing, repository maps, instruction file convergence, compaction, and token budget management."
-tags: [context-management, llm, tokens, context-window, agents]
+tags:
+  - context-management
+  - llm
+  - tokens
+  - context-window
+  - agents
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T160100"
 status: evergreen
@@ -17,6 +22,7 @@ related:
   - "[[multi-agent-patterns|Multi-Agent Patterns]]"
   - "[[agent-extensibility|Agent Extensibility]]"
   - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[cross-session-memory|Cross-Session Memory]]"
 sources:
   - title: "Claude Code — Memory & Context"
     url: "https://docs.anthropic.com/en/docs/claude-code"

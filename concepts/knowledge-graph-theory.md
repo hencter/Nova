@@ -1,8 +1,11 @@
-﻿---
+---
 type: Concept
 title: "Knowledge Graph Theory"
 description: Graph theory foundations for knowledge management — nodes as concepts, edges as relationships, centrality metrics, community detection, and small-world network properties.
-tags: [graph-theory, knowledge-graph, network-science]
+tags:
+  - graph-theory
+  - knowledge-graph
+  - network-science
 timestamp: 2026-06-22T09:05:00Z
 id: "20260622T090502"
 status: seedling

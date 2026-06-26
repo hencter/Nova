@@ -2,7 +2,11 @@
 type: Concept
 title: "Attention Mechanism"
 description: Core mechanism behind Transformer architectures — scaled dot-product attention, Q/K/V projections, and multi-head variants.
-tags: [attention, transformer, ai, fundamentals]
+tags:
+  - attention
+  - transformer
+  - ai
+  - fundamentals
 timestamp: 2026-06-22T09:00:00Z
 id: "20260622T090000"
 status: seedling

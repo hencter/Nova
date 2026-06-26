@@ -1,4 +1,4 @@
-﻿---
+---
 type: Concept
 title: "Zettelkasten Methodology"
 aliases:
@@ -6,7 +6,12 @@ aliases:
   - "Zettelkasten Method"
   - "slip box"
 description: "Niklas Luhmann's slip-box method for knowledge management — atomicity, connectivity, emergent structure — applied to digital tools like Obsidian with card types, ID systems, and Folgezettel sequences."
-tags: [zettelkasten, knowledge-management, methodology, obsidian, pkm]
+tags:
+  - zettelkasten
+  - knowledge-management
+  - methodology
+  - obsidian
+  - pkm
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T150400"
 status: evergreen
@@ -21,6 +26,8 @@ related:
   - "[[cross-session-memory|Cross-Session Memory]]"
   - "[[mermaid-diagrams|Mermaid Diagrams]]"
   - "[[markdown-frontmatter|Markdown Frontmatter]]"
+  - "[[atomic-notes|Atomic Notes]]"
+  - "[[folgezettel|Folgezettel]]"
 sources:
   - title: "Communicating with Slip Boxes"
     author: "Niklas Luhmann"
@@ -150,15 +157,15 @@ stateDiagram-v2
 
 ## Luhmann's Original Analog System
 
-| Aspect | Luhmann's Method (1952–1997) |
-|--------|------------------------------|
-| **Medium** | Physical index cards in wooden cabinets |
-| **Schema** | Branching IDs (e.g., `21/3a1b5c`) |
-| **Branching** | `21/3` → `21/3a` (continuation) or `21/4` (new topic) |
-| **Links** | Red reference numbers at card edges |
-| **Index** | Keyword index (Schlagwortregister) mapping keywords to 1–4 entry cards |
-| **Size** | ~90,000 cards over 45 years (~6 cards/day) |
-| **Constraint** | Linear — cards have fixed physical position |
+| Aspect         | Luhmann's Method (1952–1997)                                           |
+| -------------- | ---------------------------------------------------------------------- |
+| **Medium**     | Physical index cards in wooden cabinets                                |
+| **Schema**     | Branching IDs (e.g., `21/3a1b5c`)                                      |
+| **Branching**  | `21/3` → `21/3a` (continuation) or `21/4` (new topic)                  |
+| **Links**      | Red reference numbers at card edges                                    |
+| **Index**      | Keyword index (Schlagwortregister) mapping keywords to 1–4 entry cards |
+| **Size**       | ~90,000 cards over 45 years (~6 cards/day)                             |
+| **Constraint** | Linear — cards have fixed physical position                            |
 
 The branching ID structure encodes sequence:
 

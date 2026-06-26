@@ -2,7 +2,10 @@
 type: Concept
 title: "Folgezettel"
 description: Zettelkasten concept of sequence notes — a chain of notes where each builds upon the previous, creating narrative paths through the knowledge graph.
-tags: [zettelkasten, methodology, sequence]
+tags:
+  - zettelkasten
+  - methodology
+  - sequence
 timestamp: 2026-06-22T09:05:00Z
 id: "20260622T090501"
 status: seedling

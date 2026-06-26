@@ -7,7 +7,11 @@ description: How the Nova vault maintains and grows itself without external infr
 id: "20260622T052000"
 status: evergreen
 domain: knowledge-management
-tags: [meta, self-bootstrapping, maintenance, growth]
+tags:
+  - meta
+  - self-bootstrapping
+  - maintenance
+  - growth
 related:
   - "[[vault-architecture|Vault Architecture]]"
   - "[[conventions|Conventions]]"

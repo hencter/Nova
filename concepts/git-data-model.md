@@ -1,8 +1,13 @@
-﻿---
+---
 type: Concept
 title: "Git Data Model"
 description: Core architecture of Git — content-addressable filesystem, four object types (blob/tree/commit/tag), snapshot-based storage, SHA-1 hashing, three states (working/staging/repository), and the .git directory structure.
-tags: [git, version-control, internals, data-model, hash]
+tags:
+  - git
+  - version-control
+  - internals
+  - data-model
+  - hash
 timestamp: 2026-06-22T08:00:00Z
 id: "20260622T080000"
 status: evergreen

@@ -1,10 +1,16 @@
-﻿---
+---
 type: Pattern
 title: "Multi-Agent Coordination Patterns"
 description: "Taxonomy of multi-agent coordination architectures across Claude Code, Opencode, Codex CLI, Cline, Aider, and GitHub Copilot — orchestrator-worker, peer-to-peer, hierarchical, parallel independent, task decomposition strategies, and inter-agent communication."
 aliases:
   - "Multi-Agent Patterns"
-tags: [multi-agent, coordination, patterns, orchestrator, subagents, concurrency]
+tags:
+  - multi-agent
+  - coordination
+  - patterns
+  - orchestrator
+  - subagents
+  - concurrency
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T160000"
 status: evergreen

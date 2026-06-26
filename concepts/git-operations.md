@@ -1,8 +1,14 @@
-﻿---
+---
 type: Concept
 title: "Git Operations"
 description: Complete Git command reference organized by workflow stages — setup, daily work (add/commit/status/diff/log), undo operations (reset/checkout/revert/restore), remote collaboration (clone/fetch/pull/push), stashing, tagging, and advanced operations (bisect, reflog, cherry-pick).
-tags: [git, commands, reference, operations, undo, remote]
+tags:
+  - git
+  - commands
+  - reference
+  - operations
+  - undo
+  - remote
 timestamp: 2026-06-22T08:00:00Z
 id: "20260622T080200"
 status: evergreen

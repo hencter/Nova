@@ -1,8 +1,15 @@
-﻿---
+---
 type: Tool
 title: "OpenAI Agents SDK"
 description: "Comprehensive deep-dive analysis of OpenAI's Python SDK for multi-agent workflows — Agent/Runner orchestration, Sandbox Agents with containerized workspaces, dual coordination patterns (manager as-tool vs handoffs), hosted+local tools ecosystem, guardrails, human-in-the-loop, sessions, tracing, realtime agents."
-tags: [openai, agents-sdk, tool-analysis, agent-platform, multi-agent, sandbox, python]
+tags:
+  - openai
+  - agents-sdk
+  - tool-analysis
+  - agent-platform
+  - multi-agent
+  - sandbox
+  - python
 timestamp: 2026-06-22T08:30:00Z
 id: "20260622T083000"
 status: evergreen

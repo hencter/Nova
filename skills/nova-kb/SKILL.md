@@ -26,7 +26,9 @@ When you receive new source material (research, articles, conversation insights,
    type: Concept|Tool|Pattern
    title: "Clear Title"
    description: One-line summary
-   tags: [relevant, tags]
+   tags:
+     - relevant
+     - tags
    id: "YYYYMMDDThhmmss"
    status: seedling|budding|evergreen
    difficulty: beginner|intermediate|advanced
@@ -90,7 +92,9 @@ Regularly review the knowledge graph for connection opportunities:
 type: Concept              # REQUIRED (OKF v0.1)
 title: "Title Here"
 description: One line.
-tags: [key, words]
+tags:
+  - relevant
+  - tags
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T000000"      # YYYYMMDDThhmmss
 status: seedling           # seedling|budding|evergreen|superseded|archived

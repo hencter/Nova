@@ -2,7 +2,10 @@
 type: Template
 title: "Tool Analysis Template"
 description: "Reusable template for creating deep-dive analyses of AI coding tools with standardized comparison dimensions and feature matrix."
-tags: [template, tool, analysis]
+tags:
+  - template
+  - tool
+  - analysis
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T170100"
 status: evergreen
@@ -10,8 +13,8 @@ difficulty: beginner
 domain: knowledge-management
 related:
   - "[[Conventions]]"
-  - "[[Concept Note Template]]"
-  - "[[Pattern Template]]"
+  - "[[concept-template|Concept Note Template]]"
+  - "[[pattern-template|Pattern Template]]"
 summary: >
   A standardized template for analyzing AI coding tools across dimensions including architecture, agent loop, context management, multi-agent support, permissions, extensibility, and competitive positioning.
 ---
@@ -29,7 +32,10 @@ Copy this template when creating a new tool analysis note. Replace all `{{PLACEH
 type: Tool
 title: "{{Tool Name}}"
 description: "{{One-line summary of the tool's key differentiator and category}}"
-tags: [{{tag1}}, {{tag2}}, {{tool-name}}]
+tags:
+  - {{tag1}}
+  - {{tag2}}
+  - {{tool-name}}
 timestamp: {{YYYY-MM-DD}}T00:00:00Z
 id: "{{YYYYMMDDThhmmss}}"
 status: {{seedling | budding | evergreen}}
@@ -43,7 +49,7 @@ related:
   - "[[Codex CLI]]"
   - "[[Aider]]"
   - "[[Cursor]]"
-  - "[[GitHub Copilot]]"
+  - "[[copilot|GitHub Copilot]]"
 sources:
   - title: "{{Official Documentation}}"
     url: "{{https://...}}"

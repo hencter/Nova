@@ -1,8 +1,13 @@
-﻿---
+---
 type: Concept
 title: "Subagent Concurrency"
 description: "Task tool invocation of subagents with fresh contexts, tree-structured sessions, background parallel execution, and session navigation via child/parent keybindings."
-tags: [opencode, subagents, concurrency, multi-agent, task-tool]
+tags:
+  - opencode
+  - subagents
+  - concurrency
+  - multi-agent
+  - task-tool
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T150200"
 status: evergreen

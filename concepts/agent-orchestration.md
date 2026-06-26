@@ -1,8 +1,14 @@
-﻿---
+---
 type: Concept
 title: "Agent Orchestration"
 description: "High-level patterns for coordinating multiple AI agents — LLM-driven (autonomous planning, tool use, handoffs) vs code-driven (structured routing, chaining, eval loops, parallelism), with tradeoffs in flexibility, determinism, and cost."
-tags: [orchestration, agents, multi-agent, coordination, patterns, handoffs]
+tags:
+  - orchestration
+  - agents
+  - multi-agent
+  - coordination
+  - patterns
+  - handoffs
 timestamp: 2026-06-22T08:45:00Z
 id: "20260622T084500"
 status: evergreen
@@ -18,6 +24,7 @@ related:
   - "[[mcp-protocol|MCP Protocol]]"
   - "[[agent-skills-system|Agent Skills System]]"
   - "[[context-management|Context Management]]"
+  - "[[opencode-architecture|OpenCode Architecture]]"
 sources:
   - title: "OpenAI Agents SDK — Orchestration Guide"
     url: "https://openai.github.io/openai-agents-python/multi_agent/"

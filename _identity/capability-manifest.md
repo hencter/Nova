@@ -1,11 +1,15 @@
-﻿---
+---
 type: Identity
 title: "Capability Manifest"
 description: Full inventory of Nova's tools, skills, agents, and extensibility model — what this AI can do and how it grows.
 id: "20260622T050500"
 status: evergreen
 domain: identity
-tags: [identity, capabilities, tools, extensibility]
+tags:
+  - identity
+  - capabilities
+  - tools
+  - extensibility
 related:
   - "[[nova-identity|Nova Identity]]"
   - "[[agent-skills-system|Agent Skills System]]"

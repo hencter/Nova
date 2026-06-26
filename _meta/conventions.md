@@ -5,7 +5,10 @@ description: Naming rules, linking conventions, and frontmatter standards for th
 id: "20260622T051500"
 status: evergreen
 domain: knowledge-management
-tags: [meta, conventions, standards]
+tags:
+  - meta
+  - conventions
+  - standards
 related:
   - "[[vault-architecture|Vault Architecture]]"
   - "[[okf-format|OKF Format]]"
@@ -61,7 +64,7 @@ summary: >
 
 链接编码关系。链接周围的文字应解释**为什么**建立此连接：
 ```markdown
-✅ 好: "注意力机制，详见 [[Attention Is All You Need]]，使得模型能够..."
+✅ 好: "注意力机制，详见 [Attention Is All You Need](https://arxiv.org/abs/1706.03762)，使得模型能够..."
 
 ❌ 差: "另请参见 [[something]]。"（未解释为什么）
 ```
@@ -79,7 +82,9 @@ type: Concept    # OKF v0.1 要求必填
 ```yaml
 title: "显示标题"
 description: 用于 index.md 生成的一行摘要
-tags: [标签1, 标签2]
+tags:
+  - 标签1
+  - 标签2
 timestamp: 2026-06-22T05:30:00Z
 ```
 
@@ -127,7 +132,10 @@ $$
 ## 标签约定
 
 ```yaml
-tags: [领域, 子领域, 状态]
+tags:
+  - 领域
+  - 子领域
+  - 状态
 ```
 
 常用标签：

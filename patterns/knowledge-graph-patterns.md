@@ -1,8 +1,14 @@
-﻿---
+---
 type: Pattern
 title: "Knowledge Graph Patterns"
 description: "Design patterns for building and maintaining AI-consumable knowledge graphs — atomic notes, progressive disclosure, compound growth, self-linting, status lifecycle, layering, and graph navigation without infrastructure."
-tags: [knowledge-graph, zettelkasten, okf, notes, graph, patterns]
+tags:
+  - knowledge-graph
+  - zettelkasten
+  - okf
+  - notes
+  - graph
+  - patterns
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T160300"
 status: evergreen
@@ -18,6 +24,7 @@ related:
   - "[[vault-architecture|Vault Architecture]]"
   - "[[conventions|Conventions]]"
   - "[[self-bootstrapping|Self-Bootstrapping]]"
+  - "[[knowledge-graph-theory|Knowledge Graph Theory]]"
 sources:
   - title: "Karpathy LLM Wiki Pattern"
     url: "https://github.com/karpathy"
@@ -259,7 +266,7 @@ stateDiagram-v2
 | `prerequisites` | Dependency (must-read-before) | Inbound to this note | `- /concepts/attention.md` |
 | `related` | Semantic association | Bidirectional | `- "[[karpathy-llm-curriculum|Transformer Architecture]]"` |
 | `sources` | Provenance (external) | Outbound to source | `- title: "Paper" / url: "..."` |
-| `tags` | Categorical | Many-to-many | `tags: [transformers, attention]` |
+| `tags` | Categorical | Many-to-many | `tags:\n  - transformers\n  - attention` |
 
 ### Link Density
 

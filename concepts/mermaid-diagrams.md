@@ -2,7 +2,12 @@
 type: Concept
 title: "Mermaid Diagrams"
 description: Complete reference for embedding Mermaid diagrams in markdown — flowchart, sequence, class, state, ER, Gantt, pie, mindmap, timeline, git graph with styling and knowledge representation examples.
-tags: [mermaid, diagrams, markdown, visualization, knowledge-graph]
+tags:
+  - mermaid
+  - diagrams
+  - markdown
+  - visualization
+  - knowledge-graph
 timestamp: 2026-06-22T14:15:00Z
 id: "20260622T141500"
 status: evergreen

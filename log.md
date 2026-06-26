@@ -4,6 +4,23 @@
 
 ---
 
+## [2026-06-26] lint+fix | 健康扫描 + 全量修复
+
+**Lint 发现**：
+- 断裂链接 4 类：`AGENTS.md:27` `/identity/personalize` 路径错误；`obsidian-syntax-reference.md` 8 处大小写不匹配；`_meta/conventions.md` `[[Attention Is All You Need]]` 无效 wiki 链接；模板文件 7 处错误 slug
+- 孤立笔记 1：`templates/tool-template.md` 零入链
+- 缺失交叉引用 4 对：`agent-orchestration`↔`opencode-architecture`、`context-management`↔`cross-session-memory`、`knowledge-graph-patterns`→`knowledge-graph-theory`、`zettelkasten-methodology`→`atomic-notes`+`folgezettel`
+- 4 篇 seedling 待深化
+
+**修复操作**：
+- 断裂链接全部修复（wiki links→正确 slug + 管道语法别名；`Attention Is All You Need`→外部 Markdown 链接）
+- 模板文件 3 向交叉链接闭环（concept↔pattern↔tool），孤儿消除
+- 6 个 `related` 字段扩充，新增 8 条交叉引用
+- **tags 格式规范化**：AGENTS.md §3 + SKILL.md 模板 + 37 个笔记的 frontmatter 从 `tags: [x, y]` 内联格式统一迁移为 Obsidian 标准多行 YAML 列表格式 `tags:\n  - x\n  - y`
+- 8 处代码块/表格示例同步更新为多行格式
+
+**影响文件**：44 个文件修改，0 个断裂链接残留
+
 ## [2026-06-22] distribute | 分发就绪 — 路径通用化 + 个性化指南
 
 - 8 处 `D:\OpenCode\Note` 硬编码路径替换为 `<vault>/` 或语义等价引用

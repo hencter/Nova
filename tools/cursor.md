@@ -1,8 +1,14 @@
-﻿---
+---
 type: Tool
 title: "Cursor"
 description: "Comprehensive deep-dive analysis of Cursor by Anysphere — VS Code fork architecture, agent mode, Composer, .cursorrules & .cursor/rules/ system, codebase indexing via embeddings, @-mentions for context, inline editing, terminal execution, and the IDE-native approach versus terminal-first tools."
-tags: [cursor, tool-analysis, anysphere, agent-platform, ide, vscode-fork]
+tags:
+  - cursor
+  - tool-analysis
+  - anysphere
+  - agent-platform
+  - ide
+  - vscode-fork
 timestamp: 2026-06-22T16:20:00Z
 id: "20260622T162000"
 status: evergreen

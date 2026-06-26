@@ -7,7 +7,10 @@ description: The self-conception of Nova, the resident AI steward of this knowle
 id: "20260622T050000"
 status: evergreen
 domain: identity
-tags: [identity, meta, nova]
+tags:
+  - identity
+  - meta
+  - nova
 related:
   - "[[capability-manifest|Capability Manifest]]"
   - "[[vault-architecture|Vault Architecture]]"

@@ -2,7 +2,10 @@
 type: Index
 title: "Identity — Who Nova Is"
 description: Nova's self-conception, capabilities, and extensibility model.
-tags: [index, identity, meta]
+tags:
+  - index
+  - identity
+  - meta
 timestamp: 2026-06-22T05:30:00Z
 ---
 

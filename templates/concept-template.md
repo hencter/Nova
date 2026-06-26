@@ -1,18 +1,20 @@
-﻿---
+---
 type: Template
 title: "Concept Note Template"
 description: "Reusable template for creating atomic concept notes with complete OKF frontmatter, standard sections, and usage instructions."
-tags: [template, concept]
+tags:
+  - template
+  - concept
 timestamp: 2026-06-22T00:00:00Z
 id: "20260622T170000"
 status: evergreen
 difficulty: beginner
 domain: knowledge-management
 related:
-  - "[[Conventions]]"
-  - "[[Zettelkasten Methodology]]"
+  - "[[conventions|Conventions]]"
+  - "[[zettelkasten-methodology|Zettelkasten Methodology]]"
   - "[[okf-format|OKF Format]]"
-  - "[[Knowledge Graph Patterns]]"
+  - "[[knowledge-graph-patterns|Knowledge Graph Patterns]]"
 summary: >
   A fill-in-the-blanks template for creating atomic concept notes that conform to AGENTS.md conventions — one concept per file, complete frontmatter, cross-links, and progressive structure.
 ---
@@ -30,7 +32,10 @@ Copy this template when creating a new concept note. Replace all `{{PLACEHOLDER}
 type: Concept
 title: "{{Display Title}}"
 description: "{{One-line summary of what this note explains}}"
-tags: [{{tag1}}, {{tag2}}, {{tag3}}]
+tags:
+  - {{tag1}}
+  - {{tag2}}
+  - {{tag3}}
 timestamp: {{YYYY-MM-DD}}T00:00:00Z
 id: "{{YYYYMMDDThhmmss}}"
 status: {{seedling | budding | evergreen}}
@@ -115,7 +120,7 @@ Organize the body into logical H2 sections. The number and names depend on the c
 | `type` | **Yes (OKF)** | string | Must be `Concept` | `type: Concept` |
 | `title` | Recommended | string | Display title (title case) | `title: "Attention Mechanism"` |
 | `description` | Recommended | string | One-line summary for indexes | `description: "How attention works..."` |
-| `tags` | Recommended | list | Lowercase, hyphenated | `tags: [transformers, attention]` |
+| `tags` | Recommended | list | Lowercase, hyphenated | `tags:\n  - transformers\n  - attention` |
 | `timestamp` | Recommended | ISO 8601 | Last modified time | `timestamp: 2026-06-22T00:00:00Z` |
 | `id` | Nova extension | string | Stable unique ID | `id: "20260622T160000"` |
 | `status` | Nova extension | enum | `seedling` / `budding` / `evergreen` / `superseded` / `archived` | `status: seedling` |
