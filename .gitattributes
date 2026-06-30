@@ -1,0 +1,20 @@
+# Normalize line endings — all text files stored as LF in repo
+# `core.autocrlf=false` (local) ensures working tree stays LF on all OSes
+* text=auto eol=lf
+
+# Explicit binary markers (defensive)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.7z binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
