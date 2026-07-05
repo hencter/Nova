@@ -50,7 +50,7 @@ flowchart TD
     LLM -->|Tool Calls| SVR
     TOOL -->|No| RESP[Final Response]
     TOOL -->|Yes| EXEC[Execute Tools]
-    EXEC --> FS[Filesystem<br/>read/write/edit/glob/grep/bash]
+    EXEC --> FS[Filesystem<br/>Read/Write/Edit/Glob/Grep/Bash]
     EXEC --> WEB[Web<br/>webfetch/websearch]
     EXEC --> TASK[Subagents<br/>task tool]
     FS --> RESULT[Tool Results]
@@ -76,7 +76,7 @@ Tools providing filesystem access:
 | `write` | Create or overwrite files | Atomic write operations |
 | `edit` | Exact string replacement in files | Line-based diff matching |
 | `glob` | File pattern matching | Ripgrep, respects `.gitignore` |
-| `grep` | Content search with regex | Ripgre, respects `.gitignore` |
+| `grep` | Content search with regex | Ripgrep, respects `.gitignore` |
 | `bash` | Execute shell commands | Platform-native shell |
 | `apply_patch` | Apply unified diff patches | Patch application |
 

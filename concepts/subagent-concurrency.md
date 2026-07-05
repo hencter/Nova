@@ -18,6 +18,7 @@ prerequisites:
   - /concepts/opencode-architecture.md
 related:
   - "[[agent-skills-system|Agent Skills System]]"
+  - "[[skill-subagent-boundary|Skill vs Subagent Boundary]]"
   - "[[opencode-architecture|OpenCode Architecture]]"
   - "[[cross-session-memory|Cross-Session Memory]]"
   - "[[agent-orchestration|Agent Orchestration]]"

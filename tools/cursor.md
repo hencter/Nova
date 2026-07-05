@@ -268,7 +268,7 @@ alwaysApply: true
 ### Comparison: Rules vs Skills
 | Aspect | Cursor Rules | Agent Skills (OpenCode/Claude) |
 |--------|-------------|-------------------------------|
-| Format | Markdown with YAML header | SKILL.md / Markdown |
+| Format | Markdown with YAML frontmatter | SKILL.md / Markdown |
 | Purpose | Standing instructions, always in context | Specialized workflows, loaded on demand |
 | Activation | Automatic (file match or always) | Agent-initiated (skill tool) |
 | Scope | Project conventions | Domain-specific tasks |

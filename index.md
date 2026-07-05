@@ -5,7 +5,7 @@ description: Progressive-disclosure catalog of the entire Nova knowledge vault �
 tags:
   - index
   - catalog
-timestamp: 2026-06-22T05:30:00Z
+timestamp: 2026-07-06T18:00:00Z
 okf_version: "0.1"
 ---
 
@@ -33,6 +33,7 @@ graph TD
     DIRS --> TOOLS[/tools/]
     DIRS --> PATTERNS[/patterns/]
     DIRS --> META[/_meta/]
+    DIRS --> CONF[conference/]
 ```
 
 ---
@@ -83,6 +84,11 @@ Agent 系统与知识管理的跨领域设计模式。
 AI 管家的自我认知、能力清单与扩展性。
 - [[nova-identity|Nova Identity]] — Nova 的核心目标、指令与个性
 - [[capability-manifest|Capability Manifest]] — Nova 的能力、可用工具与成长路径
+- [[personalize|个性化你的 Nova]] — 改名、改身份、配置 opencode
+
+### 🤝 [[conference/index|会议 — Agent 间异步协作]]
+Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
+- [[agent-conference-protocol|Agent Conference Protocol]] — 会议文件格式、编排流程与会话规则
 
 ---
 
@@ -104,7 +110,7 @@ AI 管家的自我认知、能力清单与扩展性。
 | 指标 | 数值 |
 |--------|-------|
 | 框架 | OKF v0.1 |
-| 模式层 | AGENTS.md v1.0.0 |
+| 模式层 | AGENTS.md v1.1.0 |
 | ID 系统 | Timestamp (YYYYMMDDThhmmss) |
 | 知识域 | AI Agent、知识管理、系统架构 |
 | 状态 | 活跃，持续复利增长 |

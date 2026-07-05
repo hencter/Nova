@@ -1,6 +1,6 @@
 ---
 name: nova-kb
-description: Nova knowledge base maintenance workflows. Use when ingesting new knowledge, linting the vault, filing query answers as permanent notes, cross-referencing concepts, or performing any vault maintenance operation.
+description: Nova knowledge base maintenance operations. Use when ingesting new knowledge, linting the vault, filing query answers as atomic concept notes, cross-referencing concepts, or performing any vault maintenance operation.
 ---
 
 # Nova KB — Knowledge Base Maintenance Skill
@@ -117,7 +117,7 @@ summary: >-
 
 | Directory | For |
 |-----------|-----|
-| `/concepts/` | Atomic permanent notes (abstract ideas) |
+| `/concepts/` | Atomic concept notes (abstract ideas) |
 | `/tools/` | Tool-specific deep dives |
 | `/patterns/` | Design patterns and architectures |
 | `/_identity/` | Nova's self-conception and capabilities |

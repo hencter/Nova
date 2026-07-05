@@ -17,6 +17,7 @@ related:
   - "[[conventions|Conventions]]"
   - "[[okf-format|OKF Format]]"
   - "[[zettelkasten-methodology|Zettelkasten Methodology]]"
+  - "[[reference-based-self-bootstrapping|Reference-Based Self-Bootstrapping]]"
 confidence: 1.0
 summary: >
   The vault is self-bootstrapping: AGENTS.md defines the rules, index.md provides navigation, log.md preserves memory, and every session enriches the knowledge graph through ingest, query-filing, and lint cycles — all without database, API, or search infrastructure.
@@ -51,7 +52,7 @@ graph TD
 ## 第二阶段：成长（AI 辅助丰富）
 
 每次会话为知识库增添：
-- **摄入**：新来源 → 提取概念 → 带交叉链接的永久笔记
+- **摄入**：新来源 → 提取概念 → 带交叉链接的原子概念笔记
 - **归档查询**：好的答案成为新笔记 → 知识复利增长
 - **检查**：检测孤立笔记、矛盾、过时内容 → 生成待办事项
 - **交叉链接**：现有笔记间的新连接强化图谱

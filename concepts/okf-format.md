@@ -85,7 +85,7 @@ Every concept is a UTF-8 markdown file with **two parts**:
 
 ### 1. YAML Frontmatter (Required)
 
-Delimited by `---`, containing metadata:
+Delimited by `---`, containing frontmatter (YAML metadata):
 
 ```yaml
 ---
@@ -178,7 +178,7 @@ Conventions:
 - Date headings: ISO 8601 `YYYY-MM-DD`
 - Bold prefix words: `**Update**`, `**Creation**`, `**Deprecation**` (convention, not requirement)
 - Newest entries at the top
-- Greppable: `grep "^## \[" log.md | tail -5` yields recent activity
+- Greppable: opencode `Grep` tool on `log.md` with pattern `^## \[` → read last lines
 
 ## Citations Convention
 

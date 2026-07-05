@@ -299,7 +299,7 @@ Formally: $\text{id}(N) = f(\text{created\_at})$ where $f$ is injective and mono
 Include a `type` field for classification. This is the **only required OKF field**:
 
 ```yaml
-type: Concept    # Concept | Tool | Pattern | Meta | Tutorial | Reference
+type: Concept    # Concept | Tool | Pattern | Meta | Identity | Template | Tutorial | Reference | Index
 ```
 
 ### 3. Explicit Relationships

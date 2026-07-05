@@ -3,5 +3,12 @@
   "skills": {
     "paths": ["skills"]
   },
-  "instructions": ["AGENTS.md"]
+  "instructions": ["AGENTS.md"],
+  "references": {
+    "opencode": {
+      "repository": "anomalyco/opencode",
+      "branch": "dev",
+      "description": "OpenCode source code and documentation. Use to understand opencode internals, tool implementations, agent architecture, and the latest docs without web fetching."
+    }
+  }
 }

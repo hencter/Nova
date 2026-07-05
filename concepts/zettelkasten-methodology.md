@@ -280,7 +280,7 @@ vault/
 ```markdown
 ---
 id: "{{date:YYYYMMDD}}{{time:HHmmss}}"
-type: permanent
+type: Concept    # permanent note (Zettelkasten terminology)
 status: seedling
 created: {{date}}
 modified: {{date}}

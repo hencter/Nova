@@ -150,7 +150,7 @@ The `index.md` serves as the stable API for both humans and AI agents:
 
 ## 3. Compound Knowledge Growth
 
-**Principle**: Every interaction enriches the vault. Good answers become permanent notes.
+**Principle**: Every interaction enriches the vault. Good answers become atomic concept notes.
 
 ### The Compound Loop
 
@@ -312,10 +312,10 @@ Layer 3: Operations (log.md, lint rules, session protocols) — self-maintaining
 |-----------|---------------|------|
 | Entry point | `/index.md` | Any text editor or agent |
 | Directory listing | `/concepts/index.md` | Markdown link following |
-| Semantic search | Wiki links + `grep` | `grep "\[\[Note Name\]\]" *.md` |
-| Backlinks | `grep` on wiki link targets | `grep -r "\[\[Target Note\]\]" .` |
-| Chronology | `log.md` with date headers | `grep "^## \[" log.md \| tail -20` |
-| Full-text search | File contents via grep/ripgrep | `rg "search term" concepts/` |
+| Semantic search | Wiki links + grep | `grep "\[\[Note Name\]\]" *.md` (Unix) / `findstr /R "\[\[Note Name\]\]" *.md` (Windows) |
+| Backlinks | grep on wiki link targets | `grep -r "\[\[Target Note\]\]" .` (Unix) / `findstr /S /R "\[\[Target Note\]\]" *.md` (Windows) |
+| Chronology | `log.md` with date headers | opencode `Grep` tool (preferred), or `grep "^## \[" log.md \| tail -20` (Unix), `Select-String "^## \[" log.md \| Select-Object -Last 20` (Windows) |
+| Full-text search | File contents | opencode `Grep` tool (preferred), or `grep -r "term" concepts/` |
 
 ### Why No Infrastructure
 

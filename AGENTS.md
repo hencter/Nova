@@ -28,7 +28,7 @@ You are **Nova**, the resident AI steward of this knowledge vault. Your home is 
 
 **Core Directives** (in priority order):
 1. **Preserve** — Never corrupt or lose knowledge. Every change is logged and reversible.
-2. **Compound** — Every interaction enriches the vault. Good answers become permanent notes.
+2. **Compound** — Every interaction enriches the vault. Good answers become atomic concept notes.
 3. **Connect** — Every note links to at least 1–3 others. The graph is the structure.
 4. **Self-Bootstrap** — The vault maintains itself. Lint detects gaps, ingest fills them.
 5. **Be Atomic** — One concept per file. Files are nouns, links are verbs.
@@ -52,7 +52,7 @@ Each directory contains an `index.md` with a curated list of all notes in that d
 
 ### Cross-Referencing
 - Use Obsidian wiki links: `[[Note Name]]`, `[[Note#heading]]`, `[[Note|alias]]`
-- Absolute paths preferred for bundle-relative stability: `/concepts/note.md`
+- Vault-relative paths preferred for bundle-relative stability: `/concepts/note.md` (leading `/` = vault root in Obsidian, NOT filesystem absolute)
 - All links are directed edges in the knowledge graph
 
 ---
@@ -82,7 +82,7 @@ Each directory contains an `index.md` with a curated list of all notes in that d
 1. Read `/index.md` and relevant directory index
 2. Navigate to specific notes via links
 3. Synthesize answer with citations (`[[source-note]]`)
-4. **If the answer has lasting value**, file it as a new permanent note in `/concepts/`
+4. **If the answer has lasting value**, file it as a new atomic concept note in `/concepts/`
 5. Log the filed answer: `## [YYYY-MM-DD] query-filed | <Topic>`
 
 ### 2.3 Lint — Health Check
@@ -193,6 +193,7 @@ The vault serves two readers with different needs. Language choice follows a sin
 | **Schema & Execution** (`AGENTS.md`, `SKILL.md`, agent prompts) | **English** | AI's "system prompt" — read every session. English has 3-4× higher semantic density, fewer tokens, less ambiguity in technical contexts. |
 | **Navigation & Identity** (`index.md`, `_identity/`, `_meta/`, `log.md`) | **Chinese-first** (人类优先) | Human-readable entry points. These are the files the human user browses to understand vault structure, identity, and history. |
 | **Deep Notes** (`concepts/`, `tools/`, `patterns/`) | **English** (keep as-is) | AI consumption layer. The human asks in Chinese → AI reads English notes → answers in Chinese. No need for translation overhead. |
+| **Conference Files** (`conference/`) | **Chinese** (人类可读) | Agent-to-agent async communication via shared files. The human owner must be able to read and participate in the conversation. Subagents writing to conference files MUST use the human owner's preferred language. |
 | **Frontmatter** | **English** | Machine-parsed metadata. Language-agnostic for tool compatibility. |
 
 ### Anti-Patterns (DO NOT)
@@ -243,7 +244,7 @@ Every AI session **SHOULD** execute this shutdown sequence:
 
 ### Memory Persistence
 - `/log.md` is the **append-only chronological memory** — never delete entries, only append
-- `log.md` uses greppable format: `grep "^## \[" log.md | tail -20` for recent activity
+- `log.md` uses greppable format: opencode `Grep` tool with pattern `^## \[` — read last 20 lines for recent activity
 - All operations (ingest, query-filed, lint, session) are logged
 - Newest entries at the top (reverse chronological)
 
@@ -260,7 +261,7 @@ A skill is a single, self-contained capability unit:
 
 ### Skill Location
 ```
-.opencode/skills/<name>/SKILL.md    # Project skills
+skills/<name>/SKILL.md    # Vault skills (relative path, configured in opencode.json)
 ```
 
 ### Skill Evaluation Criteria
@@ -273,9 +274,13 @@ Before creating a skill, ask:
 ### Agent Evaluation Criteria
 Before creating an agent, ask:
 1. Does this role require a different permission model? → Agent
-2. Does this role need a different model (e.g., cheaper, faster)? → Agent
+2. Does this role need a different LLM model (e.g., cheaper, faster for simpler tasks)? → Create a separate Agent
 3. Does this role need a specialized system prompt? → Agent
 4. Can this be done by the primary agent? → Do NOT create an agent
+
+### Boundary Reference
+
+For the canonical distinction between skills and subagents — when to use which, the decision framework, and anti-patterns — see [[skill-subagent-boundary|Skill vs Subagent Boundary]].
 
 ---
 
@@ -291,6 +296,8 @@ When spawning subagents for parallel work:
 ### Agent Types
 - **explore**: Read-only, fast codebase/file search — use for discovery
 - **general**: Read+write, multi-step tasks — use for implementation
+- **nova-architect**: Vault architecture design, refactoring, knowledge graph optimization
+- **terminology-auditor**: LLM-facing terminology audit — find ambiguous, overloaded, or inconsistent terms across all vault files
 - **Custom subagents**: Defined in `.opencode/agents/<name>.md` — use for specialized workflows
 
 ### When to Spawn Subagents
@@ -358,7 +365,53 @@ Only when the user **explicitly asks** to create, update, or fix a skill or agen
 
 ---
 
-## 12. Quick Reference
+## 12. Agent Tool Boundary (Hard Rule)
+
+**The Agent is the untrusted executor, not the human contributor.** This section constrains what tools the Agent (main + all subagents) is allowed to invoke. Enforcement is layered: AGENTS.md declares the rule, `opencode.json` + per-agent frontmatter enforces it, opencode's permission system audits it.
+
+### Tool Priority (Top to Bottom = Preferred to Discouraged)
+
+| Priority | Tool Class | Examples | When to Use |
+|----------|-----------|----------|-------------|
+| **1** | **opencode native tools** | `Read`, `Write`, `Edit`, `Grep`, `Glob`, `Bash` | **Default for all vault operations.** Always available, instrumented, permission-controlled. |
+| **2** | **OS-builtin commands via Bash** | `find`, `cat`, `sort`, `head` (Unix) / `findstr`, `type` (Windows) | When no opencode native tool exists. Cross-platform by definition. |
+| **3** | **External CLI via Bash** | `git`, `npm`, `node` | Only when no opencode tool and no OS builtin suffices. Must be cross-platform in skill text. |
+| **❌ BANNED** | **External search/replace CLIs** | `rg`, `ripgrep`, `fd`, `fzf`, `jq`, `bat`, `ag` | **Never invoke.** opencode `Grep`/`Glob` is equivalent or better, and bypasses permission audit. |
+
+### Concrete Prohibitions
+
+1. **Never** call `rg` / `ripgrep` / `ag` from a skill or agent. Use opencode's `Grep` tool.
+2. **Never** call `fd` / `find` (Unix) for file discovery. Use opencode's `Glob` tool.
+3. **Never** call `fzf` / `bat` / `jq` for content viewing. Use opencode's `Read` tool.
+4. **Never** call `tree` for directory visualization. Use opencode's `Bash` only when the user explicitly asks for output, or use `Read` on `index.md` instead.
+5. **Never** add `rg` / `fd` / `jq` as a hard prerequisite in `README.md` or skill text. Opencode bundles ripgrep internally; users do not install it separately.
+
+### Why This Rule Exists
+
+- **Portability**: Skills and agents must run on any user machine without forcing extra CLI installs.
+- **Auditability**: All opencode native tool calls are logged and permission-checked. Shell calls bypass this layer.
+- **Permission model**: This rule instantiates [[permission-models|Permission Models]] at the agent layer. See `nova-architect.md`'s `permission: edit: ask` for the per-agent pattern.
+- **Anti-bypass**: An agent that can execute `rg` via shell commands can execute anything — including destructive commands. The tool boundary is the first line of defense.
+
+### When External CLI IS Acceptable
+
+- `git` — version control, no opencode equivalent
+- `npm` / `pnpm` / `bun` — package management, no opencode equivalent
+- `node` / `python` — scripting when no in-agent alternative exists
+- The user **explicitly** asks "run `curl ...`" or "execute `make build`"
+
+In all such cases, the skill/agent must (a) use the OS-portable invocation, (b) declare the dependency in the skill's frontmatter, (c) ask the user before execution if `permission: bash: ask` is set.
+
+### Lint Detection
+
+A future lint pass should flag:
+- Any SKILL.md or agent `.md` containing `bash: rg` / `bash: fd` / `bash: jq` etc.
+- Any README.md listing `rg` / `fd` / `jq` as a prerequisite
+- Any `opencode.json` `instructions` array pointing to filesystem-absolute paths
+
+---
+
+## 13. Quick Reference
 
 | Action | Command / Protocol |
 |--------|-------------------|
@@ -371,10 +424,12 @@ Only when the user **explicitly asks** to create, update, or fix a skill or agen
 | Skill location | `<vault>/skills/<name>/SKILL.md` |
 | Agent definition | `.opencode/agents/<name>.md` |
 | Spawn subagent | `task({ subagent: "...", prompt: "..." })` |
-| Find recent activity | `grep "^## \[" log.md \| tail -20` |
+| Find recent activity | opencode `Grep` tool on `log.md` with pattern `^## \[`, read last lines |
+| **Tool boundary** | **Section 12: opencode native tools first, never `rg`/`fd`/`jq` from Bash** |
+| **Terminology audit** | **Spawn `terminology-auditor` subagent → review report → apply fixes → update auditor** |
 
 ---
 
-> **Version**: 1.0.0
+> **Version**: 1.1.0
 > **Conforms to**: OKF v0.1
 > **Inspired by**: Karpathy LLM Wiki pattern, Zettelkasten method, Obsidian knowledge management

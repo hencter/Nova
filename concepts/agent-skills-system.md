@@ -18,8 +18,10 @@ prerequisites:
 related:
   - "[[opencode-architecture|OpenCode Architecture]]"
   - "[[subagent-concurrency|Subagent Concurrency]]"
+  - "[[skill-subagent-boundary|Skill vs Subagent Boundary]]"
   - "[[cross-session-memory|Cross-Session Memory]]"
   - "[[mcp-protocol|MCP Protocol]]"
+  - "[[a2a-protocol|A2A Protocol]]"
 sources:
   - title: "OpenCode Documentation — Skills"
     url: "https://opencode.ai"
@@ -42,7 +44,7 @@ name: my-skill-name          # REQUIRED: 1-64 chars, lowercase alphanumeric, sin
 description: What I do       # REQUIRED: 1-1024 chars
 license: MIT                 # OPTIONAL
 compatibility: opencode      # OPTIONAL
-metadata:                    # OPTIONAL: string-to-string map
+metadata:                    # OPTIONAL: additional frontmatter metadata (string→string map)
   audience: maintainers
   workflow: github
 ---

@@ -23,5 +23,6 @@
     ".opencode/",
     "skills/",
     "opencode.json"
-  ]
+  ],
+  "showInlineTitle": false
 }

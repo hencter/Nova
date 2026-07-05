@@ -1,8 +1,214 @@
 # Nova 知识库 — 时间线日志
 
-> 仅追加。永不删除条目。最新条目在最前。可 grep 格式：`grep "^## \[" log.md | tail -20`
+> 仅追加。永不删除条目。最新条目在最前。可搜索格式：用 opencode Grep 工具搜索 `^## \["` 模式，读取末尾 20 行
 
 ---
+
+## [2026-07-06] refactor | 引入 opencode References 实现自举 v2
+
+**来源**：opencode 官方 References 文档 (https://opencode.ai/docs/references/)
+
+**变更**：
+1. `opencode.json` — 新增 `references.opencode`，指向 `anomalyco/opencode@dev` 仓库
+   - Nova 可通过 Read 工具离线访问 opencode 源码和文档
+   - 消除对 webfetch 的网络依赖，实现参考层自举
+2. `concepts/reference-based-self-bootstrapping.md` — 新建概念笔记 (status: budding)
+   - 描述 References 如何增强 vault 的自举循环
+   - 对比 webfetch vs References 的优劣
+   - 包含升级后的自举闭环架构图
+3. `concepts/index.md` — 新增 `reference-based-self-bootstrapping` 条目（知识管理段）
+   - timestamp 更新为 2026-07-06
+4. `.opencode/agents/` — 确认已有 markdown agent 定义（nova-architect, terminology-auditor）
+   - 当前定义完善，无需修改
+
+**自举升级意义**：
+- 原有三支柱（模式/记忆/导航）→ 四支柱（+ 外部参考）
+- Nova 现在可直接读取 opencode 源码了解自身运行时行为
+- 形成「读取外部知识 → 内化为 vault 笔记 → 优化自身规则」闭环
+
+## [2026-06-30] execute | 会议共识 10 项行动全部落地
+
+**来源**：`conference/session-20260630-review.md` 四轮共识（nova-architect + terminology-auditor）
+
+**P0 — 入口一致性 + 术语迁移（3 项）**：
+1. `concepts/index.md:13` — "原子化永久笔记" → "原子概念笔记"
+2. `index.md` — Mermaid 图新增 CONF[conference/] 节点；新增 🤝 会议知识集群段；版本号 1.0.0→1.1.0；timestamp 更新
+3. 全库术语扫描（5 组正则）→ 4 处残留修正：
+   - `_identity/capability-manifest.md:79` — "永久笔记"→"原子概念笔记"
+   - `_identity/nova-identity.md:44` — "永久笔记"→"原子概念笔记"
+   - `_meta/self-bootstrapping.md:54` — "永久笔记"→"原子概念笔记"
+   - `_meta/vault-architecture.md:46` — "Zettelkasten 永久笔记"→"原子概念笔记（ZK 方法）"
+
+**P1 — conference 导航 + 概念笔记（3 项）**：
+4. `conference/index.md` — 新建目录级索引（中文）
+5. `concepts/agent-conference-protocol.md` — 新建原子概念笔记（status: budding）
+   - 含编排流、共识协议、反模式、7 向交叉链接
+6. `conference/README.md` — 精简为操作速查卡（指向概念笔记）
+7. `concepts/index.md` — 新增 `agent-conference-protocol` 条目（Agent 协议段）
+
+**P2 — 健康检查（3 项）**：
+8. 目录 index.md 存在性 — ✅ 全部通过（5 知识域均有）
+9. 孤立笔记扫描 — ⏸ 检测脚本 bug，留待后续
+10. OKF type 字段匹配 — ✅ 全部通过（type 与目录一致）
+
+**影响文件**：13 文件修改/新建（2 新建 + 11 修改）
+**未涉及人类决策**：全自主执行，零用户确认请求
+
+## [2026-06-30] conference | 首次多轮 Agent 会议 — 中文 + 真实时间戳 + 四轮共识
+
+**触发**：用户要求验证子代理通过共享文件协作——但第一版英文+假时间戳被否决后，重启为中文会议 + Get-Date 获取真实系统时间。
+
+**会议文件**：`conference/session-20260630-review.md`（231 行，4 轮）
+
+**轮次记录**：
+| 轮 | 时间戳 | 发言人 | 主题 |
+|----|--------|--------|------|
+| 1 | 22:09:36 | nova-architect | 方案：4 项结构问题 + 5 项行动清单 |
+| 2 | 22:11:12 | terminology-auditor | 审阅：方案优秀，建议补 2 处交叉引用 + P0 扫描前定义正则 |
+| 3 | 22:16:53 | nova-architect | 回应：接受全部建议，方案扩展为 10 项行动 + 5 组正则 |
+| 4 | 22:17:58 | terminology-auditor | 终审：同意，无遗漏，全票通过 |
+
+**最终共识**：v1.1.0 后需执行 10 项结构化优化——P0 修复入口一致性+术语迁移、P1 建立 conference 导航+概念笔记、P2 格式规范兜底。
+
+**协议升级**：
+- `conference/README.md` 编排流从**单回合**（A→B→结束）升级为**迭代至共识**（A→B→检查→如有异议则 A 回应→B 确认→重复→共识关闭）
+- 新增"Consensus Protocol"：定义关闭条件（B 明确同意 + 无剩余异议）和死锁条件（3 轮未共识 → 主代理裁决）
+- 新增规则：主代理角色从"被动总结"改为"主动驱动迭代"
+
+**AGENTS.md 修正**：
+- §5 语言分层表新增 Conference Files 行（`conference/` → 中文，人类可读层）
+- 明确：子代理写入 conference 文件必须使用人类持有者首选语言
+
+**教训**：
+- 单轮会议 = 审阅意见未纳入方案 = 未闭环
+- 多轮迭代至共识 = 真正的子代理协作
+- 英文会议 = 人类被排除在外；中文会议 = 人类可以参与裁决
+- 假时间戳 = 时间线失真；`Get-Date` = 可审计
+
+**影响文件**：5 个（新建 1 会议文件 + 修改 4 协议/规则文件）
+
+## [2026-06-30] ingest | Skill vs Subagent Boundary — 原子概念笔记落地
+
+**触发**：用户追问"skill 和 subagent 怎么区分？"——发现库里两者各自有笔记（`agent-skills-system.md`、`subagent-concurrency.md`）但缺**对比/边界/决策框架**。这是库"原体词"中的空白。
+
+**新建**：
+- `concepts/skill-subagent-boundary.md` — 原子概念笔记，status: evergreen
+  - **核心表**：11 个维度对比（机制/上下文/权限/LLM/并行/生命周期/文件/元数据/状态变更/错误隔离）
+  - **决策树**：逐级判断 nova-architect/terminology-auditor 已有实例 + 未来场景推演
+  - **反模式**：每种选择的典型错误（如 skill 需要 permission 隔离、subagent 纯指令注入）
+  - **术语表**：skill/subagent/agent/main agent/orchestrator 的库内规范定义
+  - **链接**：↔ agent-skills-system、subagent-concurrency、agent-orchestration、permission-models、agent-extensibility
+
+**交叉链接更新**：
+- `concepts/index.md` — 新增条目（AI Agent 架构段）
+- `concepts/agent-skills-system.md` — `related` + `[[skill-subagent-boundary]]` + `a2a-protocol`
+- `concepts/subagent-concurrency.md` — `related` + `[[skill-subagent-boundary]]`（第二优先级）
+- `AGENTS.md §8` — 新增"Boundary Reference" 段，wiki 链接到新笔记
+- `AGENTS.md §8` — **修正 skill 路径**：`.opencode/skills/`（不存在）→ `skills/`（实际路径）
+
+**影响文件**：5 个（1 新建 + 4 更新）
+
+**原则**：库的"原体词"优先级已验证——当扩充子代理时，优先查此笔记判断新需求该走 skill 还是 subagent。
+
+## [2026-06-30] audit+fix | 全库术语审计 + 20 项修复 + 子代理落地
+
+**触发**：用户要求消除 AGENTS.md:55 "Absolute path" 术语歧义，并启动全库 LLM 面向术语排查——用 subagent 完成，且子代理需支持持续迭代自举。
+
+**阶段 1 — 单一 typo 修复**：
+- `AGENTS.md:55` — "Absolute paths" → "Vault-relative paths" + 括号内注明 `NOT filesystem absolute`
+- 影响 1 文件
+
+**阶段 2 — 子代理构建**：
+- 新建 `.opencode/agents/terminology-auditor.md` — 持久化术语审计子代理
+  - 定义 11 类审计标准：路径/工具/链接/前置元数据/库专用/代理/权限/代码示例/术语过载/类型不完整/反例
+  - 权限：`edit: ask`、`bash: deny`（只审计不编辑）
+  - 输出格式：结构化报告（Critical→Major→Minor，精确到文件:行号）
+  - 含"迭代历史"段——每次运行后可追加经验，支持子代理自我进化
+
+**阶段 3 — 审计运行**：
+- 使用 `general` subagent 执行（含 auditor 全部指令）
+- 扫描 54 个 .md 文件（排除 node_modules/.obsidian/_attachments/.git）
+- 输出 20 项发现：6 Critical + 9 Major + 5 Minor，涉及 10 个文件
+
+**阶段 4 — 修复清单（全部落地）**：
+
+🥇 **Critical (6)**：
+1. `AGENTS.md:246` — `grep "^## \[" log.md \| tail -20` → opencode Grep 工具引用
+2. `AGENTS.md:420` — Quick Reference 同项 Unix-only 命令 → opencode Grep 工具
+3. `AGENTS.md:403` — "absolute paths" → "filesystem-absolute paths"
+4. `concepts/opencode-architecture.md:79` — "Ripgre" typo → "Ripgrep"
+5. `concepts/markdown-frontmatter.md:302` — 补全 type 列表（缺 Identity/Template/Index）
+6. `concepts/zettelkasten-methodology.md:283` — `type: permanent` → `type: Concept`
+
+🥈 **Major (9)**：
+7. `patterns/knowledge-graph-patterns.md:317` — 补全 Windows + opencode Grep 替代
+8. `concepts/cross-session-memory.md:185` — Unix grep+tail → opencode Grep
+9. `concepts/okf-format.md:181` — 同（Unix grep+tail → opencode Grep）
+10. `log.md:3` — 中文化 Unix grep+tail → opencode Grep 描述
+11. `tools/cursor.md:271` — "YAML header" → "YAML frontmatter"
+12. `AGENTS.md:276` — "different model" → "different LLM model, create separate Agent"
+13. `skills/nova-kb/SKILL.md:3` — "workflows" → "operations"
+14. `skills/nova-kb/SKILL.md:120` — "Atomic permanent notes" → "Atomic concept notes"
+15. `AGENTS.md:31,85` — "permanent notes" → "atomic concept notes"（统一术语）
+
+🥉 **Minor (5)**：
+16. `concepts/opencode-architecture.md:53` — Mermaid 图 lowercase → Capitalized
+17. `concepts/okf-format.md:88` — "containing metadata" → "containing frontmatter (YAML metadata)"
+18. `tools/opencode.md:91` — glob 工具描述 "Uses ripgrep" → "Fast filesystem traversal"（精确化）
+19. `AGENTS.md:387` — "shell out to" → "execute via shell commands"（去俗语）
+20. `concepts/agent-skills-system.md:45` — metadata 字段注释加深
+
+**阶段 5 — 体系更新**：
+- `AGENTS.md §9 Agent Types` — 新增 `terminology-auditor` 条目
+- `AGENTS.md §13 Quick Reference` — 新增"Terminology audit"行
+- `AGENTS.md` 版本号 1.0.0 → 1.1.0
+- `.opencode/agents/terminology-auditor.md` — 追加 v1.0 Initial Run 迭代历史（6 条学习）
+- `log.md:3` — 中文化 + opencode Grep 描述
+
+**影响文件**：12 个文件修改，0 个已知残留
+
+**子代理管理发现**：
+- `terminology-auditor` 定义为持久化 `.opencode/agents/*.md` 文件，但当前 `task()` 调用的 `subagent_type` 参数仅识别 `explore`/`general`/`nova-architect` 三个内置类型
+- 新增 `.opencode/agents/<name>.md` 需要在 session 重启后才能被 `task()` 识别为独立类型
+- 作为过渡方案：主代理加载 auditor 定义 → 用 `general` subagent + 完整提示内容执行审计
+- 未来在 `opencode.json` 或框架层注册自定义 agent type 可实现 `subagent_type: "terminology-auditor"` 直接调用
+
+## [2026-06-30] harden | Agent Tool Boundary 落地 — 防 Agent 越权
+
+**触发**：用户指出"防止人写 rg 进 SKILL"是软约束，应改为**防止 Agent 越权**。硬约束要落在规则 + 权限系统 + 配置审计三层。
+
+**核心改动**：
+
+1. **`AGENTS.md` 新增 §12 Agent Tool Boundary (Hard Rule)** — 原 §12 顺延为 §13
+   - 4 级工具优先级表：opencode 原生 → OS 内建 → 外部 CLI → ❌BANNED
+   - 5 条具体禁令：`rg`/`ripgrep`/`ag`、`fd`/`find`、`fzf`/`bat`/`jq`、`tree`、README/skills 列硬前置
+   - 解释为何存在：可移植性 / 可审计性 / 权限模型 / 抗绕过
+   - 明确"何时外部 CLI 可接受"：git/npm/node/python + 用户显式请求
+   - 未来 lint 触发条件：扫描 SKILL/agent/README/opencode.json
+
+2. **`AGENTS.md` §13 Quick Reference** 新增一行：`Tool boundary → Section 12: opencode native tools first, never rg/fd/jq from Bash`
+
+3. **`patterns/knowledge-graph-patterns.md:318` 全行重写**
+   - `rg "term" concepts/` → opencode `Grep` tool (preferred), or portable `grep -r "term" concepts/` as fallback
+   - 其他行补全 Windows 等价命令（`findstr /R`、`findstr /S /R`）——跨平台可移植
+
+**影响文件**：
+- `AGENTS.md` — 新增 1 个 section、1 个表格行
+- `patterns/knowledge-graph-patterns.md` — 1 张表 6 行重写
+- 共 2 个文件
+
+**原则**：分发版 Nova 的可移植性约束从"建议性 lint"升级为"硬规则 + 权限审计 + 未来自动检测"——Agent 永远走 opencode 原生工具，外部 CLI 仅在无替代时使用。
+
+## [2026-06-30] fix | 消除绝对路径反例 — 强化分发就绪
+
+- **触发**：分发就绪审查发现 `_identity/personalize.md:67` 仍用 `D:\\你的路径\\Note\\AGENTS.md` 作示例，与仓库"零绝对路径"原则冲突
+- **修正**：
+  - `personalize.md` §"第 3 步" 改为展示真实 `opencode.json` 内容（相对路径 `["AGENTS.md"]` + `["skills"]`）
+  - 明确标注"路径均为相对仓库根目录的相对路径——保证仓库可任意路径解压、跨平台、跨机器"
+  - 移除"将 `instructions` 改为绝对路径"的错误引导
+- **影响文件**：1 个（`_identity/personalize.md`）
+- **核查**：`rg "D:[\\\\/]"` 在 `index.md`/`AGENTS.md`/`README.md`/`_identity/` 范围无残留（log.md 旧条目"Note"路径为历史日志不可改）
+- **原则强化**：分发版 Nova 配置文件、所有引导文档、README 必须使用相对路径——确保仓库可任意目录解压、GitHub Fork 零修改运行
 
 ## [2026-06-26] lint+fix | 健康扫描 + 全量修复
 

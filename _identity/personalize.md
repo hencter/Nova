@@ -58,18 +58,21 @@ Nova 的设计前提是：**每个人都有自己的 Nova**。你拿到的种子
 
 ### 第 3 步：配置 Opencode 连接
 
-编辑 `opencode.json`（项目根目录）：
+仓库根目录的 `opencode.json` 已用**相对路径**预置好，开箱即用：
 ```json
 {
+  "$schema": "https://opencode.ai/config.json",
   "skills": {
-    "paths": ["skills/nova-kb/SKILL.md"]
+    "paths": ["skills"]
   },
-  "instructions": "D:\\你的路径\\Note\\AGENTS.md"
+  "instructions": ["AGENTS.md"]
 }
 ```
 
-- 将 `instructions` 的值改为本知识库的 `AGENTS.md` 的**绝对路径**
-- 如果你有额外的 skills，加到 `paths` 数组里
+- 路径均为**相对仓库根目录**的相对路径——保证仓库可任意路径解压、跨平台、跨机器
+- `skills/nova-kb/` 是默认自带的 vault 维护技能
+- `AGENTS.md` 是 Nova 的规则手册（与仓库一起移动）
+- 如需添加额外技能，追加到 `paths` 数组即可（仍用相对路径）
 
 ---
 

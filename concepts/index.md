@@ -1,22 +1,23 @@
 ---
 type: Index
 title: "Concepts — Core Ideas"
-description: Atomic permanent notes on fundamental concepts across AI agents, knowledge management, and system design.
+description: Atomic concept notes on fundamental concepts across AI agents, knowledge management, and system design.
 tags:
   - index
   - concepts
-timestamp: 2026-06-22T05:30:00Z
+timestamp: 2026-07-06T18:00:00Z
 ---
 
 # 核心概念
 
-本目录包含**原子化永久笔记**——每篇文件精确捕获一个概念，完整展开，配有完整的前置元数据和交叉链接。
+本目录包含**原子概念笔记**——每篇文件精确捕获一个概念，完整展开，配有完整的前置元数据和交叉链接。
 
 ## AI Agent 架构
 
 - [[opencode-architecture|OpenCode Architecture]] — Opencode 的客户端-服务端设计、核心循环、文件系统交互、LLM 提供商
 - [[agent-skills-system|Agent Skills System]] — 技能如何扩展 agent 能力、SKILL.md 格式、存储位置
 - [[subagent-concurrency|Subagent Concurrency]] — 多 agent 并行执行、task 工具、agent 类型、协调模型
+- [[skill-subagent-boundary|Skill vs Subagent Boundary]] — 何时用 skill（指令注入）vs 何时用 subagent（进程隔离），Nova 库架构决策框架
 - [[cross-session-memory|Cross-Session Memory]] — 会话持久化、压缩、log.md、AGENTS.md、知识连续性
 - [[agent-orchestration|Agent Orchestration]] — LLM 驱动 vs 代码驱动的协调、manager vs handoff 原语
 
@@ -24,6 +25,7 @@ timestamp: 2026-06-22T05:30:00Z
 
 - [[mcp-protocol|MCP Protocol]] — 模型上下文协议：LLM 到工具集成标准（Anthropic）
 - [[a2a-protocol|A2A Protocol]] — Agent 间协议：跨 agent 通信标准（Google/Linux Foundation）
+- [[agent-conference-protocol|Agent Conference Protocol]] — Agent 通过共享文件进行异步通信：会议格式、编排流、共识协议
 
 ## 版本控制
 
@@ -37,6 +39,7 @@ timestamp: 2026-06-22T05:30:00Z
 - [[okf-format|OKF Format]] — Google 开放知识格式 v0.1 规范与约定
 - [[markdown-frontmatter|Markdown Frontmatter]] — YAML 前置元数据语法、Obsidian 属性、AI 消费最佳实践
 - [[karpathy-llm-curriculum|Karpathy LLM Curriculum]] — 渐进式从零构建课程、LLM wiki 模式、复利效应
+- [[reference-based-self-bootstrapping|Reference-Based Self-Bootstrapping]] — 通过 opencode References 引入外部知识库，实现离线自进化
 
 ## 技术技能
 

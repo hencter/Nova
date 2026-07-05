@@ -88,7 +88,7 @@ Built-in authentication sources:
 | `read` | Read file contents | Supports images and PDFs, returns line-numbered output |
 | `write` | Create or overwrite files | Atomic write, requires prior `read` for overwrites |
 | `edit` | Exact string replacement | Line-based diff matching, supports `replaceAll` flag |
-| `glob` | File pattern matching | Uses ripgrep, respects `.gitignore` |
+| `glob` | File pattern matching | Fast filesystem traversal, respects `.gitignore` |
 | `grep` | Content regex search | Uses ripgrep, respects `.gitignore` |
 | `bash` | Execute shell commands | Platform-native, timeout support |
 | `apply_patch` | Apply unified diff patches | Used for complex multi-file changes |

@@ -43,7 +43,7 @@ aliases:
 │   ├── conventions.md         # 命名、链接、frontmatter 规则
 │   └── self-bootstrapping.md  # 知识库如何自我维护
 │
-├── concepts/                  # 核心 Zettelkasten 永久笔记
+├── concepts/                  # 核心原子概念笔记（ZK 方法）
 │   ├── index.md               # 概念目录
 │   └── <concept>.md           # 原子笔记（每个文件一个概念）
 │
