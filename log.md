@@ -4,6 +4,26 @@
 
 ---
 
+## [2026-07-06] execute | auto-commit 插件：从概率性提交到确定性提交
+
+**变更**：
+1. `.opencode/plugins/auto-commit.js` — 新建插件
+   - 监听 `session.idle` 事件，检测到文件改动时自动 `git add -A && git commit`
+   - 无改动时零开销（`git status --porcelain` 为空则跳过）
+   - 消除 "agent 忘记提交" 问题——从规则驱动 (SHOULD) 变为操作系统级 hook (WILL)
+2. `AGENTS.md` — 多处更新：
+   - §7 Session End：新增 Git auto-commit 说明
+   - §10 Self-Bootstrapping：从三支柱升级为四支柱 (Schema + Memory + Navigation + External References)，新增 Auto-Commit 子节
+   - §11 Skills & Agents：保护范围扩展至 plugins
+   - §13 Quick Reference：新增 Git commit 行
+   - 版本号 1.1.0 → 1.2.0
+3. `concepts/reference-based-self-bootstrapping.md` — 更新 related 链接
+
+**意义**：
+- Agent 记忆是概率性的（上下文窗口存在 ≠ 记住要做某事），外部 hook 是确定性的
+- `session.idle` 事件是 agent 生命周期中唯一可被外部代码拦截的 "会话即将结束" 信号
+- 从此 agent 无需担心 git 提交——上次修改后的提交已经是上一刻的事了
+
 ## [2026-07-06] refactor | 引入 opencode References 实现自举 v2
 
 **来源**：opencode 官方 References 文档 (https://opencode.ai/docs/references/)

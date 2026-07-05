@@ -242,6 +242,8 @@ Every AI session **SHOULD** execute this shutdown sequence:
 3. File any valuable query answers as new notes
 4. Ensure all new/modified notes have complete frontmatter and links
 
+> **Git auto-commit**: The `auto-commit` plugin (`\.opencode\plugins\auto-commit.js`) listens for `session.idle` and automatically commits any uncommitted file changes. Agents do NOT need to manually `git commit` — the plugin handles it deterministically.
+
 ### Memory Persistence
 - `/log.md` is the **append-only chronological memory** — never delete entries, only append
 - `log.md` uses greppable format: opencode `Grep` tool with pattern `^## \[` — read last 20 lines for recent activity
@@ -310,6 +312,21 @@ When spawning subagents for parallel work:
 
 ## 10. Self-Bootstrapping
 
+### The Four Pillars (v2)
+
+The vault's self-bootstrapping is powered by four pillars:
+
+| Pillar | File(s) | Function |
+|--------|---------|----------|
+| **Schema** | `AGENTS.md`, `opencode.json` | Tells the AI how to read, write, and maintain the vault |
+| **Memory** | `log.md` | Preserves cross-session history (greppable, append-only) |
+| **Navigation** | `index.md` (every level) | Enables progressive disclosure without search infrastructure |
+| **External References** | `opencode.json` → `references` | Provides offline access to upstream knowledge sources (open source code, docs) |
+
+### Auto-Commit
+
+The `.opencode/plugins/auto-commit.js` plugin hooks into `session.idle` and runs `git add -A && git commit` whenever file changes are detected. This eliminates the "did I commit?" problem and ensures every session's work is versioned without relying on agent memory.
+
 ### Initialization (First Session)
 1. Create directory structure (concepts/, tools/, patterns/, templates/, _identity/, _meta/)
 2. Write this AGENTS.md
@@ -341,7 +358,7 @@ When spawning subagents for parallel work:
 
 ## 11. Skills & Agents — Read-Only Boundary
 
-Skills and agent definitions are **machine configuration**, NOT knowledge articles. Nova MUST NOT modify them during normal vault operations (ingest, lint, query-file).
+Skills, agent definitions, and plugins are **machine configuration**, NOT knowledge articles. Nova MUST NOT modify them during normal vault operations (ingest, lint, query-file).
 
 ### Rule
 
@@ -349,6 +366,7 @@ Skills and agent definitions are **machine configuration**, NOT knowledge articl
 DO NOT touch skills/ or agent definitions unless explicitly asked.
 ├── skills/     → `<vault>/skills/`           (protected from knowledge management)
 ├── agents      → .opencode/agents/        (protected from knowledge management)
+├── plugins     → .opencode/plugins/       (protected from knowledge management)
 └── opencode.json → minimal config, skills paths only
 ```
 
@@ -427,9 +445,10 @@ A future lint pass should flag:
 | Find recent activity | opencode `Grep` tool on `log.md` with pattern `^## \[`, read last lines |
 | **Tool boundary** | **Section 12: opencode native tools first, never `rg`/`fd`/`jq` from Bash** |
 | **Terminology audit** | **Spawn `terminology-auditor` subagent → review report → apply fixes → update auditor** |
+| **Git commit** | **Automatic via `.opencode/plugins/auto-commit.js` → `session.idle` hook. Never manual.** |
 
 ---
 
-> **Version**: 1.1.0
+> **Version**: 1.2.0
 > **Conforms to**: OKF v0.1
 > **Inspired by**: Karpathy LLM Wiki pattern, Zettelkasten method, Obsidian knowledge management
