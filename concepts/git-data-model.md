@@ -119,8 +119,8 @@ $ git cat-file -p master^{tree}
 $ git cat-file -p HEAD
 tree cfda3bf379e4f8dba8717dee55aab78aef7f4daf
 parent 3c4e9cd789d88d8d89c1073707c3585e41b0e614
-author hencter <...> 1719033600 +0800
-committer hencter <...> 1719033600 +0800
+author yourname <...> 1719033600 +0800
+committer yourname <...> 1719033600 +0800
 
 First commit
 ```
