@@ -13,7 +13,7 @@
 ```
 1. Read /log.md (last 30 lines) → know what happened
 2. Read /index.md               → know the vault state
-3. Read /concepts/index.md      → know the concept inventory
+ 3. Read /concepts.md            → know the concept inventory
 ```
 
 **Do NOT skip this.** Skipping the boot sequence means you lack context and will produce low-quality responses. You are an agent without memory — the vault IS your memory. Read it.
@@ -233,7 +233,7 @@ Every AI session **MUST** execute this boot sequence:
 1. Read `/AGENTS.md` (this file) — rules and conventions
 2. Read `/log.md` — last 20 lines for recent activity context
 3. Read `/index.md` — current vault state
-4. Read `/concepts/index.md` — current concept inventory
+ 4. Read `/concepts.md` — current concept inventory
 
 ### Session End
 Every AI session **SHOULD** execute this shutdown sequence:
@@ -332,7 +332,7 @@ The `.opencode/plugins/auto-commit.js` plugin hooks into `session.idle` and runs
 2. Write this AGENTS.md
 3. Write `/index.md` with empty catalog
 4. Write `/log.md` with initialization entry
-5. Write `/concepts/index.md`, `/tools/index.md`, `/patterns/index.md`
+ 5. Write `/concepts.md`, `/tools.md`, `/patterns.md`
 6. Write Nova identity file: `/_identity/nova-identity.md`
 7. Git init and first commit
 

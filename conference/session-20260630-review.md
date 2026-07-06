@@ -21,20 +21,20 @@
    - `index.md §知识库统计` 仍写 AGENTS.md v1.0.0，实际已升至 v1.1.0。
 
 2. **`conference/` 使用 README.md 而非 index.md**
-   - 现行模式是 `conference/README.md` 承载协议说明。这与仓库内其他目录（`concepts/index.md`、`tools/index.md`）不一致。建议重构为 `conference/index.md`（导航索引）+ `concepts/agent-conference-protocol.md`（原子概念笔记）。
+   - 现行模式是 `conference/README.md` 承载协议说明。这与仓库内其他目录（`concepts.md`、`tools.md`）不一致。建议重构为 `conference.md`（导航索引）+ `concepts/agent-conference-protocol.md`（原子概念笔记）。
 
 3. **`index.md` 概念列表滞后**
-   - `skill-subagent-boundary.md` 已是 evergreen 级核心笔记，但顶层 `index.md` 的概念清单未收录。`concepts/index.md` 已收录，但顶层遗漏。
+   - `skill-subagent-boundary.md` 已是 evergreen 级核心笔记，但顶层 `index.md` 的概念清单未收录。`concepts.md` 已收录，但顶层遗漏。
 
 4. **"永久笔记" → "原子概念笔记" 术语迁移未彻底**
-   - `concepts/index.md:13` 仍写"原子化永久笔记"。log.md 记录 AGENTS.md 和 skill 已修，但此处遗漏。
+   - `concepts.md:13` 仍写"原子化永久笔记"。log.md 记录 AGENTS.md 和 skill 已修，但此处遗漏。
 
 #### 二、`conference/` 在 `index.md` 中的呈现
 
 建议新增独立知识集群段：
 
 ```
-### 📋 [[conference/index|会议 — Agent 间异步协作]]
+### 📋 [[conference|会议 — Agent 间异步协作]]
 Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 - [[agent-conference-protocol|Agent Conference Protocol]] — 会议文件格式、编排流程与会话规则
 ```
@@ -65,10 +65,10 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 
 #### 可执行行动清单
 
-- [ ] 创建 `conference/index.md`
+- [ ] 创建 `conference.md`
 - [ ] 创建 `concepts/agent-conference-protocol.md`（从 README.md 提取核心概念）
 - [ ] 更新 `index.md`：Mermaid 图 + 知识集群 + 版本号
-- [ ] 更新 `concepts/index.md:13` "永久笔记" → "原子概念笔记"
+- [ ] 更新 `concepts.md:13` "永久笔记" → "原子概念笔记"
 - [ ] 运行 P0 审计：术语一致性 + 索引一致性
 
 ## [2026-06-30 22:09:36 +08:00] nova-architect — 结束
@@ -78,7 +78,7 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 
 #### 1. 术语规范性 ✅ 良好，一处残留
 
-方案整体使用**库内规范术语**：统一用"原子概念笔记"而非已废弃的"永久笔记"，用"知识集群"对应 index.md 中的章节标题。**唯一残留**：第 30 行引用 `concepts/index.md:13` 的"原子化永久笔记"——此即方案自身第四条发现的修正目标，已标记 P0，逻辑自洽。
+方案整体使用**库内规范术语**：统一用"原子概念笔记"而非已废弃的"永久笔记"，用"知识集群"对应 index.md 中的章节标题。**唯一残留**：第 30 行引用 `concepts.md:13` 的"原子化永久笔记"——此即方案自身第四条发现的修正目标，已标记 P0，逻辑自洽。
 
 #### 2. 平台中性 ✅ 无问题
 
@@ -86,7 +86,7 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 
 #### 3. 文件命名 ✅ 合规
 
-- `conference/index.md` — 符合 §6 "Indexes: Always index.md"
+- `conference.md` — 符合 §6 "Indexes: Always index.md"
 - `concepts/agent-conference-protocol.md` — 符合概念命名规则：小写连字符、descriptive-slug、与 title 对应
 
 #### 4. 交叉引用 ⚠️ 可补充
@@ -110,7 +110,7 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 
 审计员建议在方案中引用 `conventions.md`（命名规范是方案执行前提）和 `vault-architecture.md`（conference 目录是知识库结构的新成员）。
 
-- `conventions.md` — 确实遗漏。创建 `conference/index.md` 和 `concepts/agent-conference-protocol.md` 都依赖命名规范，应在方案 §三 三角支撑段明确引用。
+- `conventions.md` — 确实遗漏。创建 `conference.md` 和 `concepts/agent-conference-protocol.md` 都依赖命名规范，应在方案 §三 三角支撑段明确引用。
 - `vault-architecture.md` — 正确。conference 目录本质是知识库拓扑结构的新节点，对其意义的完整理解需要 `vault-architecture.md` 提供结构上下文。
 
 **修订**：方案 §三 三角支撑中新增 `conventions.md`、`vault-architecture.md`；行动清单追加交叉引用更新项。
@@ -125,7 +125,7 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 |----------|----------|----------|
 | "永久笔记" | `永久笔记` | 直接出现 |
 | "永久化" | `永久化` | 动词形式、过程描述 |
-| "原子化永久" | `原子化永久` | 过渡期混合术语（如 `concepts/index.md:13`） |
+| "原子化永久" | `原子化永久` | 过渡期混合术语（如 `concepts.md:13`） |
 | "持久笔记" / "长期笔记" | `(持久\|长期)笔记` | 旧称同义词 |
 | "long-term note" / "permanent note" | `(long-term\|permanent)\s+note` | 英文残留 |
 
@@ -134,7 +134,7 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 ##### 3. 审计员确认 4 项诊断全部正确 → **确认**
 
 审计员的逐项核查结果：
-- 术语规范性 ✅ — 方案自身用词规范，`concepts/index.md:13` 是唯一残留（即方案第四条的目标）
+- 术语规范性 ✅ — 方案自身用词规范，`concepts.md:13` 是唯一残留（即方案第四条的目标）
 - 平台中性 ✅ — 无 Unix-only 命令
 - 文件命名 ✅ — 所有建议文件名符合 AGENTS.md §6
 
@@ -146,11 +146,11 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 
 | # | 行动 | 涉及文件 | 优先级 |
 |---|------|----------|--------|
-| 1 | 创建 `conference/index.md`（目录级索引，列出所有会议记录 + 协议说明入口） | `conference/index.md`（新建） | P1 |
+| 1 | 创建 `conference.md`（目录级索引，列出所有会议记录 + 协议说明入口） | `conference.md`（新建） | P1 |
 | 2 | 创建 `concepts/agent-conference-protocol.md`（从 README.md 提取核心概念 + 设计原理，status: budding） | `concepts/agent-conference-protocol.md`（新建） | P1 |
 | 3 | `conference/README.md` 精简为纯操作指引，概念部分迁移至 #2 | `conference/README.md`（修改） | P2 |
 | 4 | 更新 `index.md`：Mermaid 架构图新增 `CONF[conference/]` 节点 + 知识集群新增 conference 段 + 版本号 1.0.0→1.1.0 | `index.md`（修改） | P0 |
-| 5 | 更新 `concepts/index.md:13` "原子化永久笔记" → "原子概念笔记" | `concepts/index.md`（修改） | P0 |
+| 5 | 更新 `concepts.md:13` "原子化永久笔记" → "原子概念笔记" | `concepts.md`（修改） | P0 |
 | 6 | **正则定义**：按上述 5 组正则对全库 `.md` 文件执行 P0 术语扫描 | 全库 `.md` | P0 |
 | 7 | 更新 `concepts/agent-conference-protocol.md` 的 `related` 字段：`[[conventions]]`、`[[vault-architecture]]`、`[[skill-subagent-boundary]]`、`[[subagent-concurrency]]`、`[[agent-orchestration]]`、`[[a2a-protocol]]`、`[[cross-session-memory]]` | `concepts/agent-conference-protocol.md`（修改） | P1 |
 | 8 | 运行 P1 审计：所有目录 `index.md` 存在性检查 | 全库 | P1 |
@@ -188,9 +188,9 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 - `_meta/` 下：`conventions`、`vault-architecture`
 
 **建议二**：定义精确 Grep 正则再执行 P0 扫描 → 已正确采纳。5 组正则覆盖验证：
-- `永久笔记` → 命中 6 处真实残留（`concepts/index.md:13`、`_meta/self-bootstrapping.md:54`、`_meta/vault-architecture.md:46`、`_identity/capability-manifest.md:79`、`_identity/nova-identity.md:44`，以及 Git 术语的 3 处误匹配将由人工审核排除）
+- `永久笔记` → 命中 6 处真实残留（`concepts.md:13`、`_meta/self-bootstrapping.md:54`、`_meta/vault-architecture.md:46`、`_identity/capability-manifest.md:79`、`_identity/nova-identity.md:44`，以及 Git 术语的 3 处误匹配将由人工审核排除）
 - `永久化` → 防御性覆盖，当前无命中
-- `原子化永久` → 精确命中 `concepts/index.md:13` 的过渡期混合术语
+- `原子化永久` → 精确命中 `concepts.md:13` 的过渡期混合术语
 - `(持久|长期)笔记` → 全覆盖，当前无命中
 - `(long-term|permanent)\s+note` → 命中 3 处 Zettelkasten 方法论正引用 + 2 处历史日志，均为可保留项
 - 行动 #6 中"逐一手动判断替换或保留"的审核步骤确保不会误改 Git 术语和 Zettelkasten 正引用
@@ -201,11 +201,11 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 
 | # | 审查结论 |
 |---|---------|
-| 1 | `conference/index.md` — P1 合理，新建文件无冲突 |
+| 1 | `conference.md` — P1 合理，新建文件无冲突 |
 | 2 | `concepts/agent-conference-protocol.md` — P1 合理，目标文件名符合 §6 规范 |
 | 3 | `conference/README.md` 精简 — P2 合理，可在 #2 完成后顺次执行 |
 | 4 | `index.md` Mermaid + 集群 + 版本号 — P0 合理，入口一致性是高优先级 |
-| 5 | `concepts/index.md:13` 修正 — P0 合理，术语残留必须清除 |
+| 5 | `concepts.md:13` 修正 — P0 合理，术语残留必须清除 |
 | 6 | 正则定义 + 全库术语扫描 — P0 合理，前置正则已定义，执行路径清晰 |
 | 7 | `agent-conference-protocol.md` related 字段 — P1 合理，7 项引用文件均已确存 |
 | 8 | 目录 `index.md` 存在性检查 — P1 合理，`conference/` 缺失已被 #1 覆盖 |

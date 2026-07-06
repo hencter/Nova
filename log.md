@@ -36,7 +36,7 @@
    - 描述 References 如何增强 vault 的自举循环
    - 对比 webfetch vs References 的优劣
    - 包含升级后的自举闭环架构图
-3. `concepts/index.md` — 新增 `reference-based-self-bootstrapping` 条目（知识管理段）
+3. `concepts.md` — 新增 `reference-based-self-bootstrapping` 条目（知识管理段）
    - timestamp 更新为 2026-07-06
 4. `.opencode/agents/` — 确认已有 markdown agent 定义（nova-architect, terminology-auditor）
    - 当前定义完善，无需修改
@@ -51,7 +51,7 @@
 **来源**：`conference/session-20260630-review.md` 四轮共识（nova-architect + terminology-auditor）
 
 **P0 — 入口一致性 + 术语迁移（3 项）**：
-1. `concepts/index.md:13` — "原子化永久笔记" → "原子概念笔记"
+1. `concepts.md:13` — "原子化永久笔记" → "原子概念笔记"
 2. `index.md` — Mermaid 图新增 CONF[conference/] 节点；新增 🤝 会议知识集群段；版本号 1.0.0→1.1.0；timestamp 更新
 3. 全库术语扫描（5 组正则）→ 4 处残留修正：
    - `_identity/capability-manifest.md:79` — "永久笔记"→"原子概念笔记"
@@ -60,11 +60,11 @@
    - `_meta/vault-architecture.md:46` — "Zettelkasten 永久笔记"→"原子概念笔记（ZK 方法）"
 
 **P1 — conference 导航 + 概念笔记（3 项）**：
-4. `conference/index.md` — 新建目录级索引（中文）
+4. `conference.md` — 新建目录级索引（中文）
 5. `concepts/agent-conference-protocol.md` — 新建原子概念笔记（status: budding）
    - 含编排流、共识协议、反模式、7 向交叉链接
 6. `conference/README.md` — 精简为操作速查卡（指向概念笔记）
-7. `concepts/index.md` — 新增 `agent-conference-protocol` 条目（Agent 协议段）
+7. `concepts.md` — 新增 `agent-conference-protocol` 条目（Agent 协议段）
 
 **P2 — 健康检查（3 项）**：
 8. 目录 index.md 存在性 — ✅ 全部通过（5 知识域均有）
@@ -120,7 +120,7 @@
   - **链接**：↔ agent-skills-system、subagent-concurrency、agent-orchestration、permission-models、agent-extensibility
 
 **交叉链接更新**：
-- `concepts/index.md` — 新增条目（AI Agent 架构段）
+- `concepts.md` — 新增条目（AI Agent 架构段）
 - `concepts/agent-skills-system.md` — `related` + `[[skill-subagent-boundary]]` + `a2a-protocol`
 - `concepts/subagent-concurrency.md` — `related` + `[[skill-subagent-boundary]]`（第二优先级）
 - `AGENTS.md §8` — 新增"Boundary Reference" 段，wiki 链接到新笔记
@@ -253,7 +253,7 @@
 - AGENTS.md §0 新增 Nova 重命名入口 + 个性化指南引用
 - README.md 完全重写：新增快速上手（5 分钟）、前置条件、三步启动、分发问候
 - 新建 `_identity/personalize.md`：最小个性化 3 步（改名→改身份→配 opencode）+ 深度定制指南
-- `_identity/index.md` 新增 personalize 条目
+- `_identity.md` 新增 personalize 条目
 - 知识库现在可任意路径解压即用、可 GitHub Fork 分发
 
 ## [2026-06-22] session | 会话终结 — 核心架构决策落地
@@ -297,7 +297,7 @@
 - 创建 /concepts/git-data-model.md — 内容寻址文件系统、4 种对象类型、3 种状态、对象存储格式、.git 目录
 - 创建 /concepts/git-branching.md — 轻量指针、HEAD、合并策略、rebase 黄金法则、工作流
 - 创建 /concepts/git-operations.md — 完整命令参考：配置、日常工作流、撤销（reset vs checkout vs revert）、远程、储藏、高级（bisect/reflog/cherry-pick）
-- 在 /concepts/index.md 中添加「版本控制」章节
+- 在 /concepts.md 中添加「版本控制」章节
 - 来源：git-scm.com 官方文档，Pro Git 第二版（Chacon & Straub, 2014）
 
 ## [2026-06-22] lint | Wiki 链接完整性扫描与修复
@@ -311,7 +311,7 @@
 - 从 GitHub 获取 Maple 主题 README（subframe7536/obsidian-theme-maple, v1.5.1, 829★）
 - 创建 /concepts/obsidian-syntax-reference.md — 完整的 Obsidian markdown 语法参考，涵盖 wiki 链接、callout、任务列表（标准 + Maple）、嵌入、块引用、脚注、表格、搜索语法
 - 创建 /tools/obsidian-maple-theme.md — 深度分析：Style Settings 集成、28 种备选复选框、Maple Mono 字体、移动端优化、6 种 Maple 专属任务类型
-- 更新 /concepts/index.md 和 /tools/index.md
+- 更新 /concepts.md 和 /tools.md
 
 ## [2026-06-22] session | 语言约定编码化
 - 在 AGENTS.md 中添加第 5 节「语言约定（人类/AI 双消费者）」
@@ -325,8 +325,8 @@
 - 创建 /tools/openai-agents-sdk.md — OpenAI Agents SDK 完整分析：Agent/Runner、Sandbox Agents、双重协调（manager as-tool vs handoffs）、托管+本地工具、护栏、人机协同、会话、追踪、MCP 集成、工具对比矩阵
 - 创建 /concepts/agent-orchestration.md — Agent 编排概念：LLM 驱动 vs 代码驱动光谱、manager vs handoff 原语、结构化路由、链式执行、评估循环、并行执行、混合编排
 - 更新 /patterns/multi-agent-patterns.md — 添加 Agent Orchestration、A2A Protocol、MCP Protocol 的相关链接
-- 更新 /concepts/index.md — 添加 Agent Protocols 章节（MCP、A2A）及 Agent Orchestration 条目
-- 更新 /tools/index.md — 添加 OpenAI Agents SDK 条目
+- 更新 /concepts.md — 添加 Agent Protocols 章节（MCP、A2A）及 Agent Orchestration 条目
+- 更新 /tools.md — 添加 OpenAI Agents SDK 条目
 - 更新 /index.md — 在概念和工具集群中添加新条目
 - 来源：modelcontextprotocol.io（规范 + 架构）、github.com/a2aproject/A2A、github.com/openai/openai-agents-python + 文档
 - 所有新建文件：完整 OKF frontmatter、wiki 链接、Mermaid 图表、全面分析
@@ -351,7 +351,7 @@
   - concept-template.md — 完整 frontmatter 指南、章节结构、状态生命周期、使用清单
   - tool-template.md — 标准化工具分析维度、功能矩阵、对比表
   - pattern-template.md — 模式文档结构、决策矩阵、反模式、Mermaid 指导
-- 更新 /patterns/index.md，使用扩展描述
+- 更新 /patterns.md，使用扩展描述
 
 ## [2026-06-22] init | 知识库初始化
 - 创建目录结构：concepts/、tools/、patterns/、templates/、_identity/、_meta/、_attachments/、.opencode/
@@ -377,7 +377,7 @@
 - 摄入 Mermaid 图表指南 → /concepts/mermaid-diagrams.md
 - 摄入 Markdown 中的 LaTeX 指南 → /concepts/latex-in-markdown.md
 - 摄入 Karpathy LLM 课程 → /concepts/karpathy-llm-curriculum.md
-- 更新 /concepts/index.md，使用完整目录
+- 更新 /concepts.md，使用完整目录
 - 交叉链接概念：在 frontmatter 中设置 prerequisites、related、sources
 
 ## [2026-06-22] ingest | 工具深度分析
@@ -387,7 +387,7 @@
 - 摄入 Aider 分析 → /tools/aider.md
 - 摄入 Cursor 分析 → /tools/cursor.md
 - 摄入 GitHub Copilot 分析 → /tools/copilot.md
-- 更新 /tools/index.md
+- 更新 /tools.md
 
 ## [2026-06-22] ingest | 设计模式
 - 摄入多 Agent 模式 → /patterns/multi-agent-patterns.md
@@ -395,7 +395,7 @@
 - 摄入权限模型 → /patterns/permission-models.md
 - 摄入知识图谱模式 → /patterns/knowledge-graph-patterns.md
 - 摄入 Agent 扩展性模式 → /patterns/agent-extensibility.md
-- 更新 /patterns/index.md
+- 更新 /patterns.md
 
 ## [2026-06-22] session | 项目启动完成
 - 所有核心知识库基础设施已建立

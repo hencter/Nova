@@ -56,7 +56,7 @@ When you answer a question and the answer has lasting value:
 1. Write a new concept note in `/concepts/` capturing the synthesized answer
 2. Add complete frontmatter with `type: Concept`
 3. Link to all source notes referenced in the answer
-4. Add to `/concepts/index.md`
+ 4. Add to `concepts.md`
 5. Log: `## [YYYY-MM-DD] query-filed | <Topic>`
 
 ### Lint — Health Check

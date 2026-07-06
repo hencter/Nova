@@ -243,7 +243,7 @@ Before finalizing a tool analysis, verify coverage:
 - [ ] **Competitive Positioning**: Comparison table with top 4-5 alternatives
 - [ ] **Mermaid Diagrams**: At least 1-2 embedded diagrams
 - [ ] **Complete Frontmatter**: All fields populated
-- [ ] **Cross-Links**: Linked from `tools/index.md` and related concept notes
+- [ ] **Cross-Links**: Linked from `tools.md` and related concept notes
 
 ---
 
@@ -255,6 +255,6 @@ Before finalizing a tool analysis, verify coverage:
 4. **Set id** to current timestamp in `YYYYMMDDThhmmss` format
 5. **Set status** to `budding` while drafting, `evergreen` when complete
 6. **Add Mermaid diagrams** for architecture and key workflows
-7. **Update** `/tools/index.md` with the new entry
+ 7. **Update** `tools.md` with the new entry
 8. **Cross-link** from related concept and pattern notes
 9. **Log**: Append to `log.md`: `## [YYYY-MM-DD] ingest | Tool analysis: {{Tool Name}}`

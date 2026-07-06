@@ -42,11 +42,11 @@ summary: >
 
 ```mermaid
 graph TD
-    IDX[index.md<br/>Type: Index] --> CI[concepts/index.md]
-    IDX --> TI[tools/index.md]
-    IDX --> PI[patterns/index.md]
-    IDX --> MI[_meta/index.md]
-    IDX --> II[_identity/index.md]
+    IDX[index.md<br/>Type: Index] --> CI[concepts.md]
+    IDX --> TI[tools.md]
+    IDX --> PI[patterns.md]
+    IDX --> MI[_meta.md]
+    IDX --> II[_identity.md]
     
     CI --> C1[OpenCode Architecture<br/>Type: Concept]
     CI --> C2[Agent Skills System<br/>Type: Concept]
@@ -126,7 +126,7 @@ sources:                         # External edges (provenance)
 ```
 Level 1: /index.md              ← "What exists in the vault?"
     ↓ click link
-Level 2: /concepts/index.md     ← "What concepts are available?"
+Level 2: /concepts.md         ← "What concepts are available?"
     ↓ click link
 Level 3: /concepts/attention.md ← "The actual knowledge"
 ```
@@ -311,7 +311,7 @@ Layer 3: Operations (log.md, lint rules, session protocols) — self-maintaining
 | Primitive | Implementation | Tool |
 |-----------|---------------|------|
 | Entry point | `/index.md` | Any text editor or agent |
-| Directory listing | `/concepts/index.md` | Markdown link following |
+| Directory listing | `/concepts.md` | Markdown link following |
 | Semantic search | Wiki links + grep | `grep "\[\[Note Name\]\]" *.md` (Unix) / `findstr /R "\[\[Note Name\]\]" *.md` (Windows) |
 | Backlinks | grep on wiki link targets | `grep -r "\[\[Target Note\]\]" .` (Unix) / `findstr /S /R "\[\[Target Note\]\]" *.md` (Windows) |
 | Chronology | `log.md` with date headers | opencode `Grep` tool (preferred), or `grep "^## \[" log.md \| tail -20` (Unix), `Select-String "^## \[" log.md \| Select-Object -Last 20` (Windows) |

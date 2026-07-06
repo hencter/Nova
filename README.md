@@ -13,7 +13,10 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 | 工具 | 用途 | 获取 |
 |------|------|------|
 | **Obsidian** | 可视化管理知识库 | [obsidian.md](https://obsidian.md) |
-| **Opencode** | AI 代理运行环境 | [opencode.ai](https://opencode.ai) |
+| **OpenCode** | AI 代理运行环境 | [opencode.ai](https://opencode.ai) |
+| **Git** | 版本控制（auto-commit 插件依赖） | [git-scm.com](https://git-scm.com) |
+
+> OpenCode 安装时会自动处理 Node.js / Bun 运行环境，无需单独安装。
 
 ### 三步启动
 
@@ -34,26 +37,34 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 
 ## 这是什么
 
-- 🧠 一个 Obsidian vault，包含 **57 个原子化笔记**
-- 🤖 由 AI 代理 Nova 维护：自动摄入、交叉链接、健康检查
+- 🧠 一个 Obsidian vault，包含 **46+ 篇原子概念笔记**
+- 🤖 由 AI 代理 Nova 维护：自动摄入、交叉链接、健康检查、**自动 git 提交**
 - 📐 遵循 [OKF v0.1](https://github.com/GoogleCloudPlatform/knowledge-catalog)（Google 开放知识格式）规范
 - 🃏 采用 [Zettelkasten 卡片盒方法](https://zettelkasten.de)（原子性、连接性、涌现结构）
 - 📝 基于 [Karpathy LLM Wiki 模式](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- 🔌 内置 `session.idle` hook 自动提交变更（再也不用担心漏 commit）
 
 ---
 
 ## 目录
 
-| 目录 | 内容 |
-|------|------|
-| `concepts/` | 20 个原子概念笔记（AI 代理、Git、ZK、OKF、Obsidian 等） |
-| `tools/` | 8 个工具深度分析（Opencode、Claude Code、Aider 等） |
-| `patterns/` | 5 个设计模式（多代理协作、上下文管理、权限模型等） |
-| `_identity/` | Nova 的自我认知、能力清单和**个性化指南** |
-| `_meta/` | 关于知识库本身的知识（架构、约定、自举机制） |
-| `templates/` | 笔记模板 |
+| 文件/目录 | 内容 |
+|-----------|------|
+| `concepts.md` | **24 篇**原子概念笔记总目（AI 代理、Git、ZK、OKF、Obsidian 等） |
+| `concepts/` | 原子概念笔记原文 |
+| `tools.md` | **8 篇**工具深度分析总目（OpenCode、Claude Code、Aider 等） |
+| `tools/` | 工具分析原文 |
+| `patterns.md` | **5 篇**设计模式总目（多代理协作、上下文管理、权限模型等） |
+| `patterns/` | 模式笔记原文 |
+| `_identity.md` | Nova 的自我认知、能力清单总目 |
+| `_identity/` | 身份笔记原文 + 个性化指南 |
+| `_meta.md` | 关于知识库本身的知识总目（架构、约定、自举机制） |
+| `_meta/` | 元笔记原文 |
+| `templates/` | 3 个笔记模板（概念、工具、模式） |
+| `conference.md` | Agent 会议记录总目 |
+| `conference/` | 会议记录原文 |
 | `skills/` | 维护技能（nova-kb） |
-| `.opencode/` | Opencode 代理配置 |
+| `.opencode/` | OpenCode 代理 & 插件配置 |
 
 ---
 
@@ -62,6 +73,8 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 - **[index.md](index.md)** — 知识库总目录（你的入口）
 - **[AGENTS.md](AGENTS.md)** — AI 代理规则手册（给 Nova 读的）
 - **[log.md](log.md)** — 操作日志
+- **[concepts.md](concepts.md)** — 全部概念笔记索引
+- **[tools.md](tools.md)** — 全部工具分析索引
 - **[_identity/personalize.md](_identity/personalize.md)** — 打造你自己的 Nova
 
 ### 热门笔记
@@ -116,7 +129,7 @@ Nova 的设计哲学是**每个人都有自己的 Nova**。你的 Nova 应该有
 嗨，朋友！这个知识库是我和 Nova 一起搭建的种子项目。如果你读到这，希望它也能帮到你——就像它已经帮到我一样。
 
 你可以：
-- 📖 直接拿来用，它有 57 篇现成笔记
+- 📖 直接拿来用，它有 46+ 篇现成笔记
 - ✏️ 随意改名、改结构、改一切
 - 🔗 把它分享给更多人
 - 🤝 通过 GitHub 贡献回来

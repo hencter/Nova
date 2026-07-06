@@ -193,7 +193,7 @@ Every AI session **MUST** execute this boot sequence:
 1. Read `/AGENTS.md` — rules and conventions
 2. Read `/log.md` — last 20 lines for recent activity context
 3. Read `/index.md` — current vault state
-4. Read `/concepts/index.md` — current concept inventory
+ 4. Read `/concepts.md` — current concept inventory
 
 ### Session End (from AGENTS.md)
 

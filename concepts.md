@@ -27,6 +27,10 @@ timestamp: 2026-07-06T18:00:00Z
 - [[a2a-protocol|A2A Protocol]] — Agent 间协议：跨 agent 通信标准（Google/Linux Foundation）
 - [[agent-conference-protocol|Agent Conference Protocol]] — Agent 通过共享文件进行异步通信：会议格式、编排流、共识协议
 
+## AI 基础理论
+
+- [[attention-mechanism|Attention Mechanism]] — Transformer 核心机制：缩放点积注意力、Q/K/V 投影、多头注意力
+
 ## 版本控制
 
 - [[git-data-model|Git Data Model]] — 内容寻址文件系统、四种对象类型（blob/tree/commit/tag）、SHA-1 哈希、三种状态
@@ -36,6 +40,9 @@ timestamp: 2026-07-06T18:00:00Z
 ## 知识管理
 
 - [[zettelkasten-methodology|Zettelkasten Methodology]] — ZK 核心原则、卡片类型、Luhmann 系统、数字化实现
+- [[atomic-notes|Atomic Notes]] — ZK 基本单位：每张卡片只捕获一个想法，自包含
+- [[folgezettel|Folgezettel]] — ZK 序列笔记：每篇在前一篇基础上构建，形成知识图谱中的叙事路径
+- [[knowledge-graph-theory|Knowledge Graph Theory]] — 节点即概念、边即关系、中心性度量、社区检测、小世界网络
 - [[okf-format|OKF Format]] — Google 开放知识格式 v0.1 规范与约定
 - [[markdown-frontmatter|Markdown Frontmatter]] — YAML 前置元数据语法、Obsidian 属性、AI 消费最佳实践
 - [[karpathy-llm-curriculum|Karpathy LLM Curriculum]] — 渐进式从零构建课程、LLM wiki 模式、复利效应

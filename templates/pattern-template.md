@@ -208,7 +208,7 @@ Before finalizing a pattern note:
 - [ ] **Anti-patterns**: Common mistakes documented
 - [ ] **Tools cited**: At least Claude Code, OpenCode, Codex CLI, Aider compared
 - [ ] **Complete frontmatter**: All fields populated
-- [ ] **Cross-links**: Linked from `patterns/index.md` and related concept notes
+- [ ] **Cross-links**: Linked from `patterns.md` and related concept notes
 - [ ] **Sources**: External references tracked with URLs
 
 ---
@@ -244,6 +244,6 @@ Use this template for patterns such as:
 6. **Write decision guidance**: When to use which variant
 7. **Set id** to current timestamp in `YYYYMMDDThhmmss` format
 8. **Set status** to `budding` while drafting, `evergreen` when complete
-9. **Update** `/patterns/index.md` with the new entry
+ 9. **Update** `patterns.md` with the new entry
 10. **Cross-link**: Add reciprocal links from related concept and tool notes
 11. **Log**: Append to `log.md`: `## [YYYY-MM-DD] ingest | Pattern: {{Pattern Name}}`
