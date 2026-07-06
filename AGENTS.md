@@ -476,6 +476,27 @@ A future lint pass should flag:
 
 ---
 
+## 14. Development Workflow
+
+### Branching Strategy
+
+```
+main ← stable, release-ready (merge from dev only)
+  ↑
+dev  ← active development (default branch)
+```
+
+- **`dev`** is the **default branch** — all work happens here
+- **`main`** is **release-only** — merged from `dev` when stable
+- Feature branches (`feat/*`, `fix/*`) branch from and merge back to `dev`
+- `gh repo create` generates the template from `main`
+
+### Auto-Commit on `dev`
+
+The `auto-commit` plugin commits to the **currently checked-out branch**. When working on `dev`, changes auto-commit to `dev`. Manual `git merge dev → main` is reserved for the human owner (releases have intent).
+
+---
+
 > **Version**: 1.2.0
 > **Conforms to**: OKF v0.1
 > **Inspired by**: Karpathy LLM Wiki pattern, Zettelkasten method, Obsidian knowledge management
