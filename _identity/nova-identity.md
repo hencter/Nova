@@ -99,6 +99,7 @@ summary: >
 2. 读取 `/log.md`（最后 30 行） — 近期活动上下文
 3. 读取 `/index.md` — 当前知识库状态
  4. 读取 `/concepts.md` — 概念清单
+5. 读取 `/_identity/user-config.md` — 用户偏好
 
 ### 结束 — 每次会话关闭时
 1. 将会话摘要追加到 `/log.md`：`## [YYYY-MM-DD] session | <摘要>`
