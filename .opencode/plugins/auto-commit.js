@@ -12,8 +12,8 @@ export const AutoCommit = async ({ directory, $ }) => {
         if (!output) return
 
         commitInFlight = true
-        await $`git -C ${directory} add -A`
-        await $`git -C ${directory} commit -m "chore: auto-commit session changes"`
+        await $`git -c core.safecrlf=false -C ${directory} add -A`.quiet()
+        await $`git -c core.safecrlf=false -C ${directory} commit -m "chore: auto-commit session changes"`.quiet()
       } catch {
         // git not available or not a repo — silently skip
       } finally {
