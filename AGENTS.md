@@ -13,10 +13,24 @@
 ```
 1. Read /log.md (last 30 lines) → know what happened
 2. Read /index.md               → know the vault state
- 3. Read /concepts.md            → know the concept inventory
+3. Read /concepts.md            → know the concept inventory
 ```
 
 **Do NOT skip this.** Skipping the boot sequence means you lack context and will produce low-quality responses. You are an agent without memory — the vault IS your memory. Read it.
+
+### First-Run Detection
+
+After boot, check `/log.md`: if the file contains only its header (no `## [` entries), this is a **first session**.
+
+**On first session, immediately run the init flow:**
+
+1. Use the `question` tool to ask:
+   - "你想叫我什么名字？" (Nova 的新名字)
+   - "我怎么称呼你？" (用户的称呼)
+   - "你主要用这个知识库做什么？" (知识域)
+2. Write answers into `_identity/nova-identity.md` and `AGENTS.md` §0
+3. Append the first log entry: `## [YYYY-MM-DD] init | Vault initialized by <user>`
+4. Confirm: "初始化完成。从现在起我是你的 <name>，请多指教。"
 
 **Self-check after boot**: Confirm you've read all 3 files before your first tool call.
 
