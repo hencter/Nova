@@ -15,7 +15,7 @@
 | AGENTS.md dev 专属段 | ❌ | §14 分支策略、开发流程 |
 | 会议记录 | ❌ | `conference/session-*.md` |
 | RELEASE.md 自身 | ❌ | 本文件 |
-| `.opencode/` 插件、代理定义 | ✅ | 用户也需要 auto-commit、子代理 |
+| `skills/` 技能、`.opencode/` 代理定义 | ✅ | 用户也需要 auto-commit、子代理 |
 
 ---
 

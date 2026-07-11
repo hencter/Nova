@@ -269,7 +269,7 @@ Every AI session **SHOULD** execute this shutdown sequence:
 3. File any valuable query answers as new notes
 4. Ensure all new/modified notes have complete frontmatter and links
 
-> **Git auto-commit**: The `auto-commit` plugin (`\.opencode\plugins\auto-commit.js`) listens for `session.idle` and automatically commits any uncommitted file changes. Agents do NOT need to manually `git commit` — the plugin handles it deterministically.
+> **Git auto-commit**: The `auto-commit` skill (`skills/auto-commit/SKILL.md`) instructs the agent to run `git add -A && git commit` as part of the session end protocol. Load this skill and follow its instructions at session shutdown.
 
 ### Memory Persistence
 - `/log.md` is the **append-only chronological memory** — never delete entries, only append
@@ -352,7 +352,7 @@ The vault's self-bootstrapping is powered by four pillars:
 
 ### Auto-Commit
 
-The `.opencode/plugins/auto-commit.js` plugin hooks into `session.idle` and runs `git add -A && git commit` whenever file changes are detected. This eliminates the "did I commit?" problem and ensures every session's work is versioned without relying on agent memory.
+The `auto-commit` skill (`skills/auto-commit/SKILL.md`) instructs the agent to run `git add -A && git commit` as part of the session end protocol. This ensures every session's work is versioned. The skill is loaded during session shutdown and executes deterministically through the agent's instruction-following workflow.
 
 ### Initialization (First Session)
 1. Create directory structure (concepts/, tools/, patterns/, templates/, _identity/, _meta/)
@@ -472,7 +472,7 @@ A future lint pass should flag:
 | Find recent activity | opencode `Grep` tool on `log.md` with pattern `^## \[`, read last lines |
 | **Tool boundary** | **Section 12: opencode native tools first, never `rg`/`fd`/`jq` from Bash** |
 | **Terminology audit** | **Spawn `terminology-auditor` subagent → review report → apply fixes → update auditor** |
-| **Git commit** | **Automatic via `.opencode/plugins/auto-commit.js` → `session.idle` hook. Never manual.** |
+| **Git commit** | **Load `auto-commit` skill → `git add -A && git commit` at session end. Never manual.** |
 
 ---
 
@@ -493,7 +493,7 @@ dev  ← active development (default branch)
 
 ### Auto-Commit on `dev`
 
-The `auto-commit` plugin commits to the **currently checked-out branch**. When working on `dev`, changes auto-commit to `dev`. Manual `git merge dev → main` is reserved for the human owner (releases have intent).
+The `auto-commit` skill commits to the **currently checked-out branch**. When working on `dev`, changes auto-commit to `dev`. Manual `git merge dev → main` is reserved for the human owner (releases have intent).
 
 ---
 

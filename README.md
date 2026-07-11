@@ -68,7 +68,7 @@ Nova: 初始化完成。从现在起我是你的 星尘，请多指教。
 
 - **编辑器**: Obsidian（Markdown + Wiki Links + Graph View）
 - **AI 框架**: OpenCode（Skills + Subagents + Multi-agent + Auto-commit）
-- **版本控制**: Git（自动提交 via `session.idle` hook）
+- **版本控制**: Git（自动提交 via `auto-commit` 技能）
 - **格式标准**: [OKF v0.1](https://github.com/GoogleCloudPlatform/knowledge-catalog)（开放知识格式）
 
 ---

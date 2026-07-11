@@ -4,6 +4,22 @@
 
 ---
 
+## [2026-07-11] refactor | 将 auto-commit 从插件迁移到技能
+
+**原因**：`.opencode/plugins/auto-commit.js` 插件导致 OpenCode 服务器打开出错，移除并改用技能形式实现。
+
+**变更**：
+1. `.opencode/plugins/auto-commit.js` — 删除
+2. `.opencode/package.json`, `package-lock.json`, `node_modules/` — 删除（插件基础设施）
+3. `skills/auto-commit/SKILL.md` — 新建技能，替代插件的自动提交功能
+   - 在会话关闭时指示 agent 执行 `git add -A && git commit`
+   - 处理非 git 仓库、无变更、git 未安装等边界情况
+   - 从事件驱动的确定性 hook 变为技能驱动的指令-执行模式
+4. `AGENTS.md` — 4 处更新：§7 Session End、§10 Auto-Commit、§13 Quick Reference、§14 Development Workflow
+5. `README.md` — 更新技术栈说明
+
+**权衡**：插件是确定性的（`session.idle` 事件自动触发），技能依赖 agent 遵循指令（SHOULD 级别）。但技能的优势：无需外部依赖（`@opencode-ai/plugin`），不干扰 OpenCode 启动，符合开放编码的工具边界策略（§12）。
+
 ## [2026-07-06] execute | auto-commit 插件：从概率性提交到确定性提交
 
 **变更**：
