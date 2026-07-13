@@ -25,6 +25,7 @@ related:
   - "[[agent-skills-system|Agent Skills System]]"
   - "[[context-management|Context Management]]"
   - "[[opencode-architecture|OpenCode Architecture]]"
+  - "[[self-evolving-agents|Self-Evolving Agents]]"
 sources:
   - title: "OpenAI Agents SDK — Orchestration Guide"
     url: "https://openai.github.io/openai-agents-python/multi_agent/"

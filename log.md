@@ -4,6 +4,53 @@
 
 ---
 
+## [2026-07-13] ingest | Created: Agent Skills Standard
+
+基于 agentskills.io 最新规范（2026年7月），创建了 Agent Skills 开放标准的原子概念笔记。
+- 渐进式三阶段加载模型（Discovery → Activation → Execution）
+- SKILL.md frontmatter 规范（必需 + 扩展字段）
+- 标准路径定义（`.agents/skills/` 为主，兼容 `.crush/skills/`、`.claude/skills/`、`.cursor/skills/`）
+- 40+ 工具生态图谱（Claude Code, Cursor, GitHub Copilot, Crush, Gemini CLI, Goose 等）
+- 与 Nova 现有 `agent-skills-system.md` 的关系与差异分析
+- 与 MCP、A2A 标准的互补关系
+
+## [2026-07-13] ingest | Created: Selective Persistent Memory
+
+**来源**：arXiv:2607.09493 — Shared Selective Persistent Memory for Agentic LLM Systems
+**产出**：`concepts/selective-persistent-memory.md`
+**状态**：`seedling`
+
+**核心发现**：选择性记忆 96% > 无记忆 79% > 全量历史 71%。全量历史持久化（包括 Nova 当前的 log.md）反而会降低 agent 性能。
+
+**跨链接**：
+- `concepts/cross-session-memory.md` — 新增 related 链接
+- `concepts.md` — 新增条目
+
+**Nova 相关性**：log.md 本质上是 naive full-history persistence，论文建议需要选择性遗忘/压缩层。workspace 概念对应 Nova 的 `conference/` 目录。
+
+## [2026-07-13] ingest | Created: Harness Engineering (arXiv:2607.08028)
+
+**来源**：arXiv 论文 "From Prompts to Contracts: Harness Engineering for Auditable Enterprise LLM Agents" (2026-07-09)
+
+**新建**：
+- `concepts/harness-engineering.md` — 将确定性 agent 行为从 prompt 迁移至代码、manifest、schema 与验证器 artifacts 的设计模式。涵盖四层架构（manifest → schema → 验证器 → composition boundary）、四项核心原则、与 Nova 库 SHOULD/MUST 规则层的对比。
+
+**更新**：
+- `index.md` — 新增 harness-engineering 条目
+- `concepts.md` — 新增 AI Agent 架构条目
+
+**交叉链接**：已链接到 [[agent-skills-system]]、[[permission-models]]、[[agent-extensibility]]、[[context-management]]
+
+## [2026-07-13] ingest | 创建: Hierarchical Memory Architecture (arXiv:2607.07666)
+
+**来源**: Zhou et al. (2026) — 三层层次化记忆架构 + PI-Agent 监督模式
+**新建文件**: `/concepts/hierarchical-memory-architecture.md`
+**状态**: seedling
+**更新索引**: `index.md`, `concepts.md`
+**核心贡献**: 中期/项目状态层有界化(中位数301 tokens)，使得上下文大小与项目时长解耦，实现无退化的持续自主运行
+
+## [2026-07-13] ingest | Created: Self-Evolving Agents — GEP genome evolution protocol, Genes vs Skills, Evolver/EvoMap
+
 ## [2026-07-11] refactor | 将 auto-commit 从插件迁移到技能
 
 **原因**：`.opencode/plugins/auto-commit.js` 插件导致 OpenCode 服务器打开出错，移除并改用技能形式实现。

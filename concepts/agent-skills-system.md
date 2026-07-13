@@ -20,6 +20,7 @@ related:
   - "[[subagent-concurrency|Subagent Concurrency]]"
   - "[[skill-subagent-boundary|Skill vs Subagent Boundary]]"
   - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[self-evolving-agents|Self-Evolving Agents]]"
   - "[[mcp-protocol|MCP Protocol]]"
   - "[[a2a-protocol|A2A Protocol]]"
 sources:

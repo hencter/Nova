@@ -21,6 +21,7 @@ related:
   - "[[agent-skills-system|Agent Skills System]]"
   - "[[subagent-concurrency|Subagent Concurrency]]"
   - "[[agent-orchestration|Agent Orchestration]]"
+  - "[[self-evolving-agents|Self-Evolving Agents]]"
   - "[[permission-models|Permission Models]]"
   - "[[agent-extensibility|Agent Extensibility]]"
 sources:

@@ -24,6 +24,8 @@ related:
   - "[[subagent-concurrency|Subagent Concurrency]]"
   - "[[okf-format|OKF Format]]"
   - "[[context-management|Context Management]]"
+  - "[[self-evolving-agents|Self-Evolving Agents]]"
+  - "[[selective-persistent-memory|Selective Persistent Memory]]"
 sources:
   - title: "OpenCode Documentation — Sessions & Memory"
     url: "https://opencode.ai"

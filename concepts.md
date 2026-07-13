@@ -16,16 +16,20 @@ timestamp: 2026-07-06T18:00:00Z
 
 - [[opencode-architecture|OpenCode Architecture]] — Opencode 的客户端-服务端设计、核心循环、文件系统交互、LLM 提供商
 - [[agent-skills-system|Agent Skills System]] — 技能如何扩展 agent 能力、SKILL.md 格式、存储位置
+- [[self-evolving-agents|Self-Evolving Agents]] — 通过 GEP 基因组进化协议实现可审计的 agent 自进化，Genes 优于 Skill 文档
 - [[subagent-concurrency|Subagent Concurrency]] — 多 agent 并行执行、task 工具、agent 类型、协调模型
 - [[skill-subagent-boundary|Skill vs Subagent Boundary]] — 何时用 skill（指令注入）vs 何时用 subagent（进程隔离），Nova 库架构决策框架
 - [[cross-session-memory|Cross-Session Memory]] — 会话持久化、压缩、log.md、AGENTS.md、知识连续性
+- [[hierarchical-memory-architecture|Hierarchical Memory Architecture]] — 三层记忆设计：短期/中期(有界+驱逐)/长期领域知识，PI-Agent 监督
 - [[agent-orchestration|Agent Orchestration]] — LLM 驱动 vs 代码驱动的协调、manager vs handoff 原语
+- [[harness-engineering|Harness Engineering]] — 将确定性行为从 prompt 迁移至代码、manifest、schema 与验证器，实现可审计的企业级 Agent
 
 ## Agent 协议与标准
 
 - [[mcp-protocol|MCP Protocol]] — 模型上下文协议：LLM 到工具集成标准（Anthropic）
 - [[a2a-protocol|A2A Protocol]] — Agent 间协议：跨 agent 通信标准（Google/Linux Foundation）
 - [[agent-conference-protocol|Agent Conference Protocol]] — Agent 通过共享文件进行异步通信：会议格式、编排流、共识协议
+- [[agent-skills-standard|Agent Skills Standard]] — agentskills.io 开放标准：SKILL.md 格式、渐进式加载、跨工具技能可移植性（40+ 工具采纳）
 
 ## AI 基础理论
 

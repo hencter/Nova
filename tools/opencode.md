@@ -10,7 +10,7 @@ tags:
   - client-server
 timestamp: 2026-06-22T16:00:00Z
 id: "20260622T160000"
-status: evergreen
+status: budding
 difficulty: advanced
 domain: ai-tools
 prerequisites:
@@ -27,17 +27,50 @@ related:
   - "[[agent-extensibility|Agent Extensibility]]"
   - "[[claude-code|Claude Code]]"
   - "[[codex-cli|Codex CLI]]"
+  - "[[crush|Crush]]"
 sources:
   - title: "OpenCode Documentation"
     url: "https://opencode.ai/docs"
-  - title: "OpenCode GitHub Repository"
+  - title: "OpenCode GitHub Repository (anomalyco fork)"
     url: "https://github.com/anomalyco/opencode"
+  - title: "Original OpenCode Repository (ARCHIVED 2025-09-18)"
+    url: "https://github.com/opencode-ai/opencode"
+  - title: "Crush — Official Successor by Charm"
+    url: "https://github.com/charmbracelet/crush"
+  - title: "OpenCode by SST (Independent Fork)"
+    url: "https://github.com/sst/opencode"
 confidence: 0.92
 summary: >
   OpenCode is an agent coding platform with a decoupled client-server architecture, supporting TUI/CLI/web/desktop/IDE interfaces, 75+ LLM providers via the AI SDK, a cascading permission system, a plugin/hook ecosystem, snapshot-based undo/redo, and declarative configuration merging across 8 precedence levels.
 ---
 
 # OpenCode — Comprehensive Tool Analysis
+
+## 0. Project Status: Archived & Forked
+
+> **⚠️ Critical Update (2025–2026)**: The original OpenCode project has been archived and the ecosystem has forked. This section documents the current state of affairs. Existing content below (Sections 1–14) primarily reflects the **anomalyco/opencode** fork currently in use by this vault.
+
+### Original Repository Archived
+
+The original OpenCode repository at **[github.com/opencode-ai/opencode](https://github.com/opencode-ai/opencode)** was **archived on 2025-09-18** and is now read-only. Development has moved to successor projects.
+
+### The Fork Landscape
+
+| Repository | Status | Description |
+|------------|--------|-------------|
+| `anomalyco/opencode` | **Active** (this vault uses) | Maintained fork, currently powering this environment |
+| `charmbracelet/crush` | **Active** (official successor) | The original author's project at Charm, renamed and significantly expanded (v0.84.1, 26.5k stars) |
+| `sst/opencode` | **Active** (independent fork) | Separate fork from SST, with Agent Skills standard support and opencode.ai website |
+
+### Key Distinction
+
+- **Crush** is the **canonical successor** from the original author (moved to Charm)
+- **SST's OpenCode** is an **independent fork** with its own direction (not to be confused with the archived original or Crush)
+- **anomalyco/opencode** is the fork **currently in use** by this vault
+
+See Section 15 for a detailed comparison of Crush vs the original OpenCode.
+
+---
 
 ## 1. Architecture Overview
 
@@ -142,6 +175,8 @@ The Terminal User Interface is the default interaction mode. Key features:
 ---
 
 ## 3. Configuration System
+
+> **⚠️ Crush note:** In the Crush successor, `opencode.json` has been replaced by `crush.json` with an expanded schema. The configuration paths use `~/.config/crush/` instead of `~/.config/opencode/`. The merge precedence model is preserved. See Section 15 for details.
 
 ### File Locations
 
@@ -567,6 +602,8 @@ OpenCode supports [[mcp-protocol|Model Context Protocol (MCP)]] for connecting t
 
 ## 13. Comparison with Other Tools
 
+> **⚠️ Archived (Sep 2025)**: This comparison reflects the pre-archive OpenCode landscape. Crush (the successor) has significantly expanded capabilities. See Section 15 for the Crush feature comparison.
+
 | Feature | OpenCode | Claude Code | Codex CLI | Aider | Cursor |
 |---------|----------|-------------|-----------|-------|--------|
 | Interface | TUI/CLI/Web/Desktop | Terminal/IDE | Terminal/Desktop | Terminal | IDE (VS Code) |
@@ -593,3 +630,132 @@ See also: [[claude-code|Claude Code]], [[codex-cli|Codex CLI]], [[aider|Aider]],
 6. **Configure compaction threshold** — Lower for smaller models, higher for larger contexts
 7. **Use subagents for parallelism** — Independent tasks should be spawned as subagents via [[subagent-concurrency|Subagent Concurrency]]
 8. **Log sessions** — Append meaningful entries to `/log.md` for [[cross-session-memory|Cross-Session Memory]]
+
+---
+
+## 15. Successor: Crush (charmbracelet/crush)
+
+Crush is the **official successor** to OpenCode, created by the original author after moving the project to Charm. It is actively developed (v0.84.1 as of July 2026) with **26.5k GitHub stars**.
+
+### 15.1 Key New Features (vs OpenCode)
+
+| Feature | OpenCode (anomalyco) | Crush (charmbracelet) |
+|---------|---------------------|----------------------|
+| **Agent Skills Standard** | SKILL.md (proprietary format) | agentskills.io compliant |
+| **Skills Paths** | `.opencode/skills/`, `~/.config/opencode/skills/` | `.agents/skills/`, `.crush/skills/`, `.claude/skills/`, `.cursor/skills/` |
+| **User-Invocable Skills** | Agent-initiated only via `skill` tool | Agent-initiated + user can invoke directly; supports `disable-model-invocation` option |
+| **Hooks System** | Plugin-based hooks (8 events) | Expanded hooks system |
+| **LLM Providers** | 75+ via AI SDK | Multi-provider: Hyper (Charm's own), Anthropic, OpenAI, Gemini, 50+ via Catwalk |
+| **Workspace Sharing** | — | Cross-client workspace sharing |
+| **Desktop Notifications** | — | Native desktop notifications |
+| **Configuration** | `opencode.json` | `crush.json` (expanded schema) |
+| **Global Context** | AGENTS.md, `~/.config/opencode/` | `~/.config/crush/CRUSH.md` and `~/.config/AGENTS.md` |
+| **Config Path** | `~/.config/opencode/` | `~/.config/crush/` |
+
+### 15.2 Agent Skills Standard Compliance
+
+Crush is the **first major agent coding tool** to adopt the **[agentskills.io](https://agentskills.io)** standard — an open specification for defining and distributing agent skills. See [[agent-skills-system|Agent Skills System]] for the conceptual background.
+
+#### Skills Discovery
+
+Crush searches **multiple paths** for skills, providing maximum compatibility with other tools:
+
+```
+.agents/skills/      → Generic agent skills (portable across tools)
+.crush/skills/       → Crush-specific skills
+.claude/skills/      → Claude Code compatibility
+.cursor/skills/      → Cursor compatibility
+~/.config/crush/skills/
+```
+
+#### User-Invocable Skills
+
+Unlike OpenCode where skills are only agent-initiated (via the `skill` tool), Crush supports **user-direct invocation**:
+
+```
+/user-skill-name    → User triggers the skill directly from CLI/TUI
+```
+
+The `disable-model-invocation` frontmatter option allows skill authors to **prevent the model from auto-invoking** a skill — useful for skills that should only be run when the user explicitly requests them.
+
+```yaml
+---
+name: deploy-production
+description: Deploy to production (user-only)
+disable-model-invocation: true
+---
+```
+
+### 15.3 Multi-Provider Architecture
+
+Crush expands the provider ecosystem beyond the AI SDK:
+
+| Provider | Type | Notes |
+|----------|------|-------|
+| **Hyper** | First-party | Charm's own AI service |
+| **Anthropic** | Direct | Claude models |
+| **OpenAI** | Direct | GPT models |
+| **Gemini** | Direct | Google models |
+| **Catwalk** | Bridge | 50+ additional providers via a compatibility layer |
+
+### 15.4 crush.json Configuration
+
+Crush replaces `opencode.json` with `crush.json`. The merge precedence model is preserved.
+
+```json
+{
+  "model": "hyper/crush-default",
+  "skills": {
+    "paths": [".agents/skills", ".crush/skills"],
+    "userInvocable": true
+  },
+  "providers": {
+    "hyper": { "enabled": true },
+    "anthropic": { "apiKey": "{env:ANTHROPIC_API_KEY}" },
+    "openai": { "apiKey": "{env:OPENAI_API_KEY}" }
+  },
+  "notifications": {
+    "desktop": true,
+    "sound": false
+  },
+  "workspace": {
+    "sharing": true
+  },
+  "hooks": {}
+}
+```
+
+### 15.5 Workspace Sharing
+
+Crush introduces **cross-client workspace sharing** — multiple Crush instances (or different clients) can share the same workspace state. This enables:
+
+- Switching between TUI and desktop client mid-session
+- Collaborative agent sessions across devices
+- Persistent workspace state across client restarts
+
+### 15.6 Global Context Files
+
+Crush reads **two global context files** on startup:
+
+| File | Purpose |
+|------|---------|
+| `~/.config/crush/CRUSH.md` | Crush-specific instructions (equivalent to project-level AGENTS.md) |
+| `~/.config/AGENTS.md` | Portable agent instructions shared across tools |
+
+This dual-file approach allows Crush-specific customization while maintaining portability with other agent tools that also read `~/.config/AGENTS.md`.
+
+### 15.7 Desktop Notifications
+
+Crush supports **native desktop notifications** for long-running tasks — the agent can notify the user when a task completes, errors occur, or user input is needed, without requiring the user to keep the terminal in focus.
+
+---
+
+## 16. Independent Fork: OpenCode by SST
+
+**[github.com/sst/opencode](https://github.com/sst/opencode)** is an independent fork from SST that also supports the **Agent Skills standard** and operates the **opencode.ai** website. It is a separate project from both the archived original and Crush.
+
+Key characteristics:
+- Supports agentskills.io standard
+- Maintains the opencode.ai domain
+- Independent development direction from both Crush and anomalco/opencode
+- Should not be confused with the archived `opencode-ai/opencode` or with Crush

@@ -22,6 +22,7 @@ prerequisites:
 related:
   - "[[agent-skills-system|Agent Skills System]]"
   - "[[multi-agent-patterns|Multi-Agent Patterns]]"
+  - "[[self-evolving-agents|Self-Evolving Agents]]"
   - "[[permission-models|Permission Models]]"
   - "[[context-management|Context Management]]"
 sources:

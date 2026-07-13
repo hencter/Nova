@@ -52,9 +52,12 @@ graph TD
 - [[agent-skills-system|Agent Skills System]] — 技能机制如何扩展 Agent 能力
 - [[subagent-concurrency|Subagent Concurrency]] — 多 Agent 并行执行模式
 - [[cross-session-memory|Cross-Session Memory]] — 跨会话记忆持久化机制
+- [[hierarchical-memory-architecture|Hierarchical Memory Architecture]] — 三层层次化记忆架构：有界上下文 + PI-Agent 监督
 - [[agent-orchestration|Agent Orchestration]] — LLM 驱动 vs 代码驱动的多 Agent 协调
+- [[harness-engineering|Harness Engineering]] — 从 prompt 到合约：将确定性行为编码为代码级约束的 Agent 生产化模式
 - [[mcp-protocol|MCP Protocol]] — Model Context Protocol：LLM 与工具集成的标准协议
 - [[a2a-protocol|A2A Protocol]] — Agent-to-Agent Protocol：Agent 间通信的标准协议
+- [[agent-skills-standard|Agent Skills Standard]] — agentskills.io 开放标准：SKILL.md 格式与跨工具技能可移植性
 - [[zettelkasten-methodology|Zettelkasten Methodology]] — 卡片盒笔记法（ZK 方法）
 - [[okf-format|OKF Format]] — Google 的 Open Knowledge Format 规范
 - [[markdown-frontmatter|Markdown Frontmatter]] — 知识图谱元数据的 YAML frontmatter
