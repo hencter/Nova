@@ -5,7 +5,7 @@ description: Progressive-disclosure catalog of the entire Nova knowledge vault �
 tags:
   - index
   - catalog
-timestamp: 2026-07-06T18:00:00Z
+  timestamp: 2026-07-13T18:00:00Z
 okf_version: "0.1"
 ---
 
@@ -50,8 +50,10 @@ graph TD
 原子化、可持久化的笔记，涵盖 AI Agent、知识管理与系统设计等基础概念。
 - [[opencode-architecture|OpenCode Architecture]] — OpenCode 的客户端-服务端架构与核心循环
 - [[agent-skills-system|Agent Skills System]] — 技能机制如何扩展 Agent 能力
+- [[self-evolving-agents|Self-Evolving Agents]] — GEP 基因组进化协议与可审计 Agent 自进化
 - [[subagent-concurrency|Subagent Concurrency]] — 多 Agent 并行执行模式
 - [[cross-session-memory|Cross-Session Memory]] — 跨会话记忆持久化机制
+- [[selective-persistent-memory|Selective Persistent Memory]] — 选择性记忆 > 无记忆 > 全量历史（反直觉发现）
 - [[hierarchical-memory-architecture|Hierarchical Memory Architecture]] — 三层层次化记忆架构：有界上下文 + PI-Agent 监督
 - [[agent-orchestration|Agent Orchestration]] — LLM 驱动 vs 代码驱动的多 Agent 协调
 - [[harness-engineering|Harness Engineering]] — 从 prompt 到合约：将确定性行为编码为代码级约束的 Agent 生产化模式

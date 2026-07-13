@@ -4,6 +4,29 @@
 
 ---
 
+## [2026-07-13] research-session | Nova 核心架构迭代 — 互联网/论文/GitHub 全面检索与执行
+
+**检索范围**：arXiv (2026年7月最新论文)、GitHub Trending (AI Agent / Agent Framework)、agentskills.io、MCP/A2A 协议更新、Claude Code v2.1.207、Crush/OpenCode 分支状态
+
+**关键发现**：
+1. **OpenCode 已归档** (2025-09-18) → Crush (charmbracelet/crush, 26.5k stars) 接替 + SST/OpenCode 独立分支
+2. **Agent Skills 开放标准** (agentskills.io) — 40+ 工具采纳，SKILL.md 跨平台可移植
+3. **选择性持久记忆** (arXiv:2607.09493) — 选择性记忆 96% > 无记忆 79% > 全量历史 71%
+4. **Harness Engineering** (arXiv:2607.08028) — "Prompts → Contracts"，代码级合约优于纯 prompt
+5. **分层记忆架构** (arXiv:2607.07666) — 三层有界上下文，PI-Agent 监督
+6. **自进化 Agent** (EvoMap/Evolver, 8.9k stars) — GEP 基因组协议，Genes > Skills 文档
+7. Microsoft Agent Framework (12.1k) + Agent Governance Toolkit (OWASP Top 10)
+
+**执行（6 并行子代理）**：
+- `tools/opencode.md` — 更新为 budding，新增 Crush 接替者/SST 分支/Agent Skills 等 8 个新章节
+- `concepts/agent-skills-standard.md` — 新建 (budding)
+- `concepts/selective-persistent-memory.md` — 新建 (seedling)
+- `concepts/harness-engineering.md` — 新建 (seedling)
+- `concepts/hierarchical-memory-architecture.md` — 新建 (seedling)
+- `concepts/self-evolving-agents.md` — 新建 (seedling)
+- `concepts.md` — 更新条目，新增 5 个概念
+- `index.md` — 更新条目，新增 5 个概念
+
 ## [2026-07-13] ingest | Created: Agent Skills Standard
 
 基于 agentskills.io 最新规范（2026年7月），创建了 Agent Skills 开放标准的原子概念笔记。
