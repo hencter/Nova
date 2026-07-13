@@ -121,7 +121,8 @@ Each directory contains an `index.md` with a curated list of all notes in that d
 3. **Staleness check**: Notes with `status: superseded` or old `modified` dates with newer sources available
 4. **Missing cross-references**: Notes that should link to each other but don't
 5. **Broken links**: Wiki links pointing to non-existent notes
-6. **Gap analysis**: Topics mentioned but lacking dedicated notes
+ 6. **Gap analysis**: Topics mentioned but lacking dedicated notes
+ 7. **Version sync**: `index.md` statistics block must reflect `AGENTS.md` footer version — mismatch is a bug
 7. Report results in `/log.md`: `## [YYYY-MM-DD] lint | <Findings summary>`
 
 ### 2.4 Lint Auto-Fix (on Lint)

@@ -64,11 +64,11 @@ graph TD
 
 ### When to Use Each
 
-| Extension Type | Use When | Lifetime | Example |
-|----------------|----------|----------|---------|
-| **Skill** | Repeated task with specialized instructions | Per-session, lazy-loaded | "code-review" skill |
-| **Hook** | Event-driven side effects or overrides | Persistent, reacts to events | Pre-tool-use audit, post-message log |
-| **Plugin** | Custom tool that needs persistent state | Persistent, always available | Custom filesystem tool, custom API client |
+| Extension Type | Use When                                      | Lifetime                      | Example                                      |
+| -------------- | --------------------------------------------- | ----------------------------- | -------------------------------------------- |
+| **Skill**      | Repeated task with specialized instructions   | Per-session, lazy-loaded      | "code-review" skill                          |
+| **Hook**       | Event-driven side effects or overrides        | Persistent, reacts to events  | Pre-tool-use audit, post-message log         |
+| **Plugin**     | Custom tool that needs persistent state       | Persistent, always available  | Custom filesystem tool, custom API client    |
 | **MCP Server** | External tool/resource provider across agents | External process, multi-agent | Database query server, knowledge base server |
 
 ## 1. Plugin Systems
