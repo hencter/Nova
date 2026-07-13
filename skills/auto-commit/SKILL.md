@@ -1,9 +1,22 @@
 ---
 name: auto-commit
 description: Auto-commit session changes via git. Use at the end of every session to ensure all file changes are committed. This replaces the former session.idle plugin with a skill-based approach.
+license: MIT
+compatibility: all
+disable-model-invocation: false
+metadata:
+  author: Nova Vault
+  version: "1.0.0"
+  category: version-control
+  tags:
+    - git
+    - auto-commit
+    - session
 ---
 
 # Auto-Commit — Session Git Commit Skill
+
+> **Agent Skills Standard**: This skill conforms to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io). Compatible with any Agent Skills-compliant runtime including Crush, Claude Code, Cursor, and GitHub Copilot.
 
 You are responsible for ensuring all vault file changes are committed to git at the end of every session. This skill replaces the former `session.idle` plugin with a deterministic skill-based workflow.
 

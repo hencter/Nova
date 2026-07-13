@@ -277,6 +277,8 @@ Every AI session **SHOULD** execute this shutdown sequence:
 - All operations (ingest, query-filed, lint, session) are logged
 - Newest entries at the top (reverse chronological)
 
+> **Selective Memory Principle**: Research shows that full-history persistence can actively degrade agent performance (96% selective vs 71% full-history, [[selective-persistent-memory|arXiv:2607.09493]]). The lint process (§2.3) should periodically identify stale log entries and mark them for archiving to `/log-archive/`. The boot sequence reads only the last ~30 lines of `log.md` plus the current `index.md` and `concepts.md` — this is Nova's implementation of selective context loading.
+
 ---
 
 ## 8. Skills Discovery & Atomicity
@@ -291,6 +293,27 @@ A skill is a single, self-contained capability unit:
 ### Skill Location
 ```
 skills/<name>/SKILL.md    # Vault skills (relative path, configured in opencode.json)
+```
+
+### Agent Skills Standard Compliance
+
+Nova skills conform to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io), an open format adopted by 40+ agent tools including Crush, Claude Code, Cursor, GitHub Copilot, and VS Code. This means:
+
+- **Portable**: Nova skills can be loaded by any Agent Skills-compliant runtime
+- **Standardized frontmatter**: All skills use `name`, `description` (required) + optional `license`, `user-invocable`, `compatibility`, `metadata`
+- **Standard discovery paths**: In addition to Nova's `<vault>/skills/`, skills can be discovered via `.agents/skills/` (project-level) and `~/.config/agents/skills/` (user-level)
+
+When creating new skills, include the standard fields in SKILL.md frontmatter:
+```yaml
+---
+name: my-skill
+description: What it does
+license: MIT                    # optional but recommended
+user-invocable: true            # if users can manually invoke
+compatibility: all              # Agent Skills standard
+metadata:                       # optional extra metadata
+  domain: vault-maintenance
+---
 ```
 
 ### Skill Evaluation Criteria
@@ -368,6 +391,7 @@ The `auto-commit` skill (`skills/auto-commit/SKILL.md`) instructs the agent to r
 - Every query-filed answer creates a new node
 - Every lint run identifies gaps — which become ingest tasks
 - The vault **compounds**: more content → richer indexes → better query answers → more content
+- **Self-evolution path**: The GEP (Genome Evolution Protocol) pattern from [[self-evolving-agents|Self-Evolving Agents]] shows that compact gene-like representations outperform verbose documentation as carriers for learned experience. A future Nova iteration may distill successful query patterns into compact "evolution genes" rather than full-length concept notes, following the genes > skills > docs hierarchy. See also [[harness-engineering|Harness Engineering]] for the code-owned-guarantees pattern.
 
 ### Maintenance (Continuous)
 - Lint runs detect staleness, contradictions, orphans
@@ -413,6 +437,8 @@ Only when the user **explicitly asks** to create, update, or fix a skill or agen
 ## 12. Agent Tool Boundary (Hard Rule)
 
 **The Agent is the untrusted executor, not the human contributor.** This section constrains what tools the Agent (main + all subagents) is allowed to invoke. Enforcement is layered: AGENTS.md declares the rule, `opencode.json` + per-agent frontmatter enforces it, opencode's permission system audits it.
+
+> **Harness Engineering framing**: This section is a [[harness-engineering|harness engineering]] contract — the tool constraints are **code-owned guarantees** (enforced by opencode's permission system), not prompt-owned suggestions. Like the "Prompts to Contracts" pattern, deterministic enforcement rules (banned tools, priority ordering) move into the execution layer while guidance remains in the prompt layer. This dual-layer approach preserves both safety and utility.
 
 ### Tool Priority (Top to Bottom = Preferred to Discouraged)
 
@@ -473,6 +499,8 @@ A future lint pass should flag:
 | **Tool boundary** | **Section 12: opencode native tools first, never `rg`/`fd`/`jq` from Bash** |
 | **Terminology audit** | **Spawn `terminology-auditor` subagent → review report → apply fixes → update auditor** |
 | **Git commit** | **Load `auto-commit` skill → `git add -A && git commit` at session end. Never manual.** |
+| **Selective memory** | **Boot reads last ~30 log lines. Lint flags stale entries. Full history degrades performance — load only what's needed.** |
+| **Harness contracts** | **§12: Code-owned guarantees (tool boundary) + prompt-owned guidance. See [[harness-engineering|Harness Engineering]].** |
 
 ---
 
@@ -497,6 +525,6 @@ The `auto-commit` skill commits to the **currently checked-out branch**. When wo
 
 ---
 
-> **Version**: 1.2.0
+> **Version**: 1.3.0
 > **Conforms to**: OKF v0.1
 > **Inspired by**: Karpathy LLM Wiki pattern, Zettelkasten method, Obsidian knowledge management

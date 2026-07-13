@@ -1,9 +1,24 @@
 ---
 name: nova-kb
 description: Nova knowledge base maintenance operations. Use when ingesting new knowledge, linting the vault, filing query answers as atomic concept notes, cross-referencing concepts, or performing any vault maintenance operation.
+license: MIT
+user-invocable: true
+compatibility: all
+metadata:
+  author: Nova Vault
+  version: "1.0.0"
+  category: knowledge-management
+  tags:
+    - knowledge-base
+    - maintenance
+    - vault
+    - lint
+    - ingest
 ---
 
 # Nova KB — Knowledge Base Maintenance Skill
+
+> **Agent Skills Standard**: This skill conforms to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io). Compatible with any Agent Skills-compliant runtime including Crush, Claude Code, Cursor, and GitHub Copilot.
 
 You are maintaining the **Nova Knowledge Vault** (the directory containing `AGENTS.md`). This skill enables you to perform vault maintenance operations efficiently and correctly.
 
