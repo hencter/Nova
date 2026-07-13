@@ -12,9 +12,11 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 |------|------|------|
 | **Git** | 版本控制 | `winget install Git.Git` 或 [git-scm.com](https://git-scm.com) |
 | **Obsidian** | 可视化浏览知识库 | [obsidian.md](https://obsidian.md) |
-| **OpenCode** | AI 代理运行环境 | `npm i -g opencode-ai@latest` 或 [opencode.ai](https://opencode.ai) |
+| **OpenCode / Crush** | AI 代理运行环境 | 见下方说明 |
 
-> OpenCode 安装时会自动处理 Node.js 运行环境。
+> **Git 自动检测**：首次启动时 Nova 会检测 Git 是否已安装。如未安装，会自动尝试 `winget install Git.Git`（Windows）/ `brew install git`（macOS）/ `apt install git`（Linux），并告知用户安装结果。
+>
+> **AI 运行环境**：原版 OpenCode（opencode-ai/opencode）已于 2025-09-18 归档。推荐使用其接替者 **[Crush](https://github.com/charmbracelet/crush)**（Charm 团队维护，26.5k stars）或 **[OpenCode by SST](https://github.com/sst/opencode)**。两者均支持 Agent Skills 开放标准。
 
 ---
 
@@ -24,11 +26,20 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 # 1. 进入仓库
 cd Nova
 
-# 2. 启动 OpenCode
-opencode
+# 2. 启动 AI 代理
+crush       # 或：opencode
 ```
 
-Nova 首次启动会自动进入**初始化问答**：
+### 首次启动：强制初始化
+
+Nova 通过**双重触发器**检测是否需要初始化：
+
+| 触发器 | 场景 | 行为 |
+|--------|------|------|
+| `log.md` 无历史条目 | 全新仓库，从未被使用 | 进入初始化问答题 |
+| `user-config.md` 中 `owner_name: "未设置"` | 他人克隆/下载，log 有效但身份未配置 | **强制**进入初始化问答 |
+
+只要满足任一条件，Nova 会自动询问：
 
 ```
 Nova: 你想叫我什么名字？
@@ -43,7 +54,9 @@ Nova: 你主要用这个知识库做什么？
 Nova: 初始化完成。从现在起我是你的 星尘，请多指教。
 ```
 
-此后你可以用中文向 Nova 提问：
+> **设计意图**：克隆或下载 Nova 的用户不会继承原主人的身份。即使 log.md 已存在历史记录，也会因为 `owner_name: "未设置"` 强制触发个性化流程。这在 AGENTS.md §Boot Sequence 中有完整规范。
+
+初始化后你可以用中文向 Nova 提问：
 - "帮我学习 MCP 协议"
 - "摄入这篇文章：[链接]"
 - "介绍一下 Git 的数据模型"
@@ -55,8 +68,8 @@ Nova: 初始化完成。从现在起我是你的 星尘，请多指教。
 
 | 总目 | 目录 | 内容 |
 |------|------|------|
-| [`concepts.md`](concepts.md) | `concepts/` | **24 篇**原子概念笔记（AI Agent、Git、ZK、OKF 等） |
-| [`tools.md`](tools.md) | `tools/` | **8 篇**工具深度分析（OpenCode、Claude Code、Aider 等） |
+| [`concepts.md`](concepts.md) | `concepts/` | **29 篇**原子概念笔记（AI Agent、Git、ZK、OKF 等） |
+| [`tools.md`](tools.md) | `tools/` | **8 篇**工具深度分析（OpenCode/Crush、Claude Code、Aider 等） |
 | [`patterns.md`](patterns.md) | `patterns/` | **5 篇**设计模式（多代理、上下文管理、权限模型等） |
 | [`_identity.md`](_identity.md) | `_identity/` | Nova 的自我认知与个性化指南 |
 | [`_meta.md`](_meta.md) | `_meta/` | 关于知识库本身的知识（架构、自举机制） |
@@ -67,7 +80,7 @@ Nova: 初始化完成。从现在起我是你的 星尘，请多指教。
 ## 技术栈
 
 - **编辑器**: Obsidian（Markdown + Wiki Links + Graph View）
-- **AI 框架**: OpenCode（Skills + Subagents + Multi-agent + Auto-commit）
+- **AI 框架**: OpenCode / [Crush](https://github.com/charmbracelet/crush)（Skills + Subagents + Multi-agent + Auto-commit）
 - **版本控制**: Git（自动提交 via `auto-commit` 技能）
 - **格式标准**: [OKF v0.1](https://github.com/GoogleCloudPlatform/knowledge-catalog)（开放知识格式）
 

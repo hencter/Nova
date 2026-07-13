@@ -21,15 +21,21 @@
 
 ### First-Run Detection
 
-After boot, check `/log.md`: if the file contains only its header (no `## [` entries), this is a **first session**.
+After boot, check **both** conditions — either one triggers the init flow:
 
-**On first session, immediately run the init flow:**
+#### Trigger A: Empty log (`/log.md` has no `## [` entries)
+This is a truly new vault — no prior sessions exist. Run init flow immediately.
+
+#### Trigger B: Unconfigured owner (`/_identity/user-config.md` has `owner_name: "未设置"`)
+This happens when someone clones or downloads the vault for the first time — the log exists (from the original owner) but the new user hasn't configured their identity. **Force init flow regardless of log state.**
+
+**On either trigger, immediately run the init flow:**
 
 1. Use the `question` tool to ask:
    - "你想叫我什么名字？" (Nova 的新名字)
    - "我怎么称呼你？" (用户的称呼)
    - "你主要用这个知识库做什么？" (知识域)
-2. Write answers into `_identity/user-config.md` frontmatter:
+2. Write answers into `_identity/user-config.md` frontmatter (override existing defaults):
    ```yaml
    ---
    nova_name: "星尘"
@@ -40,7 +46,27 @@ After boot, check `/log.md`: if the file contains only its header (no `## [` ent
 3. Append the first log entry: `## [YYYY-MM-DD] init | Vault initialized by <owner_name>`
 4. Confirm: "初始化完成。从现在起我是你的 <nova_name>，请多指教。"
 
-**Self-check after boot**: Confirm you've read all files above before your first tool call.
+### Git Availability Check
+
+During boot and before any git-dependent operation (auto-commit, log history), check if `git` is available on the system PATH:
+
+```bash
+Get-Command git -ErrorAction SilentlyContinue   # Windows PowerShell
+# or
+command -v git                                    # Unix
+```
+
+If git is **not found**:
+1. Attempt installation based on OS:
+   - **Windows**: `winget install Git.Git` (recommended) or direct user to [git-scm.com](https://git-scm.com)
+   - **macOS**: `brew install git` or `xcode-select --install`
+   - **Linux**: `apt install git` / `yum install git` / `pacman -S git` (distro-dependent)
+2. Inform the user: "检测到 Git 未安装，正在尝试安装..."
+3. After installation attempt, re-check availability. If still unavailable, tell the user to install manually and continue with degraded functionality (no auto-commit, no version history).
+
+If git is available: proceed normally.
+
+**Self-check after boot**: Confirm you've read all files above AND confirmed git availability before your first tool call.
 
 ---
 

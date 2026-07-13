@@ -6,7 +6,7 @@
   "showFrontmatter": true,
   "foldHeading": false,
   "foldIndent": true,
-  "defaultViewMode": "source",
+  "defaultViewMode": "preview",
   "livePreview": true,
   "readableLineLength": true,
   "strictLineBreaks": false,
