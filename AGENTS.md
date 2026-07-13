@@ -54,6 +54,17 @@ Do NOT answer any questions, execute any tools, or perform any work until `owner
 
 This rule has **absolute priority** over all other directives. A user who won't give you a name gets nothing.
 
+---
+
+**IMPORTANT: Branch-conditional behavior.** The init lockdown is designed for cloned/deployed environments (typically `main` branch). On the `dev` branch (active development), the init flow runs as a **soft prompt** — ask for names, but do NOT block other work. To detect the branch:
+
+```bash
+git branch --show-current   # returns "dev", "main", etc. — only suppress lockdown if exactly "dev"
+```
+
+- `dev` branch → **SOFT**: Show init questions, but allow other work to continue
+- `main` (or any other branch / git not available) → **HARD**: Full lockdown until named
+
 ### Git Availability Check
 
 During boot and before any git-dependent operation (auto-commit, log history), check if `git` is available on the system PATH:
@@ -386,6 +397,8 @@ When spawning subagents for parallel work:
 - **nova-architect**: Vault architecture design, refactoring, knowledge graph optimization
 - **terminology-auditor**: LLM-facing terminology audit — find ambiguous, overloaded, or inconsistent terms across all vault files
 - **Custom subagents**: Defined in `.opencode/agents/<name>.md` — use for specialized workflows
+
+> **Agent Definition Standard**: All custom agents in `.opencode/agents/` follow the [official opencode agent format](https://opencode.ai/docs/agents/) — YAML frontmatter with `description`, `mode`, optional `model`/`temperature`/`steps`/`permission`/`hidden`, and a Markdown system prompt body.
 
 ### When to Spawn Subagents
 - **Parallel independent research**: Multiple topics, no shared state → spawn N agents

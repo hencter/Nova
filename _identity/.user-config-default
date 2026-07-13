@@ -1,0 +1,17 @@
+---
+nova_name: "Nova"
+owner_name: "未设置"
+domain: "general-knowledge"
+---
+
+# 用户配置
+
+> 此文件不会被 git 跟踪，专属于你。Nova 在每次会话启动时读取它以获取你的偏好。
+
+## 字段说明
+
+| 字段 | 含义 | 默认值 |
+|------|------|--------|
+| `nova_name` | 你给 Nova 起的名字 | `Nova` |
+| `owner_name` | 你的称呼 | `未设置` |
+| `domain` | 主要知识域 | `general-knowledge` |
