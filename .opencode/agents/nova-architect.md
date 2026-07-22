@@ -1,7 +1,6 @@
 ---
 description: Specialized subagent for vault architecture design, refactoring decisions, and knowledge graph optimization. Use when making structural changes to the Nova vault.
 mode: subagent
-model: anthropic/claude-sonnet-4-20250514
 temperature: 0.1
 permission:
   edit: ask

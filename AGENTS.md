@@ -398,7 +398,9 @@ When spawning subagents for parallel work:
 - **terminology-auditor**: LLM-facing terminology audit — find ambiguous, overloaded, or inconsistent terms across all vault files
 - **Custom subagents**: Defined in `.opencode/agents/<name>.md` — use for specialized workflows
 
-> **Agent Definition Standard**: All custom agents in `.opencode/agents/` follow the [official opencode agent format](https://opencode.ai/docs/agents/) — YAML frontmatter with `description`, `mode`, optional `model`/`temperature`/`steps`/`permission`/`hidden`, and a Markdown system prompt body.
+> **Agent Definition Standard**: All custom agents in `.opencode/agents/` follow the [official opencode agent format](https://opencode.ai/docs/agents/) — YAML frontmatter with `description`, `mode`, optional `temperature`/`steps`/`permission`/`hidden`, and a Markdown system prompt body.
+
+> ⛔ **Do NOT set `model` in agent frontmatter.** The `model` field locks an agent to a specific model provider that may not be available or connectable in the user's environment (API key missing, region blocked, rate limited). Let opencode's default model routing handle model selection — it falls back gracefully. Setting `model` = hard failure when that model is unreachable.
 
 ### When to Spawn Subagents
 - **Parallel independent research**: Multiple topics, no shared state → spawn N agents
@@ -573,6 +575,6 @@ The `auto-commit` skill commits to the **currently checked-out branch**. When wo
 
 ---
 
-> **Version**: 1.3.0
+> **Version**: 1.3.1
 > **Conforms to**: OKF v0.1
 > **Inspired by**: Karpathy LLM Wiki pattern, Zettelkasten method, Obsidian knowledge management

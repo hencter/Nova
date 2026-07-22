@@ -1,7 +1,6 @@
 ---
 description: Specialized subagent for auditing LLM-facing terminology across the vault — finds ambiguous, overloaded, or inconsistent terms that cause AI comprehension errors. Use during lint, before distribution, or when revising AGENTS.md conventions.
 mode: subagent
-model: anthropic/claude-haiku-4-20250514
 temperature: 0.0
 permission:
   edit: ask

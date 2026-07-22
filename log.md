@@ -4,6 +4,18 @@
 
 ---
 
+## [2026-07-23] fix | 禁止 agent 配置 model frontmatter
+
+**原因**：设置 `model` 会锁定 agent 到特定模型提供商，用户环境中可能无法连接（API key 缺失、地域限制、速率限制），导致硬失败。
+
+**变更**：
+1. `AGENTS.md` §9 — 新增核心原则：禁止 agent frontmatter 中设置 `model`，让 opencode 默认模型路由处理
+2. `.opencode/agents/nova-architect.md` — 移除 `model: anthropic/claude-sonnet-4-20250514`
+3. `.opencode/agents/terminology-auditor.md` — 移除 `model: anthropic/claude-haiku-4-20250514`
+4. `AGENTS.md` 版本 1.3.0 → 1.3.1；`index.md` 统计同步
+
+**意义**：agent 定义从「绑定模型」变为「模型无关」，提高跨环境可移植性。
+
 ## [2026-07-13] research-session | Nova 核心架构迭代 — 互联网/论文/GitHub 全面检索与执行
 
 **检索范围**：arXiv (2026年7月最新论文)、GitHub Trending (AI Agent / Agent Framework)、agentskills.io、MCP/A2A 协议更新、Claude Code v2.1.207、Crush/OpenCode 分支状态
