@@ -5,7 +5,7 @@ description: Atomic concept notes on fundamental concepts across AI agents, know
 tags:
   - index
   - concepts
-  timestamp: 2026-07-13T18:00:00Z
+timestamp: 2026-07-13T18:00:00Z
 ---
 
 # 核心概念

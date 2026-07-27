@@ -10,11 +10,11 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 
 | 工具 | 用途 | 安装 |
 |------|------|------|
-| **Git** | 版本控制 | `winget install Git.Git` 或 [git-scm.com](https://git-scm.com) |
 | **Obsidian** | 可视化浏览知识库 | [obsidian.md](https://obsidian.md) |
 | **OpenCode / Crush** | AI 代理运行环境 | 见下方说明 |
+| **Git**（可选） | 版本历史与自动提交 | `winget install Git.Git` 或 [git-scm.com](https://git-scm.com) |
 
-> **Git 自动检测**：首次启动时 Nova 会检测 Git 是否已安装。如未安装，会自动尝试 `winget install Git.Git`（Windows）/ `brew install git`（macOS）/ `apt install git`（Linux），并告知用户安装结果。
+> **没有 Git 也能用**：Git 只负责版本历史和自动提交。不装 Git，Nova 照常工作（很多用户用 Obsidian Sync 或网盘同步）。Nova 不会在你未确认的情况下自动安装任何软件。
 >
 > **AI 运行环境**：原版 OpenCode（opencode-ai/opencode）已于 2025-09-18 归档。推荐使用其接替者 **[Crush](https://github.com/charmbracelet/crush)**（Charm 团队维护，26.5k stars）或 **[OpenCode by SST](https://github.com/sst/opencode)**。两者均支持 Agent Skills 开放标准。
 
@@ -37,7 +37,7 @@ Nova 通过**双重触发器**检测是否需要初始化：
 | 触发器 | 场景 | 行为 |
 |--------|------|------|
 | `log.md` 无历史条目 | 全新仓库，从未被使用 | 进入初始化问答题 |
-| `user-config.md` 中 `owner_name: "未设置"` | 他人克隆/下载，log 有效但身份未配置 | **强制**进入初始化问答 |
+| `user-config.md` 中 `initialized: false` | 他人克隆/下载，log 有效但身份未配置 | **强制**进入初始化问答 |
 
 只要满足任一条件，Nova 会自动询问：
 
@@ -54,13 +54,22 @@ Nova: 你主要用这个知识库做什么？
 Nova: 初始化完成。从现在起我是你的 星尘，请多指教。
 ```
 
-> **设计意图**：克隆或下载 Nova 的用户不会继承原主人的身份。即使 log.md 已存在历史记录，也会因为 `owner_name: "未设置"` 强制触发个性化流程。**在完成命名之前，Nova 会拒绝所有请求**——这是故意的保护机制，确保每个用户都能拥有属于自己的 Nova。这在 AGENTS.md §Boot Sequence 中有完整规范。
+> **设计意图**：克隆或下载 Nova 的用户不会继承原主人的身份。即使 log.md 已存在历史记录，也会因为 `initialized: false` 强制触发个性化流程。在完成命名之前，Nova 会拒绝其他请求——确保每个用户都拥有属于自己的 Nova。
+>
+> **不想起名？** 直接说「跳过」，Nova 会用默认名字、称呼你「朋友」，立刻开始干活。也可以随时手动编辑 [`_identity/user-config.md`](_identity/user-config.md)。
 
 初始化后你可以用中文向 Nova 提问：
-- "帮我学习 MCP 协议"
-- "摄入这篇文章：[链接]"
-- "介绍一下 Git 的数据模型"
-- "帮我新建一篇关于 React Server Components 的笔记"
+
+| 你说 | Nova 做 |
+|------|---------|
+| 「帮我学习 MCP 协议」 | 检索知识库并讲解，答案归档为笔记 |
+| 「摄入这篇文章：[链接]」 | 提取概念、建立笔记、交叉链接 |
+| 「介绍一下 Git 的数据模型」 | 查询已有笔记并综合回答 |
+| 「帮我新建一篇关于 X 的笔记」 | 按模板创建原子笔记 |
+| 「lint 一下 / 检查健康」 | 全库体检：断链、孤儿笔记、过期内容 |
+| 「这篇文章讲什么」 | 阅读并总结，有价值则归档 |
+
+> AGENTS.md 是 Nova 的工作手册（英文，给 AI 看的），你不需要读它。
 
 ---
 

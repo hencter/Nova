@@ -1,4 +1,5 @@
 ---
+initialized: false
 nova_name: "Nova"
 owner_name: "未设置"
 domain: "general-knowledge"
@@ -12,6 +13,7 @@ domain: "general-knowledge"
 
 | 字段 | 含义 | 默认值 |
 |------|------|--------|
+| `initialized` | 是否已完成初始化（`false` 会触发 Nova 的初始化问答） | `false` |
 | `nova_name` | 你给 Nova 起的名字 | `Nova` |
 | `owner_name` | 你的称呼 | `未设置` |
 | `domain` | 主要知识域 | `general-knowledge` |

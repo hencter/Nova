@@ -4,6 +4,24 @@
 
 ---
 
+## [2026-07-27] refactor | AGENTS.md v1.4.0 普通用户可用性重构 + obsidian 技能
+
+**动因**：从「普通用户可用性」角度审查 AGENTS.md（580 行），发现 lockdown 无逃生口、git 硬依赖、研究内容与运行规则混杂、frontmatter 缩进错误等问题。
+
+**变更**：
+1. `AGENTS.md` 580 → ~250 行：新增中文人类导读（顶部）；init lockdown 增加逃生口（说「跳过」即写入默认值继续）；lockdown 话术从 base64 改明文 `_identity/lockdown-response.md`（含缺失回退）；Trigger B 改用显式 `initialized: false` 标志替代字符串哨兵；git 降级为可选增强（懒检测、不自动安装、静默降级）；§14 分支策略下沉至 `_meta/development.md`；删除 harness/GEP 研究性段落（保留规则，内容已在 concepts/ 笔记中）；修复 §2.3 双编号与 §10 缩进错误。版本 1.3.1 → 1.4.0
+2. 新建 `skills/obsidian/SKILL.md`：封装 Obsidian 官方 CLI（orphans/unresolved/deadends/backlinks 等 lint 原语），CLI 不可用时静默回退原生工具；硬性禁止 plugin/theme/eval 操作
+3. `_identity/user-config.md` + `.user-config-default`：新增 `initialized` 字段
+4. `README.md`：Git 改为可选、新增「不想起名？说跳过」逃生口说明、新增用户指令对照表
+5. 修复 `index.md`、`concepts.md` frontmatter 中 `timestamp` 错误缩进（被 YAML 解析为 tags 子项）
+6. `_meta/development.md` 新建（分支策略）；`_meta.md`、`index.md` 索引同步
+
+**意义**：schema 层从「开发者研究文档」回归「运行规则手册」；克隆用户不再被 lockdown 困死；无 git 环境完全可用；lint 获得 Obsidian 原生图缓存支持。
+
+## [2026-07-23] init | Vault owner configured
+
+初始化完成：使用者称呼为 `开发者`，Agent 名称为 `Nova`，主领域为 `ai-engineering`。
+
 ## [2026-07-23] fix | 禁止 agent 配置 model frontmatter
 
 **原因**：设置 `model` 会锁定 agent 到特定模型提供商，用户环境中可能无法连接（API key 缺失、地域限制、速率限制），导致硬失败。

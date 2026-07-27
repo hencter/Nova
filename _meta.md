@@ -17,3 +17,4 @@ This directory contains knowledge about the vault itself — its architecture, c
 - [[vault-architecture|Vault Architecture]] — How the vault is structured, directory rationale, graph topology
 - [[conventions|Conventions]] — Naming rules, linking conventions, frontmatter standards, file organization
 - [[self-bootstrapping|Self-Bootstrapping]] — How the vault maintains and grows itself without external infrastructure
+- [[development|Development Workflow]] — Branching and release process for vault maintainers (not needed for daily use)
