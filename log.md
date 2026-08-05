@@ -4,6 +4,19 @@
 
 ---
 
+## [2026-08-05] fix | 新增 Data Accuracy 元能力 — 计算器验算硬规则 → §2.6
+
+**原因**：用户指出 Nova 缺少数据准确性元能力。LLM 算术不可靠，任何涉及数据计算或数据获取后的验算都必须用计算器验证，不能凭心算输出。
+
+**变更**：
+1. `AGENTS.md` 新增 §2.6 **Data Accuracy — Calculator Required (Hard Rule)**：任何数据输出（计算/聚合/转换/统计/由数字推导的声明）必须在交付前用计算器验证；触发条件 = 数据计算请求或数据获取后需验算；协议 4 步（识别数字声明 → Bash+python/node 计算 → 验算取回的数值 → 引用验证值与计算过程，验证失败则明说）
+2. `AGENTS.md` §0 Core Directives 新增第 6 条 **Be Accurate**（优先顺序第 6）
+3. `AGENTS.md` §11 Quick Reference 新增 "Verify data output" 行
+4. 修复 AGENTS.md 4 处粘连格式损坏（§2.1/§6/§9/§11 合并行丢失换行），并压缩至 350 行预算内（355 → 350，净变化 +§2.6）
+5. `_meta/promotions.md` 台账 Active Rules 登记 §2.6
+
+**意义**：数据准确性成为每次会话强制执行的元能力；计算器验算被编码为硬规则（§2.6），与 §9 工具边界兼容（python/node 属允许工具）。
+
 ## [2026-08-05] refactor | AGENTS.md v1.5.1 — 蜂群会议批判审计后修订
 
 **动因**：v1.5.0 图语义迭代经蜂群子代理会议（nova-architect / terminology-auditor / critic）批判审计，裁定"定稿失败进入修订"。三席共识：核心洞见正确（log=trace，升格进每会话加载层才算 standard），但存在 P0 级缺陷——§2.5"概念笔记 by construction 防复发"是伪承诺、升格闭环零外部强制点、无容量预算、术语 4 处定义级冲突、执行层 SKILL.md 脱节。

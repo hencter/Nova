@@ -34,6 +34,7 @@ Rules written into `AGENTS.md` — loaded every session, binding by construction
 | 2026-07-23 | §9 no-model in agent frontmatter | Setting `model` hard-fails when provider unreachable | log 2026-07-23 |
 | 2026-06-30 | §9 tool boundary (no rg/fd/fzf/bat/jq) | External search CLIs bypass permission audit | log 2026-06-30 |
 | 2026-06-30 | §1 no filesystem-absolute paths | Absolute paths break on distribution | log 2026-06-30 |
+| 2026-08-05 | §2.6 data accuracy — calculator required | LLM arithmetic unreliable; verify any numeric output with a calculator | log 2026-08-05 |
 
 ## Active Constraint Notes (boot-loaded)
 
