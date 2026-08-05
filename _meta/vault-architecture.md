@@ -29,30 +29,32 @@ aliases:
 ```
 <vault>/                       # 知识库根目录（任意位置）
 ├── AGENTS.md                  # 模式层（Karpathy 第 3 层）：AI Agent 的规则
-├── index.md                   # 顶级渐进式披露目录
-├── log.md                     # 仅追加的时间线记忆
+├── index.md                   # 顶级渐进式披露目录（type: Index hub）
+├── concepts.md                # 概念集群 hub（type: Index）
+├── tools.md                   # 工具集群 hub（type: Index）
+├── patterns.md                # 模式集群 hub（type: Index）
+├── _meta.md                   # 元信息集群 hub（type: Index）
+├── _identity.md               # 身份集群 hub（type: Index）
+├── conference.md              # 会议集群 hub（type: Index）
+├── log.md                     # 仅追加的时间线记忆（trace 层）
 │
 ├── _identity/                 # AI 自我身份（Nova 是谁）
-│   ├── index.md
 │   ├── nova-identity.md       # 核心目标、指令、个性
 │   └── capability-manifest.md # 工具清单与成长路径
 │
 ├── _meta/                     # 关于知识库的知识库（自我参照）
-│   ├── index.md
+│   ├── promotions.md          # 升格台账（boot 加载）
 │   ├── vault-architecture.md  # 本文件
 │   ├── conventions.md         # 命名、链接、frontmatter 规则
 │   └── self-bootstrapping.md  # 知识库如何自我维护
 │
 ├── concepts/                  # 核心原子概念笔记（ZK 方法）
-│   ├── index.md               # 概念目录
 │   └── <concept>.md           # 原子笔记（每个文件一个概念）
 │
 ├── tools/                     # 工具专项深度分析
-│   ├── index.md
 │   └── <tool-name>.md
 │
 ├── patterns/                  # 设计模式与架构
-│   ├── index.md
 │   └── <pattern-name>.md
 │
 ├── templates/                 # 笔记模板，用于一致化创建
@@ -60,11 +62,11 @@ aliases:
 │   ├── tool-template.md
 │   └── pattern-template.md
 │
-├── skills/                     # 技能定义（受 AGENTS.md §11 保护）
+├── skills/                     # 技能定义（受 AGENTS.md §8 保护）
 │   └── nova-kb/SKILL.md        # Nova 知识库维护技能
 │
 ├── .opencode/                  # OpenCode 项目配置
-│   └── agents/                 # 自定义子 Agent（受 AGENTS.md §11 保护）
+│   └── agents/                 # 自定义子 Agent（受 AGENTS.md §8 保护）
 │       └── nova-architect.md
 │
 ├── opencode.json               # 最小化配置（skills.paths + instructions）
@@ -112,13 +114,13 @@ graph TD
 
 | 属性 | 描述 |
 |----------|-------------|
-| **节点类型** | 文件（原子笔记） |
-| **边类型** | Wiki 链接 ``target`` |
+| **节点类型** | 文件（原子笔记；`type: Index` 文件为 hub） |
+| **边类型** | Wiki 链接 `[[target]]`（`prerequisites` 路径 = 依赖文档，非图边） |
 | **边语义** | 编码于链接周围的文字和 frontmatter 字段（`prerequisites`、`related`、`sources`） |
 | **方向** | 有向（链接者 → 被链接者） |
 | **反向链接** | 在查询时通过扫描所有文件的入链来计算 |
 | **密度** | 目标：每篇笔记 3+ 条入链（反孤立） |
-| **枢纽节点** | `index.md` 文件作为高阶枢纽节点提供导航 |
+| **枢纽节点** | `type: Index` 文件（根 `index.md` + 根级集群 hub）提供导航 |
 
 ### 预期的图谱结构
 
@@ -151,7 +153,7 @@ graph LR
 ## 关键架构决策
 
 1. **OKF v0.1 合规**：每个文件在 frontmatter 中有 `type`。所有链接使用 markdown 语法。`index.md` 用于渐进式披露。`log.md` 用于变更日志。
-2. **Obsidian wiki 链接**：内部引用使用 ``note-name``。Obsidian 将其渲染为可点击链接并自动追踪反向链接。
+2. **Obsidian wiki 链接**：内部引用使用 `[[note-name]]`。Obsidian 将其渲染为可点击链接并自动追踪反向链接。
 3. **时间戳 ID**：`YYYYMMDDThhmmss` 格式，提供稳定、可排序的标识符。
 4. **暂无 raw/ 层**：当前为种子知识库，无不不可变的源文档。raw 层可随知识库增长而添加。
 5. **仅追加日志**：`/log.md` 从不重写 — 仅追加。这保留了完整的审计历史。

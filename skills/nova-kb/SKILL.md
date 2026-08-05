@@ -45,11 +45,11 @@ When you receive new source material (research, articles, conversation insights,
      - relevant
      - tags
    id: "YYYYMMDDThhmmss"
-   status: seedling|budding|evergreen
+   status: seedling|budding|evergreen|superseded|archived
    difficulty: beginner|intermediate|advanced
    domain: knowledge-domain
    prerequisites:
-     - /path/to/dependency.md
+     - "[[note-slug]]"
    related:
      - "[[Related Note]]"
    sources:
@@ -60,8 +60,8 @@ When you receive new source material (research, articles, conversation insights,
      One-sentence executive summary.
    ---
    ```
-6. **Cross-link** — update `related` fields on existing notes that should reference the new note
-7. **Update indexes** — add entry to the relevant `index.md`
+6. **Cross-link** — ensure ≥1 existing note links the new note (inbound edge); update `related` fields on existing notes that should reference the new note
+7. **Update hubs** — add entry to the relevant cluster hub (`concepts.md`/`tools.md`/`patterns.md`, all `type: Index`)
 8. **Log it** — append to `/log.md`: `## [YYYY-MM-DD] ingest | <Brief description>`
 
 ### Query-File — Filing Good Answers
@@ -76,20 +76,34 @@ When you answer a question and the answer has lasting value:
 
 ### Lint — Health Check
 
-Run lint after ~10 ingest operations or when requested:
+Run lint at session end (shutdown sequence) and on `/lint`:
 
 1. **Contradiction scan**: Search the vault for conflicting claims. Two notes claiming opposite things about the same concept.
-2. **Orphan detection**: Find notes with zero inbound links (check `related` fields in all notes, and all `index.md` files — any note not referenced is an orphan).
-3. **Staleness check**: Notes with `status: superseded` that still appear in index files, or current notes referencing outdated/superseded concepts.
+2. **Orphan detection**: Find notes with zero inbound wiki links (not listed in any hub file (`type: Index`), not referenced in any note's `related` or body).
+3. **Missing cross-link scan**: Notes sharing tags/domain within a community (directory) that are not cross-linked.
 4. **Broken links**: Wiki links `[[Target]]` pointing to non-existent notes.
-5. **Gap analysis**: Topics mentioned in notes but lacking dedicated concept pages.
-6. **Report findings** in `/log.md`: `## [YYYY-MM-DD] lint | <Summary>`
+5. **Staleness check**: Notes with `status: superseded` that still appear in index files, or current notes referencing outdated/superseded concepts.
+6. **Promotion audit (Grep, mechanical)**: Grep `log.md` for `fix` entries missing `→ [[artifact]]`/`→ §N` and not marked `lesson: trivial` — unresolved debts.
+7. **Version sync**: `index.md` statistics block must reflect `AGENTS.md` footer version.
+8. **Report findings** in `/log.md`: `## [YYYY-MM-DD] lint | <Summary>`
 
 **Auto-fix rules**:
 - Fix broken links by finding the correct target or removing the link
 - Add missing cross-references where semantically appropriate
 - Mark superseded notes with `status: superseded` and update frontmatter
+- Route unpromoted traces by severity (§2.5): trivial → mark `lesson: trivial`; critical/normal → promote
 - NEVER delete notes — only change status
+
+### Promotion — Trace → Standard
+
+When you complete a fix, mistake, or discover a recurring problem (AGENTS.md §2.5):
+
+1. **Severity gate**: critical (data loss/contradiction/security/recurrence) → must promote; normal (reusable lesson) → promote; trivial (typo/one-off) → record only
+2. **Record the trace**: every `fix` log entry must end with `→ [[artifact]]`, `→ §N`, or `| lesson: trivial`
+3. **Root-cause**: why did this error happen?
+4. **Promote**: recurring operational error → AGENTS.md rule (within line budget); conceptual → concept note; tool/pattern → tools/ or patterns/
+5. **Register**: record the promotion in `_meta/promotions.md` (ledger)
+6. **Wire the edges**: update `related` fields, hubs, and the ledger
 
 ### Cross-Reference — Strengthening the Graph
 
@@ -136,10 +150,11 @@ summary: >-
 | `/tools/` | Tool-specific deep dives |
 | `/patterns/` | Design patterns and architectures |
 | `/_identity/` | Nova's self-conception and capabilities |
-| `/_meta/` | Vault-about-the-vault (architecture, conventions) |
+| `/_meta/` | Vault-about-the-vault (architecture, conventions, promotions ledger) |
 | `/templates/` | Note templates |
 | `/index.md` | Top-level catalog |
-| `/log.md` | Chronological memory |
+| `/concepts.md` + `/tools.md` + `/patterns.md` + `/_meta.md` + `/_identity.md` + `/conference.md` | Cluster hubs (`type: Index`) |
+| `/log.md` | Chronological memory (trace layer) |
 | `/AGENTS.md` | Schema layer (rules) |
 
 ## Log Format
@@ -152,4 +167,6 @@ Always use this format for log entries:
 - Key decisions
 ```
 
-Operations: `init`, `ingest`, `query-filed`, `lint`, `session`, `cross-reference`, `refactor`
+Operations: `init`, `ingest`, `query-filed`, `lint`, `fix`, `session`, `cross-reference`, `refactor`
+
+**Fix entries** must end with `→ [[artifact]]`, `→ §N`, or `| lesson: trivial` (§2.5 hard format).

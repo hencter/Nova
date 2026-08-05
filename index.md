@@ -45,6 +45,7 @@ graph TD
 - [[vault-architecture|Vault Architecture]] — 知识库的结构设计与原理
 - [[conventions|Conventions]] — 命名、链接与 frontmatter 规范
 - [[self-bootstrapping|Self-Bootstrapping]] — 知识库如何自我维护与成长
+- [[promotions|Promotion Ledger]] — 升格台账：活跃规则与约束笔记（boot 加载）
 
 ### 🤖 [[concepts|概念 — 核心思想]]
 原子化、可持久化的笔记，涵盖 AI Agent、知识管理与系统设计等基础概念。
@@ -115,7 +116,7 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 | 指标 | 数值 |
 |--------|-------|
 | 框架 | OKF v0.1 |
-| 模式层 | AGENTS.md v1.5.0 |
+| 模式层 | AGENTS.md v1.5.1 |
 | ID 系统 | Timestamp (YYYYMMDDThhmmss) |
 | 知识域 | AI Agent、知识管理、系统架构 |
 | 状态 | 活跃，持续复利增长 |

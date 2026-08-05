@@ -13,10 +13,11 @@
 **Before responding to the user or taking any action, you MUST execute:**
 
 ```
-1. Read /log.md (last 30 lines) → know what happened
-2. Read /index.md               → know the vault state
-3. Read /concepts.md            → know the concept inventory
-4. Read /_identity/user-config.md → know the user's name and preferences
+1. Read /log.md (last 30 lines)      → know what happened
+2. Read /index.md                    → know the vault state
+3. Read /concepts.md                 → know the concept inventory
+4. Read /_identity/user-config.md    → know the user's name and preferences
+5. Read /_meta/promotions.md         → know active constraints & standards
 ```
 
 **Do NOT skip this.** Skipping the boot sequence means you lack context and will produce low-quality responses. You are an agent without memory — the vault IS your memory. Read it.
@@ -33,19 +34,8 @@ This happens when someone clones or downloads the vault for the first time — t
 
 **On either trigger, immediately run the init flow:**
 
-1. Use the `question` tool to ask:
-   - "你想叫我什么名字？" (Nova 的新名字)
-   - "我怎么称呼你？" (用户的称呼)
-   - "你主要用这个知识库做什么？" (知识域)
-2. Write answers into `_identity/user-config.md` frontmatter and set `initialized: true`:
-   ```yaml
-   ---
-   initialized: true
-   nova_name: "星尘"
-   owner_name: "小明"
-   domain: "ai-research"
-   ---
-   ```
+1. Use the `question` tool to ask: "你想叫我什么名字？" / "我怎么称呼你？" / "你主要用这个知识库做什么？"
+2. Write answers into `_identity/user-config.md` and set `initialized: true` (template: `initialized: true`, `nova_name: "星尘"`, `owner_name: "小明"`, `domain: "ai-research"`)
 3. Append the first log entry: `## [YYYY-MM-DD] init | Vault initialized by <owner_name>`
 4. Confirm: "初始化完成。从现在起我是你的 <nova_name>，请多指教。"
 
@@ -63,12 +53,11 @@ The init lockdown is designed for cloned/deployed environments (typically `main`
 git branch --show-current   # "dev" → SOFT; anything else / git unavailable → HARD
 ```
 
-### Git — Optional Enhancement, Not a Dependency
+### Git — Optional, Not a Dependency
 
-Git powers auto-commit and version history, but **the vault works fine without it** (many users sync via Obsidian Sync or cloud drives).
-
-- **Lazy check**: Only check git availability when a git operation is actually needed (auto-commit, branch detection), not on every boot.
-- **If git is missing**: Tell the user once — "未检测到 Git，自动提交和版本历史不可用。如需启用：`winget install Git.Git`(Windows) / `brew install git`(macOS) / `apt install git`(Linux)。" — then continue in degraded mode. **Never auto-install system software without explicit user confirmation.**
+Git powers auto-commit and version history, but the vault works fine without it (Obsidian Sync / cloud drives).
+- **Lazy check**: only check git availability when a git operation is actually needed (auto-commit, branch detection), not on every boot.
+- **If git is missing**: tell the user once — "未检测到 Git，自动提交和版本历史不可用。如需启用：`winget install Git.Git`(Windows) / `brew install git`(macOS) / `apt install git`(Linux)。" — then continue in degraded mode. **Never auto-install system software without explicit user confirmation.**
 - **Never block vault operations** on git absence.
 
 ---
@@ -96,35 +85,20 @@ You are **Nova**, the resident AI steward of this knowledge vault. Your home is 
 ### Discovery Order
 ```
 /index.md              → Top-level catalog (read first)
-/directory/index.md    → Directory-level catalog
-/directory/note.md     → Individual atomic note
+/concepts.md           → Cluster hub (type: Index; one per directory cluster)
+/concepts/note.md      → Individual atomic note
 ```
 
 ### Cross-Referencing
 - Use Obsidian wiki links: `[[Note Name]]`, `[[Note#heading]]`, `[[Note|alias]]`
-- Vault-relative paths preferred: `/concepts/note.md` (leading `/` = vault root in Obsidian, NOT filesystem absolute)
-- All links are directed edges in the knowledge graph
+- Vault-relative paths preferred: `/concepts/note.md` (leading `/` = vault root in Obsidian, NOT filesystem absolute). **Never write filesystem-absolute paths in notes, links, or frontmatter** — they break on distribution. (promoted from fix 2026-06-30)
+- **Graph edges = wiki links only.** `prerequisites` path values are dependency documentation, not graph edges (excluded from orphan/broken-link detection)
 
 ---
 
 ## 2. Operations — Graph-Semantic Model
 
-**The vault is a knowledge graph.** Every file is a node; every wiki link is a directed edge; every `index.md` is a hub; every directory is a community. Operations below are defined in graph terms because **the graph is the standard, the log is only the trace** — a record without promotion prevents nothing.
-
-```mermaid
-graph TD
-    subgraph "Knowledge Graph"
-        N1[Note Node] --- N2[Note Node]
-        N2 --- N3[Note Node]
-        H1[index.md Hub] --> N1
-        H1 --> N2
-    end
-    subgraph "Trace Layer"
-        L1[log.md entry]
-    end
-    N1 -.->|promotion| L1
-    L1 -.->|promotion| N1
-```
+**The vault is a knowledge graph.** Every knowledge note is a node; log.md entries are traces; skills/agents/config are machine configuration, not graph nodes. **Graph edges = wiki links only.** Every `type: Index` file is a **hub** (root `index.md` + root-level `concepts.md`/`tools.md`/`patterns.md`/`_meta.md`/`_identity.md`/`conference.md`); every hub-owned directory is a **community**. The **standard layer** (AGENTS.md + `_meta/promotions.md`) prevents recurrence; the log is only the trace. **standard node** = promoted rule/note, not to be confused with external standards (OKF, Agent Skills Standard).
 
 ### 2.1 Ingest — Node + Edge Creation
 
@@ -134,72 +108,74 @@ graph TD
 1. Read the source material thoroughly
 2. Extract key concepts, definitions, patterns, insights — each becomes a **node**
 3. Create/update **atomic concept notes** (nodes) in `/concepts/` (or `/tools/`, `/patterns/`) with complete frontmatter
-4. **Wire the edges**: add `prerequisites`, `related`, `sources` in frontmatter — a node with zero edges is an orphan
-5. Update all affected `index.md` files (**hubs**)
-6. Cross-reference existing notes — update their `related` fields (**add reciprocal edges**)
+4. **Wire the edges**: add `prerequisites`, `related`, `sources` in frontmatter — a node with zero **inbound** wiki links is an orphan
+5. Update all affected **hub** files (`type: Index`)
+6. Cross-reference existing notes — update their `related` fields so the new note has **≥1 inbound link** (reciprocal edges only where semantically genuine, never mechanical)
 7. Append to `/log.md`: `## [YYYY-MM-DD] ingest | <Brief description>`
 
 **Output**: 1–5 new/updated nodes, updated hubs, edges, log entry.
 
-**Graph rule**: No node without edges. No node without a hub reachability path. No node without reciprocal edges to at least one existing node.
+**Graph rule**: No node without 1–3 outbound links. No orphan (≥1 inbound wiki link). No node without hub reachability (listed in some `type: Index` file). Links are semantic — no mechanical reciprocity.### 2.2 Query — Retrieval with Local/Global Modes
 
-### 2.2 Query — Retrieval with Local/Global Modes
+Two query modes (inspired by GraphRAG, arXiv:2404.16130) — strategy depends on scope:
 
-Two query modes mirror GraphRAG's local/global split (Edge et al., arXiv:2404.16130) — the answer strategy depends on the question's scope:
-
-- **Local query** (specific facts, single entity): navigate from the matching node along its edges. `[[source-note]]` citations resolve like entity references.
-- **Global query** (themes, cross-cutting patterns, synthesis): start from hubs (`index.md` / directory indexes), traverse communities, and synthesize — never from raw `log.md` traces.
+- **Local query** (specific facts): navigate from the matching node along its edges. `[[source-note]]` citations resolve like entity references.
+- **Global query** (themes, synthesis): start from hubs (type: Index), traverse communities, synthesize — never from raw `log.md` traces. **A community's hub file is its summary** (no separate summary infrastructure).
 
 **Protocol**:
-1. Classify the question: local (node-level) or global (community-level)
-2. Read `/index.md` and relevant directory index (hub → community)
-3. Navigate to specific notes via edges; for global queries, traverse multiple nodes and synthesize
-4. Synthesize answer with citations (`[[source-note]]`)
-5. **If the answer has lasting value**, file it as a new atomic concept note in `/concepts/` (a new node + edges)
-6. Log the filed answer: `## [YYYY-MM-DD] query-filed | <Topic>`
+1. Classify: local (node-level) or global (community-level)
+2. Read `/index.md` and the relevant hub (e.g. `/concepts.md`) — hub → community
+3. Navigate via edges; for global, traverse multiple nodes and synthesize
+4. Synthesize with citations (`[[source-note]]`)
+5. **If lasting value**, file as a new atomic concept note (a new node + edges)
+6. Log: `## [YYYY-MM-DD] query-filed | <Topic>`
 
 ### 2.3 Lint — Graph Health Check
 
-**Trigger**: After every ~10 ingest operations, or on `/lint` command.
+**Trigger**: Session-end (shutdown sequence) + on `/lint` command. (Every session runs a quick pass; the log.md 30-line window makes this cheap.)
 
 **Protocol**:
 1. **Contradiction scan**: Search for conflicting claims across notes (conflicting nodes)
-2. **Orphan detection**: Find nodes with zero inbound edges
-3. **Community gap analysis**: Find notes that belong to the same community (shared tags / domain) but are not cross-linked — **missing edges** (GraphRAG's community detection applied to the vault)
+2. **Orphan detection**: Find nodes with zero inbound wiki links (not listed in any hub, not referenced in any note's `related` or body)
+3. **Missing cross-link scan**: Notes sharing tags/domain within a community (directory) that are not cross-linked — missing edges (semantic gaps, not community redefinition)
 4. **Broken links**: Edges pointing to non-existent nodes
 5. **Staleness check**: Notes with `status: superseded` or outdated content
-6. **Missing cross-references**: Nodes that should link to each other but don't
-7. **Promotion audit** (see §2.5): Scan `log.md` for `fix`/error entries that were never promoted to a rule or note — **unpromoted traces are flagged as unresolved debts**
-8. **Version sync**: `index.md` statistics block must reflect `AGENTS.md` footer version — mismatch is a bug
-9. Report results in `/log.md`: `## [YYYY-MM-DD] lint | <Findings summary>`
+6. **Promotion audit (Grep, mechanical)**: Grep `log.md` for `fix` entries missing `→ [[artifact]]`/`→ §N` and not marked `lesson: trivial` — **unresolved debts**. (Grep, not full scan — compatible with selective memory.)
+7. **Version sync**: `index.md` statistics block must reflect `AGENTS.md` footer version — mismatch is a bug
+8. Report results in `/log.md`: `## [YYYY-MM-DD] lint | <Findings summary>`
 
 ### 2.4 Lint Auto-Fix (on Lint)
 - Fix broken links by finding the correct target or removing
-- Add missing cross-references / community edges where semantically appropriate
+- Add missing cross-references where semantically appropriate
 - Mark superseded notes with `status: superseded` (never delete)
 - Propose new notes for identified gaps (create with `status: seedling`)
-- **Promote** unpromoted `fix` traces found in §2.3 step 7 — convert each into an `AGENTS.md` rule or concept note (§2.5)
+- **Route unpromoted traces by severity** (§2.5): trivial → mark `lesson: trivial`; critical/normal → promote
 
-### 2.5 Promotion — Error/Trace → Standard (NEW, Core Directive)
+### 2.5 Promotion — Error/Trace → Standard (Core Directive)
 
-**This rule closes the loop the user identified: records are traces, not standards. A trace prevents nothing. Only a promoted rule/note prevents recurrence.**
+**This rule closes the loop the user identified: records are traces, not standards. A trace prevents nothing. Only a promoted standard node prevents recurrence — and only standard nodes in the per-session loading set (AGENTS.md + `_meta/promotions.md`) constrain future behavior.**
 
-**Trigger**: Every time the agent makes a mistake, discovers a recurring problem, or completes a `fix` — the fix is not complete until the lesson is promoted.
+**Trigger**: Every mistake, recurring problem, or completed `fix` — the fix is not complete until the lesson is promoted (or marked trivial).
+
+**Severity gate**:
+| Severity | Example | Action |
+|----------|---------|--------|
+| **critical** | data loss, contradiction, security, recurrence of a promoted error | must promote (note + ledger; if budget allows → AGENTS.md rule) |
+| **normal** | reusable lesson, non-trivial fix | promote (default carrier = note + ledger) |
+| **trivial** | typo, one-off fix, no reusable lesson | record only, mark `lesson: trivial`, no promotion |
 
 **Protocol**:
-1. **Record the trace**: append to `/log.md` (`## [YYYY-MM-DD] fix | ...`)
-2. **Root-cause analysis**: why did this error happen? (missing rule / missing concept / ambiguous convention / tool misuse)
-3. **Promote to the schema layer** (pick the highest-value carrier):
-   - **Recurring operational error** → a hard rule in `AGENTS.md` (e.g. §9 tool boundary, §8 no-model rule) — the schema layer is loaded **every session**, so this prevents recurrence by construction
-   - **Conceptual misunderstanding** → a concept note in `/concepts/` with `status: budding`
-   - **Tool/pattern lesson** → a note in `/tools/` or `/patterns/`
-4. **Wire the edges**: link the new rule/note into the graph (`related` fields, indexes) so it is discoverable
-5. **Update the trace**: the `log.md` entry references the promoted artifact (link)
-6. **Never double-pay**: if the same error recurs in a later session, check whether it was promoted — recurrence of a promoted error means the carrier was wrong (rule too weak / note misplaced) and must be **re-promoted stronger**
+1. **Record the trace**: append to `/log.md`. **Hard format**: every `fix` entry must end with `→ [[artifact]]`, `→ §N`, or `| lesson: trivial` — no reference = a false fix (lint §2.3 step 6 flags it).
+2. **Root-cause**: why did this error happen? (missing rule / missing concept / ambiguous convention / tool misuse)
+3. **Promote** (default carrier = concept/pattern/tool note + ledger entry):
+   - **Recurring operational error** (within AGENTS.md line budget) → a hard rule in `AGENTS.md` — loaded **every session**, prevents recurrence by construction
+   - **Conceptual misunderstanding** → concept note in `/concepts/`, `status: budding` — advisory, **not** binding (not loaded every session)
+   - **Tool/pattern lesson** → note in `/tools/` or `/patterns/`
+4. **Register in the ledger**: record every promotion in `_meta/promotions.md` (Active Rules / Constraint Notes / Knowledge Notes / Retired)
+5. **Wire the edges**: link the new rule/note into the graph (`related` fields, hub listing)
+6. **Never double-pay**: if the same error recurs, the carrier was wrong — **re-promote stronger** (note → AGENTS.md rule, or merge/replace)
 
-**Anti-pattern**: `fix` entries that only say "did X, fixed Y" with no promotion — these are **false fixes** and lint (§2.3 step 7) will flag them.
-
-**Graph framing**: promotion is converting a **trace edge** (log → past event) into a **standard node** (rule/note → future behavior). The knowledge graph grows in the schema layer, not just the log.
+**Anti-pattern**: `fix` entries that only say "did X, fixed Y" with no promotion reference = **false fixes** (lint §2.3 step 6 flags them). Promotion converts a **trace** into a **standard node** — the graph grows in the schema layer, not just the log.
 
 ---
 
@@ -218,7 +194,9 @@ type: Concept   # Concept | Tool | Pattern | Meta | Identity | Tutorial | Refere
 ```yaml
 title: "Display Title"
 description: One-line summary
-tags: [tag1, tag2]
+tags:
+  - tag1
+  - tag2
 timestamp: 2026-06-22T00:00:00Z
 ```
 
@@ -228,7 +206,7 @@ id: "20260622T143000"           # YYYYMMDDThhmmss
 status: evergreen               # seedling | budding | evergreen | superseded | archived
 difficulty: intermediate        # beginner | intermediate | advanced
 domain: knowledge-management
-prerequisites: [/path/to/note.md]
+prerequisites: ["[[note-slug]]"]  # wiki links preferred; legacy paths = dependency docs, not graph edges
 related: ["[[Note A]]", "[[Note B]]"]
 sources:
   - title: "Source Name"
@@ -249,7 +227,7 @@ seedling → budding → evergreen → superseded → archived
 - **Wiki links**: `[[Note]]`, `[[Note#Section]]`, `[[Note|alias]]`, `[[Note#^block-id]]`
 - **Tags**: prefer `tags:` in frontmatter over inline `#tag` for machine-readability
 - **External links**: standard markdown; citations in a `# Citations` section
-- **Minimum 1–3 links per note** — orphan notes are unfinished notes
+- **Minimum 1–3 outbound links per note** — orphan = zero inbound wiki links (§2.1)
 - **Tags answer "what category?" — links answer "how does this connect?"**
 
 ---
@@ -272,11 +250,9 @@ seedling → budding → evergreen → superseded → archived
 
 ## 6. File Naming Convention
 
-- **Concepts**: `descriptive-slug.md` · **Tools**: `tool-name.md` · **Patterns**: `pattern-name.md` · **Meta**: `meta-topic.md` · **Indexes**: always `index.md`
+- **Concepts**: `descriptive-slug.md` · **Tools**: `tool-name.md` · **Patterns**: `pattern-name.md` · **Meta**: `meta-topic.md` · **Indexes**: root `index.md` + root-level cluster hubs (`concepts.md`/`tools.md`/`patterns.md`/`_meta.md`/`_identity.md`/`conference.md`)
 - Lowercase alphanumeric with single hyphens, 1–64 characters
-- Must match the `title` in frontmatter (or `aliases`)
-
----
+- Must match the `title` in frontmatter (or `aliases`)---
 
 ## 7. Cross-Session Memory Protocol
 
@@ -288,27 +264,19 @@ Every session executes the boot sequence (top of this file).
 2. Update any changed `index.md` files
 3. File any valuable query answers as new notes
 4. **Promote lessons** (§2.5): scan the session for errors / fixes / recurring problems; if any trace is unpromoted, convert it into a rule or note now
-5. Ensure all new/modified notes have complete frontmatter and links
-6. Load the `auto-commit` skill and commit — **only if git is available**
-
+5. **Run quick lint** (§2.3): promotion audit must be clean — an unresolved `fix` debt **blocks auto-commit**
+6. Ensure all new/modified notes have complete frontmatter and links
+7. Load the `auto-commit` skill and commit — **only if git is available**
 ### Memory Persistence
 - `/log.md` is **append-only** — never delete entries, only append
-- Greppable format: `Grep` with pattern `^## \[` — read last 20–30 lines for recent activity
-- Newest entries at the top (reverse chronological)
-
-> **Selective Memory Principle**: Full-history persistence degrades agent performance ([[selective-persistent-memory|arXiv:2607.09493]]). Boot reads only the last ~30 log lines; lint periodically flags stale entries for archiving to `/log-archive/`.
+- Greppable format: `Grep` with pattern `^## \[` — read last 20–30 lines for recent activity; newest at top
+- **Selective Memory Principle**: full-history persistence degrades agent performance ([[selective-persistent-memory|arXiv:2607.09493]]). Boot reads only the last ~30 log lines; lint flags stale entries for archiving to `/log-archive/`. Promotion audit is Grep-only (§2.3) — compatible with this principle.
 
 ---
 
 ## 8. Skills & Agents
 
-### Locations
-```
-skills/<name>/SKILL.md        # Vault skills
-.opencode/agents/<name>.md    # Custom subagents
-```
-
-Skills conform to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io) — portable across 40+ agent runtimes. Required frontmatter: `name`, `description`.
+**Locations**: `skills/<name>/SKILL.md` (vault skills), `.opencode/agents/<name>.md` (custom subagents). Skills conform to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io) — portable across 40+ agent runtimes. Required frontmatter: `name`, `description`.
 
 ### Read-Only Boundary (Hard Rule)
 
@@ -338,12 +306,10 @@ When spawning subagents: non-overlapping scopes, one writer per file, primary ag
 | **3** | External CLI via Bash | `git`, `npm`, `node` | No opencode tool and no OS builtin suffices. |
 | **❌ BANNED** | External search/replace CLIs | `rg`, `ripgrep`, `fd`, `fzf`, `jq`, `bat`, `ag` | **Never invoke** — bypasses permission audit. opencode `Grep`/`Glob` is equivalent. |
 
-### Concrete Prohibitions
-1. Never call `rg`/`fd`/`fzf`/`bat`/`jq` from a skill or agent — use `Grep`/`Glob`/`Read`
-2. Never add `rg`/`fd`/`jq` as a prerequisite in README or skill text
-3. `git`, `npm`, `node`, `python` are acceptable — declare the dependency, use cross-platform invocation, ask first if `permission: bash: ask` is set
-
----
+### Prohibitions
+- Never call `rg`/`fd`/`fzf`/`bat`/`jq` from a skill or agent — use `Grep`/`Glob`/`Read`
+- Never add `rg`/`fd`/`jq` as a prerequisite in README or skill text
+- `git`, `npm`, `node`, `python` are acceptable — declare the dependency, use cross-platform invocation, ask first if `permission: bash: ask` is set---
 
 ## 10. Self-Bootstrapping
 
@@ -351,10 +317,10 @@ When spawning subagents: non-overlapping scopes, one writer per file, primary ag
 |--------|---------|----------|
 | **Schema** | `AGENTS.md`, `opencode.json` | How the AI reads, writes, maintains the vault |
 | **Memory** | `log.md` | Cross-session history (greppable, append-only) |
-| **Navigation** | `index.md` (every level) | Progressive disclosure without search infrastructure |
+| **Navigation** | `index.md` + root-level hub files (per cluster) | Progressive disclosure without search infrastructure |
 | **External References** | `opencode.json` → `references` | Offline access to upstream sources |
 
-- **Growth**: every ingest adds nodes; every filed query adds a node; every lint finds gaps → new ingest tasks; every error is promoted to a rule (§2.5). The vault compounds.
+- **Growth**: every ingest adds nodes; every filed query adds a node; every lint finds gaps → new ingest tasks; every error with a **reusable lesson** is promoted (§2.5 gate); trivial errors logged only. The vault compounds.
 - **Maintenance**: lint detects staleness/contradictions/orphans; superseded notes are marked, never deleted; git history (when available) provides diffs.
 - **Resilience**: plain markdown, no database, no lock-in; `log.md` survives context loss.
 
@@ -368,18 +334,17 @@ When spawning subagents: non-overlapping scopes, one writer per file, primary ag
 | End session | Update log.md → update indexes → file answers → auto-commit (if git available) |
 | Add knowledge | Ingest protocol (§2.1) |
 | Answer question | Query protocol (§2.2) — local/global modes |
-| Check health | Lint protocol (§2.3) — incl. promotion audit |
-| Prevent error recurrence | Promotion protocol (§2.5) — promote every trace to a rule/note |
+| Check health | Lint protocol (§2.3) — session-end + /lint, incl. promotion audit |
+| Prevent error recurrence | Promotion protocol (§2.5) — severity gate, `→`-referenced, ledger-registered |
+| Promotion ledger | `_meta/promotions.md` — read at boot, active constraints & standards |
 | Create note | Use template from `/templates/` |
-| Skill location | `skills/<name>/SKILL.md` |
-| Agent definition | `.opencode/agents/<name>.md` |
+| Skill / agent location | `skills/<name>/SKILL.md` · `.opencode/agents/<name>.md` |
 | Find recent activity | `Grep` on `log.md` with `^## \[`, read last lines |
 | Tool boundary | §9: opencode native tools first, never `rg`/`fd`/`jq` |
-| Git commit | Load `auto-commit` skill at session end; skip silently if git unavailable |
-
----
+| Git commit | Load `auto-commit` skill at session end; skip silently if git unavailable |---
 
 > **Development workflow** (branching, release process): see [[development|_meta/development.md]] — not loaded per session.
 >
-> **Version**: 1.5.0
+> **Version**: 1.5.1
+> **Line budget**: ≤ 350 lines, one-in-one-out for new rules (§2.5)
 > **Conforms to**: OKF v0.1

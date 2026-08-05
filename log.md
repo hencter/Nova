@@ -4,6 +4,23 @@
 
 ---
 
+## [2026-08-05] refactor | AGENTS.md v1.5.1 — 蜂群会议批判审计后修订
+
+**动因**：v1.5.0 图语义迭代经蜂群子代理会议（nova-architect / terminology-auditor / critic）批判审计，裁定"定稿失败进入修订"。三席共识：核心洞见正确（log=trace，升格进每会话加载层才算 standard），但存在 P0 级缺陷——§2.5"概念笔记 by construction 防复发"是伪承诺、升格闭环零外部强制点、无容量预算、术语 4 处定义级冲突、执行层 SKILL.md 脱节。
+
+**变更**：
+1. `AGENTS.md` §2 重写：图语义诚实化（"Every knowledge note is a node"；graph edges = wiki links only；hub = 任何 `type: Index` 文件；community = 拥有 hub 的目录）；§2.5 增加**严重度闸门**（critical/normal/trivial）+ **fix 条目硬格式**（`→ [[artifact]]`/`→ §N`/`| lesson: trivial`）+ 默认载体改笔记+台账；§2.3 lint 改为 **Grep 机械审计**（不读全量，兼容选择性记忆）+ session-end 触发；§2.1 删机械互惠边，孤儿=零入边
+2. boot 序列新增 step 5：读 `_meta/promotions.md`（操作约束进入加载集）
+3. `AGENTS.md` §3 tags 改多行格式（修正 06-26 lint 迁移未同步的活体 false fix → §3）、prerequisites 改 wiki 链接优先；§1/§4/§6 路径与术语修正；§7 增加快速 lint + auto-commit 阻塞；版本 1.5.0 → 1.5.1
+4. 新建 `_meta/promotions.md` 台账（Active Rules / Active Constraint Notes / Knowledge Notes / Retired，≤50 行）
+5. `skills/nova-kb/SKILL.md` 同步：8 步 lint、孤儿零入边口径、Promotion workflow、日志格式补 `fix`
+6. `_meta/conventions.md`：新增 Graph Semantics 小节、生命周期补 archived、prerequisites 改 wiki 链接
+7. `_meta/vault-architecture.md`：修复 wiki 链接语法、目录树改根级 hub、hub 定义
+8. `index.md`/`_meta.md`：版本同步 + 台账条目
+9. 会议记录：`conference/session-20260805-graph-audit.md`
+
+**意义**：闭环首次获得外部强制点（Grep 硬判据 + auto-commit 阻塞）；术语统一消除 lint 不可复现性；schema 行数预算（≤350 一进一出）防止 v1.4.0 膨胀复发。升格积压（06-30 相对路径、07-23 fix 引用）与 git pre-commit hook 为 P1 后续跟进。
+
 ## [2026-08-05] refactor | AGENTS.md v1.5.0 — Graph-Semantic Model + Promotion Protocol
 
 **动因**：用户指出 Nova 知识库的根本缺陷——`log.md` 记录只是记录（trace），不是错误标准（standard）；错误发生后无法防止再犯。同时引入网络新兴的 Graph Engineering 视角（GraphRAG / Agent 记忆图谱）作为解决方案框架。

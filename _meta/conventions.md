@@ -32,7 +32,8 @@ summary: >
 | `/_meta/` | `meta-topic.md` | `vault-architecture.md` |
 | `/_identity/` | `identity-name.md` | `nova-identity.md` |
 | `/templates/` | `type-template.md` | `concept-template.md` |
-| 所有目录 | `index.md` | `index.md` |
+| 根目录 | `index.md` | 顶级目录 |
+| 根级集群 | `concepts.md`/`tools.md`/`patterns.md`/`_meta.md`/`_identity.md`/`conference.md` | 集群 hub（`type: Index`） |
 
 ### 命名规则
 - 全小写字母数字，单连字符分隔（`^[a-z0-9]+(-[a-z0-9]+)*$`）
@@ -56,9 +57,22 @@ summary: >
 |---------|--------|---------|
 | 笔记正文内联 | `[[Note]]` | 详见 [[opencode-architecture|OpenCode Architecture]]。 |
 | 前置元数据 `related` | `"[[Note]]"` | `related: ["[[Note A]]"]` |
-| 前置元数据 `prerequisites` | `/path/to/note.md` | `prerequisites: [/concepts/note.md]` |
+| 前置元数据 `prerequisites` | `"[[note-slug]]"`（优先） | `prerequisites: ["[[okf-format]]"]` |
 | 外部引用 | `[text](url)` | [OKF Spec](https://github.com/...) |
 | 引用文献 | `[1] URL` | 参见 `# Citations` 章节 |
+
+### 图语义（Graph Semantics）
+
+图操作（AGENTS.md §2）中的术语唯一定义：
+
+| 术语 | 定义 |
+|------|------|
+| **节点 node** | 知识笔记（.md 文件）；`log.md` 条目是 trace，技能/配置不是节点 |
+| **边 edge** | **仅 wiki 链接**（`[[...]]`，含 `related` 值）；`prerequisites` 路径值是依赖文档，非图边 |
+| **方向** | 有向（链接者 → 被链接者）；反向链接在查询时扫描计算，不落盘 |
+| **孤儿 orphan** | 零入边 wiki 链接（未被任何 hub 列出、未被任何笔记 `related`/正文引用） |
+| **枢纽 hub** | 任何 `type: Index` 文件（根 `index.md` + 根级集群 hub） |
+| **社区 community** | 拥有 hub 的目录及其笔记集合（如 `/concepts/`） |
 
 ### 链接语义
 
@@ -91,11 +105,11 @@ timestamp: 2026-06-22T05:30:00Z
 ### Nova 扩展字段（按需添加）
 ```yaml
 id: "20260622T053000"       # 基于时间戳的唯一 ID
-status: evergreen            # seedling | budding | evergreen | superseded
+status: evergreen            # seedling | budding | evergreen | superseded | archived
 difficulty: intermediate     # beginner | intermediate | advanced
 domain: knowledge-management
-prerequisites:               # 依赖路径有序列表
-  - /path/to/note.md
+prerequisites:               # wiki 链接优先；旧路径 = 依赖文档非图边
+  - "[[okf-format]]"
 related:                     # 概念相关笔记
   - "[[Note A]]"
   - "[[Note B]]"
@@ -156,7 +170,9 @@ stateDiagram-v2
     Seedling --> Superseded: 发现内容有误
     Budding --> Superseded: 已有更深入理解
     Evergreen --> Superseded: 被更优秀的笔记取代
-    Superseded --> [*]
+    Evergreen --> Archived: 不再相关
+    Superseded --> Archived: 旧版不再引用
+    Archived --> [*]
 ```
 
 ## 引用格式
