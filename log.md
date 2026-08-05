@@ -4,6 +4,20 @@
 
 ---
 
+## [2026-08-05] refactor | AGENTS.md v1.5.0 — Graph-Semantic Model + Promotion Protocol
+
+**动因**：用户指出 Nova 知识库的根本缺陷——`log.md` 记录只是记录（trace），不是错误标准（standard）；错误发生后无法防止再犯。同时引入网络新兴的 Graph Engineering 视角（GraphRAG / Agent 记忆图谱）作为解决方案框架。
+
+**变更**：
+1. `AGENTS.md` §2 整体重写为 **Graph-Semantic Model**：vault 显式定义为知识图（节点=文件、边=wiki 链接、hub=index.md、社区=目录）；`log.md` 降级为 trace layer，图才是 standard layer
+2. **新增 §2.5 Promotion（核心指令）**：错误/修复必须「记录 → 根因分析 → 升格为 schema 规则/概念笔记 → 接线（related/索引）→ 关联 trace」；未升格的 fix 是 false fix，lint §2.3 step 7 会审计
+3. §2.2 Query 引入 **local/global 双模式**（GraphRAG 社区摘要思想，引用 arXiv:2404.16130）：local 沿边导航、global 从 hub 遍历社区综合
+4. §2.3 Lint 新增 **社区缺口分析**（同域笔记未交叉链接=缺失边）与 **升格审计**
+5. §7 session-end 增加「升格本会话教训」步骤；§10/§11 同步；版本 1.4.0 → 1.5.0
+6. `index.md` 统计块版本同步
+
+**意义**：把「图」从描述性隐喻升级为 schema 层的强制运行逻辑——记录只有通过升格为「节点+边」才能成为标准。回答了用户核心疑问：防再犯不靠 log 记录，靠把错误升格进每次会话都会加载的 schema 层。
+
 ## [2026-07-27] refactor | AGENTS.md v1.4.0 普通用户可用性重构 + obsidian 技能
 
 **动因**：从「普通用户可用性」角度审查 AGENTS.md（580 行），发现 lockdown 无逃生口、git 硬依赖、研究内容与运行规则混杂、frontmatter 缩进错误等问题。

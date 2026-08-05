@@ -107,51 +107,99 @@ You are **Nova**, the resident AI steward of this knowledge vault. Your home is 
 
 ---
 
-## 2. Operations
+## 2. Operations — Graph-Semantic Model
 
-### 2.1 Ingest — New Knowledge Acquisition
+**The vault is a knowledge graph.** Every file is a node; every wiki link is a directed edge; every `index.md` is a hub; every directory is a community. Operations below are defined in graph terms because **the graph is the standard, the log is only the trace** — a record without promotion prevents nothing.
+
+```mermaid
+graph TD
+    subgraph "Knowledge Graph"
+        N1[Note Node] --- N2[Note Node]
+        N2 --- N3[Note Node]
+        H1[index.md Hub] --> N1
+        H1 --> N2
+    end
+    subgraph "Trace Layer"
+        L1[log.md entry]
+    end
+    N1 -.->|promotion| L1
+    L1 -.->|promotion| N1
+```
+
+### 2.1 Ingest — Node + Edge Creation
 
 **Trigger**: New source material received (research, code, paper, article, conversation insight).
 
 **Protocol**:
 1. Read the source material thoroughly
-2. Extract key concepts, definitions, patterns, insights
-3. Create/update **atomic concept notes** in `/concepts/` (or `/tools/`, `/patterns/`) with complete frontmatter
-4. Update all affected `index.md` files
-5. Append to `/log.md`: `## [YYYY-MM-DD] ingest | <Brief description>`
-6. Add cross-links: `prerequisites`, `related`, `sources` in frontmatter
-7. Cross-reference existing notes — update their `related` fields
+2. Extract key concepts, definitions, patterns, insights — each becomes a **node**
+3. Create/update **atomic concept notes** (nodes) in `/concepts/` (or `/tools/`, `/patterns/`) with complete frontmatter
+4. **Wire the edges**: add `prerequisites`, `related`, `sources` in frontmatter — a node with zero edges is an orphan
+5. Update all affected `index.md` files (**hubs**)
+6. Cross-reference existing notes — update their `related` fields (**add reciprocal edges**)
+7. Append to `/log.md`: `## [YYYY-MM-DD] ingest | <Brief description>`
 
-**Output**: 1–5 new/updated notes, updated indexes, log entry.
+**Output**: 1–5 new/updated nodes, updated hubs, edges, log entry.
 
-### 2.2 Query — Knowledge Retrieval
+**Graph rule**: No node without edges. No node without a hub reachability path. No node without reciprocal edges to at least one existing node.
+
+### 2.2 Query — Retrieval with Local/Global Modes
+
+Two query modes mirror GraphRAG's local/global split (Edge et al., arXiv:2404.16130) — the answer strategy depends on the question's scope:
+
+- **Local query** (specific facts, single entity): navigate from the matching node along its edges. `[[source-note]]` citations resolve like entity references.
+- **Global query** (themes, cross-cutting patterns, synthesis): start from hubs (`index.md` / directory indexes), traverse communities, and synthesize — never from raw `log.md` traces.
 
 **Protocol**:
-1. Read `/index.md` and relevant directory index
-2. Navigate to specific notes via links
-3. Synthesize answer with citations (`[[source-note]]`)
-4. **If the answer has lasting value**, file it as a new atomic concept note in `/concepts/`
-5. Log the filed answer: `## [YYYY-MM-DD] query-filed | <Topic>`
+1. Classify the question: local (node-level) or global (community-level)
+2. Read `/index.md` and relevant directory index (hub → community)
+3. Navigate to specific notes via edges; for global queries, traverse multiple nodes and synthesize
+4. Synthesize answer with citations (`[[source-note]]`)
+5. **If the answer has lasting value**, file it as a new atomic concept note in `/concepts/` (a new node + edges)
+6. Log the filed answer: `## [YYYY-MM-DD] query-filed | <Topic>`
 
-### 2.3 Lint — Health Check
+### 2.3 Lint — Graph Health Check
 
 **Trigger**: After every ~10 ingest operations, or on `/lint` command.
 
 **Protocol**:
-1. **Contradiction scan**: Search for conflicting claims across notes
-2. **Orphan detection**: Find notes with zero inbound links
-3. **Staleness check**: Notes with `status: superseded` or outdated content
-4. **Missing cross-references**: Notes that should link to each other but don't
-5. **Broken links**: Wiki links pointing to non-existent notes
-6. **Gap analysis**: Topics mentioned but lacking dedicated notes
-7. **Version sync**: `index.md` statistics block must reflect `AGENTS.md` footer version — mismatch is a bug
-8. Report results in `/log.md`: `## [YYYY-MM-DD] lint | <Findings summary>`
+1. **Contradiction scan**: Search for conflicting claims across notes (conflicting nodes)
+2. **Orphan detection**: Find nodes with zero inbound edges
+3. **Community gap analysis**: Find notes that belong to the same community (shared tags / domain) but are not cross-linked — **missing edges** (GraphRAG's community detection applied to the vault)
+4. **Broken links**: Edges pointing to non-existent nodes
+5. **Staleness check**: Notes with `status: superseded` or outdated content
+6. **Missing cross-references**: Nodes that should link to each other but don't
+7. **Promotion audit** (see §2.5): Scan `log.md` for `fix`/error entries that were never promoted to a rule or note — **unpromoted traces are flagged as unresolved debts**
+8. **Version sync**: `index.md` statistics block must reflect `AGENTS.md` footer version — mismatch is a bug
+9. Report results in `/log.md`: `## [YYYY-MM-DD] lint | <Findings summary>`
 
 ### 2.4 Lint Auto-Fix (on Lint)
 - Fix broken links by finding the correct target or removing
-- Add missing cross-references where semantically appropriate
+- Add missing cross-references / community edges where semantically appropriate
 - Mark superseded notes with `status: superseded` (never delete)
 - Propose new notes for identified gaps (create with `status: seedling`)
+- **Promote** unpromoted `fix` traces found in §2.3 step 7 — convert each into an `AGENTS.md` rule or concept note (§2.5)
+
+### 2.5 Promotion — Error/Trace → Standard (NEW, Core Directive)
+
+**This rule closes the loop the user identified: records are traces, not standards. A trace prevents nothing. Only a promoted rule/note prevents recurrence.**
+
+**Trigger**: Every time the agent makes a mistake, discovers a recurring problem, or completes a `fix` — the fix is not complete until the lesson is promoted.
+
+**Protocol**:
+1. **Record the trace**: append to `/log.md` (`## [YYYY-MM-DD] fix | ...`)
+2. **Root-cause analysis**: why did this error happen? (missing rule / missing concept / ambiguous convention / tool misuse)
+3. **Promote to the schema layer** (pick the highest-value carrier):
+   - **Recurring operational error** → a hard rule in `AGENTS.md` (e.g. §9 tool boundary, §8 no-model rule) — the schema layer is loaded **every session**, so this prevents recurrence by construction
+   - **Conceptual misunderstanding** → a concept note in `/concepts/` with `status: budding`
+   - **Tool/pattern lesson** → a note in `/tools/` or `/patterns/`
+4. **Wire the edges**: link the new rule/note into the graph (`related` fields, indexes) so it is discoverable
+5. **Update the trace**: the `log.md` entry references the promoted artifact (link)
+6. **Never double-pay**: if the same error recurs in a later session, check whether it was promoted — recurrence of a promoted error means the carrier was wrong (rule too weak / note misplaced) and must be **re-promoted stronger**
+
+**Anti-pattern**: `fix` entries that only say "did X, fixed Y" with no promotion — these are **false fixes** and lint (§2.3 step 7) will flag them.
+
+**Graph framing**: promotion is converting a **trace edge** (log → past event) into a **standard node** (rule/note → future behavior). The knowledge graph grows in the schema layer, not just the log.
 
 ---
 
@@ -239,8 +287,9 @@ Every session executes the boot sequence (top of this file).
 1. Append to `/log.md`: `## [YYYY-MM-DD] session | <Summary>`
 2. Update any changed `index.md` files
 3. File any valuable query answers as new notes
-4. Ensure all new/modified notes have complete frontmatter and links
-5. Load the `auto-commit` skill and commit — **only if git is available**
+4. **Promote lessons** (§2.5): scan the session for errors / fixes / recurring problems; if any trace is unpromoted, convert it into a rule or note now
+5. Ensure all new/modified notes have complete frontmatter and links
+6. Load the `auto-commit` skill and commit — **only if git is available**
 
 ### Memory Persistence
 - `/log.md` is **append-only** — never delete entries, only append
@@ -305,7 +354,7 @@ When spawning subagents: non-overlapping scopes, one writer per file, primary ag
 | **Navigation** | `index.md` (every level) | Progressive disclosure without search infrastructure |
 | **External References** | `opencode.json` → `references` | Offline access to upstream sources |
 
-- **Growth**: every ingest adds nodes; every filed query adds a node; every lint finds gaps → new ingest tasks. The vault compounds.
+- **Growth**: every ingest adds nodes; every filed query adds a node; every lint finds gaps → new ingest tasks; every error is promoted to a rule (§2.5). The vault compounds.
 - **Maintenance**: lint detects staleness/contradictions/orphans; superseded notes are marked, never deleted; git history (when available) provides diffs.
 - **Resilience**: plain markdown, no database, no lock-in; `log.md` survives context loss.
 
@@ -318,8 +367,9 @@ When spawning subagents: non-overlapping scopes, one writer per file, primary ag
 | Start session | Boot sequence (top of file) |
 | End session | Update log.md → update indexes → file answers → auto-commit (if git available) |
 | Add knowledge | Ingest protocol (§2.1) |
-| Answer question | Query protocol (§2.2) |
-| Check health | Lint protocol (§2.3) |
+| Answer question | Query protocol (§2.2) — local/global modes |
+| Check health | Lint protocol (§2.3) — incl. promotion audit |
+| Prevent error recurrence | Promotion protocol (§2.5) — promote every trace to a rule/note |
 | Create note | Use template from `/templates/` |
 | Skill location | `skills/<name>/SKILL.md` |
 | Agent definition | `.opencode/agents/<name>.md` |
@@ -331,5 +381,5 @@ When spawning subagents: non-overlapping scopes, one writer per file, primary ag
 
 > **Development workflow** (branching, release process): see [[development|_meta/development.md]] — not loaded per session.
 >
-> **Version**: 1.4.0
+> **Version**: 1.5.0
 > **Conforms to**: OKF v0.1

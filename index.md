@@ -115,7 +115,7 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 | 指标 | 数值 |
 |--------|-------|
 | 框架 | OKF v0.1 |
-| 模式层 | AGENTS.md v1.4.0 |
+| 模式层 | AGENTS.md v1.5.0 |
 | ID 系统 | Timestamp (YYYYMMDDThhmmss) |
 | 知识域 | AI Agent、知识管理、系统架构 |
 | 状态 | 活跃，持续复利增长 |
