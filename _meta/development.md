@@ -1,7 +1,7 @@
 ---
 type: Meta
 title: Development Workflow
-description: Branching strategy and release process for vault maintainers — not needed for daily use.
+description: Branching strategy and release process for vault maintainers — not needed for daily use. Includes the git worktree layout (dev iteration worktree vs main production-test worktree).
 tags:
   - meta
   - development
@@ -28,6 +28,19 @@ dev  ← active development (default branch)
 - **`main`** 仅用于发布——从 `dev` 合并，合并即发布
 - 功能分支（`feat/*`、`fix/*`）从 `dev` 分出，合并回 `dev`
 - `gh repo create` 从 `main` 生成模板，因此克隆者拿到的是稳定版
+
+## Worktree 模式（2026-08-14 启用）
+
+```
+D:\OpenCode\Navo      → main  worktree（生产测试）
+D:\OpenCode\Navo-dev  → dev   worktree（全仓迭代）
+```
+
+- 两个 worktree 共享同一 `.git`；**每个分支同时只能在一个 worktree 检出**——主目录永远停在 `main`，迭代全部在 `Navo-dev`
+- DSH / Obsidian 分别打开对应目录即可，`AGENTS.md` 自动加载；两个目录是独立的 vault 副本
+- `_identity/user-config.md` 被 gitignore——新建 worktree 后需从主目录复制过去（同一机器同一主人）
+- `log.md` 随分支分叉：两个 worktree 各自追加，`dev → main` 合并时可能需手工解决冲突
+- 发布流程不变：从主目录（main worktree）`git merge dev`，发布是有意图的行为
 
 ## dev 分支上的自动提交
 

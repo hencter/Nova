@@ -4,6 +4,13 @@
 
 ---
 
+## [2026-08-14] session | 启用 git worktree 模式 — dev 迭代 / main 生产测试
+
+- 新建 dev worktree：`D:\OpenCode\Navo-dev`（锁定 dev 分支，全仓迭代）；主目录 `D:\OpenCode\Navo` 锁定 main（生产测试）
+- 复制 `_identity/user-config.md`（gitignored）至 dev worktree，避免误触发初始化问答
+- 分支分工与 worktree 规范写入 `_meta/development.md`
+- 注意：`log.md` 将随分支分叉，合并时可能需手工解决冲突
+
 ## [2026-08-14] refactor | AGENTS.md v1.6.0 — 适配 DeepSeek Harness 运行时
 
 **动因**：用户要求迭代优化，使 vault 适配当前运行环境 DeepSeek Harness。原 schema 层的工具名（Read/Write/Edit/Grep/Glob/Bash）与 DSH 工具栈（read/write/edit/grep/glob/pwsh）不匹配，运行时行为不一致。
