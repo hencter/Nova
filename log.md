@@ -4,6 +4,23 @@
 
 ---
 
+## [2026-08-14] refactor | 彻底去 opencode 化 — 兼容层移除，vault 成为 DSH 专属
+
+**动因**：用户不再使用 opencode，仓库中的 opencode 内容仅为旧版知识库的兼容层。采用方案：配置/兼容层全清，知识笔记保留原样。
+
+**变更**：
+1. 删除 `opencode.json` 与 `.opencode/` 目录（含 agents/、node_modules 本地残留）
+2. `.opencode/agents/` 两个子代理定义迁移至 `_agents/`（nova-architect、terminology-auditor）：frontmatter 摘除 opencode 专属字段（mode/temperature/permission），工具引用同步为 DSH 原生名，§12→§9 引用修正
+3. `AGENTS.md` 摘除全部 opencode 兼容表述（§8 Locations/只读边界、§9 强制层与可移植映射、§10 支柱、§11 速查）→ 版本 1.6.0 → 1.7.0
+4. 同步 `README.md`（运行环境/启动流程/技术栈）、`RELEASE.md`（合并清单）、`_meta/vault-architecture.md`（目录树）、`_meta/conventions.md`（换中性示例）
+5. 同步 `_identity/` 三件（capability-manifest、nova-identity、personalize）
+6. 知识笔记现状表述同步：`tools/deepseek-harness.md`（Vault Impact）、`concepts/reference-based-self-bootstrapping.md`（运行时说明 + 配置示例改历史表述）、`concepts/selective-persistent-memory.md`（图谱映射）
+7. `index.md` 统计块版本同步 v1.7.0
+
+**保留**（知识资产，非兼容层）：`tools/opencode.md`、`concepts/opencode-architecture.md` 等 opencode 知识笔记及其交叉链接；`log.md` 与 `conference/` 历史记录。
+
+**意义**：vault 成为 DSH 专属仓库，零运行时专属配置文件（打开工作区即用）；`_agents/` 延续可移植 prompt 模式；AGENTS.md 行预算释放出空间。
+
 ## [2026-08-14] session | 启用 git worktree 模式 — dev 迭代 / main 生产测试
 
 - 新建 dev worktree：`D:\OpenCode\Navo-dev`（锁定 dev 分支，全仓迭代）；主目录 `D:\OpenCode\Navo` 锁定 main（生产测试）

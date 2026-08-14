@@ -64,7 +64,7 @@ opencode v1.17+ 的 [References](https://opencode.ai/docs/references/) 功能允
 
 ## 运行时说明（DSH）
 
-References 是 opencode 专属能力，在 DeepSeek Harness 下无效。DSH 下的等价机制是 `web_search` 工具（AGENTS.md §10）；`opencode.json` 中的 references 配置仅为兼容运行环境保留。
+References 是 opencode 专属能力，在 DeepSeek Harness 下无效。DSH 下的等价机制是 `web_search` 工具（AGENTS.md §10）。Nova vault 的 `opencode.json` 已于 2026-08 随 opencode 兼容层移除——本笔记仅作为历史机制记录保留。
 
 ## 自举闭环升级
 
@@ -117,7 +117,7 @@ References 是 opencode 专属能力，在 DeepSeek Harness 下无效。DSH 下�
 
 ## 配置示例
 
-Nova vault 的 `opencode.json`：
+Nova vault 曾使用（2026-07 至 2026-08，已随兼容层移除）的 `opencode.json`：
 
 ```jsonc
 {

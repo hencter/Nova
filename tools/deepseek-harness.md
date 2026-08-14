@@ -69,9 +69,9 @@ DeepSeek Harness (DSH) is the agent runtime the Nova vault runs on (since 2026-0
 
 ## Vault Impact
 
-- `AGENTS.md` §9 names DSH tools and carries a one-line portability map for opencode-compatible runtimes.
-- `opencode.json` is retained for opencode/Crush compatibility but is inert under DSH.
-- `.opencode/agents/*.md` are portable agent definitions; under DSH pass their content as `subagent` prompts.
+- `AGENTS.md` §9 names the DSH native tool stack; the vault keeps no runtime-specific config files.
+- OpenCode-era artifacts (`opencode.json`, `.opencode/`) were removed in 2026-08 when the vault went DSH-only.
+- `_agents/*.md` hold portable subagent prompts; under DSH pass their content as the `subagent` tool prompt.
 - Harness composition files live outside the vault (`~/.dsh`); vault operations never edit them.
 
 ## Citations

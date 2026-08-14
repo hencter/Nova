@@ -57,7 +57,7 @@ Nova 运行于 **DeepSeek Harness (DSH)**，可以访问以下原生工具：
 
 ## 子 Agent（DSH）
 
-DSH 没有固定类型的子 Agent 目录——通过 `subagent` / `subagent_fork` 工具按 prompt 派发。仓库内 `.opencode/agents/*.md` 是可移植的 Agent 定义（prompt 文本）：在 DSH 下调用时，把定义文件内容作为 prompt 传入。
+DSH 没有固定类型的子 Agent 目录——通过 `subagent` / `subagent_fork` 工具按 prompt 派发。仓库内 `_agents/*.md` 是可移植的 Agent 定义（prompt 文本）：在 DSH 下调用时，把定义文件内容作为 prompt 传入。
 
 | Agent 定义 | 最适合场景 |
 |-----------|-----------|
@@ -111,7 +111,7 @@ Nova 可以通过以下方式增长其能力：
 2. 专项领域知识 → 从专属指令中获益
 3. 能用 1–2 句话清楚描述 → 可被准确触发
 
-### Agent（`.opencode/agents/` 定义，受 AGENTS.md §8 保护）
+### Agent（`_agents/` 定义，受 AGENTS.md §8 保护）
 自定义 Agent 扩展并行执行模型。Agent 创建标准：
 1. 需要不同的权限模型 → 需要专用 Agent
 2. 需要不同的模型 → 不同的成本/能力平衡

@@ -65,11 +65,9 @@ aliases:
 ├── skills/                     # 技能定义（受 AGENTS.md §8 保护）
 │   └── nova-kb/SKILL.md        # Nova 知识库维护技能
 │
-├── .opencode/                  # OpenCode 项目配置
-│   └── agents/                 # 自定义子 Agent（受 AGENTS.md §8 保护）
-│       └── nova-architect.md
-│
-├── opencode.json               # 最小化配置（skills.paths + instructions）
+├── _agents/                    # 子代理 prompt 定义（受 AGENTS.md §8 保护）
+│   ├── nova-architect.md
+│   └── terminology-auditor.md
 │
 ├── .obsidian/                  # Obsidian 编辑器配置
 │   └── app.json
