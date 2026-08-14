@@ -1,6 +1,6 @@
 ---
 name: obsidian
-description: Query and operate this vault through the official Obsidian CLI (orphans, unresolved links, backlinks, tags, properties, search, daily notes). Use when linting link health, checking the knowledge graph, or when the human reads this vault in Obsidian. Falls back to opencode native tools when the CLI is unavailable.
+description: Query and operate this vault through the official Obsidian CLI (orphans, unresolved links, backlinks, tags, properties, search, daily notes). Use when linting link health, checking the knowledge graph, or when the human reads this vault in Obsidian. Falls back to harness-native tools when the CLI is unavailable.
 license: MIT
 compatibility: all
 metadata:
@@ -12,7 +12,9 @@ metadata:
 
 # Obsidian CLI — Vault Query Skill
 
-This vault is read by humans in **Obsidian**. Obsidian ships an official CLI (`obsidian`) that exposes the app's own graph cache — link resolution, backlinks, orphans, tags, properties — which is ground truth for what the human actually sees. Prefer it over re-deriving the graph with Grep when available.
+This vault is read by humans in **Obsidian**. Obsidian ships an official CLI (`obsidian`) that exposes the app's own graph cache — link resolution, backlinks, orphans, tags, properties — which is ground truth for what the human actually sees. Prefer it over re-deriving the graph with `grep` when available.
+
+> **Runtime note (DeepSeek Harness)**: this vault skill is not registered in the DSH skill catalog — read this file directly when the workflow applies (AGENTS.md §8); run CLI commands via `pwsh`.
 
 ## Availability Check (Lazy)
 
@@ -23,7 +25,7 @@ obsidian version
 ```
 
 - **Success** → CLI available, use the mappings below.
-- **Failure** (not installed, or Obsidian app not running) → fall back to opencode native tools (`Grep`/`Glob`/`Read`) silently. Never block vault operations on CLI absence.
+- **Failure** (not installed, or Obsidian app not running) → fall back to harness-native tools (`grep`/`glob`/`read`) silently. Never block vault operations on CLI absence.
 - Windows note: the binary is `Obsidian.com` (console wrapper), exposed as `obsidian` on PATH by the installer.
 
 ## Lint Mappings (AGENTS.md §2.3)
@@ -37,13 +39,13 @@ obsidian version
 | Outgoing links of a note | `obsidian links file=<name>` | Read the note |
 | Tag inventory | `obsidian tags counts` | Grep frontmatter `tags:` |
 | Property/frontmatter audit | `obsidian properties counts` | Grep frontmatter keys |
-| Full-text search | `obsidian search query=<text>` | opencode `Grep` |
+| Full-text search | `obsidian search query=<text>` | harness `grep` |
 
 Add `total` to most commands for a count only; `format=json` where supported for parsing.
 
 ## Write Operations
 
-**Content edits still go through opencode `Write`/`Edit`** — they are permission-audited. Use the CLI only for Obsidian-native behaviors that file writes cannot replicate:
+**Content edits still go through the harness `write`/`edit` tools** — they are permission-audited. Use the CLI only for Obsidian-native behaviors that file writes cannot replicate:
 
 - `obsidian daily:append content=<text>` — append to the user's daily note
 - `obsidian open file=<name>` — open a note in the user's Obsidian (when the user asks "show me")

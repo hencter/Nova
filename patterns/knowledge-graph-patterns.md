@@ -314,8 +314,8 @@ Layer 3: Operations (log.md, lint rules, session protocols) — self-maintaining
 | Directory listing | `/concepts.md` | Markdown link following |
 | Semantic search | Wiki links + grep | `grep "\[\[Note Name\]\]" *.md` (Unix) / `findstr /R "\[\[Note Name\]\]" *.md` (Windows) |
 | Backlinks | grep on wiki link targets | `grep -r "\[\[Target Note\]\]" .` (Unix) / `findstr /S /R "\[\[Target Note\]\]" *.md` (Windows) |
-| Chronology | `log.md` with date headers | opencode `Grep` tool (preferred), or `grep "^## \[" log.md \| tail -20` (Unix), `Select-String "^## \[" log.md \| Select-Object -Last 20` (Windows) |
-| Full-text search | File contents | opencode `Grep` tool (preferred), or `grep -r "term" concepts/` |
+| Chronology | `log.md` with date headers | harness `grep` tool (DSH, preferred), or `grep "^## \[" log.md \| tail -20` (Unix), `Select-String "^## \[" log.md \| Select-Object -Last 20` (Windows) |
+| Full-text search | File contents | harness `grep` tool (DSH, preferred), or `grep -r "term" concepts/` |
 
 ### Why No Infrastructure
 

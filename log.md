@@ -1,8 +1,25 @@
 # Nova 知识库 — 时间线日志
 
-> 仅追加。永不删除条目。最新条目在最前。可搜索格式：用 opencode Grep 工具搜索 `^## \["` 模式，读取末尾 20 行
+> 仅追加。永不删除条目。最新条目在最前。可搜索格式：用 grep 工具搜索 `^## \[` 模式，读取末尾 20 行
 
 ---
+
+## [2026-08-14] refactor | AGENTS.md v1.6.0 — 适配 DeepSeek Harness 运行时
+
+**动因**：用户要求迭代优化，使 vault 适配当前运行环境 DeepSeek Harness。原 schema 层的工具名（Read/Write/Edit/Grep/Glob/Bash）与 DSH 工具栈（read/write/edit/grep/glob/pwsh）不匹配，运行时行为不一致。
+
+**变更**：
+1. `AGENTS.md` §9 重写为 DSH 原生工具优先级表 + 可移植映射（opencode↔DSH 一行对照）→ §9；§2.6 计算器 `Bash` → `pwsh`；§7 会话结束 auto-commit 改为直接读取技能文件；§8 新增 DSH 运行时加载说明（vault 技能=读文件、子代理=传 prompt、harness 组合在仓库外）；§10 External References 支柱改为 `web_search`；§11 同步；版本 1.5.1 → 1.6.0（行数保持 ≤350）
+2. `skills/nova-kb` / `obsidian` / `auto-commit` 三个 SKILL.md 工具名同步为 DSH 原生名并加运行时说明；修正 nova-kb 一处缩进与 prerequisites 示例（→ §3，lesson: trivial）
+3. 新建 `tools/deepseek-harness.md`（budding）：DSH 运行时模型、工具栈、安全模型、与 OpenCode 对照——已注册 tools.md / index.md，入链 harness-engineering
+4. `_identity/` 三文件同步：capability-manifest 工具清单改为 DSH 原生栈；personalize 第 3 步改为"确认运行环境"；nova-identity 技能/代理加载方式更新（§11→§8 编号修正，lesson: trivial）
+5. `README.md` 运行环境改为 DeepSeek Harness（保留 opencode/Crush 兼容说明）；`index.md` 统计块版本同步
+6. 知识笔记中的操作指引 3 处（cross-session-memory / okf-format / knowledge-graph-patterns）grep 工具名同步；reference-based-self-bootstrapping 补 DSH 运行时说明
+7. `log.md` 头部工具说明同步；`_meta/promotions.md` 台账登记（§9 更新 + deepseek-harness 知识笔记）
+
+**意义**：schema 层与当前运行时对齐——DSH 的沙箱/审批机制成为 §9 的强制层；vault 保持 Agent Skills Standard 可移植性（§9 映射表一行即可切换运行时）。
+
+**跟进（P1）**：promotions 台账已超 50 行预算，需归档至 `/log-archive/`；`.opencode/node_modules`（gitignored 本地产物）可择机清理。
 
 ## [2026-08-05] fix | 新增 Data Accuracy 元能力 — 计算器验算硬规则 → §2.6
 

@@ -17,6 +17,8 @@ metadata:
 # Auto-Commit — Session Git Commit Skill
 
 > **Agent Skills Standard**: This skill conforms to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io). Compatible with any Agent Skills-compliant runtime including Crush, Claude Code, Cursor, and GitHub Copilot.
+>
+> **Runtime note (DeepSeek Harness)**: this vault skill is not registered in the DSH skill catalog — read this file at session end (AGENTS.md §7) and run the git commands below via `pwsh`.
 
 You are responsible for ensuring all vault file changes are committed to git at the end of every session. This skill replaces the former `session.idle` plugin with a deterministic skill-based workflow.
 

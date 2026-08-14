@@ -62,6 +62,10 @@ opencode v1.17+ 的 [References](https://opencode.ai/docs/references/) 功能允
 - **`.opencode/` 目录** — opencode 自身的 agent/skill/command 定义（最佳实践参考）
 - **源码实现** — 当需要理解某个工具的精确行为时
 
+## 运行时说明（DSH）
+
+References 是 opencode 专属能力，在 DeepSeek Harness 下无效。DSH 下的等价机制是 `web_search` 工具（AGENTS.md §10）；`opencode.json` 中的 references 配置仅为兼容运行环境保留。
+
 ## 自举闭环升级
 
 ```

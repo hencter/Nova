@@ -33,7 +33,7 @@ A truly new vault — run init flow immediately.
 Clone/downloaded vault — log exists but owner not configured. **Force init flow regardless of log state.**
 
 **On either trigger, run the init flow:**
-1. Use `question` tool: "你想叫我什么名字？" / "我怎么称呼你？" / "你主要用这个知识库做什么？"
+1. Use the `ask_user_question` tool: "你想叫我什么名字？" / "我怎么称呼你？" / "你主要用这个知识库做什么？"
 2. Write answers into `_identity/user-config.md`, set `initialized: true` (template: `nova_name: "星尘"`, `owner_name: "小明"`, `domain: "ai-research"`)
 3. Log `## [YYYY-MM-DD] init | Vault initialized by <owner_name>`
 4. Confirm: "初始化完成。从现在起我是你的 <nova_name>，请多指教。"
@@ -48,9 +48,7 @@ Clone/downloaded vault — log exists but owner not configured. **Force init flo
 
 The init lockdown targets cloned/deployed environments (typically `main`). On `dev` (active development), init runs as a **soft prompt** — ask names but do NOT block other work. Detect lazily (only when a trigger fires and git is available):
 
-```bash
-git branch --show-current   # "dev" → SOFT; anything else / git unavailable → HARD
-```
+Run `git branch --show-current` via `pwsh` — "dev" → SOFT; anything else / git unavailable → HARD.
 
 ### Git — Optional, Not a Dependency
 
@@ -136,7 +134,7 @@ Two query modes (inspired by GraphRAG, arXiv:2404.16130) — strategy depends on
 3. **Missing cross-link scan**: Notes sharing tags/domain within a community (directory) that are not cross-linked — missing edges (semantic gaps, not community redefinition)
 4. **Broken links**: Edges pointing to non-existent nodes
 5. **Staleness check**: Notes with `status: superseded` or outdated content
-6. **Promotion audit (Grep, mechanical)**: Grep `log.md` for `fix` entries missing `→ [[artifact]]`/`→ §N` and not marked `lesson: trivial` — **unresolved debts**. (Grep, not full scan — compatible with selective memory.)
+6. **Promotion audit (grep, mechanical)**: grep `log.md` for `fix` entries missing `→ [[artifact]]`/`→ §N` and not marked `lesson: trivial` — **unresolved debts**. (grep, not full scan — compatible with selective memory.)
 7. **Version sync**: `index.md` statistics block must reflect `AGENTS.md` footer version — mismatch is a bug
 8. Report results in `/log.md`: `## [YYYY-MM-DD] lint | <Findings summary>`
 
@@ -179,9 +177,8 @@ Two query modes (inspired by GraphRAG, arXiv:2404.16130) — strategy depends on
 
 **Protocol**:
 1. Identify all numeric claims in the output
-2. **Compute with a calculator**: run `Bash` with `python`/`node`/OS arithmetic — never in-head. (Allowed under §9; `python` is permitted.)
-3. **Verify retrieved data**: re-derive or cross-check any figure read from sources before citing
-4. Cite the verified value and its computation; if verification fails, say so explicitly rather than guessing
+2. **Compute with a calculator**: run `pwsh` with `python`/`node`/PowerShell arithmetic — never in-head. (Allowed under §9; `python` is permitted.)
+3. **Verify retrieved data**: re-derive or cross-check any figure read from sources before citing; if verification fails, say so explicitly rather than guessing
 
 ---
 
@@ -253,25 +250,27 @@ seedling → budding → evergreen → superseded → archived
 ## 7. Cross-Session Memory Protocol
 
 ### Session Start
-Every session executes the boot sequence (top of this file).### Session End
+Every session executes the boot sequence (top of this file).
+
+### Session End
 1. Append to `/log.md`: `## [YYYY-MM-DD] session | <Summary>`
 2. Update any changed `index.md` files
 3. File any valuable query answers as new notes
 4. **Promote lessons** (§2.5): convert any unpromoted session error into a rule or note
 5. **Run quick lint** (§2.3): clean promotion audit required — unresolved `fix` debt **blocks auto-commit**
 6. Ensure complete frontmatter and links on all new/modified notes
-7. Load `auto-commit` skill and commit — **only if git is available**
+7. Read `skills/auto-commit/SKILL.md` and follow it to commit — **only if git is available** (DSH: vault skills are files, not catalog skills — the `skill` tool loads only harness-registered skills)
 
 ### Memory Persistence
 - `/log.md` is **append-only** — never delete entries, only append
-- Greppable: `Grep` with pattern `^## \[` — read last 20–30 lines; newest at top
-- **Selective Memory Principle**: full-history persistence degrades performance ([[selective-persistent-memory|arXiv:2607.09493]]). Boot reads only the last ~30 log lines; lint flags stale entries for archiving to `/log-archive/`. Promotion audit is Grep-only (§2.3) — compatible with this principle.
-
----
+- Greppable: `grep` with pattern `^## \[` — read last 20–30 lines; newest at top
+- **Selective Memory Principle**: full-history persistence degrades performance ([[selective-persistent-memory|arXiv:2607.09493]]). Boot reads only the last ~30 log lines; lint flags stale entries for archiving to `/log-archive/`. Promotion audit is grep-only (§2.3) — compatible with this principle.
 
 ## 8. Skills & Agents
 
 **Locations**: `skills/<name>/SKILL.md` (vault skills), `.opencode/agents/<name>.md` (custom subagents). Skills conform to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io) — portable across 40+ agent runtimes. Required frontmatter: `name`, `description`.
+
+**Runtime loading (DSH)**: vault skills are files, not catalog skills — read the `SKILL.md` and follow it (the `skill` tool loads only harness-registered skills); subagent definitions are portable prompts — pass their content to the `subagent` tool; harness composition files live outside the vault (`~/.dsh`), never edited by vault operations.
 
 ### Read-Only Boundary (Hard Rule)
 
@@ -280,31 +279,31 @@ Every session executes the boot sequence (top of this file).### Session End
 ### Creation Criteria
 - **Skill**: repeated across sessions, specialized knowledge, describable in 1–2 sentences. One-off task → no skill.
 - **Agent**: needs different permission model / model tier / specialized system prompt. Doable by primary agent → no agent.
-- ⛔ **Never set `model` in agent frontmatter** — it hard-fails when that provider is unreachable in the user's environment.
+- ⛔ **Never pin `model`/provider in agent frontmatter or shared config** — it hard-fails when that provider is unreachable in the user's environment.
 - Boundary reference: [[skill-subagent-boundary|Skill vs Subagent Boundary]].
-
-### Multi-Agent Coordination
-When spawning subagents: non-overlapping scopes, one writer per file, primary agent merges results, descriptive task_ids.
+- **Multi-agent** (DSH: `subagent`/`subagent_fork`, background by default; fan-out: `workflow`): non-overlapping scopes, one writer per file, primary agent merges results, descriptive task_ids.
 
 ---
 
 ## 9. Agent Tool Boundary (Hard Rule)
 
-**The Agent is the untrusted executor.** Enforcement is layered: this file declares the rule, `opencode.json` + per-agent frontmatter enforces it, opencode's permission system audits it.
+**The Agent is the untrusted executor.** Enforcement is layered: this file declares the rule; the harness sandbox + approval stack enforces and audits it (DSH: file sandbox modes + approval prompts; opencode: `opencode.json`, per-agent frontmatter, permission system).
 
 ### Tool Priority
 
 | Priority | Tool Class | Examples | When to Use |
 |----------|-----------|----------|-------------|
-| **1** | opencode native tools | `Read`, `Write`, `Edit`, `Grep`, `Glob`, `Bash` | **Default for all vault operations.** |
-| **2** | OS-builtin via Bash | `findstr`, `type` (Windows) / `cat`, `sort` (Unix) | No opencode native equivalent. |
-| **3** | External CLI via Bash | `git`, `npm`, `node` | No opencode tool and no OS builtin suffices. |
-| **❌ BANNED** | External search/replace CLIs | `rg`, `ripgrep`, `fd`, `fzf`, `jq`, `bat`, `ag` | **Never invoke** — bypasses permission audit. opencode `Grep`/`Glob` is equivalent. |
+| **1** | DSH native tools | `read`, `write`, `edit`, `grep`, `glob`, `pwsh` | **Default for all vault operations.** |
+| **2** | OS-builtin via pwsh | `findstr`, `type`, `Select-String` (Windows) / `cat`, `sort` (Unix) | No native equivalent. |
+| **3** | External CLI via pwsh | `git`, `npm`, `node`, `python` | No native tool and no OS builtin suffices. |
+| **❌ BANNED** | External search/replace CLIs | `rg`, `ripgrep`, `fd`, `fzf`, `jq`, `bat`, `ag` | **Never invoke** — bypasses the audit boundary. Native `grep`/`glob` is equivalent. |
+
+**Portability map** (Agent-Skills runtimes): `read→Read`, `write→Write`, `edit→Edit`, `grep→Grep`, `glob→Glob`, `pwsh→Bash` (opencode/Crush/Claude Code). This file names DSH tools because DSH is the current runtime.
 
 ### Prohibitions
-- Never call `rg`/`fd`/`fzf`/`bat`/`jq` from a skill or agent — use `Grep`/`Glob`/`Read`
-- Never add `rg`/`fd`/`jq` as a prerequisite in README or skill text
-- `git`, `npm`, `node`, `python` are acceptable — declare the dependency, use cross-platform invocation, ask first if `permission: bash: ask` is set
+- Never call `rg`/`fd`/`fzf`/`bat`/`jq` from a skill or agent, and never list them as prerequisites in README/skill text — use `grep`/`glob`/`read`
+- `git`, `npm`, `node`, `python` are acceptable — declare the dependency, use cross-platform invocation, ask first if permission mode is `ask`
+- DSH sandbox: a denied file/command is policy, not a bug — never work around a denial; escalation goes through the approval mechanism, and a rejected escalation is final
 
 ---
 
@@ -312,10 +311,10 @@ When spawning subagents: non-overlapping scopes, one writer per file, primary ag
 
 | Pillar | File(s) | Function |
 |--------|---------|----------|
-| **Schema** | `AGENTS.md`, `opencode.json` | How the AI reads, writes, maintains the vault |
+| **Schema** | `AGENTS.md` (+ `opencode.json` for opencode-compatible runtimes) | How the AI reads, writes, maintains the vault |
 | **Memory** | `log.md` | Cross-session history (greppable, append-only) |
 | **Navigation** | `index.md` + root-level hub files (per cluster) | Progressive disclosure without search infrastructure |
-| **External References** | `opencode.json` → `references` | Offline access to upstream sources |
+| **External References** | `web_search` tool + upstream docs (opencode runtimes: `references`) | Online/offline access to upstream sources |
 
 - **Growth**: every ingest adds nodes; every filed query adds a node; every lint finds gaps → new ingest tasks; every error with a **reusable lesson** is promoted (§2.5 gate); trivial errors logged only. Vault compounds.
 - **Maintenance**: lint detects staleness/contradictions/orphans; superseded notes are marked, never deleted; git history (when available) provides diffs.
@@ -336,15 +335,15 @@ When spawning subagents: non-overlapping scopes, one writer per file, primary ag
 | Verify data output | Data Accuracy (§2.6) — calculator required, never mental math |
 | Promotion ledger | `_meta/promotions.md` — read at boot, active constraints & standards |
 | Create note | Use template from `/templates/` |
-| Skill / agent location | `skills/<name>/SKILL.md` · `.opencode/agents/<name>.md` |
-| Find recent activity | `Grep` on `log.md` with `^## \[`, read last lines |
-| Tool boundary | §9: opencode native tools first, never `rg`/`fd`/`jq` |
-| Git commit | Load `auto-commit` skill at session end; skip silently if git unavailable |
+| Skill / agent location | `skills/<name>/SKILL.md` (read the file in DSH) · `.opencode/agents/<name>.md` |
+| Find recent activity | `grep` on `log.md` with `^## \[`, read last lines |
+| Tool boundary | §9: DSH native tools first, never `rg`/`fd`/`jq` |
+| Git commit | Read `skills/auto-commit/SKILL.md` at session end; skip silently if git unavailable |
 
 ---
 
 > **Development workflow** (branching, release process): see [[development|_meta/development.md]] — not loaded per session.
 >
-> **Version**: 1.5.1
+> **Version**: 1.6.0
 > **Line budget**: ≤ 350 lines, one-in-one-out for new rules (§2.5)
 > **Conforms to**: OKF v0.1

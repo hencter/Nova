@@ -19,6 +19,8 @@ metadata:
 # Nova KB — Knowledge Base Maintenance Skill
 
 > **Agent Skills Standard**: This skill conforms to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io). Compatible with any Agent Skills-compliant runtime including Crush, Claude Code, Cursor, and GitHub Copilot.
+>
+> **Runtime note (DeepSeek Harness)**: this vault skill is not registered in the DSH skill catalog — read this file directly when the workflow applies (AGENTS.md §8).
 
 You are maintaining the **Nova Knowledge Vault** (the directory containing `AGENTS.md`). This skill enables you to perform vault maintenance operations efficiently and correctly.
 
@@ -71,7 +73,7 @@ When you answer a question and the answer has lasting value:
 1. Write a new concept note in `/concepts/` capturing the synthesized answer
 2. Add complete frontmatter with `type: Concept`
 3. Link to all source notes referenced in the answer
- 4. Add to `concepts.md`
+4. Add to `concepts.md`
 5. Log: `## [YYYY-MM-DD] query-filed | <Topic>`
 
 ### Lint — Health Check
@@ -83,7 +85,7 @@ Run lint at session end (shutdown sequence) and on `/lint`:
 3. **Missing cross-link scan**: Notes sharing tags/domain within a community (directory) that are not cross-linked.
 4. **Broken links**: Wiki links `[[Target]]` pointing to non-existent notes.
 5. **Staleness check**: Notes with `status: superseded` that still appear in index files, or current notes referencing outdated/superseded concepts.
-6. **Promotion audit (Grep, mechanical)**: Grep `log.md` for `fix` entries missing `→ [[artifact]]`/`→ §N` and not marked `lesson: trivial` — unresolved debts.
+6. **Promotion audit (grep, mechanical)**: grep `log.md` for `fix` entries missing `→ [[artifact]]`/`→ §N` and not marked `lesson: trivial` — unresolved debts.
 7. **Version sync**: `index.md` statistics block must reflect `AGENTS.md` footer version.
 8. **Report findings** in `/log.md`: `## [YYYY-MM-DD] lint | <Summary>`
 
@@ -130,7 +132,7 @@ status: seedling           # seedling|budding|evergreen|superseded|archived
 difficulty: intermediate   # beginner|intermediate|advanced
 domain: domain-name
 prerequisites:
-  - /path/to/note.md
+  - "[[note-slug]]"
 related:
   - "[[Note Name]]"
 sources:

@@ -70,6 +70,7 @@ graph TD
 
 ### 🛠️ [[tools|工具 — Agent 编程平台]]
 主流 AI 编程/Agent 工具的深度分析。
+- [[deepseek-harness|DeepSeek Harness]] — 当前运行环境：Cordis 组合、工具栈、沙箱与动态插件
 - [[opencode|OpenCode]] — OpenCode 完整功能分析
 - [[claude-code|Claude Code]] — Anthropic 的终端编程 Agent
 - [[codex-cli|Codex CLI]] — OpenAI 的 Agent 编程工具
@@ -90,7 +91,7 @@ Agent 系统与知识管理的跨领域设计模式。
 AI 管家的自我认知、能力清单与扩展性。
 - [[nova-identity|Nova Identity]] — Nova 的核心目标、指令与个性
 - [[capability-manifest|Capability Manifest]] — Nova 的能力、可用工具与成长路径
-- [[personalize|个性化你的 Nova]] — 改名、改身份、配置 opencode
+- [[personalize|个性化你的 Nova]] — 改名、改身份、配置运行环境
 
 ### 🤝 [[conference|会议 — Agent 间异步协作]]
 Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
@@ -116,7 +117,8 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 | 指标 | 数值 |
 |--------|-------|
 | 框架 | OKF v0.1 |
-| 模式层 | AGENTS.md v1.5.1 |
+| 模式层 | AGENTS.md v1.6.0 |
+| 运行环境 | DeepSeek Harness（Cordis 组合） |
 | ID 系统 | Timestamp (YYYYMMDDThhmmss) |
 | 知识域 | AI Agent、知识管理、系统架构 |
 | 状态 | 活跃，持续复利增长 |

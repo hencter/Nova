@@ -14,6 +14,7 @@ This directory contains **tool-specific deep dives** — each file analyzes a si
 
 ## Notes
 
+- [[deepseek-harness|DeepSeek Harness]] — The vault's current runtime: Cordis composition, native tool stack, sandbox, dynamic plugins
 - [[opencode|OpenCode]] — Full feature analysis: TUI, config, skills, agents, plugins, permissions
 - [[claude-code|Claude Code]] — Anthropic's terminal agent: CLAUDE.md, auto memory, agent teams, hooks
 - [[codex-cli|Codex CLI]] — OpenAI's agent: desktop app, sandboxing, workflows, memories

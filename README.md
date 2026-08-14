@@ -11,12 +11,12 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 | 工具 | 用途 | 安装 |
 |------|------|------|
 | **Obsidian** | 可视化浏览知识库 | [obsidian.md](https://obsidian.md) |
-| **OpenCode / Crush** | AI 代理运行环境 | 见下方说明 |
+| **DeepSeek Harness** | AI 代理运行环境（当前） | 见下方说明 |
 | **Git**（可选） | 版本历史与自动提交 | `winget install Git.Git` 或 [git-scm.com](https://git-scm.com) |
 
 > **没有 Git 也能用**：Git 只负责版本历史和自动提交。不装 Git，Nova 照常工作（很多用户用 Obsidian Sync 或网盘同步）。Nova 不会在你未确认的情况下自动安装任何软件。
 >
-> **AI 运行环境**：原版 OpenCode（opencode-ai/opencode）已于 2025-09-18 归档。推荐使用其接替者 **[Crush](https://github.com/charmbracelet/crush)**（Charm 团队维护，26.5k stars）或 **[OpenCode by SST](https://github.com/sst/opencode)**。两者均支持 Agent Skills 开放标准。
+> **AI 运行环境**：当前运行于 **DeepSeek Harness (DSH)**——用 DSH 打开本仓库目录作为工作区即可，`AGENTS.md` 会自动作为工作区指令加载。仓库保留 `opencode.json` 以兼容其他 Agent Skills 运行环境：原版 OpenCode 已于 2025-09-18 归档，可选其接替者 **[Crush](https://github.com/charmbracelet/crush)** 或 **[OpenCode by SST](https://github.com/sst/opencode)**。
 
 ---
 
@@ -26,8 +26,8 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 # 1. 进入仓库
 cd Nova
 
-# 2. 启动 AI 代理
-crush       # 或：opencode
+# 2. 用 DeepSeek Harness 打开本目录作为工作区（AGENTS.md 自动加载）
+#    或兼容运行环境：crush / opencode
 ```
 
 ### 首次启动：强制初始化
@@ -78,7 +78,7 @@ Nova: 初始化完成。从现在起我是你的 星尘，请多指教。
 | 总目 | 目录 | 内容 |
 |------|------|------|
 | [`concepts.md`](concepts.md) | `concepts/` | **29 篇**原子概念笔记（AI Agent、Git、ZK、OKF 等） |
-| [`tools.md`](tools.md) | `tools/` | **8 篇**工具深度分析（OpenCode/Crush、Claude Code、Aider 等） |
+| [`tools.md`](tools.md) | `tools/` | **9 篇**工具深度分析（DeepSeek Harness、OpenCode/Crush、Claude Code、Aider 等） |
 | [`patterns.md`](patterns.md) | `patterns/` | **5 篇**设计模式（多代理、上下文管理、权限模型等） |
 | [`_identity.md`](_identity.md) | `_identity/` | Nova 的自我认知与个性化指南 |
 | [`_meta.md`](_meta.md) | `_meta/` | 关于知识库本身的知识（架构、自举机制） |
@@ -89,7 +89,7 @@ Nova: 初始化完成。从现在起我是你的 星尘，请多指教。
 ## 技术栈
 
 - **编辑器**: Obsidian（Markdown + Wiki Links + Graph View）
-- **AI 框架**: OpenCode / [Crush](https://github.com/charmbracelet/crush)（Skills + Subagents + Multi-agent + Auto-commit）
+- **AI 框架**: DeepSeek Harness（Cordis 组合 + 工作区 AGENTS.md；兼容 OpenCode / [Crush](https://github.com/charmbracelet/crush)，Skills + Subagents + Multi-agent）
 - **版本控制**: Git（自动提交 via `auto-commit` 技能）
 - **格式标准**: [OKF v0.1](https://github.com/GoogleCloudPlatform/knowledge-catalog)（开放知识格式）
 

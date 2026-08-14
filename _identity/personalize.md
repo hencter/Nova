@@ -19,7 +19,7 @@ related:
   - "[[vault-architecture|Vault Architecture]]"
 confidence: 1.0
 summary: >
-  只需修改 3 个文件即可完成 Nova 个性化：改名字、改身份描述、改 opencode 配置——你的 Nova 你做主。
+  只需修改 3 个文件即可完成 Nova 个性化：改名字、改身份描述、确认运行环境——你的 Nova 你做主。
 ---
 
 # 个性化你的 Nova
@@ -56,23 +56,14 @@ Nova 的设计前提是：**每个人都有自己的 Nova**。你拿到的种子
 编辑 `AGENTS.md`：
 - `## 0. Identity` 的 `(**Core Directives**` 部分，可以根据你的喜好调优先级或加新指令。
 
-### 第 3 步：配置 Opencode 连接
+### 第 3 步：确认运行环境（DeepSeek Harness）
 
-仓库根目录的 `opencode.json` 已用**相对路径**预置好，开箱即用：
-```json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "skills": {
-    "paths": ["skills"]
-  },
-  "instructions": ["AGENTS.md"]
-}
-```
+Nova 当前运行于 **DeepSeek Harness (DSH)**——无需任何配置文件：
 
-- 路径均为**相对仓库根目录**的相对路径——保证仓库可任意路径解压、跨平台、跨机器
-- `skills/nova-kb/` 是默认自带的 vault 维护技能
-- `AGENTS.md` 是 Nova 的规则手册（与仓库一起移动）
-- 如需添加额外技能，追加到 `paths` 数组即可（仍用相对路径）
+- 用 DSH 打开本仓库目录作为工作区，`AGENTS.md` 自动作为工作区指令加载
+- `skills/` 下的技能在 DSH 中按需直接读取（无需注册）
+- 仓库根目录的 `opencode.json` 仅为 opencode/Crush 等兼容运行环境保留（相对路径，开箱即用）
+- 如需把 vault 技能注册进 DSH 技能目录，须编辑 harness 组合（位于仓库外 `~/.dsh`，不属于本仓库）
 
 ---
 
@@ -92,8 +83,7 @@ Nova 的能力通过技能（Skill）扩展。查看 `skills/` 目录了解已�
 
 添加技能的方法：
 1. 将技能文件夹放到 `skills/` 下
-2. 在 `opencode.json` 的 `skills.paths` 中添加路径
-3. 重启 Opencode 即可生效
+2. DSH：按需直接读取即可；opencode/Crush：在 `opencode.json` 的 `skills.paths` 中添加路径并重启
 
 常用技能参考（需自行获取）：
 - 代码审查技能
@@ -132,7 +122,7 @@ Nova 的能力通过技能（Skill）扩展。查看 `skills/` 目录了解已�
 |------|--------|------|
 | `_identity/nova-identity.md` | Nova 名字、个性、目标 | Nova 的自我认知 |
 | `AGENTS.md` | Nova 名字、核心指令 | Nova 的行为规则 |
-| `opencode.json` | 技能路径、指令路径 | Nova 的能力范围 |
+| `opencode.json`（仅 opencode/Crush） | 技能路径、指令路径 | 兼容运行时的能力范围 |
 | `README.md` | 库描述 | 人类看到的介绍 |
 | `.obsidian/app.json` | Obsidian 配置 | 编辑器体验（其他人无需同步） |
 

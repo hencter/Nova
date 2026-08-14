@@ -35,6 +35,7 @@ Rules written into `AGENTS.md` — loaded every session, binding by construction
 | 2026-06-30 | §9 tool boundary (no rg/fd/fzf/bat/jq) | External search CLIs bypass permission audit | log 2026-06-30 |
 | 2026-06-30 | §1 no filesystem-absolute paths | Absolute paths break on distribution | log 2026-06-30 |
 | 2026-08-05 | §2.6 data accuracy — calculator required | LLM arithmetic unreliable; verify any numeric output with a calculator | log 2026-08-05 |
+| 2026-08-14 | §9 DSH tool boundary + portability map | Schema names the current harness's tools; one-line map keeps portability | log 2026-08-14 |
 
 ## Active Constraint Notes (boot-loaded)
 
@@ -50,7 +51,7 @@ Promoted lessons filed as concept/pattern/tool notes — knowledge background, n
 
 | Date | Note | Lesson | Trace |
 |------|------|--------|-------|
-| — | — | (none yet) | — |
+| 2026-08-14 | [[deepseek-harness|DeepSeek Harness]] (tools/) | DSH runtime model & tool stack — the reference note behind the §9 mapping | log 2026-08-14 |
 
 ## Retired
 

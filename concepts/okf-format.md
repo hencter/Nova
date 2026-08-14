@@ -178,7 +178,7 @@ Conventions:
 - Date headings: ISO 8601 `YYYY-MM-DD`
 - Bold prefix words: `**Update**`, `**Creation**`, `**Deprecation**` (convention, not requirement)
 - Newest entries at the top
-- Greppable: opencode `Grep` tool on `log.md` with pattern `^## \[` → read last lines
+- Greppable: the harness `grep` tool on `log.md` with pattern `^## \[` → read last lines
 
 ## Citations Convention
 

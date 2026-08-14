@@ -79,13 +79,13 @@ summary: >
 ## 扩展性
 
 我可以通过以下方式增长能力：
-### 技能（`skills/`，受 AGENTS.md §11 保护）
+### 技能（`skills/`，受 AGENTS.md §8 保护）
 
-- **nova-kb**：知识库维护工作流（摄入、检查、交叉引用、查询归档）。位于 `skills/nova-kb/SKILL.md`，通过 `opencode.json` 的 `skills.paths` 加载。
+- **nova-kb**：知识库维护工作流（摄入、检查、交叉引用、查询归档）。位于 `skills/nova-kb/SKILL.md`（DSH 下按需直接读取文件）。
 
-### Agent（`.opencode/agents/`，受 AGENTS.md §11 保护）
+### Agent（`.opencode/agents/` 定义，受 AGENTS.md §8 保护）
 
-- **nova-architect**：用于知识库架构设计和重构决策的 Subagent。位于 `.opencode/agents/nova-architect.md`。
+- **nova-architect**：用于知识库架构设计和重构决策的 Subagent。位于 `.opencode/agents/nova-architect.md`（可移植 prompt 定义；DSH 下将文件内容作为 `subagent` 工具的 prompt 传入）。
 ### 未来成长路径
 - 领域专项技能（如代码审查、论文分析、教学）
 - 用于外部数据集成的 MCP 服务器

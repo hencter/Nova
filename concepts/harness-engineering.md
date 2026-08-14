@@ -12,6 +12,7 @@ related:
   - "[[permission-models|Permission Models]]"
   - "[[agent-extensibility|Agent Extensibility]]"
   - "[[context-management|Context Management]]"
+  - "[[deepseek-harness|DeepSeek Harness]]"
 sources:
   - title: "From Prompts to Contracts: Harness Engineering for Auditable Enterprise LLM Agents"
     url: "https://arxiv.org/abs/2607.08028"

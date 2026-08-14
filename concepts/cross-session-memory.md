@@ -184,7 +184,7 @@ A complementary approach used by this knowledge vault:
 
 - **Append-only**: Never delete entries, only append
 - **Chronological**: Newest entries at the top (reverse chronological)
-- **Greppable**: opencode `Grep` tool on `log.md` with pattern `^## \[` → read last 20 lines
+- **Greppable**: the harness `grep` tool on `log.md` with pattern `^## \[` → read last 20 lines
 - **Format**: `## [YYYY-MM-DD] operation | Description`
 
 ## Session Boot Sequences
