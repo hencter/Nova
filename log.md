@@ -4,6 +4,17 @@
 
 ---
 
+## [2026-08-14] fix | P1 债务清理 — 归档目录落地 + promotions 台账回归预算 → §2.3
+
+**原因**：08-14 会话挂账的 P1：promotions 台账 64 行超 50 行预算、`/log-archive/` 目录尚不存在（`.opencode/node_modules` 已在去 opencode 化 refactor 中清除）。
+
+**变更**：
+1. 新建 `/log-archive/README.md`：归档机制落点（陈旧 log 条目、台账退休历史、superseded 副本）、命名约定（`<source>-<date>.md`）、非图节点声明
+2. `_meta/promotions.md` 压缩 64 → 43 行（≤50 预算）：frontmatter 流式压缩（tags/related/summary）、空表节合并为一行注释、Retired 节指向 `/log-archive/`
+3. `RELEASE.md` 修正过时表述：头部「仅存在于 dev」改为「维护于 dev，发布时随合并进入 main」；删除不存在的 §14 引用
+
+**意义**：台账重新满足自身行预算；log-archive 成为 lint §2.3 归档机制的实际落点；发布清单与实际分支结构对齐。
+
 ## [2026-08-14] refactor | 彻底去 opencode 化 — 兼容层移除，vault 成为 DSH 专属
 
 **动因**：用户不再使用 opencode，仓库中的 opencode 内容仅为旧版知识库的兼容层。采用方案：配置/兼容层全清，知识笔记保留原样。

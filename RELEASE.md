@@ -1,6 +1,6 @@
 # RELEASE.md — dev → main 合并清单
 
-> **仅存在于 `dev` 分支。** 不合并到 `main`。记录需要从 dev 带到 main 的内容。
+> **维护于 `dev` 分支。** 发布时随 dev 合入 main，内容更新只在 dev 进行。记录需要从 dev 带到 main 的内容。
 
 ---
 
@@ -12,7 +12,7 @@
 | 已有笔记的内容完善 | ✅ | 补充说明、新增交叉链接 |
 | 术语修正 / 路径修正 | ✅ | 全库范围的规范修正 |
 | AGENTS.md 用户可见规则 | ✅ | 启动序列、first-run 检测 |
-| AGENTS.md dev 专属段 | ❌ | §14 分支策略、开发流程 |
+| AGENTS.md dev 专属段 | ❌ | （当前无 dev 专属段，分支规则已并入 boot sequence） |
 | 会议记录 | ❌ | `conference/session-*.md` |
 | RELEASE.md 自身 | ❌ | 本文件 |
 | `skills/` 技能、`_agents/` 代理定义 | ✅ | 用户也需要 auto-commit、子代理 |
@@ -21,7 +21,7 @@
 
 ## 当前 dev 独有内容（不合并）
 
-- [x] `AGENTS.md §14` — 分支策略（dev/main）
+- [x] `AGENTS.md §14` — 分支策略（v1.6.0 起无 dev 专属段，通用规则已并入 boot sequence）
 - [x] `conference/` 会议记录
 - [x] `RELEASE.md` 本文件
 
