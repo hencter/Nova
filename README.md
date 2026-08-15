@@ -16,7 +16,7 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 
 > **没有 Git 也能用**：Git 只负责版本历史和自动提交。不装 Git，Nova 照常工作（很多用户用 Obsidian Sync 或网盘同步）。Nova 不会在你未确认的情况下自动安装任何软件。
 >
-> **AI 运行环境**：当前运行于 **DeepSeek Harness (DSH)**——用 DSH 打开本仓库目录作为工作区即可，`AGENTS.md` 会自动作为工作区指令加载。仓库保留 `opencode.json` 以兼容其他 Agent Skills 运行环境：原版 OpenCode 已于 2025-09-18 归档，可选其接替者 **[Crush](https://github.com/charmbracelet/crush)** 或 **[OpenCode by SST](https://github.com/sst/opencode)**。
+> **AI 运行环境**：当前运行于 **DeepSeek Harness (DSH)**——用 DSH 打开本仓库目录作为工作区即可，`AGENTS.md` 会自动作为工作区指令加载。仓库不依赖任何运行时专属配置文件：`skills/` 技能按需直接读取，`_agents/` 子代理定义为可移植 prompt。
 
 ---
 
@@ -27,7 +27,6 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 cd Nova
 
 # 2. 用 DeepSeek Harness 打开本目录作为工作区（AGENTS.md 自动加载）
-#    或兼容运行环境：crush / opencode
 ```
 
 ### 首次启动：强制初始化
@@ -89,7 +88,7 @@ Nova: 初始化完成。从现在起我是你的 星尘，请多指教。
 ## 技术栈
 
 - **编辑器**: Obsidian（Markdown + Wiki Links + Graph View）
-- **AI 框架**: DeepSeek Harness（Cordis 组合 + 工作区 AGENTS.md；兼容 OpenCode / [Crush](https://github.com/charmbracelet/crush)，Skills + Subagents + Multi-agent）
+- **AI 框架**: DeepSeek Harness（Cordis 组合 + 工作区 AGENTS.md + 原生工具栈；Skills + Subagents + Multi-agent）
 - **版本控制**: Git（自动提交 via `auto-commit` 技能）
 - **格式标准**: [OKF v0.1](https://github.com/GoogleCloudPlatform/knowledge-catalog)（开放知识格式）
 

@@ -4,6 +4,41 @@
 
 ---
 
+## [2026-08-14] fix | P1 债务清理 — 归档目录落地 + promotions 台账回归预算 → §2.3
+
+**原因**：08-14 会话挂账的 P1：promotions 台账 64 行超 50 行预算、`/log-archive/` 目录尚不存在（`.opencode/node_modules` 已在去 opencode 化 refactor 中清除）。
+
+**变更**：
+1. 新建 `/log-archive/README.md`：归档机制落点（陈旧 log 条目、台账退休历史、superseded 副本）、命名约定（`<source>-<date>.md`）、非图节点声明
+2. `_meta/promotions.md` 压缩 64 → 43 行（≤50 预算）：frontmatter 流式压缩（tags/related/summary）、空表节合并为一行注释、Retired 节指向 `/log-archive/`
+3. `RELEASE.md` 修正过时表述：头部「仅存在于 dev」改为「维护于 dev，发布时随合并进入 main」；删除不存在的 §14 引用
+
+**意义**：台账重新满足自身行预算；log-archive 成为 lint §2.3 归档机制的实际落点；发布清单与实际分支结构对齐。
+
+## [2026-08-14] refactor | 彻底去 opencode 化 — 兼容层移除，vault 成为 DSH 专属
+
+**动因**：用户不再使用 opencode，仓库中的 opencode 内容仅为旧版知识库的兼容层。采用方案：配置/兼容层全清，知识笔记保留原样。
+
+**变更**：
+1. 删除 `opencode.json` 与 `.opencode/` 目录（含 agents/、node_modules 本地残留）
+2. `.opencode/agents/` 两个子代理定义迁移至 `_agents/`（nova-architect、terminology-auditor）：frontmatter 摘除 opencode 专属字段（mode/temperature/permission），工具引用同步为 DSH 原生名，§12→§9 引用修正
+3. `AGENTS.md` 摘除全部 opencode 兼容表述（§8 Locations/只读边界、§9 强制层与可移植映射、§10 支柱、§11 速查）→ 版本 1.6.0 → 1.7.0
+4. 同步 `README.md`（运行环境/启动流程/技术栈）、`RELEASE.md`（合并清单）、`_meta/vault-architecture.md`（目录树）、`_meta/conventions.md`（换中性示例）
+5. 同步 `_identity/` 三件（capability-manifest、nova-identity、personalize）
+6. 知识笔记现状表述同步：`tools/deepseek-harness.md`（Vault Impact）、`concepts/reference-based-self-bootstrapping.md`（运行时说明 + 配置示例改历史表述）、`concepts/selective-persistent-memory.md`（图谱映射）
+7. `index.md` 统计块版本同步 v1.7.0
+
+**保留**（知识资产，非兼容层）：`tools/opencode.md`、`concepts/opencode-architecture.md` 等 opencode 知识笔记及其交叉链接；`log.md` 与 `conference/` 历史记录。
+
+**意义**：vault 成为 DSH 专属仓库，零运行时专属配置文件（打开工作区即用）；`_agents/` 延续可移植 prompt 模式；AGENTS.md 行预算释放出空间。
+
+## [2026-08-14] session | 启用 git worktree 模式 — dev 迭代 / main 生产测试
+
+- 新建 dev worktree：`D:\OpenCode\Navo-dev`（锁定 dev 分支，全仓迭代）；主目录 `D:\OpenCode\Navo` 锁定 main（生产测试）
+- 复制 `_identity/user-config.md`（gitignored）至 dev worktree，避免误触发初始化问答
+- 分支分工与 worktree 规范写入 `_meta/development.md`
+- 注意：`log.md` 将随分支分叉，合并时可能需手工解决冲突
+
 ## [2026-08-14] refactor | AGENTS.md v1.6.0 — 适配 DeepSeek Harness 运行时
 
 **动因**：用户要求迭代优化，使 vault 适配当前运行环境 DeepSeek Harness。原 schema 层的工具名（Read/Write/Edit/Grep/Glob/Bash）与 DSH 工具栈（read/write/edit/grep/glob/pwsh）不匹配，运行时行为不一致。

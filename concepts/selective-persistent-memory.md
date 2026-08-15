@@ -173,7 +173,7 @@ graph TD
     subgraph "Nova Vault Mapping"
         NV1["AGENTS.md<br/>(schema, rules, conventions)"]
         NV2["index.md + concepts.md<br/>(knowledge graph structure)"]
-        NV3["skills/ + opencode.json<br/>(tool configurations)"]
+        NV3["skills/ + _agents/<br/>(skill & agent configs)"]
         NV4["templates/ + conventions<br/>(output format constraints)"]
     end
 

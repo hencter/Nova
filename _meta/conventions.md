@@ -26,7 +26,7 @@ summary: >
 
 | 目录 | 命名模式 | 示例 |
 |-----------|---------|---------|
-| `/concepts/` | `descriptive-slug.md` | `opencode-architecture.md` |
+| `/concepts/` | `descriptive-slug.md` | `attention-mechanism.md` |
 | `/tools/` | `tool-name.md` | `claude-code.md` |
 | `/patterns/` | `pattern-name.md` | `multi-agent-patterns.md` |
 | `/_meta/` | `meta-topic.md` | `vault-architecture.md` |
@@ -55,7 +55,7 @@ summary: >
 
 | 使用场景 | 格式 | 示例 |
 |---------|--------|---------|
-| 笔记正文内联 | `[[Note]]` | 详见 [[opencode-architecture|OpenCode Architecture]]。 |
+| 笔记正文内联 | `[[Note]]` | 详见 [[attention-mechanism|Attention Mechanism]]。 |
 | 前置元数据 `related` | `"[[Note]]"` | `related: ["[[Note A]]"]` |
 | 前置元数据 `prerequisites` | `"[[note-slug]]"`（优先） | `prerequisites: ["[[okf-format]]"]` |
 | 外部引用 | `[text](url)` | [OKF Spec](https://github.com/...) |

@@ -268,13 +268,13 @@ Every session executes the boot sequence (top of this file).
 
 ## 8. Skills & Agents
 
-**Locations**: `skills/<name>/SKILL.md` (vault skills), `.opencode/agents/<name>.md` (custom subagents). Skills conform to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io) — portable across 40+ agent runtimes. Required frontmatter: `name`, `description`.
+**Locations**: `skills/<name>/SKILL.md` (vault skills), `_agents/<name>.md` (custom subagent prompts). Skills conform to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io) — portable across 40+ agent runtimes. Required frontmatter: `name`, `description`.
 
 **Runtime loading (DSH)**: vault skills are files, not catalog skills — read the `SKILL.md` and follow it (the `skill` tool loads only harness-registered skills); subagent definitions are portable prompts — pass their content to the `subagent` tool; harness composition files live outside the vault (`~/.dsh`), never edited by vault operations.
 
 ### Read-Only Boundary (Hard Rule)
 
-**Skills, agent definitions, and plugins are machine configuration, NOT knowledge articles.** Do NOT modify `skills/`, `.opencode/agents/`, `.opencode/plugins/`, or `opencode.json` during normal vault operations (ingest, lint, query-file). Only when the user **explicitly asks**.
+**Skills and agent definitions are machine configuration, NOT knowledge articles.** Do NOT modify `skills/` or `_agents/` during normal vault operations (ingest, lint, query-file). Only when the user **explicitly asks**.
 
 ### Creation Criteria
 - **Skill**: repeated across sessions, specialized knowledge, describable in 1–2 sentences. One-off task → no skill.
@@ -287,7 +287,7 @@ Every session executes the boot sequence (top of this file).
 
 ## 9. Agent Tool Boundary (Hard Rule)
 
-**The Agent is the untrusted executor.** Enforcement is layered: this file declares the rule; the harness sandbox + approval stack enforces and audits it (DSH: file sandbox modes + approval prompts; opencode: `opencode.json`, per-agent frontmatter, permission system).
+**The Agent is the untrusted executor.** Enforcement is layered: this file declares the rule; the harness sandbox + approval stack enforces and audits it (DSH: file sandbox modes + approval prompts).
 
 ### Tool Priority
 
@@ -298,7 +298,7 @@ Every session executes the boot sequence (top of this file).
 | **3** | External CLI via pwsh | `git`, `npm`, `node`, `python` | No native tool and no OS builtin suffices. |
 | **❌ BANNED** | External search/replace CLIs | `rg`, `ripgrep`, `fd`, `fzf`, `jq`, `bat`, `ag` | **Never invoke** — bypasses the audit boundary. Native `grep`/`glob` is equivalent. |
 
-**Portability map** (Agent-Skills runtimes): `read→Read`, `write→Write`, `edit→Edit`, `grep→Grep`, `glob→Glob`, `pwsh→Bash` (opencode/Crush/Claude Code). This file names DSH tools because DSH is the current runtime.
+This file names DSH native tools because DSH is the vault's runtime.
 
 ### Prohibitions
 - Never call `rg`/`fd`/`fzf`/`bat`/`jq` from a skill or agent, and never list them as prerequisites in README/skill text — use `grep`/`glob`/`read`
@@ -311,10 +311,10 @@ Every session executes the boot sequence (top of this file).
 
 | Pillar | File(s) | Function |
 |--------|---------|----------|
-| **Schema** | `AGENTS.md` (+ `opencode.json` for opencode-compatible runtimes) | How the AI reads, writes, maintains the vault |
+| **Schema** | `AGENTS.md` | How the AI reads, writes, maintains the vault |
 | **Memory** | `log.md` | Cross-session history (greppable, append-only) |
 | **Navigation** | `index.md` + root-level hub files (per cluster) | Progressive disclosure without search infrastructure |
-| **External References** | `web_search` tool + upstream docs (opencode runtimes: `references`) | Online/offline access to upstream sources |
+| **External References** | `web_search` tool + upstream docs | Online/offline access to upstream sources |
 
 - **Growth**: every ingest adds nodes; every filed query adds a node; every lint finds gaps → new ingest tasks; every error with a **reusable lesson** is promoted (§2.5 gate); trivial errors logged only. Vault compounds.
 - **Maintenance**: lint detects staleness/contradictions/orphans; superseded notes are marked, never deleted; git history (when available) provides diffs.
@@ -335,7 +335,7 @@ Every session executes the boot sequence (top of this file).
 | Verify data output | Data Accuracy (§2.6) — calculator required, never mental math |
 | Promotion ledger | `_meta/promotions.md` — read at boot, active constraints & standards |
 | Create note | Use template from `/templates/` |
-| Skill / agent location | `skills/<name>/SKILL.md` (read the file in DSH) · `.opencode/agents/<name>.md` |
+| Skill / agent location | `skills/<name>/SKILL.md` (read the file in DSH) · `_agents/<name>.md` (subagent prompts) |
 | Find recent activity | `grep` on `log.md` with `^## \[`, read last lines |
 | Tool boundary | §9: DSH native tools first, never `rg`/`fd`/`jq` |
 | Git commit | Read `skills/auto-commit/SKILL.md` at session end; skip silently if git unavailable |
@@ -344,6 +344,6 @@ Every session executes the boot sequence (top of this file).
 
 > **Development workflow** (branching, release process): see [[development|_meta/development.md]] — not loaded per session.
 >
-> **Version**: 1.6.0
+> **Version**: 1.7.0
 > **Line budget**: ≤ 350 lines, one-in-one-out for new rules (§2.5)
 > **Conforms to**: OKF v0.1

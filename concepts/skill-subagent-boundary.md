@@ -51,8 +51,8 @@ Skills and subagents are both ways to extend an agent's capabilities, but they o
 | **LLM Model** | Same as main agent | Can be different (cheaper, faster, specialized) |
 | **Concurrency** | Serial — injected, executed, context continues | Parallel — N agents can run simultaneously |
 | **Lifecycle** | Ephemeral — loaded on demand, unloaded after use | Task-scoped — spawned, runs, returns result, exits |
-| **File location** | `<vault>/skills/<name>/SKILL.md` | `.opencode/agents/<name>.md` |
-| **Frontmatter** | `name`, `description` (required) | `mode: subagent`, `permission:`, `description` |
+| **File location** | `<vault>/skills/<name>/SKILL.md` | `<vault>/_agents/<name>.md` (portable prompt; opencode era: `.opencode/agents/`) |
+| **Frontmatter** | `name`, `description` (required) | `name`, `description` (opencode era added `mode`/`permission`/`temperature`) |
 | **State mutation** | Direct — skill instructions execute via main agent's tools | Indirect — subagent edits files, main agent merges |
 | **Error containment** | Error in skill = error in main agent | Error in subagent = subagent fails, main agent unaffected |
 

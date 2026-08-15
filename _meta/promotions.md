@@ -8,17 +8,10 @@ id: "20260805T220500"
 status: evergreen
 difficulty: intermediate
 domain: knowledge-management
-tags:
-  - meta
-  - promotions
-  - standards
-related:
-  - "[[conventions|Conventions]]"
-  - "[[vault-architecture|Vault Architecture]]"
-  - "[[self-bootstrapping|Self-Bootstrapping]]"
+tags: [meta, promotions, standards]
+related: ["[[conventions|Conventions]]", "[[vault-architecture|Vault Architecture]]", "[[self-bootstrapping|Self-Bootstrapping]]"]
 confidence: 1.0
-summary: >
-  Every promotion (§2.5) is registered here — Active Rules (AGENTS.md), Active Constraint Notes (boot-loaded), Knowledge Notes (advisory, not binding), and Retired. Boot reads this ledger so promoted constraints are present every session.
+summary: Every promotion (§2.5) is registered here — Active Rules (AGENTS.md), Active Constraint Notes (boot-loaded), Knowledge Notes (advisory, not binding), and Retired. Boot reads this ledger so promoted constraints are present every session.
 ---
 
 # Promotion Ledger
@@ -37,13 +30,7 @@ Rules written into `AGENTS.md` — loaded every session, binding by construction
 | 2026-08-05 | §2.6 data accuracy — calculator required | LLM arithmetic unreliable; verify any numeric output with a calculator | log 2026-08-05 |
 | 2026-08-14 | §9 DSH tool boundary + portability map | Schema names the current harness's tools; one-line map keeps portability | log 2026-08-14 |
 
-## Active Constraint Notes (boot-loaded)
-
-Operational constraint notes that must be in the loading set — register here so boot loads them.
-
-| Date | Note | One-line constraint | Trace |
-|------|------|---------------------|-------|
-| — | — | (none yet) | — |
+## Active Constraint Notes (boot-loaded) — none yet
 
 ## Knowledge Notes (advisory, not binding)
 
@@ -53,10 +40,4 @@ Promoted lessons filed as concept/pattern/tool notes — knowledge background, n
 |------|------|--------|-------|
 | 2026-08-14 | [[deepseek-harness|DeepSeek Harness]] (tools/) | DSH runtime model & tool stack — the reference note behind the §9 mapping | log 2026-08-14 |
 
-## Retired
-
-Replaced or superseded standards. Full history lives in `/log-archive/`.
-
-| Date | Artifact | Replaced by | Reason |
-|------|----------|-------------|--------|
-| — | — | — | — |
+## Retired — full history in `/log-archive/`
