@@ -39,5 +39,6 @@ Promoted lessons filed as concept/pattern/tool notes — knowledge background, n
 | Date | Note | Lesson | Trace |
 |------|------|--------|-------|
 | 2026-08-14 | [[deepseek-harness|DeepSeek Harness]] (tools/) | DSH runtime model & tool stack — the reference note behind the §9 mapping | log 2026-08-14 |
+| 2026-08-14 | [[knowledge-graph-patterns|Knowledge Graph Patterns]] (patterns/) | Displayed link syntax must be escaped; lint counts only rendered edges | log 2026-08-14 |
 
 ## Retired — full history in `/log-archive/`

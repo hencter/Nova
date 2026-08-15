@@ -4,6 +4,31 @@
 
 ---
 
+## [2026-08-14] session | 自主迭代循环 — lint 健康检查 + 全量修复
+
+- 目标：vault 图健康稳态。64 个图谱文件扫描 → 3 真断链、1 孤儿、2 hub 缺口、3 条升格审计标题缺口 → 全部修复（详见下条 lint+fix）
+- 升格 1 条（normal，知识笔记）→ [[knowledge-graph-patterns]]，台账已登记；git auto-commit 完成
+
+## [2026-08-14] lint+fix | 自主迭代 — 图谱审计：3 处真断链 + 孤儿/hub 缺口 + 升格审计标题补全 → [[knowledge-graph-patterns]]
+
+**Lint 发现**（64 个图谱文件全量扫描）：
+- 真断链 3：`tools/opencode.md` related 中 `[[crush|Crush]]` 指向不存在节点；`concepts/harness-engineering.md` `[[log.md]]` 边指向非节点 trace；`concepts/obsidian-syntax-reference.md` L466 `[[Obsidian Maple Theme]]` slug 错误（正确为 `obsidian-maple-theme`）
+- 孤儿 1：`_identity/lockdown-response.md` 零入链且未列 hub（conference session 文件为 trace，豁免孤儿规则）
+- hub 缺口 2：`conference.md` 缺 08-05 审计会议行；根 hub `index.md` 零入链
+- 升格审计：3 条 fix 标题缺 `→` 引用（均已登记台账，但标题未闭环）
+- 版本同步 ✓（index v1.7.0 = AGENTS v1.7.0）；无 superseded/archived 陈旧笔记；其余"断链"均为代码块/反引号内的语法示例（误报）
+
+**修复**：
+1. `opencode.md` 移除 Crush 断边（外部项目，sources 已列；Crush 独立笔记列为候选缺口）
+2. `harness-engineering.md` `[[log.md]]` → 文件链接 `[log.md](/log.md)`
+3. `obsidian-syntax-reference.md` L466 slug 修正
+4. `_identity.md` 登记 lockdown-response（入链 + hub 可达）
+5. `conference.md` 补 08-05 会议行；`_meta/self-bootstrapping.md` 导航支柱改为 wiki 边 → `index.md` 获得入链
+6. `log.md` 3 条 fix 标题补 `→ §9` / `→ §1` / `→ [[conventions]]`
+7. 升格（normal）：教训「文档中展示的链接语法必须转义，lint 只计渲染边」写入 `patterns/knowledge-graph-patterns.md` Lint Checks 表 + 台账登记
+
+**意义**：图谱零真断链；每个图节点 ≥1 入链；升格审计机械检查可干净通过。
+
 ## [2026-08-14] fix | P1 债务清理 — 归档目录落地 + promotions 台账回归预算 → §2.3
 
 **原因**：08-14 会话挂账的 P1：promotions 台账 64 行超 50 行预算、`/log-archive/` 目录尚不存在（`.opencode/node_modules` 已在去 opencode 化 refactor 中清除）。
@@ -118,7 +143,7 @@
 
 初始化完成：使用者称呼为 `开发者`，Agent 名称为 `Nova`，主领域为 `ai-engineering`。
 
-## [2026-07-23] fix | 禁止 agent 配置 model frontmatter
+## [2026-07-23] fix | 禁止 agent 配置 model frontmatter → §9
 
 **原因**：设置 `model` 会锁定 agent 到特定模型提供商，用户环境中可能无法连接（API key 缺失、地域限制、速率限制），导致硬失败。
 
@@ -431,7 +456,7 @@
 
 **原则**：分发版 Nova 的可移植性约束从"建议性 lint"升级为"硬规则 + 权限审计 + 未来自动检测"——Agent 永远走 opencode 原生工具，外部 CLI 仅在无替代时使用。
 
-## [2026-06-30] fix | 消除绝对路径反例 — 强化分发就绪
+## [2026-06-30] fix | 消除绝对路径反例 — 强化分发就绪 → §1
 
 - **触发**：分发就绪审查发现 `_identity/personalize.md:67` 仍用 `D:\\你的路径\\Note\\AGENTS.md` 作示例，与仓库"零绝对路径"原则冲突
 - **修正**：
@@ -442,7 +467,7 @@
 - **核查**：`rg "D:[\\\\/]"` 在 `index.md`/`AGENTS.md`/`README.md`/`_identity/` 范围无残留（log.md 旧条目"Note"路径为历史日志不可改）
 - **原则强化**：分发版 Nova 配置文件、所有引导文档、README 必须使用相对路径——确保仓库可任意目录解压、GitHub Fork 零修改运行
 
-## [2026-06-26] lint+fix | 健康扫描 + 全量修复
+## [2026-06-26] lint+fix | 健康扫描 + 全量修复 → [[conventions]]
 
 **Lint 发现**：
 - 断裂链接 4 类：`AGENTS.md:27` `/identity/personalize` 路径错误；`obsidian-syntax-reference.md` 8 处大小写不匹配；`_meta/conventions.md` `[[Attention Is All You Need]]` 无效 wiki 链接；模板文件 7 处错误 slug
