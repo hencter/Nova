@@ -173,7 +173,7 @@ Nova's `AGENTS.md` currently defines rules as natural language (SHOULD-level). T
 | Auto-commit as skill instruction | Deterministic git hook with pre-commit validation |
 | Link integrity ("at least 1-3 links") | Schema-enforced at note creation time |
 
-The implicit hypothesis: a **harness-manifested AGENTS.md** would produce strictly more reliable vault maintenance than the current natural-language approach. The `auto-commit` plugin-to-skill migration (logged in [[log.md]]) is itself a concrete example of the reliability gap: a deterministic plugin (WILL-level) was replaced by a skill instruction (SHOULD-level), trading reliability for portability.
+The implicit hypothesis: a **harness-manifested AGENTS.md** would produce strictly more reliable vault maintenance than the current natural-language approach. The `auto-commit` plugin-to-skill migration (logged in [log.md](/log.md)) is itself a concrete example of the reliability gap: a deterministic plugin (WILL-level) was replaced by a skill instruction (SHOULD-level), trading reliability for portability.
 
 ## Comparison: Harness vs Related Patterns
 

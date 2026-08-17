@@ -463,7 +463,7 @@ graph TD
 
 # 相关工具
 
-- [[Obsidian Maple Theme]] — Maple 主题详细分析
+- [[obsidian-maple-theme|Obsidian Maple Theme]] — Maple 主题详细分析
 - [[mermaid-diagrams|Mermaid Diagrams]] — 图表语法
 - [[latex-in-markdown|LaTeX in Markdown]] — 数学语法
 - [[markdown-frontmatter|Markdown Frontmatter]] — 前置元数据

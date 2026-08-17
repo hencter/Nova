@@ -189,6 +189,7 @@ The Karpathy LLM wiki curriculum exemplifies this: each layer builds on previous
 | **Contradictions** | Conflicting claims across notes | Flag for human review, mark lower-confidence claim |
 | **Staleness** | Notes with `status: superseded` or old `modified` dates | Mark superseded, propose replacement |
 | **Broken links** | Wiki links pointing to non-existent files | Find correct target or remove |
+| **Example links** | Unescaped example wiki links in docs parse as real broken edges; code-span/escaped examples parse as nothing | Escape displayed syntax (`` \[\[target\]\] `` or backticks) so lint counts only rendered edges |
 | **Missing cross-references** | Notes that semantically relate but don't link | Add `related` links |
 | **Gaps** | Topics mentioned but lacking dedicated notes | Create `status: seedling` stubs |
 
