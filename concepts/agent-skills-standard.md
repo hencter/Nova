@@ -22,6 +22,7 @@ related:
   - "[[skill-subagent-boundary|Skill vs Subagent Boundary]]"
   - "[[opencode-architecture|OpenCode Architecture]]"
   - "[[mcp-protocol|MCP Protocol]]"
+  - "[[a2a-protocol|A2A Protocol]]"
   - "[[agent-extensibility|Agent Extensibility]]"
 sources:
   - title: "Agent Skills — Open Standard"

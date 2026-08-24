@@ -4,6 +4,21 @@
 
 ---
 
+## [2026-08-14] ingest+fix | 迭代第二轮 — Crush 笔记落地 + 运行时工具栈充实 + 2 条语义边补链 → [[crush]]
+
+**Ingest**（上轮记录的候选缺口闭环）：
+1. 新建 `tools/crush.md`（budding）：Crush = Charm 官方 OpenCode 继任者——Go/Bubble Tea TUI、BYOK 定位、`crush.json` 配置、`CRUSH.md` 全局上下文、多运行时技能路径（`.agents/`/`.claude/`/`.cursor/`）。来源：charmbracelet/crush、aicoolies 评测、BigGo 新闻、gumi.ink，并引 [[opencode]] §15 内部对照
+2. 边接线：`tools/opencode.md` related 恢复 `[[crush|Crush]]` 断边（节点已实体化）；`tools.md` 与 `index.md` hub 登记——Crush 入链 3 条，无孤儿
+
+**充实**：`tools/deepseek-harness.md` 补本会话实测的三类工具缺口——`weixin_bot` 微信桥（status/login/send/interject/sendFile）、`cordis_inspect_*` 只读能力发现（list/query/self）、`list_agents`/`send_message`/`interrupt_agent` 子代理持久生命周期；动态插件节补「inspect 只做发现、不替代业务 API」限定
+
+**Lint（深度）**：
+- 同社区标签共享交叉链接扫描：29 对标签重合 ≥2 无互链 → 判定 2 对为语义真缺口并补链（`agent-skills-standard` ↔ `a2a-protocol` 互操作标准；`reference-based-self-bootstrapping` → `karpathy-llm-curriculum` 自举复利）；其余为泛化标签巧合（如 tool-analysis/agent-platform），按 §2.3.3 语义诚实原则不机械补链
+- 矛盾/陈旧：`RELEASE.md` 合并操作仍写 `git checkout main/dev`，与 worktree 模式（2026-08-14，分支锁定各自 worktree）直接矛盾 → 重写为 worktree 双目录发布流程 | lesson: trivial（refactor 同步遗漏的一处）
+- 版本同步 ✓（index v1.7.0 = AGENTS v1.7.0）；seedling 积压（~9 篇）如实保留，不做未深化的状态升级
+
+**意义**：知识缺口按「上轮发现 → 本轮闭环」节奏复利；运行时笔记与实测能力对齐；图谱补链坚持语义优先，不污染边。
+
 ## [2026-08-14] session | 自主迭代循环 — lint 健康检查 + 全量修复
 
 - 目标：vault 图健康稳态。64 个图谱文件扫描 → 3 真断链、1 孤儿、2 hub 缺口、3 条升格审计标题缺口 → 全部修复（详见下条 lint+fix）

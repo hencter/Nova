@@ -45,16 +45,18 @@ DeepSeek Harness (DSH) is the agent runtime the Nova vault runs on (since 2026-0
 | Files | `read` (line-numbered, image support), `write`, `edit` (string replace), `glob`, `grep` |
 | Shell | `pwsh` (PowerShell; sandboxed — read-only runs ConstrainedLanguage) |
 | Research | `web_search` |
-| Delegation | `subagent`, `subagent_fork` (background by default), `workflow` (scripted fan-out), `ralph` (fresh-agent loops) |
-| Goals | `create_goal` / `get_goal` / `update_goal` — long-running objectives across continuation rounds |
+| Delegation | `subagent`, `subagent_fork` (background by default), `workflow` (scripted fan-out), `ralph` (fresh-agent loops), `list_agents` / `send_message` / `interrupt_agent` (durable subagent lifecycle) |
+| Goals | `create_goal` / `get_goal` / `update_goal` — long-running objectives across continuation rounds; goals arm/disarm and carry a revision number |
 | Jobs | background jobs with `job_list` / `job_output` / `job_kill` |
+| Bridge | `weixin_bot` — WeChat bridge: status / login (QR) / logout / send / interject / sendFile |
+| Cordis Inspect | `cordis_inspect_list` / `cordis_inspect_query` / `cordis_inspect_self` — read-only capability discovery (services, events, slots, builtins, own plugins) before defining packages |
 | UI | `ask_user_question`, `todo_write` |
 
 ## Safety Model
 
 - **File sandbox**: read-only / workspace-write / danger-full-access modes. A denial is policy, not a bug — do not work around it or retry it another way.
 - **Approval prompts**: gate dynamic-plugin runs and sandbox escalation; when disabled, denials are final.
-- **Dynamic plugins**: temporary Cordis plugins defined and run inside the process (`cordis_define` / `cordis_run`); versions are immutable Packages under a `pluginId` with run / update / rollback / stop / undefine lifecycle. Definitions do not survive a process restart.
+- **Dynamic plugins**: temporary Cordis plugins defined and run inside the process (`cordis_define` / `cordis_run`); versions are immutable Packages under a `pluginId` with run / update / rollback / stop / undefine lifecycle. Definitions do not survive a process restart. The `cordis_inspect_*` tools are read-only discovery — they confirm APIs before code is written and never replace business Services.
 
 ## Contrast with OpenCode
 

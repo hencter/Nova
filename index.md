@@ -72,6 +72,7 @@ graph TD
 主流 AI 编程/Agent 工具的深度分析。
 - [[deepseek-harness|DeepSeek Harness]] — 当前运行环境：Cordis 组合、工具栈、沙箱与动态插件
 - [[opencode|OpenCode]] — OpenCode 完整功能分析
+- [[crush|Crush]] — Charm 官方 OpenCode 继任者：Go/Bubble Tea 终端代理、crush.json、多运行时技能
 - [[claude-code|Claude Code]] — Anthropic 的终端编程 Agent
 - [[codex-cli|Codex CLI]] — OpenAI 的 Agent 编程工具
 - [[openai-agents-sdk|OpenAI Agents SDK]] — OpenAI 多 Agent 工作流 Python 库
