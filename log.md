@@ -4,6 +4,45 @@
 
 ---
 
+## [2026-08-26] fix | skills 兼容入口改为符号链接 → .agents/skills → §8
+
+**原因**：用户将技能内容移回 `skills/`（真实目录），要求保留旧路径入口。采用方案：技能真实位置固定在 `.agents/skills/`（DSH 自动发现），根目录 `skills` 创建为指向它的符号链接（相对目标，可移植）。
+
+**变更**：
+1. `skills/*` → `.agents/skills/`（技能真实位置不变，单份存储）；根目录 `skills` 改为 SymbolicLink → `.agents/skills`（Windows 开发者模式未开启，经 UAC 提权创建）
+2. `.gitattributes` 追加 `skills symlink`：Windows `core.symlinks=false` 下也按符号链接（模式 120000）跟踪，克隆/checkout 时重建链接
+3. 实测：链接可访问 `skills/nova-kb/SKILL.md`；DSH `skill` 工具目录正常（扫描根为 `.agents/skills`）；提交 64678a1
+
+**注意**：`core.symlinks=false` 的机器 checkout 时 git 会把该条目写为普通文本文件（内容为链接目标），链接语义只在支持 symlink 的环境恢复——`.gitattributes` 已保证仓库内始终按 120000 存储。
+
+## [2026-08-26] refactor | vault 技能注册进 DSH 技能目录 — skills/ → .agents/skills/（AGENTS.md v1.8.0）→ §8
+
+**动因**：用户指出 vault 仍未真正兼容 DeepSeek Harness——`skill` 工具加载不到任何 vault 技能（报 "unknown or no longer available"），AGENTS.md §8 只写了「技能=文件、直接读」的变通说明。DSH 的 filesystem 技能提供方只扫描 `<项目根>/.dsh/skills`、`<项目根>/.agents/skills`、`~/.dsh/skills`、`~/.agents/skills` 与 preset 的 `customSkillDirs`——vault 的 `skills/` 目录不在任何扫描根内。
+
+**变更**（用户选定方案：vault 内建 `.agents/skills/`，DSH 自动发现，保持零配置可移植）：
+1. `git mv`：`skills/nova-kb`、`skills/obsidian`、`skills/auto-commit` → `.agents/skills/`（Agent Skills 标准项目路径，DSH 按项目根自动扫描，亦兼容 Crush/Claude Code/Cursor）
+2. `AGENTS.md` v1.7.0 → v1.8.0：§7 会话结束改 `skill` 工具加载 auto-commit；§8 Locations/Runtime loading 改为自动注册 + 按名加载（文件读取降级为 fallback）；§11 速查同步
+3. 同步：README、`_identity/` 三件（capability-manifest/nova-identity/personalize）、`_meta/vault-architecture.md` 目录树、`tools/deepseek-harness.md` 技能目录表述、`_agents/terminology-auditor.md` 扫描路径、`log-archive/README.md`、`RELEASE.md`、三个 SKILL.md 的 DSH 运行时说明、`concepts/`（agent-skills-standard 采纳记录、skill-subagent-boundary、selective-persistent-memory）、`tools/crush.md`
+4. 台账登记（Active Rules 2026-08-26 §8）；index.md 统计块版本同步 v1.8.0
+5. 实测：目录变更后本会话 `skill` 工具实时刷新，`skill nova-kb` 加载成功 → §8
+
+**保留**：log.md / conference 历史记录中的 `skills/` 路径为历史事实，不重写（append-only）。
+
+## [2026-08-14] ingest+fix | 迭代第二轮 — Crush 笔记落地 + 运行时工具栈充实 + 2 条语义边补链 → [[crush]]
+
+**Ingest**（上轮记录的候选缺口闭环）：
+1. 新建 `tools/crush.md`（budding）：Crush = Charm 官方 OpenCode 继任者——Go/Bubble Tea TUI、BYOK 定位、`crush.json` 配置、`CRUSH.md` 全局上下文、多运行时技能路径（`.agents/`/`.claude/`/`.cursor/`）。来源：charmbracelet/crush、aicoolies 评测、BigGo 新闻、gumi.ink，并引 [[opencode]] §15 内部对照
+2. 边接线：`tools/opencode.md` related 恢复 `[[crush|Crush]]` 断边（节点已实体化）；`tools.md` 与 `index.md` hub 登记——Crush 入链 3 条，无孤儿
+
+**充实**：`tools/deepseek-harness.md` 补本会话实测的三类工具缺口——`weixin_bot` 微信桥（status/login/send/interject/sendFile）、`cordis_inspect_*` 只读能力发现（list/query/self）、`list_agents`/`send_message`/`interrupt_agent` 子代理持久生命周期；动态插件节补「inspect 只做发现、不替代业务 API」限定
+
+**Lint（深度）**：
+- 同社区标签共享交叉链接扫描：29 对标签重合 ≥2 无互链 → 判定 2 对为语义真缺口并补链（`agent-skills-standard` ↔ `a2a-protocol` 互操作标准；`reference-based-self-bootstrapping` → `karpathy-llm-curriculum` 自举复利）；其余为泛化标签巧合（如 tool-analysis/agent-platform），按 §2.3.3 语义诚实原则不机械补链
+- 矛盾/陈旧：`RELEASE.md` 合并操作仍写 `git checkout main/dev`，与 worktree 模式（2026-08-14，分支锁定各自 worktree）直接矛盾 → 重写为 worktree 双目录发布流程 | lesson: trivial（refactor 同步遗漏的一处）
+- 版本同步 ✓（index v1.7.0 = AGENTS v1.7.0）；seedling 积压（~9 篇）如实保留，不做未深化的状态升级
+
+**意义**：知识缺口按「上轮发现 → 本轮闭环」节奏复利；运行时笔记与实测能力对齐；图谱补链坚持语义优先，不污染边。
+
 ## [2026-08-14] session | 自主迭代循环 — lint 健康检查 + 全量修复
 
 - 目标：vault 图健康稳态。64 个图谱文件扫描 → 3 真断链、1 孤儿、2 hub 缺口、3 条升格审计标题缺口 → 全部修复（详见下条 lint+fix）

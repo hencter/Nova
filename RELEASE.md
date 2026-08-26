@@ -15,7 +15,7 @@
 | AGENTS.md dev 专属段 | ❌ | （当前无 dev 专属段，分支规则已并入 boot sequence） |
 | 会议记录 | ❌ | `conference/session-*.md` |
 | RELEASE.md 自身 | ❌ | 本文件 |
-| `skills/` 技能、`_agents/` 代理定义 | ✅ | 用户也需要 auto-commit、子代理 |
+| `.agents/skills/` 技能、`_agents/` 代理定义 | ✅ | 用户也需要 auto-commit、子代理 |
 
 ---
 
@@ -40,11 +40,14 @@
 ## 合并操作
 
 ```bash
-# 从 dev 合并到 main（在 main 分支执行）
-git checkout main
+# worktree 模式（2026-08-14 起）：每个分支锁定在各自 worktree，
+# 不跨 worktree 执行 checkout。发布 = 在对应目录执行合并：
+
+# ① dev worktree（D:\OpenCode\Navo-dev）——迭代完成后自动提交已在此完成
+# ② main worktree（D:\OpenCode\Navo）执行：
 git merge dev --no-ff -m "release: merge dev → main"
 git push origin main
 
-# 切回 dev 继续开发
-git checkout dev
+# ③ dev worktree（D:\OpenCode\Navo-dev）同步远程：
+git push origin dev
 ```

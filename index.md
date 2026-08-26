@@ -72,6 +72,7 @@ graph TD
 主流 AI 编程/Agent 工具的深度分析。
 - [[deepseek-harness|DeepSeek Harness]] — 当前运行环境：Cordis 组合、工具栈、沙箱与动态插件
 - [[opencode|OpenCode]] — OpenCode 完整功能分析
+- [[crush|Crush]] — Charm 官方 OpenCode 继任者：Go/Bubble Tea 终端代理、crush.json、多运行时技能
 - [[claude-code|Claude Code]] — Anthropic 的终端编程 Agent
 - [[codex-cli|Codex CLI]] — OpenAI 的 Agent 编程工具
 - [[openai-agents-sdk|OpenAI Agents SDK]] — OpenAI 多 Agent 工作流 Python 库
@@ -117,7 +118,7 @@ Agent 通过共享 Markdown 文件进行跨上下文通信的协议与实践。
 | 指标 | 数值 |
 |--------|-------|
 | 框架 | OKF v0.1 |
-| 模式层 | AGENTS.md v1.7.0 |
+| 模式层 | AGENTS.md v1.8.0 |
 | 运行环境 | DeepSeek Harness（Cordis 组合） |
 | ID 系统 | Timestamp (YYYYMMDDThhmmss) |
 | 知识域 | AI Agent、知识管理、系统架构 |

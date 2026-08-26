@@ -21,4 +21,4 @@ domain: knowledge-management
 
 - `log.md` 本体 append-only：归档 = 移出至本目录并在原处留一行指针，不重写历史
 - 归档文件命名：`<source>-<date>.md`（如 `log-2026-06.md`、`promotions-history.md`）
-- 本目录文件是机器配置，不是图节点（与 `skills/`、`_agents/` 同类，不进 hub）
+- 本目录文件是机器配置，不是图节点（与 `.agents/skills/`、`_agents/` 同类，不进 hub）

@@ -22,6 +22,7 @@ related:
   - "[[skill-subagent-boundary|Skill vs Subagent Boundary]]"
   - "[[opencode-architecture|OpenCode Architecture]]"
   - "[[mcp-protocol|MCP Protocol]]"
+  - "[[a2a-protocol|A2A Protocol]]"
   - "[[agent-extensibility|Agent Extensibility]]"
 sources:
   - title: "Agent Skills — Open Standard"
@@ -250,7 +251,7 @@ graph TD
 
 ## Relationship to Nova's Skills System
 
-Nova's vault already uses the `SKILL.md` format in `skills/` (see [[agent-skills-system|Agent Skills System]]). Aligning with the Agent Skills standard enables:
+Nova's vault uses the `SKILL.md` format in `.agents/skills/` (see [[agent-skills-system|Agent Skills System]]) — the standard's primary project path, so DSH auto-discovers the vault skills into its skill catalog. Aligning with the Agent Skills standard enables:
 
 | Benefit | Detail |
 |---------|--------|
@@ -264,7 +265,7 @@ Nova's vault already uses the `SKILL.md` format in `skills/` (see [[agent-skills
 | Aspect | Nova Current | Standard |
 |--------|-------------|----------|
 | **Format** | SKILL.md with YAML frontmatter | SKILL.md with YAML frontmatter |
-| **Primary path** | `skills/` | `.agents/skills/` |
+| **Primary path** | `.agents/skills/` (adopted 2026-08) | `.agents/skills/` |
 | **Frontmatter** | `name`, `description`, `license`, `compatibility`, `metadata` | `name`, `description` (required) + extended fields |
 | **Subdirectories** | N/A | `scripts/`, `references/`, `assets/` |
 | **Progressive disclosure** | Implicit (lazy loading via tool call) | Explicit 3-stage model |

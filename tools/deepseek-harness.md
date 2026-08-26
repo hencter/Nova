@@ -36,7 +36,7 @@ DeepSeek Harness (DSH) is the agent runtime the Nova vault runs on (since 2026-0
 - **Composition**: DSH is composed from [[agent-extensibility|Cordis plugins]]. A **host composition** holds shared registries (persistence, sandbox/approval stack, model route, subagent registry); an **agent preset** contributes one session's tools, persona, and prompt sections via `cordis.yml`.
 - **Two planes**: Host runs in the Node.js process (files, networking, commands, model tools); Client runs in the browser page (UI slots, themes). Client→Host calls cross via package-private JSON methods.
 - **Workspace instructions**: `AGENTS.md` in the working directory is mounted as per-session instructions — no config file needed (contrast: opencode requires `opencode.json` → `instructions`).
-- **Skill catalog**: skills are registered in the composition; the `skill` tool loads only those. Vault skills (`skills/*/SKILL.md`) are plain files the agent reads directly.
+- **Skill catalog**: skills are registered in the composition; the `skill` tool loads those. The vault's own skills live in `.agents/skills/` (Agent Skills Standard path) — auto-scanned into the catalog per project root, so `skill` loads them by name.
 
 ## Native Tool Stack
 
@@ -45,16 +45,18 @@ DeepSeek Harness (DSH) is the agent runtime the Nova vault runs on (since 2026-0
 | Files | `read` (line-numbered, image support), `write`, `edit` (string replace), `glob`, `grep` |
 | Shell | `pwsh` (PowerShell; sandboxed — read-only runs ConstrainedLanguage) |
 | Research | `web_search` |
-| Delegation | `subagent`, `subagent_fork` (background by default), `workflow` (scripted fan-out), `ralph` (fresh-agent loops) |
-| Goals | `create_goal` / `get_goal` / `update_goal` — long-running objectives across continuation rounds |
+| Delegation | `subagent`, `subagent_fork` (background by default), `workflow` (scripted fan-out), `ralph` (fresh-agent loops), `list_agents` / `send_message` / `interrupt_agent` (durable subagent lifecycle) |
+| Goals | `create_goal` / `get_goal` / `update_goal` — long-running objectives across continuation rounds; goals arm/disarm and carry a revision number |
 | Jobs | background jobs with `job_list` / `job_output` / `job_kill` |
+| Bridge | `weixin_bot` — WeChat bridge: status / login (QR) / logout / send / interject / sendFile |
+| Cordis Inspect | `cordis_inspect_list` / `cordis_inspect_query` / `cordis_inspect_self` — read-only capability discovery (services, events, slots, builtins, own plugins) before defining packages |
 | UI | `ask_user_question`, `todo_write` |
 
 ## Safety Model
 
 - **File sandbox**: read-only / workspace-write / danger-full-access modes. A denial is policy, not a bug — do not work around it or retry it another way.
 - **Approval prompts**: gate dynamic-plugin runs and sandbox escalation; when disabled, denials are final.
-- **Dynamic plugins**: temporary Cordis plugins defined and run inside the process (`cordis_define` / `cordis_run`); versions are immutable Packages under a `pluginId` with run / update / rollback / stop / undefine lifecycle. Definitions do not survive a process restart.
+- **Dynamic plugins**: temporary Cordis plugins defined and run inside the process (`cordis_define` / `cordis_run`); versions are immutable Packages under a `pluginId` with run / update / rollback / stop / undefine lifecycle. Definitions do not survive a process restart. The `cordis_inspect_*` tools are read-only discovery — they confirm APIs before code is written and never replace business Services.
 
 ## Contrast with OpenCode
 

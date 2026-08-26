@@ -59,7 +59,7 @@ Find and report **every instance** where a term could be misinterpreted by an AI
 
 1. **Boot**: Read `AGENTS.md` (especially §1, §3, §4, §9) and `_meta/conventions.md` — these define the nomenclature.
 2. **Scan**: Read ALL .md files (skip node_modules, _attachments, .git, .obsidian). Priority order:
-   - Rules layer: `AGENTS.md`, `skills/nova-kb/SKILL.md`, `_agents/*.md`
+   - Rules layer: `AGENTS.md`, `.agents/skills/nova-kb/SKILL.md`, `_agents/*.md`
    - Schema layer: `_meta/conventions.md`, templates (3 files)
    - Navigation layer: `index.md`, `README.md`, directory `index.md` files
    - Deep notes: `concepts/`, `tools/`, `patterns/` (all files)

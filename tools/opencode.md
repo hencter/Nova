@@ -27,6 +27,7 @@ related:
   - "[[agent-extensibility|Agent Extensibility]]"
   - "[[claude-code|Claude Code]]"
   - "[[codex-cli|Codex CLI]]"
+  - "[[crush|Crush]]"
 sources:
   - title: "OpenCode Documentation"
     url: "https://opencode.ai/docs"

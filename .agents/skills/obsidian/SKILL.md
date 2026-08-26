@@ -14,7 +14,7 @@ metadata:
 
 This vault is read by humans in **Obsidian**. Obsidian ships an official CLI (`obsidian`) that exposes the app's own graph cache — link resolution, backlinks, orphans, tags, properties — which is ground truth for what the human actually sees. Prefer it over re-deriving the graph with `grep` when available.
 
-> **Runtime note (DeepSeek Harness)**: this vault skill is not registered in the DSH skill catalog — read this file directly when the workflow applies (AGENTS.md §8); run CLI commands via `pwsh`.
+> **Runtime note (DeepSeek Harness)**: this vault skill lives in `.agents/skills/` and is auto-registered in the DSH skill catalog — load it via the `skill` tool when the workflow applies (AGENTS.md §8); run CLI commands via `pwsh`.
 
 ## Availability Check (Lazy)
 

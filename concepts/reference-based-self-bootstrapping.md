@@ -16,6 +16,7 @@ related:
   - "[[opencode-architecture|OpenCode Architecture]]"
   - "[[agent-skills-system|Agent Skills System]]"
   - "[[cross-session-memory|Cross-Session Memory]]"
+  - "[[karpathy-llm-curriculum|Karpathy LLM Curriculum]]"
   - "[[vault-architecture|Vault Architecture]]"
 sources:
   - title: "OpenCode References Documentation"

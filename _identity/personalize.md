@@ -61,9 +61,9 @@ Nova 的设计前提是：**每个人都有自己的 Nova**。你拿到的种子
 Nova 当前运行于 **DeepSeek Harness (DSH)**——无需任何配置文件：
 
 - 用 DSH 打开本仓库目录作为工作区，`AGENTS.md` 自动作为工作区指令加载
-- `skills/` 下的技能在 DSH 中按需直接读取（无需注册）
+- `.agents/skills/` 下的技能由 DSH 自动扫描注册（Agent Skills 标准路径，`skill` 工具按名加载）
 - `_agents/` 下的子代理定义在 DSH 下将文件内容作为 `subagent` 工具的 prompt 传入
-- 如需把 vault 技能注册进 DSH 技能目录，须编辑 harness 组合（位于仓库外 `~/.dsh`，不属于本仓库）
+- vault 技能位于 `.agents/skills/`，DSH 自动发现，无需编辑仓库外配置（`~/.dsh` 组合不属于本仓库）
 
 ---
 
@@ -79,11 +79,11 @@ Nova 当前运行于 **DeepSeek Harness (DSH)**——无需任何配置文件：
 
 ### 加载额外技能
 
-Nova 的能力通过技能（Skill）扩展。查看 `skills/` 目录了解已有技能。
+Nova 的能力通过技能（Skill）扩展。查看 `.agents/skills/` 目录了解已有技能。
 
 添加技能的方法：
-1. 将技能文件夹放到 `skills/` 下
-2. DSH：按需直接读取即可
+1. 将技能文件夹放到 `.agents/skills/` 下
+2. DSH：自动注册进技能目录，`skill` 工具按名加载
 
 常用技能参考（需自行获取）：
 - 代码审查技能

@@ -18,3 +18,7 @@
 *.woff2 binary
 *.ttf binary
 *.otf binary
+
+# skills is a symlink to .agents/skills (core.symlinks=false on Windows
+# would otherwise store the link target as a plain file)
+skills symlink
