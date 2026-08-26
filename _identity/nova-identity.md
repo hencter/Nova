@@ -79,9 +79,9 @@ summary: >
 ## 扩展性
 
 我可以通过以下方式增长能力：
-### 技能（`skills/`，受 AGENTS.md §8 保护）
+### 技能（`.agents/skills/`，受 AGENTS.md §8 保护）
 
-- **nova-kb**：知识库维护工作流（摄入、检查、交叉引用、查询归档）。位于 `skills/nova-kb/SKILL.md`（DSH 下按需直接读取文件）。
+- **nova-kb**：知识库维护工作流（摄入、检查、交叉引用、查询归档）。位于 `.agents/skills/nova-kb/SKILL.md`（DSH 自动注册进技能目录，`skill` 工具按名加载）。
 
 ### Agent（`_agents/` 定义，受 AGENTS.md §8 保护）
 

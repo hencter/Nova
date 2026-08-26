@@ -20,7 +20,7 @@ metadata:
 
 > **Agent Skills Standard**: This skill conforms to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io). Compatible with any Agent Skills-compliant runtime including Crush, Claude Code, Cursor, and GitHub Copilot.
 >
-> **Runtime note (DeepSeek Harness)**: this vault skill is not registered in the DSH skill catalog — read this file directly when the workflow applies (AGENTS.md §8).
+> **Runtime note (DeepSeek Harness)**: this vault skill lives in `.agents/skills/` and is auto-registered in the DSH skill catalog — load it via the `skill` tool when the workflow applies (AGENTS.md §8).
 
 You are maintaining the **Nova Knowledge Vault** (the directory containing `AGENTS.md`). This skill enables you to perform vault maintenance operations efficiently and correctly.
 

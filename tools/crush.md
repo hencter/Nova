@@ -73,7 +73,7 @@ summary: >
 
 ## Vault Relevance
 
-- This vault's skills are Agent-Skills-Standard files; `skills/auto-commit/SKILL.md` names Crush as a compatible runtime — Crush's multi-runtime skill paths are the working evidence behind that compatibility claim.
+- This vault's skills are Agent-Skills-Standard files; `.agents/skills/auto-commit/SKILL.md` names Crush as a compatible runtime — Crush's multi-runtime skill paths are the working evidence behind that compatibility claim.
 - OpenCode remains a reference architecture here ([[opencode-architecture]]); Crush is its canonical "where the original line went" successor, tracked alongside the fork.
 
 # Citations

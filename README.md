@@ -16,7 +16,7 @@ Nova 是一个**自举式个人知识库系统**（self-bootstrapping knowledge 
 
 > **没有 Git 也能用**：Git 只负责版本历史和自动提交。不装 Git，Nova 照常工作（很多用户用 Obsidian Sync 或网盘同步）。Nova 不会在你未确认的情况下自动安装任何软件。
 >
-> **AI 运行环境**：当前运行于 **DeepSeek Harness (DSH)**——用 DSH 打开本仓库目录作为工作区即可，`AGENTS.md` 会自动作为工作区指令加载。仓库不依赖任何运行时专属配置文件：`skills/` 技能按需直接读取，`_agents/` 子代理定义为可移植 prompt。
+> **AI 运行环境**：当前运行于 **DeepSeek Harness (DSH)**——用 DSH 打开本仓库目录作为工作区即可，`AGENTS.md` 会自动作为工作区指令加载。仓库不依赖任何运行时专属配置文件：技能位于 `.agents/skills/`（Agent Skills 标准路径，DSH 自动注册进技能目录，`skill` 工具按名加载），`_agents/` 子代理定义为可移植 prompt。
 
 ---
 

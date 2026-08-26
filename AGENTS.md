@@ -259,7 +259,7 @@ Every session executes the boot sequence (top of this file).
 4. **Promote lessons** (§2.5): convert any unpromoted session error into a rule or note
 5. **Run quick lint** (§2.3): clean promotion audit required — unresolved `fix` debt **blocks auto-commit**
 6. Ensure complete frontmatter and links on all new/modified notes
-7. Read `skills/auto-commit/SKILL.md` and follow it to commit — **only if git is available** (DSH: vault skills are files, not catalog skills — the `skill` tool loads only harness-registered skills)
+7. Load `auto-commit` via the `skill` tool (fallback: read `.agents/skills/auto-commit/SKILL.md` and follow it) to commit — **only if git is available**
 
 ### Memory Persistence
 - `/log.md` is **append-only** — never delete entries, only append
@@ -268,13 +268,13 @@ Every session executes the boot sequence (top of this file).
 
 ## 8. Skills & Agents
 
-**Locations**: `skills/<name>/SKILL.md` (vault skills), `_agents/<name>.md` (custom subagent prompts). Skills conform to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io) — portable across 40+ agent runtimes. Required frontmatter: `name`, `description`.
+**Locations**: `.agents/skills/<name>/SKILL.md` (vault skills — Agent Skills Standard path, auto-discovered by DSH), `_agents/<name>.md` (custom subagent prompts). Skills conform to the [[agent-skills-standard|Agent Skills Standard]] (agentskills.io) — portable across 40+ agent runtimes. Required frontmatter: `name`, `description`.
 
-**Runtime loading (DSH)**: vault skills are files, not catalog skills — read the `SKILL.md` and follow it (the `skill` tool loads only harness-registered skills); subagent definitions are portable prompts — pass their content to the `subagent` tool; harness composition files live outside the vault (`~/.dsh`), never edited by vault operations.
+**Runtime loading (DSH)**: `.agents/skills/` is auto-scanned into the skill catalog — load vault skills with the `skill` tool by name (fallback: read the `SKILL.md` file directly when the catalog is stale); subagent definitions are portable prompts — pass their content to the `subagent` tool; harness composition files live outside the vault (`~/.dsh`), never edited by vault operations.
 
 ### Read-Only Boundary (Hard Rule)
 
-**Skills and agent definitions are machine configuration, NOT knowledge articles.** Do NOT modify `skills/` or `_agents/` during normal vault operations (ingest, lint, query-file). Only when the user **explicitly asks**.
+**Skills and agent definitions are machine configuration, NOT knowledge articles.** Do NOT modify `.agents/skills/` or `_agents/` during normal vault operations (ingest, lint, query-file). Only when the user **explicitly asks**.
 
 ### Creation Criteria
 - **Skill**: repeated across sessions, specialized knowledge, describable in 1–2 sentences. One-off task → no skill.
@@ -335,15 +335,15 @@ This file names DSH native tools because DSH is the vault's runtime.
 | Verify data output | Data Accuracy (§2.6) — calculator required, never mental math |
 | Promotion ledger | `_meta/promotions.md` — read at boot, active constraints & standards |
 | Create note | Use template from `/templates/` |
-| Skill / agent location | `skills/<name>/SKILL.md` (read the file in DSH) · `_agents/<name>.md` (subagent prompts) |
+| Skill / agent location | `.agents/skills/<name>/SKILL.md` (load via `skill` tool) · `_agents/<name>.md` (subagent prompts) |
 | Find recent activity | `grep` on `log.md` with `^## \[`, read last lines |
 | Tool boundary | §9: DSH native tools first, never `rg`/`fd`/`jq` |
-| Git commit | Read `skills/auto-commit/SKILL.md` at session end; skip silently if git unavailable |
+| Git commit | Load `auto-commit` via the `skill` tool at session end; skip silently if git unavailable |
 
 ---
 
 > **Development workflow** (branching, release process): see [[development|_meta/development.md]] — not loaded per session.
 >
-> **Version**: 1.7.0
+> **Version**: 1.8.0
 > **Line budget**: ≤ 350 lines, one-in-one-out for new rules (§2.5)
 > **Conforms to**: OKF v0.1

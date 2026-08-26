@@ -31,7 +31,7 @@ Nova 运行于 **DeepSeek Harness (DSH)**，可以访问以下原生工具：
 | `read` | 读取本地文本文件（行号输出）与图片 |
 | `write` | 创建或完整覆盖文件 |
 | `edit` | 在文件中进行精确字符串替换 |
-| `glob` | 快速文件模式匹配（如 `skills/**`） |
+| `glob` | 快速文件模式匹配（如 `.agents/skills/**`） |
 | `grep` | 跨文件正则内容搜索 |
 
 ### 命令执行
@@ -68,9 +68,9 @@ DSH 没有固定类型的子 Agent 目录——通过 `subagent` / `subagent_for
 
 | 技能 | 位置 | DSH 加载方式 |
 |-------|----------|---------|
-| **nova-kb** | `skills/nova-kb/SKILL.md` | 按需直接读取文件 |
-| **auto-commit** | `skills/auto-commit/SKILL.md` | 会话结束时读取（AGENTS.md §7） |
-| **obsidian** | `skills/obsidian/SKILL.md` | 按需直接读取文件 |
+| **nova-kb** | `.agents/skills/nova-kb/SKILL.md` | `skill` 工具按名加载 |
+| **auto-commit** | `.agents/skills/auto-commit/SKILL.md` | 会话结束时加载（AGENTS.md §7） |
+| **obsidian** | `.agents/skills/obsidian/SKILL.md` | `skill` 工具按名加载 |
 | harness 注册技能 | harness 组合配置 | 通过 `skill` 工具加载 |
 
 ## 核心能力
@@ -105,7 +105,7 @@ DSH 没有固定类型的子 Agent 目录——通过 `subagent` / `subagent_for
 
 Nova 可以通过以下方式增长其能力：
 
-### 技能（`skills/`，受 AGENTS.md §8 保护）
+### 技能（`.agents/skills/`，受 AGENTS.md §8 保护）
 技能将专项工作流注入 Agent 的上下文。技能创建标准：
 1. 跨会话可复用 → 值得付出技能开销
 2. 专项领域知识 → 从专属指令中获益

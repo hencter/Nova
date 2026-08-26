@@ -15,7 +15,7 @@
 | AGENTS.md dev 专属段 | ❌ | （当前无 dev 专属段，分支规则已并入 boot sequence） |
 | 会议记录 | ❌ | `conference/session-*.md` |
 | RELEASE.md 自身 | ❌ | 本文件 |
-| `skills/` 技能、`_agents/` 代理定义 | ✅ | 用户也需要 auto-commit、子代理 |
+| `.agents/skills/` 技能、`_agents/` 代理定义 | ✅ | 用户也需要 auto-commit、子代理 |
 
 ---
 

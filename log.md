@@ -4,6 +4,19 @@
 
 ---
 
+## [2026-08-26] refactor | vault 技能注册进 DSH 技能目录 — skills/ → .agents/skills/（AGENTS.md v1.8.0）→ §8
+
+**动因**：用户指出 vault 仍未真正兼容 DeepSeek Harness——`skill` 工具加载不到任何 vault 技能（报 "unknown or no longer available"），AGENTS.md §8 只写了「技能=文件、直接读」的变通说明。DSH 的 filesystem 技能提供方只扫描 `<项目根>/.dsh/skills`、`<项目根>/.agents/skills`、`~/.dsh/skills`、`~/.agents/skills` 与 preset 的 `customSkillDirs`——vault 的 `skills/` 目录不在任何扫描根内。
+
+**变更**（用户选定方案：vault 内建 `.agents/skills/`，DSH 自动发现，保持零配置可移植）：
+1. `git mv`：`skills/nova-kb`、`skills/obsidian`、`skills/auto-commit` → `.agents/skills/`（Agent Skills 标准项目路径，DSH 按项目根自动扫描，亦兼容 Crush/Claude Code/Cursor）
+2. `AGENTS.md` v1.7.0 → v1.8.0：§7 会话结束改 `skill` 工具加载 auto-commit；§8 Locations/Runtime loading 改为自动注册 + 按名加载（文件读取降级为 fallback）；§11 速查同步
+3. 同步：README、`_identity/` 三件（capability-manifest/nova-identity/personalize）、`_meta/vault-architecture.md` 目录树、`tools/deepseek-harness.md` 技能目录表述、`_agents/terminology-auditor.md` 扫描路径、`log-archive/README.md`、`RELEASE.md`、三个 SKILL.md 的 DSH 运行时说明、`concepts/`（agent-skills-standard 采纳记录、skill-subagent-boundary、selective-persistent-memory）、`tools/crush.md`
+4. 台账登记（Active Rules 2026-08-26 §8）；index.md 统计块版本同步 v1.8.0
+5. 实测：目录变更后本会话 `skill` 工具实时刷新，`skill nova-kb` 加载成功 → §8
+
+**保留**：log.md / conference 历史记录中的 `skills/` 路径为历史事实，不重写（append-only）。
+
 ## [2026-08-14] ingest+fix | 迭代第二轮 — Crush 笔记落地 + 运行时工具栈充实 + 2 条语义边补链 → [[crush]]
 
 **Ingest**（上轮记录的候选缺口闭环）：

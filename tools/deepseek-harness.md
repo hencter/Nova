@@ -36,7 +36,7 @@ DeepSeek Harness (DSH) is the agent runtime the Nova vault runs on (since 2026-0
 - **Composition**: DSH is composed from [[agent-extensibility|Cordis plugins]]. A **host composition** holds shared registries (persistence, sandbox/approval stack, model route, subagent registry); an **agent preset** contributes one session's tools, persona, and prompt sections via `cordis.yml`.
 - **Two planes**: Host runs in the Node.js process (files, networking, commands, model tools); Client runs in the browser page (UI slots, themes). Client→Host calls cross via package-private JSON methods.
 - **Workspace instructions**: `AGENTS.md` in the working directory is mounted as per-session instructions — no config file needed (contrast: opencode requires `opencode.json` → `instructions`).
-- **Skill catalog**: skills are registered in the composition; the `skill` tool loads only those. Vault skills (`skills/*/SKILL.md`) are plain files the agent reads directly.
+- **Skill catalog**: skills are registered in the composition; the `skill` tool loads those. The vault's own skills live in `.agents/skills/` (Agent Skills Standard path) — auto-scanned into the catalog per project root, so `skill` loads them by name.
 
 ## Native Tool Stack
 

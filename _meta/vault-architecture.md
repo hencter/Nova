@@ -62,7 +62,7 @@ aliases:
 │   ├── tool-template.md
 │   └── pattern-template.md
 │
-├── skills/                     # 技能定义（受 AGENTS.md §8 保护）
+├── .agents/skills/             # 技能定义（Agent Skills 标准路径，受 AGENTS.md §8 保护）
 │   └── nova-kb/SKILL.md        # Nova 知识库维护技能
 │
 ├── _agents/                    # 子代理 prompt 定义（受 AGENTS.md §8 保护）
