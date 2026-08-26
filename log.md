@@ -4,6 +4,17 @@
 
 ---
 
+## [2026-08-26] fix | skills 兼容入口改为符号链接 → .agents/skills → §8
+
+**原因**：用户将技能内容移回 `skills/`（真实目录），要求保留旧路径入口。采用方案：技能真实位置固定在 `.agents/skills/`（DSH 自动发现），根目录 `skills` 创建为指向它的符号链接（相对目标，可移植）。
+
+**变更**：
+1. `skills/*` → `.agents/skills/`（技能真实位置不变，单份存储）；根目录 `skills` 改为 SymbolicLink → `.agents/skills`（Windows 开发者模式未开启，经 UAC 提权创建）
+2. `.gitattributes` 追加 `skills symlink`：Windows `core.symlinks=false` 下也按符号链接（模式 120000）跟踪，克隆/checkout 时重建链接
+3. 实测：链接可访问 `skills/nova-kb/SKILL.md`；DSH `skill` 工具目录正常（扫描根为 `.agents/skills`）；提交 64678a1
+
+**注意**：`core.symlinks=false` 的机器 checkout 时 git 会把该条目写为普通文本文件（内容为链接目标），链接语义只在支持 symlink 的环境恢复——`.gitattributes` 已保证仓库内始终按 120000 存储。
+
 ## [2026-08-26] refactor | vault 技能注册进 DSH 技能目录 — skills/ → .agents/skills/（AGENTS.md v1.8.0）→ §8
 
 **动因**：用户指出 vault 仍未真正兼容 DeepSeek Harness——`skill` 工具加载不到任何 vault 技能（报 "unknown or no longer available"），AGENTS.md §8 只写了「技能=文件、直接读」的变通说明。DSH 的 filesystem 技能提供方只扫描 `<项目根>/.dsh/skills`、`<项目根>/.agents/skills`、`~/.dsh/skills`、`~/.agents/skills` 与 preset 的 `customSkillDirs`——vault 的 `skills/` 目录不在任何扫描根内。
