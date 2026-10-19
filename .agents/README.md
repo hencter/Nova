@@ -35,11 +35,11 @@
 
 - 常驻约束只在 `AGENTS.md`；协作细节只在 `.agents/protocols/`；Skill 正文只在各自 `SKILL.md`。
 - **渐进披露**：L0 通常不需要协议；L1 以工程规则为主；L2/L3 再加载编排、契约与能力。
-- **单一入口**：仓库只维护 `AGENTS.md`，不为不同平台生成重复入口文件。
+- **单一入口**：仓库只维护 `AGENTS.md`；平台侧的重复入口处理见 `.agents/adapters/README.md`。
 - **运行时负责执行**：Markdown 不会启动并行任务、控制权限或保证日志落盘。
 
 ## 扩展门槛
 
 不要预先创建 `agents/`、`roles/`、`prompts/`、`templates/`、`hooks/`、`reports/` 等完整目录树。只有出现**被两个以上任务反复复用**的明确需求，才增设对应模块；否则把角色与要求写进一次性任务契约。
 
-Skill 同理：默认不建 `.agents/skills/`；某项流程被重复执行、可复用且获得用户明确授权时，才创建。
+Skill 同理：默认不预建 `.agents/skills/`；是否创建以 `AGENTS.md` 的「Skills 与子代理」一节为准。

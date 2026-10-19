@@ -4,7 +4,7 @@
 
 ## 原则
 
-- **共用文件**：`AGENTS.md` 是规则入口，`.agents/protocols/` 是详细协议，`.agents/skills/` 是 Skill 来源。
+- **共用文件**：`AGENTS.md` 是规则入口，`.agents/protocols/` 是详细协议，`.agents/skills/` 是 Skill 来源（按需创建）。
 - **零平台专属入口**：不生成 `CLAUDE.md`、`GEMINI.md` 等重复文件；运行时不自动读取时，由其配置或会话显式加载。
 - **执行适配**：子代理、并行、审批使用平台原生能力；没有就用 SOLO，不模拟。
 - **Skill 适配**：平台不能发现 `.agents/skills/` 时，按其原生路径加载或人工读取，避免多份内容漂移。
@@ -37,4 +37,4 @@
 - Cursor: https://cursor.com/docs/skills
 - Gemini: https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/skills.md
 - Claude Code: https://code.claude.com/docs/en/memory
-- Copilot: https://docs.github.com/en/copilot/how-tos/copilot-in-your-ide/customize-copilot/configure-custom-instructions/add-repository-instructions-in-your-ide
+- Copilot: https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions
