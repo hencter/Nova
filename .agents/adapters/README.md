@@ -14,7 +14,7 @@
 
 | 运行时 | 规则入口 | Skills | 备注 |
 | --- | --- | --- | --- |
-| DeepSeek Harness (DSH) | 工作区 `AGENTS.md` 自动加载 | 扫描 `.agents/skills/`、`.dsh/skills/` | 原生工具 + 子代理 + workflow；权限由沙箱/审批控制 |
+| DeepSeek Harness (DSH) | 工作区 `AGENTS.md` 自动加载 | 项目 `.dsh/skills/` 优先于 `.agents/skills/` | 原生工具（`read`/`write`/`edit`/`grep`/`glob`/`pwsh`）+ 子代理 + workflow；权限由沙箱/审批控制 |
 | Codex | `AGENTS.md` | `.agents/skills/` | 使用当前环境的实际能力 |
 | Cursor | `AGENTS.md` 或 `.cursor/rules/` | `.agents/skills/` | 不同版本需验证 |
 | OpenCode | `AGENTS.md` | `.agents/skills/` | 以实际版本配置为准 |
