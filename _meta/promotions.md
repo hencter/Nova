@@ -16,7 +16,7 @@ summary: Every promotion (§2.5) is registered here — Active Rules (AGENTS.md)
 
 # Promotion Ledger
 
-> **standard node** = a promoted rule/note that constrains future behavior (§2.5). This ledger is part of the per-session loading set (boot step 5). Keep ≤ 50 lines; retire entries to `/log-archive/` when over budget.
+> **standard node** = a promoted rule/note that constrains future behavior (§2.5). This ledger is part of the per-session loading set (boot step 5). Keep ≤ 50 lines; retire entries when over budget (git history keeps the full record).
 
 ## Active Rules (AGENTS.md)
 
@@ -29,7 +29,7 @@ Rules written into `AGENTS.md` — loaded every session, binding by construction
 | 2026-06-30 | §1 no filesystem-absolute paths | Absolute paths break on distribution | log 2026-06-30 |
 | 2026-08-05 | §2.6 data accuracy — calculator required | LLM arithmetic unreliable; verify any numeric output with a calculator | log 2026-08-05 |
 | 2026-08-14 | §9 DSH tool boundary + portability map | Schema names the current harness's tools; one-line map keeps portability | log 2026-08-14 |
-| 2026-08-26 | §8 vault skills at `.agents/skills/` | Agent Skills Standard path is auto-discovered by DSH — the `skill` tool loads vault skills by name | log 2026-08-26 |
+| 2026-10-19 | §8 vault skills at `skills/` | Skills stay portable Agent Skills files at the vault root; DSH's catalog only scans standard roots, so load by reading `SKILL.md` | log 2026-10-19 |
 
 ## Active Constraint Notes (boot-loaded) — none yet
 
@@ -42,4 +42,8 @@ Promoted lessons filed as concept/pattern/tool notes — knowledge background, n
 | 2026-08-14 | [[deepseek-harness|DeepSeek Harness]] (tools/) | DSH runtime model & tool stack — the reference note behind the §9 mapping | log 2026-08-14 |
 | 2026-08-14 | [[knowledge-graph-patterns|Knowledge Graph Patterns]] (patterns/) | Displayed link syntax must be escaped; lint counts only rendered edges | log 2026-08-14 |
 
-## Retired — full history in `/log-archive/`
+## Retired — full history in git
+
+| Date | Rule | Retired |
+|------|------|---------|
+| 2026-08-26 | §8 vault skills at `.agents/skills/` | 2026-10-19 — skills moved back to root `skills/` |

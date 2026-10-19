@@ -251,13 +251,13 @@ graph TD
 
 ## Relationship to Nova's Skills System
 
-Nova's vault uses the `SKILL.md` format in `.agents/skills/` (see [[agent-skills-system|Agent Skills System]]) — the standard's primary project path, so DSH auto-discovers the vault skills into its skill catalog. Aligning with the Agent Skills standard enables:
+Nova's vault keeps the standard `SKILL.md` format but stores it in `skills/` at the vault root (see [[agent-skills-system|Agent Skills System]]) — outside DSH's auto-scanned roots (the standard's primary path is `.agents/skills/`), so vault skills load by direct read; pointing a harness custom skill dir at `skills/` restores catalog loading. Aligning with the Agent Skills standard enables:
 
 | Benefit | Detail |
 |---------|--------|
 | **Portability** | Nova skills can be shared with other agent tools (Claude Code, Cursor, etc.) |
 | **Community skills** | Skills from the ecosystem (e.g., [Anthropic's public skills repo](https://github.com/anthropics/skills)) can be used in Nova |
-| **Standard paths** | Adopting `.agents/skills/` as the primary location enables cross-tool discovery |
+| **Standard paths** | The standard's `.agents/skills/` primary path enables cross-tool discovery; Nova's root `skills/` keeps the file format portable but needs an explicit path mapping |
 | **Future-proofing** | As the standard evolves, Nova benefits from the broader ecosystem's investments |
 
 ### Current Nova vs Standard
@@ -265,7 +265,7 @@ Nova's vault uses the `SKILL.md` format in `.agents/skills/` (see [[agent-skills
 | Aspect | Nova Current | Standard |
 |--------|-------------|----------|
 | **Format** | SKILL.md with YAML frontmatter | SKILL.md with YAML frontmatter |
-| **Primary path** | `.agents/skills/` (adopted 2026-08) | `.agents/skills/` |
+| **Primary path** | `skills/` at vault root (moved 2026-10) | `.agents/skills/` |
 | **Frontmatter** | `name`, `description`, `license`, `compatibility`, `metadata` | `name`, `description` (required) + extended fields |
 | **Subdirectories** | N/A | `scripts/`, `references/`, `assets/` |
 | **Progressive disclosure** | Implicit (lazy loading via tool call) | Explicit 3-stage model |
